@@ -1,0 +1,25 @@
+{
+  "name": "vacation-calendar",
+  "version": "1.0.0",
+  "description": "Quickly see when your colleagues are out of the office, with no manual entry required.",
+  "main": "Code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsuitedevs/solutions.git"
+  },
+  "keywords": [
+    "solution"
+  ],
+  "author": "Eric Koleda <ekoleda@google.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gsuitedevs/solutions/issues"
+  },
+  "homepage": "https://github.com/gsuitedevs/solutions#readme",
+  "devDependencies": {
+    "@google/clasp": "^2.1.0"
+  }
+}
