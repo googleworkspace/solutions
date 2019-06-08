@@ -1,3 +1,17 @@
+// Copyright 2019 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 /**
  * A special function that inserts a custom menu when the spreadsheet opens.
  */
@@ -14,7 +28,8 @@ function onOpen() {
  */
 function setUpConference_() {
   if (ScriptProperties.getProperty('calId')) {
-    Browser.msgBox('Your conference is already set up. Look in Google Drive!');
+    Browser.msgBox('Your conference is already set up. Look in Google Drive for your'
+                   + ' sign up form!');
   }
   var ss = SpreadsheetApp.getActive();
   var sheet = ss.getSheetByName('Conference Setup');
@@ -24,7 +39,6 @@ function setUpConference_() {
   setUpForm_(ss, values);
   ScriptApp.newTrigger('onFormSubmit').forSpreadsheet(ss).onFormSubmit()
       .create();
-  ss.removeMenu('Conference');
 }
 
 /**
@@ -35,6 +49,7 @@ function setUpConference_() {
  */
 function setUpCalendar_(values, range) {
   var cal = CalendarApp.createCalendar('Conference Calendar');
+  // Start at 1 to skip the header row.
   for (var i = 1; i < values.length; i++) {
     var session = values[i];
     var title = session[0];
@@ -67,7 +82,8 @@ function joinDateAndTime_(date, time) {
 
 /**
  * Creates a Google Form that allows respondents to select which conference
- * sessions they would like to attend, grouped by date and start time.
+ * sessions they would like to attend, grouped by date and start time in the
+ * caller's time zone.
  *
  * @param {Spreadsheet} ss The spreadsheet that contains the conference data.
  * @param {Array<String[]>} values Cell values for the spreadsheet range.
@@ -75,6 +91,7 @@ function joinDateAndTime_(date, time) {
 function setUpForm_(ss, values) {
   // Group the sessions by date and time so that they can be passed to the form.
   var schedule = {};
+  // Start at 1 to skip the header row.
   for (var i = 1; i < values.length; i++) {
     var session = values[i];
     var day = session[1].toLocaleDateString();
