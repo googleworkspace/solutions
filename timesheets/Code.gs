@@ -50,8 +50,8 @@ function sendEmails() {
     for (i =2; i <= lastRow; i++) { 
       
       // don't notify twice
-      var notified_status = sheet.getRange(i, lastCol).getValue();
-      if (notified_status == "NOTIFIED") {
+      var notifiedStatus = sheet.getRange(i, lastCol).getValue();
+      if (notifiedStatus == "NOTIFIED") {
         continue;
       }
        
