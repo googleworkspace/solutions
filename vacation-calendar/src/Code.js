@@ -2,6 +2,7 @@
 // ID on the settings page.
 var TEAM_CALENDAR_ID = 'ENTER_TEAM_CALENDAR_ID_HERE';
 // Set the email address of the Google Group that contains everyone in the team.
+// Ensure the group has less than 500 members to avoid timeouts.
 var GROUP_EMAIL = 'ENTER_GOOGLE_GROUP_EMAIL_HERE';
 
 var KEYWORDS = ['vacation', 'ooo', 'out of office', 'offline'];
@@ -11,7 +12,7 @@ var MONTHS_IN_ADVANCE = 3;
  * Setup the script to run automatically every hour.
  */
 function setup() {
-  var triggers= ScriptApp.getProjectTriggers();
+  var triggers = ScriptApp.getProjectTriggers();
   if (triggers.length > 0) {
     throw new Error('Triggers are already setup.');
   }
@@ -46,19 +47,8 @@ function sync() {
     KEYWORDS.forEach(function(keyword) {
       var events = findEvents(user, keyword, today, maxDate, lastRun);
       events.forEach(function(event) {
-        event.summary = '[' + username + '] ' + event.summary;
-        event.organizer = {
-          id: TEAM_CALENDAR_ID
-        };
-        event.attendees = [];
-        console.log('Importing: %s', event.summary);
-        try {
-          Calendar.Events.import(event, TEAM_CALENDAR_ID);
-          count++;
-        } catch (e) {
-          console.error('Error attempting to import event: %s. Skipping.',
-              e.toString());
-        }
+        importEvent(username, event);
+        count++;
       }); // End foreach event.
     }); // End foreach keyword.
   }); // End foreach user.
@@ -68,55 +58,95 @@ function sync() {
 }
 
 /**
+ * Imports the given event from the user's calendar into the shared team
+ * calendar.
+ * @param {string} username The team member that is attending the event.
+ * @param {Calendar.Event} event The event to import.
+ */
+function importEvent(username, event) {
+  event.summary = '[' + username + '] ' + event.summary;
+  event.organizer = {
+    id: TEAM_CALENDAR_ID
+  };
+  event.attendees = [];
+  console.log('Importing: %s', event.summary);
+  try {
+    Calendar.Events.import(event, TEAM_CALENDAR_ID);
+  } catch (e) {
+    console.error('Error attempting to import event: %s. Skipping.',
+        e.toString());
+  }
+}
+
+/**
  * In a given user's calendar, look for occurrences of the given keyword
  * in events within the specified date range and return any such events
  * found.
- * @param {string} user the user's primary email String.
- * @param {string} keyword the keyword String to look for.
- * @param {Date} start the starting Date of the range to examine.
- * @param {Date} end the ending Date of the range to examine.
- * @param {Date} opt_since a Date indicating the last time this script was run.
- * @return {object[]} an array of calendar event Objects.
+ * @param {Session.User} user The user to retrieve events for.
+ * @param {string} keyword The keyword to look for.
+ * @param {Date} start The starting date of the range to examine.
+ * @param {Date} end The ending date of the range to examine.
+ * @param {Date} opt_since A date indicating the last time this script was run.
+ * @return {Calendar.Event[]} An array of calendar events.
  */
 function findEvents(user, keyword, start, end, opt_since) {
   var params = {
     q: keyword,
-    timeMin: formatDate(start),
-    timeMax: formatDate(end),
+    timeMin: formatDateAsRFC3339(start),
+    timeMax: formatDateAsRFC3339(end),
     showDeleted: true
   };
   if (opt_since) {
     // This prevents the script from examining events that have not been
     // modified since the specified date (that is, the last time the
     // script was run).
-    params['updatedMin'] = formatDate(opt_since);
+    params.updatedMin = formatDateAsRFC3339(opt_since);
   }
-  var response;
-  try {
-    response = Calendar.Events.list(user.getEmail(), params);
-  } catch (e) {
-    console.error('Error retriving events for %s, %s: %s; skipping',
-        user, keyword, e.toString());
-    return [];
+  var pageToken = null;
+  var events = [];
+  do {
+    params.pageToken = pageToken;
+    var response;
+    try {
+      response = Calendar.Events.list(user.getEmail(), params);
+    } catch (e) {
+      console.error('Error retriving events for %s, %s: %s; skipping',
+          user, keyword, e.toString());
+      continue;
+    }
+    events = events.concat(response.items.filter(function(item) {
+      return shoudImportEvent(user, keyword, item);
+    }));
+    pageToken = response.nextPageToken;
+  } while (pageToken);
+  return events;
+}
+
+/**
+ * Determines if the given event should be imported into the shared team
+ * calendar.
+ * @param {Session.User} user The user that is attending the event.
+ * @param {string} keyword The keyword being searched for.
+ * @param {Calendar.Event} event The event being considered.
+ * @return {boolean} True if the event should be imported.
+ */
+function shoudImportEvent(user, keyword, event) {
+  // Filter out events where the keyword did not appear in the summary
+  // (that is, the keyword appeared in a different field, and are thus
+  // is not likely to be relevant).
+  if (event.summary.toLowerCase().indexOf(keyword) < 0) {
+    return false;
   }
-  return response.items.filter(function(item) {
-    // Filter out events where the keyword did not appear in the summary
-    // (that is, the keyword appeared in a different field, and are thus
-    // is not likely to be relevant).
-    if (item.summary.toLowerCase().indexOf(keyword) < 0) {
-      return false;
-    }
-    // If the event was created by someone other than the user, only include
-    // it if the user has marked it as 'accepted'.
-    if (item.organizer && item.organizer.email != user) {
-      if (!item.attendees) return false;
-      var matching = item.attendees.filter(function(attendee) {
-        return attendee.self;
-      });
-      return matching.length > 0 && matching[0].responseStatus == 'accepted';
-    }
+  if (!event.organizer || event.organizer.email == user.getEmail()) {
+    // If the user is the creator of the event, always import it.
     return true;
+  }
+  // Only import events the user has accepted.
+  if (!event.attendees) return false;
+  var matching = event.attendees.filter(function(attendee) {
+    return attendee.self;
   });
+  return matching.length > 0 && matching[0].responseStatus == 'accepted';
 }
 
 /**
@@ -125,6 +155,6 @@ function findEvents(user, keyword, start, end, opt_since) {
  * @param {Date} date a Date.
  * @return {string} a formatted date string.
  */
-function formatDate(date) {
+function formatDateAsRFC3339(date) {
   return Utilities.formatDate(date, 'UTC', 'yyyy-MM-dd\'T\'HH:mm:ssZ');
 }
