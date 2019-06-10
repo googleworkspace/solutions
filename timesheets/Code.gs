@@ -24,13 +24,11 @@ var EMAIL_COLUMN = 3;
 */
 function onOpen(e) {
     var ui = SpreadsheetApp.getUi();
-    ui.createMenu('Run Functions')
-    .addItem('Calculate Pay', 'calculatePay')
-    .addSeparator()
-    .addItem('Add Approval Column', 'addApprovalColumn')
-    .addSeparator()
-    .addItem('Send Emails', 'sendEmails')
-    .addToUi();
+    ui.createMenu('Timesheets')
+        .addItem('Calculate Pay', 'calculatePay')
+        .addItem('Add Approval Column', 'addApprovalColumn')
+        .addItem('Send Emails', 'sendEmails')
+        .addToUi();
 }
 
 /**
@@ -39,45 +37,36 @@ function onOpen(e) {
 * Checks + updates "NOTIFIED" status so employers do not send e mails more than once.
 */
 function sendEmails() {
-   
     var sheet = SpreadsheetApp.getActiveSheet();
     var lastRow = sheet.getLastRow();
     var lastCol = sheet.getLastColumn();
     // lastCol here is the NOTIFIED column
   
-  
     // goes through the whole email column
     for (i =2; i <= lastRow; i++) { 
-      
       // don't notify twice
       var notifiedStatus = sheet.getRange(i, lastCol).getValue();
-      if (notifiedStatus == "NOTIFIED") {
+      if (notifiedStatus == 'NOTIFIED') {
         continue;
       }
-       
-      
+           
       var range = sheet.getRange(i, 3);
       var email = range.getValue();
-      var dropdown_value = sheet.getRange(i,APPROVAL_COLUMN);    
+      var dropdownValue = sheet.getRange(i,APPROVAL_COLUMN);    
       
       // approval email
-      if (dropdown_value.getValue() == "APPROVED") {
-        var message = "Your timesheet has been approved";
+      if (dropdownValue.getValue() == 'APPROVED') {
+        var message = 'Your timesheet has been approved';
         var subject = 'TimeSheet Approval';
-      }
-      
-      else if (dropdown_value.getValue() == "NOT APPROVED") {
-        var message = "NOT APPROVED";
+      } else if (dropdownValue.getValue() == 'NOT APPROVED') {
+        var message = 'NOT APPROVED';
         var subject = 'TimeSheet not Approved';
-      }
-      
-      else if (dropdown_value.getValue() == "IN PROGRESS") {
+      } else if (dropdownValue.getValue() == 'IN PROGRESS') {
         continue;
-      } //tested this works !
+      } 
       
       MailApp.sendEmail(email, subject, message);
-      var notified_update = sheet.getRange(i, lastCol).setValue("NOTIFIED");
-      
+      var notifiedUpdate = sheet.getRange(i, lastCol).setValue('NOTIFIED');
     }
 }
 
@@ -88,7 +77,6 @@ function sendEmails() {
 * Adds "NOTIFIED STATUS" column indicating whether or not an employee has yet been e mailed.
 */
 function addApprovalColumn() { 
-  
   // adds new column
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastCol = sheet.getLastColumn();
@@ -97,34 +85,30 @@ function addApprovalColumn() {
   
   // sets new column title
   var cell = sheet.getRange(1, lastCol+1);
-  cell.setBackground('ffe3ee').setValue("APPROVAL");
+  cell.setBackground('ffe3ee').setValue('APPROVAL');
   
   // make sure approval column is all drop-down menu
   for (i = 2; i <= lastRow; i++) {
-    var dropdown_box = sheet.getRange(i,lastCol+1);
-    var dropdown_values = ["APPROVED", "NOT APPROVED", "IN PROGRESS"];
-    var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdown_values).build();
-    dropdown_box.setDataValidation(rule);
-    dropdown_box.setValue("IN PROGRESS");
+    var dropdownBox = sheet.getRange(i,lastCol+1);
+    var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
+    var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues).build();
+    dropdownBox.setDataValidation(rule);
+    dropdownBox.setValue('IN PROGRESS');
   }
   
   // add the notified column
   sheet.insertColumnAfter(APPROVAL_COLUMN); //global
   var cell = sheet.getRange(1, APPROVAL_COLUMN + 1);
-  cell.setBackground('ffe3ee').setValue("NOTIFIED STATUS"); 
+  cell.setBackground('ffe3ee').setValue('NOTIFIED STATUS'); 
   
   // sets notified status to NOT NOTIFIED
-  for (i=2; i<=lastRow; i++) {
-    var notified_cell = sheet.getRange(i, APPROVAL_COLUMN + 1);
-    var notified_values = ["NOTIFIED", "NOT NOTIFIED"];
-    var rule = SpreadsheetApp.newDataValidation().requireValueInList(notified_values).build();
-    notified_cell.setDataValidation(rule);
-    notified_cell.setValue("NOT NOTIFIED");
-    
+  for (var i = 2; i <= lastRow; i++) {
+    var notifiedCell = sheet.getRange(i, APPROVAL_COLUMN + 1);
+    var notifiedValues = ['NOTIFIED', 'NOT NOTIFIED'];
+    var rule = SpreadsheetApp.newDataValidation().requireValueInList(notifiedValues).build();
+    notifiedCell.setDataValidation(rule);
+    notifiedCell.setValue('NOT NOTIFIED');
   }
-  
-  
-
 }
 
 /**
@@ -132,7 +116,6 @@ function addApprovalColumn() {
 * pay based on their reported hours and hourly wage.
 */
 function calculatePay() {
-  
   // adds new column
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastCol = sheet.getLastColumn();
@@ -141,15 +124,15 @@ function calculatePay() {
   
   // sets new column title
   var cell = sheet.getRange(1, lastCol+1);
-  cell.setValue("WEEKLY PAY");
+  cell.setValue('WEEKLY PAY');
   
   // goes through every employee
-  for (i = 2; i <= lastRow; i++) {
+  for (var i = 2; i <= lastRow; i++) {
     var totalHours = 0;
     var numHrs = 0;
     
     // move across the hour columns
-    for (j = HRS_START; j<= HRS_END; j++) {
+    for (var j = HRS_START; j <= HRS_END; j++) {
       var numHrsCell = sheet.getRange(i, j);
       numHrs = numHrs + numHrsCell.getValue();
     }
@@ -160,7 +143,6 @@ function calculatePay() {
     var weeklyPay = numHrs * hrlyRate;
     var setPay = sheet.getRange(i, lastCol+1);
     setPay.setValue(weeklyPay);
-  
   }
 }
 
