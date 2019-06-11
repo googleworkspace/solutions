@@ -6,7 +6,6 @@
   "rules": {
     "no-var": "off",
     "no-unused-vars": "off",
-    "max-len": ["error", { "code":  120 }],
-    "valid-jsdoc": "off"
+    "max-len": ["error", {"code": 100, "ignoreUrls": true}]
   }
 }

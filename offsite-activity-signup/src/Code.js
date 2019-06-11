@@ -20,17 +20,16 @@ var NUM_TEST_USERS = 150;
  * Add custom menu items when opening the sheet.
  */
 function onOpen() {
-  var menu = SpreadsheetApp.getUi().createMenu('Activities');
-  menu.addItem('Create form', 'buildForm_');
-  menu.addItem('Generate test data', 'generateTestData_');
-  menu.addItem('Assign activities', 'assignActivities_');
-  menu.addToUi();
+  var menu = SpreadsheetApp.getUi().createMenu('Activities')
+      .addItem('Create form', 'buildForm_')
+      .addItem('Generate test data', 'generateTestData_')
+      .addItem('Assign activities', 'assignActivities_')
+      .addToUi();
 }
 
 /**
- * Builds a form based on the "Activity Schedule" sheet. The form
- * asks attendees to rank their top N choices of activities, where
- * N is defined by NUM_ITEMS_TO_RANK.
+ * Builds a form based on the "Activity Schedule" sheet. The form asks attendees to rank their top
+ * N choices of activities, where N is defined by NUM_ITEMS_TO_RANK.
  */
 function buildForm_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -50,8 +49,7 @@ function buildForm_() {
       .setTitle('Activity choices')
       .setHelpText(sectionHelpText);
 
-  // Present activity ranking as a form grid with each activity as a row and
-  // rank as a column.
+  // Present activity ranking as a form grid with each activity as a row and rank as a column.
   var rows = loadActivitySchedule_(ss).map(function(activity) {
     return activity.description;
   });
@@ -112,8 +110,7 @@ function assignWithRandomPriority_(attendees, activities, numActivitiesPerPerson
 }
 
 /**
- * Attempt to assign an activity for an attendee based on their preferences
- * and current schedule.
+ * Attempt to assign an activity for an attendee based on their preferences and current schedule.
  *
  * @param {object} attendee - Attendee looking to join an activity
  * @param {object} activitiesById - Map of all available activities
@@ -134,8 +131,8 @@ function makeChoice_(attendee, activitiesById) {
 }
 
 /**
- * Checks that an activity has capacity and doesn't conflict with
- * previously assigned activities.
+ * Checks that an activity has capacity and doesn't conflict with previously assigned
+ * activities.
  *
  * @param {object} attendee - Attendee looking to join the activity
  * @param {object} activity - Proposed activity
@@ -187,10 +184,6 @@ function writeAttendeeAssignments_(ss, attendees) {
  */
 function writeActivityRosters_(ss, activities) {
   var sheet = findOrCreateSheetByName_(ss, 'Activity rosters');
-  var sheet = ss.getSheetByName(sheetName);
-  if (!sheet) {
-    sheet = ss.insertSheet(sheetName);
-  }
   sheet.clear();
   var rows = [];
   var rows = activities.map(function(activity) {
@@ -216,7 +209,9 @@ function writeActivityRosters_(ss, activities) {
 function loadActivitySchedule_(ss) {
   var timeZone = ss.getSpreadsheetTimeZone();
   var sheet = ss.getSheetByName('Activity Schedule');
-  var rows = sheet.getSheetValues(sheet.getFrozenRows() + 1, 1, sheet.getLastRow() - 1, sheet.getLastRow());
+  var rows = sheet.getSheetValues(
+      sheet.getFrozenRows() + 1, 1,
+      sheet.getLastRow() - 1, sheet.getLastRow());
   var activities = rows.map(function(row, index) {
     var name = row[0];
     var startAt = new Date(row[1]);
@@ -252,7 +247,9 @@ function loadAttendeeResponses_(ss, allActivityIds) {
     return undefined;
   }
 
-  var rows = sheet.getSheetValues(sheet.getFrozenRows() + 1, 1, sheet.getLastRow() - 1, sheet.getLastRow());
+  var rows = sheet.getSheetValues(
+      sheet.getFrozenRows() + 1, 1,
+      sheet.getLastRow() - 1, sheet.getLastRow());
   var attendees = rows.map(function(row) {
     var _ = row.shift(); // Ignore timestamp
     var email = row.shift();
@@ -268,9 +265,8 @@ function loadAttendeeResponses_(ss, allActivityIds) {
       return prefs;
     }, []);
     if (autoAssign == 'Yes') {
-      // If auto assigning additional activites, append a randomized
-      // list of all the activities. These will then be considered
-      // as if the attendee ranked them.
+      // If auto assigning additional activites, append a randomized list of all the activities.
+      // These will then be considered as if the attendee ranked them.
       var additionalChoices = shuffleArray_(allActivityIds);
       preferences = preferences.concat(additionalChoices);
     }
@@ -284,9 +280,9 @@ function loadAttendeeResponses_(ss, allActivityIds) {
 }
 
 /**
- * Simulates a large number of users responding to the form. This enables users
- * to quickly experience the full solution without having to collect sufficient
- * form responses through other means.
+ * Simulates a large number of users responding to the form. This enables users to quickly
+ * experience the full solution without having to collect sufficient form responses
+ * through other means.
  */
 function generateTestData_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -332,16 +328,16 @@ function findOrCreateSheetByName_(ss, name) {
 }
 
 /**
- * Faster version of appending multiple rows via ranges.
+ * Faster version of appending multiple rows via ranges. Requires all rows are equal length.
  *
  * @param {Sheet} sheet - Sheet to append to
- * @param {object[][]} rows - Rows to append
+ * @param {Array<Array<object>>} rows - Rows to append
  */
 function bulkAppendRows_(sheet, rows) {
   var startRow = sheet.getLastRow() + 1;
   var startColumn = 1;
   var numRows = rows.length;
-  var numColumns = rows[0].length; // NOTE: Assumes all rows equal length
+  var numColumns = rows[0].length;
   sheet.getRange(startRow, startColumn, numRows, numColumns).setValues(rows);
 }
 
@@ -365,7 +361,7 @@ function shuffleArray_(array) {
 /**
  * Formats an number as an ordinal.
  *
- * See https://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number/13627586
+ * See: https://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number/13627586
  *
  * @param {number} i - Number to format
  * @return {string} Formatted string
@@ -437,19 +433,18 @@ function range_(start, end) {
 }
 
 /**
- * Transposes a matrix/2d array. For cases where the rows
- * are not the same length, `fillValue` is used where no other
- * value would otherwise be present.
+ * Transposes a matrix/2d array. For cases where the rows are not the same length,
+ * `fillValue` is used where no other value would otherwise be present.
  *
- * @param {object[][]} arr - 2D array to transpose
- * @param {object} fillVaue - Placeholder for undefined values created as a result of the transpose.
- *     Only required if rows aren't all of equal length.
- * @return {object[][]} New transposed array
+ * @param {Array<Array<object>>} arr - 2D array to transpose
+ * @param {object} fillValue - Placeholder for undefined values created as a result
+ *     of the transpose. Only required if rows aren't all of equal length.
+ * @return {Array<Array<object>>} New transposed array
  */
 function transpose_(arr, fillValue) {
   var transposed = [];
-  arr.map(function(row, rowIndex) {
-    row.map(function(col, colIndex) {
+  arr.forEach(function(row, rowIndex) {
+    row.forEach(function(col, colIndex) {
       transposed[colIndex] = transposed[colIndex] || fillArray_([], arr.length, fillValue);
       transposed[colIndex][rowIndex] = row[colIndex];
     });
