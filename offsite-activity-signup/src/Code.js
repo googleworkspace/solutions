@@ -20,10 +20,10 @@ var NUM_TEST_USERS = 150;
  * Add custom menu items when opening the sheet.
  */
 function onOpen() {
-  var menu = SpreadsheetApp.getUi().createMenu("Activities");
-  menu.addItem("Create form", "buildForm_");
-  menu.addItem("Generate test data", "generateTestData_");
-  menu.addItem("Assign activities", "assignActivities_");
+  var menu = SpreadsheetApp.getUi().createMenu('Activities');
+  menu.addItem('Create form', 'buildForm_');
+  menu.addItem('Generate test data', 'generateTestData_');
+  menu.addItem('Assign activities', 'assignActivities_');
   menu.addToUi();
 }
 
@@ -32,58 +32,58 @@ function onOpen() {
  * asks attendees to rank their top N choices of activities, where
  * N is defined by NUM_ITEMS_TO_RANK.
  */
-function buildForm_() {  
+function buildForm_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   if (ss.getFormUrl()) {
-    var msg = "Form already exists. Unlink the form and try again.";
+    var msg = 'Form already exists. Unlink the form and try again.';
     SpreadsheetApp.getUi().alert(msg);
     return;
   }
-  var form = FormApp.create("Activity Signup")
-  .setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId())
-  .setAllowResponseEdits(true)
-  .setLimitOneResponsePerUser(true)
-  .setCollectEmail(true);
-  var sectionHelpText = Utilities.formatString("Please choose your top %d activities",
-                                               NUM_ITEMS_TO_RANK);
+  var form = FormApp.create('Activity Signup')
+      .setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId())
+      .setAllowResponseEdits(true)
+      .setLimitOneResponsePerUser(true)
+      .setCollectEmail(true);
+  var sectionHelpText = Utilities.formatString('Please choose your top %d activities',
+      NUM_ITEMS_TO_RANK);
   form.addSectionHeaderItem()
-  .setTitle("Activity choices")
-  .setHelpText(sectionHelpText);
-  
+      .setTitle('Activity choices')
+      .setHelpText(sectionHelpText);
+
   // Present activity ranking as a form grid with each activity as a row and
   // rank as a column.
   var rows = loadActivitySchedule_(ss).map(function(activity) {
     return activity.description;
   });
   var columns = range_(1, NUM_ITEMS_TO_RANK).map(function(value) {
-    return Utilities.formatString("%s", toOrdinal_(value));
+    return Utilities.formatString('%s', toOrdinal_(value));
   });
   var gridValidation = FormApp.createGridValidation()
-  .setHelpText("Select one item per column.")
-  .requireLimitOneResponsePerColumn()
-  .build();
+      .setHelpText('Select one item per column.')
+      .requireLimitOneResponsePerColumn()
+      .build();
   form.addGridItem()
-  .setColumns(columns)
-  .setRows(rows)
-  .setValidation(gridValidation);
-  
+      .setColumns(columns)
+      .setRows(rows)
+      .setValidation(gridValidation);
+
   form.addListItem()
-  .setTitle("Assign other activities if choices are not available?")
-  .setChoiceValues(["Yes", "No"]);
+      .setTitle('Assign other activities if choices are not available?')
+      .setChoiceValues(['Yes', 'No']);
 }
 
 /**
  * Assigns activities using a random priority/random serial dictatorship approach. The results
  * are then populated into two new sheets, one listing activities per person, the other listing
  * the rosters for each activity.
- * 
+ *
  * See https://en.wikipedia.org/wiki/Random_serial_dictatorship for additional information.
  */
 function assignActivities_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var activities = loadActivitySchedule_(ss);
-  var activityIds = activities.map(function(activity) { 
-    return activity.id
+  var activityIds = activities.map(function(activity) {
+    return activity.id;
   });
   var attendees = loadAttendeeResponses_(ss, activityIds);
   assignWithRandomPriority_(attendees, activities, 2);
@@ -119,7 +119,7 @@ function assignWithRandomPriority_(attendees, activities, numActivitiesPerPerson
  * @param {object} activitiesById - Map of all available activities
  */
 function makeChoice_(attendee, activitiesById) {
-  for(var i = 0; i < attendee.preferences.length; ++i) {
+  for (var i = 0; i < attendee.preferences.length; ++i) {
     var activity = activitiesById[attendee.preferences[i]];
     if (!activity) {
       continue;
@@ -146,7 +146,7 @@ function checkAvailability_(attendee, activity) {
     return false;
   }
   var timesConflict = attendee.assigned.some(function(assignedActivity) {
-    return !(assignedActivity.startAt.getTime() > activity.endAt.getTime() || 
+    return !(assignedActivity.startAt.getTime() > activity.endAt.getTime() ||
       activity.startAt.getTime() > assignedActivity.endAt.getTime());
   });
   return !timesConflict;
@@ -161,8 +161,8 @@ function checkAvailability_(attendee, activity) {
 function writeAttendeeAssignments_(ss, attendees) {
   var sheet = findOrCreateSheetByName_(ss, 'Activities by person');
   sheet.clear();
-  sheet.appendRow(["Email address", "Activities"]);
-  sheet.getRange("B1:1").merge();
+  sheet.appendRow(['Email address', 'Activities']);
+  sheet.getRange('B1:1').merge();
   var rows = attendees.map(function(attendee) {
     // Prefill row to ensure consistent length otherwise
     // can't bulk update the sheet with range.setValues()
@@ -175,7 +175,7 @@ function writeAttendeeAssignments_(ss, attendees) {
   });
   bulkAppendRows_(sheet, rows);
   sheet.setFrozenRows(1);
-  sheet.getRange("1:1").setFontWeight("bold");
+  sheet.getRange('1:1').setFontWeight('bold');
   sheet.autoResizeColumns(1, sheet.getLastColumn());
 }
 
@@ -203,7 +203,7 @@ function writeActivityRosters_(ss, activities) {
   rows = transpose_(rows, '');
   bulkAppendRows_(sheet, rows);
   sheet.setFrozenRows(1);
-  sheet.getRange("1:1").setFontWeight("bold");
+  sheet.getRange('1:1').setFontWeight('bold');
   sheet.autoResizeColumns(1, sheet.getLastColumn());
 }
 
@@ -222,9 +222,9 @@ function loadActivitySchedule_(ss) {
     var startAt = new Date(row[1]);
     var endAt = new Date(row[2]);
     var capacity = parseInt(row[3]);
-    var formattedStartAt= Utilities.formatDate(startAt, timeZone, "EEE hh:mm a");
-    var formattedEndAt = Utilities.formatDate(endAt, timeZone, "hh:mm a");
-    var description = Utilities.formatString("%s (%s-%s)", name, formattedStartAt, formattedEndAt);
+    var formattedStartAt= Utilities.formatDate(startAt, timeZone, 'EEE hh:mm a');
+    var formattedEndAt = Utilities.formatDate(endAt, timeZone, 'hh:mm a');
+    var description = Utilities.formatString('%s (%s-%s)', name, formattedStartAt, formattedEndAt);
     return {
       id: index,
       name: name,
@@ -232,8 +232,8 @@ function loadActivitySchedule_(ss) {
       capacity: capacity,
       startAt: startAt,
       endAt: endAt,
-      roster: []
-    }
+      roster: [],
+    };
   });
   return activities;
 }
@@ -247,10 +247,10 @@ function loadActivitySchedule_(ss) {
  */
 function loadAttendeeResponses_(ss, allActivityIds) {
   var sheet = findResponseSheetForForm_(ss);
-  
+
   if (!sheet || sheet.getLastRow() == 1) {
     return undefined;
-  }  
+  }
 
   var rows = sheet.getSheetValues(sheet.getFrozenRows() + 1, 1, sheet.getLastRow() - 1, sheet.getLastRow());
   var attendees = rows.map(function(row) {
@@ -265,7 +265,7 @@ function loadAttendeeResponses_(ss, allActivityIds) {
       }
       var rank = parseInt(match[1]) - 1; // Convert ordinal to array index
       prefs[rank] = index;
-      return prefs
+      return prefs;
     }, []);
     if (autoAssign == 'Yes') {
       // If auto assigning additional activites, append a randomized
@@ -273,11 +273,11 @@ function loadAttendeeResponses_(ss, allActivityIds) {
       // as if the attendee ranked them.
       var additionalChoices = shuffleArray_(allActivityIds);
       preferences = preferences.concat(additionalChoices);
-    }    
+    }
     return {
       email: email,
       preferences: preferences,
-      assigned: []
+      assigned: [],
     };
   });
   return attendees;
@@ -292,12 +292,12 @@ function generateTestData_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = findResponseSheetForForm_(ss);
   if (!sheet) {
-    var msg = "No response sheet found. Create the form and try again.";
+    var msg = 'No response sheet found. Create the form and try again.';
     SpreadsheetApp.getUi().alert(msg);
   }
   if (sheet.getLastRow() > 1) {
-    var msg = "Response sheet is not empty, can not generate test data. " +
-      "Remove responses and try again.";
+    var msg = 'Response sheet is not empty, can not generate test data. ' +
+      'Remove responses and try again.';
     SpreadsheetApp.getUi().alert(msg);
     return;
   }
@@ -307,11 +307,11 @@ function generateTestData_() {
   range_(1, 5).forEach(function(value) {
     choices[value] = toOrdinal_(value);
   });
-  
+
   var rows = range_(1, NUM_TEST_USERS).map(function(value) {
     var randomizedChoices = shuffleArray_(choices);
-    var email = Utilities.formatString("person%d@example.com", value);
-    return [new Date(), email].concat(randomizedChoices).concat(["Yes"]);
+    var email = Utilities.formatString('person%d@example.com', value);
+    return [new Date(), email].concat(randomizedChoices).concat(['Yes']);
   });
   bulkAppendRows_(sheet, rows);
 }
@@ -344,7 +344,7 @@ function bulkAppendRows_(sheet, rows) {
   var numColumns = rows[0].length; // NOTE: Assumes all rows equal length
   sheet.getRange(startRow, startColumn, numRows, numColumns).setValues(rows);
 }
-  
+
 /**
  * Copies and randomizes an array
  *
@@ -374,15 +374,15 @@ function toOrdinal_(i) {
   var j = i % 10;
   var k = i % 100;
   if (j == 1 && k != 11) {
-    return i + "st";
+    return i + 'st';
   }
   if (j == 2 && k != 12) {
-    return i + "nd";
+    return i + 'nd';
   }
   if (j == 3 && k != 13) {
-    return i + "rd";
+    return i + 'rd';
   }
-  return i + "th";
+  return i + 'th';
 }
 
 /**
