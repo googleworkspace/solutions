@@ -13,9 +13,9 @@
 // limitations under the License.
  
 // GLOBAL VARS
-var HRS_START = 4;
-var HRS_END = 8;
-var HRLY_PAY_COLUMN = 9;
+var HOURS_START = 4;
+var HOURS_END = 8;
+var HOURLY_PAY_COLUMN = 9;
 var APPROVAL_COLUMN = 11;
 var EMAIL_COLUMN = 3;
 
@@ -42,17 +42,19 @@ function sendEmails() {
     var lastCol = sheet.getLastColumn();
     // lastCol here is the NOTIFIED column
   
+    var FROZEN_ROWS = sheet.getFrozenRows();
+  
     // goes through the whole email column
-    for (i =2; i <= lastRow; i++) { 
+    for (var i = FROZEN_ROWS + 1; i <= lastRow; i++) { 
       // don't notify twice
       var notifiedStatus = sheet.getRange(i, lastCol).getValue();
       if (notifiedStatus == 'NOTIFIED') {
         continue;
       }
            
-      var range = sheet.getRange(i, 3);
+      var range = sheet.getRange(i, EMAIL_COLUMN);
       var email = range.getValue();
-      var dropdownValue = sheet.getRange(i,APPROVAL_COLUMN);    
+      var dropdownValue = sheet.getRange(i, APPROVAL_COLUMN);    
       
       // approval email
       if (dropdownValue.getValue() == 'APPROVED') {
@@ -84,12 +86,12 @@ function addApprovalColumn() {
   sheet.insertColumnAfter(lastCol);
   
   // sets new column title
-  var cell = sheet.getRange(1, lastCol+1);
-  cell.setBackground('ffe3ee').setValue('APPROVAL');
-  
+  var approvalColumn = sheet.getRange(1, lastCol + 1).setBackground('ffe3ee').setValue('APPROVAL');
+  var FROZEN_ROWS = sheet.getFrozenRows();
+
   // make sure approval column is all drop-down menu
-  for (i = 2; i <= lastRow; i++) {
-    var dropdownBox = sheet.getRange(i,lastCol+1);
+  for (var i = FROZEN_ROWS + 1; i <= lastRow; i++) {
+    var dropdownBox = sheet.getRange(i,lastCol + 1);
     var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
     var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues).build();
     dropdownBox.setDataValidation(rule);
@@ -98,11 +100,10 @@ function addApprovalColumn() {
   
   // add the notified column
   sheet.insertColumnAfter(APPROVAL_COLUMN); //global
-  var cell = sheet.getRange(1, APPROVAL_COLUMN + 1);
-  cell.setBackground('ffe3ee').setValue('NOTIFIED STATUS'); 
+  var notifiedColumn = sheet.getRange(1, APPROVAL_COLUMN + 1).setBackground('ffe3ee').setValue('NOTIFIED STATUS'); 
   
   // sets notified status to NOT NOTIFIED
-  for (var i = 2; i <= lastRow; i++) {
+  for (var i = FROZEN_ROWS + 1; i <= lastRow; i++) {
     var notifiedCell = sheet.getRange(i, APPROVAL_COLUMN + 1);
     var notifiedValues = ['NOTIFIED', 'NOT NOTIFIED'];
     var rule = SpreadsheetApp.newDataValidation().requireValueInList(notifiedValues).build();
@@ -123,26 +124,21 @@ function calculatePay() {
   sheet.insertColumnAfter(lastCol);
   
   // sets new column title
-  var cell = sheet.getRange(1, lastCol+1);
-  cell.setValue('WEEKLY PAY');
+  var weeklyPayColumn = sheet.getRange(1, lastCol + 1).setValue('WEEKLY PAY');
+  var rangeValues = sheet.getRange(FROZEN_ROWS + 1, HOURS_START, 6, lastCol).getValues();
+  var FROZEN_ROWS = sheet.getFrozenRows();
   
   // goes through every employee
-  for (var i = 2; i <= lastRow; i++) {
-    var totalHours = 0;
-    var numHrs = 0;
-    
-    // move across the hour columns
-    for (var j = HRS_START; j <= HRS_END; j++) {
-      var numHrsCell = sheet.getRange(i, j);
-      numHrs = numHrs + numHrsCell.getValue();
+  for (var i = 0; i <= lastRow - (FROZEN_ROWS + 1); i++) {
+    var numHours = 0;
+    for (var j = 0; j < 5; j++) {
+      numHours += rangeValues[i][j];
     }
-    
+
     // calulates pay
-    var hrlyRateCell = sheet.getRange(i, HRLY_PAY_COLUMN);
-    var hrlyRate = hrlyRateCell.getValue();
-    var weeklyPay = numHrs * hrlyRate;
-    var setPay = sheet.getRange(i, lastCol+1);
-    setPay.setValue(weeklyPay);
+    var weeklyPay = numHours * rangeValues[i][HOURLY_PAY_COLUMN - HOURS_START];
+    var setPay = sheet.getRange(i + (FROZEN_ROWS + 1), lastCol + 1).setValue(weeklyPay);
   }
 }
+
 
