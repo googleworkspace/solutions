@@ -1,0 +1,25 @@
+{
+  "name": "offsite-activity-signup",
+  "version": "1.0.0",
+  "description": "~Quickly create an end to end offsite activity signup system. Start with the activity schedule in a Google Sheet, then use Apps Script to create a form for attendees to express their preferences. After everyone submits their responses, assign the activities to best match their preferences, activity capacities, and schedules.",
+  "main": "Code.js",
+  "scripts": {
+    "lint": "eslint src/*.js",
+    "lint:fix": "eslint --fix src/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsuitedevs/solutions.git~"
+  },
+  "keywords": [
+    "solution",
+    "appsscript"
+  ],
+  "author": "Steven Bazyl",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@google/clasp": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0"
+  }
+}
