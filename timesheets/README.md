@@ -14,11 +14,12 @@ Quickly create a hands-free employee pay management system. Start with collectin
 1. On your Google Sheet, go to **Tools > Script Editor**
 1. Copy + Paste the given code into the Script Editor, and hit Save. Now refresh your spreadsheet.
 1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
-1. You will see a new **Run Functions** menu. Click it and select **Calculate Pay. In the last column you will now be able to view each employee's weekly pay.
-1. Click on **Run Functions > Add Approval**. A new column will appear with checkboxes in every row. Check a box to indicate an employee's timesheet and pay has been approved.
-1. Click on **Run Functions > Send Emails**. An email will be sent out to every employee notifying them of their approval status.
+1. You will see a new **Timesheets** menu. Click it and select **Column Setup**. You will now see columns for weekly pay values, approval status, and notified status.
+1. Click on **Timesheets> Calculate Pay**. The “WEEKLY PAY” column will now be updated with each employee’s weekly pay value.
+1. Use the drop down values of the “APPROVAL” column to either approve or disapprove each employee’s weekly pay.
+1. Click on **Timesheets > Send Emails** in order to auto-send emails to every employee notifying them of their approval status. You will see the values in the “NOTIFIED” column change, which are in place to ensure the employer does not send out double emails. 
 
 
 
-:wq
-:q
+
+
