@@ -8,6 +8,8 @@ Quickly create an end to end offsite activity signup system. Start with the acti
 
 ## Set Up Instructions
 
+<!-- [START setup] -->
+
 1. Create a copy of the sample [Offsite Activity Signup spreadsheet](https://docs.google.com/spreadsheets/d/1oAY9-EclfLWcxpxGcyqA47Y_SBdxOvX0wffYUFFxjZY/copy).
 1. Click on custom menu item **Activities** > **Create Form**.
 1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
@@ -16,4 +18,6 @@ Quickly create an end to end offsite activity signup system. Start with the acti
 1. Fill out the form
 1. Click on custom menu item **Activities > Assign activities**.
 1. Two new sheets will appear with the activity assignments. View them.
+
+<!-- [END setup] -->
 
