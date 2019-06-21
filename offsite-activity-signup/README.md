@@ -14,8 +14,9 @@ Quickly create an end to end offsite activity signup system. Start with the acti
 1. Click on custom menu item **Activities** > **Create Form**.
 1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
 1. You will see a new **Form** menu. Click it and select **Go to live form**.
-1. Click on custom menu item **Activities > Generate test data**.
-1. Fill out the form
+1. Fill out the form and submit your response.
+1. Return to the sheet.
+1. Click on custom menu item **Activities > Generate test data** to generate additional responses.
 1. Click on custom menu item **Activities > Assign activities**.
 1. Two new sheets will appear with the activity assignments. View them.
 
