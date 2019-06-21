@@ -39,7 +39,7 @@ can view the logs by clicking
 **View > Stackdriver Logging** and then **Apps Script Dashboard**.
 
 [project]: https://script.google.com/d/1Z00KFsXZSLMYw1Tsf7gXqxEt4LjTYtyrnc0EHel43sHs6dl8_z5mHze2/edit
-[calendar_setup]: https://calendar.google.com
+[calendar]: https://calendar.google.com
 [calendar_setup]: https://support.google.com/calendar/answer/37095
 
 <!-- [END setup] -->
