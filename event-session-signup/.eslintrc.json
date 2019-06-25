@@ -8,4 +8,8 @@
     "no-unused-vars": "off",
     "max-len": ["error", {"code": 100, "ignoreUrls": true}]
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d9979bb97d028d44691a92626e18c7be6e1f8d10
