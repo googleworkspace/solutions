@@ -17,8 +17,8 @@
  */
 function onOpen() {
   SpreadsheetApp.getUi().createMenu('Conference')
-    .addItem('Set up conference', 'setUpConference_')
-    .addToUi();
+      .addItem('Set up conference', 'setUpConference_')
+      .addToUi();
 }
 
 /**
@@ -132,7 +132,7 @@ function onFormSubmit(e) {
   // Grab the session data again so that we can match it to the user's choices.
   var response = [];
   var values = SpreadsheetApp.getActive().getSheetByName('Conference Setup')
-     .getDataRange().getValues();
+      .getDataRange().getValues();
   for (var i = 1; i < values.length; i++) {
     var session = values[i];
     var title = session[0];
@@ -175,7 +175,7 @@ function sendDoc_(user, response) {
   var table = [['Session', 'Date', 'Time', 'Location']];
   for (var i = 0; i < response.length; i++) {
     table.push([response[i][0], response[i][1].toLocaleDateString(),
-        response[i][2].toLocaleTimeString(), response[i][4]]);
+      response[i][2].toLocaleTimeString(), response[i][4]]);
   }
   body.insertParagraph(0, doc.getName())
       .setHeading(DocumentApp.ParagraphHeading.HEADING1);
@@ -188,6 +188,6 @@ function sendDoc_(user, response) {
     to: user.email,
     subject: doc.getName(),
     body: 'Thanks for registering! Here\'s your itinerary: ' + doc.getUrl(),
-    attachments: doc.getAs(MimeType.PDF)
+    attachments: doc.getAs(MimeType.PDF),
   });
 }
