@@ -4,6 +4,8 @@
   "description": "Quickly see when your colleagues are out of the office, with no manual entry required.",
   "main": "Code.js",
   "scripts": {
+    "lint": "eslint src/*.js",
+    "lint:fix": "eslint --fix src/*.js",
     "push": "clasp push"
   },
   "repository": {
@@ -20,6 +22,8 @@
   },
   "homepage": "https://github.com/gsuitedevs/solutions#readme",
   "devDependencies": {
-    "@google/clasp": "^2.1.0"
+    "@google/clasp": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0"
   }
 }

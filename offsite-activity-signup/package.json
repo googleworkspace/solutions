@@ -5,7 +5,8 @@
   "main": "Code.js",
   "scripts": {
     "lint": "eslint src/*.js",
-    "lint:fix": "eslint --fix src/*.js"
+    "lint:fix": "eslint --fix src/*.js",
+    "push": "clasp push"
   },
   "repository": {
     "type": "git",
