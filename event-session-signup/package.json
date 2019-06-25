@@ -18,5 +18,9 @@
   "homepage": "https://github.com/gsuitedevs/solutions#readme",
   "dependencies": {
     "clasp": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-google": "^0.13.0"
   }
 }
