@@ -71,7 +71,7 @@ def main(file_path, name=None):
     """
     if name is None:
         name = os.path.basename(file_path)
-    mime_type = mimetypes.guess_type(file_path)
+    mime_type = mimetypes.guess_type(file_path)[0]
     convert_to = TYPE_MAP.get(mime_type)
     file_id = import_file(file_path, name, mime_type, convert_to)
     print(file_id)
