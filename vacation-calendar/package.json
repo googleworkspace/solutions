@@ -4,8 +4,8 @@
   "description": "Quickly see when your colleagues are out of the office, with no manual entry required.",
   "main": "Code.js",
   "scripts": {
-    "lint": "eslint src/*.js",
-    "lint:fix": "eslint --fix src/*.js",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
     "push": "clasp push"
   },
   "repository": {

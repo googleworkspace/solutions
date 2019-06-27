@@ -58,7 +58,12 @@ if ! [ -x "$(command -v npx)" ]; then
 fi
 
 if [ -z "${GOOGLE_APPLICATION_CREDENTIALS}" ]; then
-    echo "Error: GOOGLE_APPLICATION_CREDENTIALS is unset"
+    GOOGLE_APPLICATION_CREDENTIALS="${ROOT_DIR}/default_credentials.json"
+fi
+
+if ! [ -f "${GOOGLE_APPLICATION_CREDENTIALS}" ]; then
+    echo "Error: GOOGLE_APPLICATION_CREDENTIALS not set correctly."
+    echo "File not found: ${GOOGLE_APPLICATION_CREDENTIALS}"
     exit 1
 fi
 

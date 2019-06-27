@@ -29,7 +29,7 @@ SCOPES = [
     'https://www.googleapis.com/auth/drive.file'
 ]
 
-def authorize(credentials_file_path, out_file_path='adc.json'):
+def authorize(credentials_file_path, out_file_path='default_credentials.json'):
     """ Authorizes and generates a credential file usable with application
     default credentials.
     """

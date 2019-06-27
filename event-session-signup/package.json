@@ -4,8 +4,8 @@
   "description": "Allows event attendees to sign up for sessions at an event and creates an itinerary.",
   "main": "Code.js",
   "scripts": {
-    "lint": "eslint src/*.js",
-    "lint:fix": "eslint --fix src/*.js",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
     "push": "clasp push"
   },
   "repository": {
