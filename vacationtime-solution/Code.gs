@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// GLOBALS
-var APPROVAL_COLUMN = 9;
-var NOTIFIED_COLUMN = 10;
-var EMAIL_COLUMN = 2;
-var NAME_COLUMN = 3;
-var START_DATE = 6;
-var END_DATE = 7;
-var MANAGER_EMAIL = 4;
+// Create column number variables.
+var COLUMN_NUMBER = {
+  EMAIL: 2,
+  NAME: 3,
+  MANAGER_EMAIL: 4,
+  START_DATE: 5,
+  END_DATE: 6,
+  APPROVAL: 8,
+  NOTIFIED: 9,
+}
     
 /** 
 * Creates menu items to run scripts.
@@ -33,24 +35,27 @@ function onOpen() {
 }
 
 /** 
-* SCRIPT: Add manager approval column with drop-down options.
+* SCRIPT: Adds manager approval column with drop-down options.
 */
 function managerApproval() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastCol = sheet.getLastColumn();
   var lastRow = sheet.getLastRow();
+  var frozenRows = sheet.getFrozenRows();
+  
+  // create column
   sheet.insertColumnAfter(lastCol);
-  var setTitle = sheet.getRange(1, APPROVAL_COLUMN).setValue('APPROVAL');
+  var setTitle = sheet.getRange(frozenRows, COLUMN_NUMBER.APPROVAL)
+    .setValue('APPROVAL');
   
   // set drop down menu
+  var bigRange = sheet.getRange(frozenRows + 1, COLUMN_NUMBER.APPROVAL, 
+    lastRow - frozenRows, 1);
   var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
-  var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues).build();
-  
-  for (var i = 2; i <= lastRow; i++){
-    var currentCell = sheet.getRange(i, APPROVAL_COLUMN);
-    currentCell.setDataValidation(rule);
-    currentCell.setValue('IN PROGRESS');
-  } 
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
+    .build();
+  bigRange.setDataValidation(rule);
+  bigRange.setValue('IN PROGRESS');
 }
 
 /** 
@@ -62,52 +67,60 @@ function notifyEmployees() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastRow = sheet.getLastRow();
   var lastCol = sheet.getLastColumn();
+  var frozenRows = sheet.getFrozenRows();
+  var beginningRow = frozenRows + 1;
   
   // create NOTIFIED column
   sheet.insertColumnAfter(lastCol);
-  var setTitle = sheet.getRange(1, NOTIFIED_COLUMN).setValue('NOTIFIED STATUS');
+  var setTitle = sheet.getRange(1, COLUMN_NUMBER.NOTIFIED)
+    .setValue('NOTIFIED STATUS');
   var notifiedValues = ['NOTIFIED', 'NOT NOTIFIED'];
-  var rule = SpreadsheetApp.newDataValidation().requireValueInList(notifiedValues).build();
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList(notifiedValues)
+    .build();
  
-  for (var i = 2; i <= lastRow; i++){
-    var currentCell = sheet.getRange(i, NOTIFIED_COLUMN);
-    currentCell.setDataValidation(rule);
-    currentCell.setValue('NOT NOTIFIED');
-  }
+  var notifiedColRange = sheet.getRange(beginningRow, COLUMN_NUMBER.NOTIFIED, 
+    lastRow - frozenRows, 1);
+  notifiedColRange.setDataValidation(rule);
+  notifiedColRange.setValue('NOT NOTIFIED');
+  var notifiedStatus = notifiedColRange.getValues();
   
-  for (var i = 2; i <= lastRow; i++) {
+  for (var i = 0; i <= lastRow - beginningRow; i++) {
     // don't notify twice
-    var notifiedStatus = sheet.getRange(i, NOTIFIED_COLUMN).getValue();
-    if (notifiedStatus == 'NOTIFIED') {
+    if (notifiedStatus[i][0] == 'NOTIFIED') {
         continue;
     }
     
-    var employeeEmail = sheet.getRange(i, EMAIL_COLUMN).getValue();
-    var startDate = new Date(sheet.getRange(i, START_DATE).getValue());
-    var endDate = new Date(sheet.getRange(i, END_DATE).getValue());
-    var approvalStatus = sheet.getRange(i, APPROVAL_COLUMN).getValue();
-
+    // get values all at once
+    var rangeValues = sheet.getRange(i + beginningRow, COLUMN_NUMBER.EMAIL, 
+        1, COLUMN_NUMBER.APPROVAL - COLUMN_NUMBER.EMAIL + 1).getValues();
+    var employeeEmail = rangeValues[i][0];
+    var employeeName = rangeValues[i][1];
+    var startDate = rangeValues[i][4];
+    var endDate = rangeValues[i][5];
+    var approvalStatus = rangeValues[i][6];
+    
     // deals with approval cases
     if (approvalStatus == 'NOT APPROVED') {
       var subject = 'ERR: Vacation Time NOT Approved';
-      var body = 'Your vacation time from' + startDate + ' to ' + endDate + ' has NOT been approved.';
-      MailApp.sendEmail(employeeEmail, subject, body);
-      var setStatus = sheet.getRange(i, NOTIFIED_COLUMN).setValue('NOTIFIED');
-      continue;
+      var message = 'time not approved';
+      MailApp.sendEmail(employeeEmail, subject, message); 
+      sheet.getRange(i + beginningRow, COLUMN_NUMBER.NOTIFIED)
+        .setValue('NOTIFIED');
     } else if (approvalStatus == 'APPROVED') {
-      var employeeName = sheet.getRange(i, NAME_COLUMN).getValue();
-      var managerEmail = sheet.getRange(i, MANAGER_EMAIL).getValue();
+      var managerEmail = rangeValues[i][COLUMN_NUMBER.MANAGER_EMAIL - 
+        COLUMN_NUMBER.EMAIL];
       var managerCal = CalendarApp.getCalendarById(managerEmail);
-      
-      // create event
-      var event = managerCal.createEvent('APPROVED VACATION TIME FOR ' + employeeName, startDate, endDate, {
-                                         description : 'Your vacation time from ' + startDate + ' to ' + endDate + ' has been approved! Enjoy!',
+
+      // create calendar event
+      var event = managerCal.createEvent('APPROVED VACATION TIME FOR ' + 
+        employeeName, startDate, endDate, {
+                                         description : 'Your vacation time from ' + 
+                                            startDate + ' to ' + endDate + 
+                                            ' has been approved! Enjoy!',
                                          guests : employeeEmail,
                                          sendInvites : true
                                          });
-      var setStatus = sheet.getRange(i, NOTIFIED_COLUMN).setValue('NOTIFIED');
+      sheet.getRange(i + beginningRow, COLUMN_NUMBER.NOTIFIED).setValue('NOTIFIED');
     }
   }
 }
-
-
