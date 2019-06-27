@@ -106,7 +106,6 @@ function notifyEmployees() {
                                          sendInvites : true
                                          });
       var setStatus = sheet.getRange(i, NOTIFIED_COLUMN).setValue('NOTIFIED');
-
     }
   }
 }
