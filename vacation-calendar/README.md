@@ -1,13 +1,46 @@
 # Automatically populate a team vacation calendar
 
-Quickly see when your colleagues are out of the office, with no manual entry
-required.
+_Quickly see when your colleagues are out of the office, with no manual entry
+required._
 
-[Read more](https://developers.google.com/gsuite/solutions/vacation-calendar)
+Last updated: June, 2019
 
-## Setup
+A shared vacation calendar is a great tool for helping your team collaborate;
+anyone can determine who's out of the office at a glance. However, booking time
+off is already a chore, and an additional step to update the calendar can be
+easy to forget.
 
-<!-- [START setup] -->
+This solution uses [Google Apps Script][apps-script] to automatically populate
+a shared vacation calendar based on the individual calendars of each person on
+the team. When someone books time off they just need to remember to add an event
+to their personal Google Calendar using a keyword like "Vacation" or "Out of
+office". The script acts behind the scenes, scanning the calendars of all the
+members in a Google Group and syncing appropriate events to the shared calendar.
+
+Note: This solution only accesses Calendar events that your colleagues have made
+visible to you via their [privacy settings][privacy_settings].
+
+![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/vacation-calendar/demo.gif)
+
+[apps-script]: https://developers.google.com/apps-script
+[privacy_settings]: https://support.google.com/calendar/answer/34580
+
+## Technology highlights
+
+- The script runs automatically on a fixed schedule using Apps Script's
+  [time-driven triggers][time_driven_triggers].
+- The [`GroupsApp` service][groupsapp] is used to determine the members of the
+  team's Google Group.
+- The [Advanced Calendar Service][calendar_advanced] provides access to the
+  [Calendar API][calendar_api] and the ability to search for events on your
+  colleague's calendar.
+
+[time_driven_triggers]: https://developers.google.com/apps-script/guides/triggers/installable#time-driven_triggers
+[groupsapp]: https://developers.google.com/apps-script/reference/groups/groups-app
+[calendar_advanced]: https://developers.google.com/apps-script/advanced/calendar
+[calendar_api]: https://developers.google.com/calendar/
+
+## Try it
 
 First, set up Google Calendar:
 
@@ -42,4 +75,13 @@ can view the logs by clicking
 [calendar]: https://calendar.google.com
 [calendar_setup]: https://support.google.com/calendar/answer/37095
 
-<!-- [END setup] -->
+## Next steps
+
+To get started with Google Apps Script, try out [the codelab][codelab]
+which guides you through the creation of your first script.
+
+You can also view the [full source code][github] of this solution on GitHub to
+learn more about how it was built.
+
+[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
+[github]: https://github.com/gsuitedevs/solutions/blob/master/vacation-calendar
