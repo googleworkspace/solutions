@@ -27,8 +27,8 @@ on **Select Response Destination** from the drop-down.
 1. You will see a new **Timesheets** menu. Click it and select **Column Setup**.
    You will now see columns for weekly pay values, approval status, and notified
 status.
-1. Click on **Timesheets> Calculate Pay**. The “WEEKLY PAY” column will now be
-   updated with each employee’s weekly pay value.
+1. You will notice that the WEEKLY PAY column is full of values - these were
+calculated on column setup, so the work is taken care of for you!
 1. Use the drop down values of the “APPROVAL” column to either approve or
    disapprove each employee’s weekly pay.
 1. Click on **Timesheets > Send Emails** in order to auto-send emails to every
