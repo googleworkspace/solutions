@@ -1,0 +1,11 @@
+{
+  "timeZone": "America/New_York",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "Calendar",
+      "serviceId": "calendar",
+      "version": "v3"
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER"
+}
