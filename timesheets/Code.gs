@@ -51,7 +51,8 @@ function columnSetup() {
   sheet.getRange(1, COLUMN_NUMBER.CALC_PAY).setValue('WEEKLY PAY');
   
   // calculates weekly pay using array formulas
-  sheet.getRange(beginningRow, COLUMN_NUMBER.CALC_PAY, 2,1).setFormula('=ArrayFormula(SUM(D2:H2)) * I2:I');
+  sheet.getRange(beginningRow, COLUMN_NUMBER.CALC_PAY, lastRow - frozenRows,1)
+  .setFormula('=ArrayFormula(SUM(D2:H2)) * I2:I');
    
   // adds new approval column
   sheet.insertColumnAfter(COLUMN_NUMBER.CALC_PAY); 
