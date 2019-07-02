@@ -110,13 +110,13 @@ function setUpForm_(ss, values) {
   form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
   form.addTextItem().setTitle('Name').setRequired(true);
   form.addTextItem().setTitle('Email').setRequired(true);
-  for (var day in schedule) {
+  Object.keys(schedule).forEach(function(day) {
     var header = form.addSectionHeaderItem().setTitle('Sessions for ' + day);
-    for (var time in schedule[day]) {
+    Object.keys(schedule[day]).forEach(function(time) {
       var item = form.addMultipleChoiceItem().setTitle(time + ' ' + day)
           .setChoiceValues(schedule[day][time]);
-    }
-  }
+    });
+  });
 }
 
 /**

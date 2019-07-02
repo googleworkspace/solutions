@@ -4,7 +4,9 @@
   "description": "Allows event attendees to sign up for sessions at an event and creates an itinerary.",
   "main": "Code.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "push": "clasp push"
   },
   "repository": {
     "type": "git",
@@ -16,11 +18,9 @@
     "url": "https://github.com/gsuitedevs/solutions/issues"
   },
   "homepage": "https://github.com/gsuitedevs/solutions#readme",
-  "dependencies": {
-    "clasp": "^1.0.0"
-  },
   "devDependencies": {
-    "eslint": "^6.0.1",
+    "@google/clasp": "^2.1.0",
+    "eslint": "^5.16.0",
     "eslint-config-google": "^0.13.0"
   }
 }
