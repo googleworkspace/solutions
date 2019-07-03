@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var REQUEST_NOTIFICATION_EMAIL = 'sbazyl@google.com';
+var REQUEST_NOTIFICATION_EMAIL = 'it-requests@example.com';
 
 // Form field titles, used for creating the form and as keys when handling
 // responses.
