@@ -45,14 +45,15 @@ function columnSetup() {
   var lastRow = sheet.getLastRow();
   var frozenRows = sheet.getFrozenRows();
   var beginningRow = frozenRows + 1;
+  var numRows = lastRow - frozenRows;
 
   // adds new calculate pay column
   sheet.insertColumnAfter(COLUMN_NUMBER.HOURLY_PAY);
   sheet.getRange(1, COLUMN_NUMBER.CALC_PAY).setValue('WEEKLY PAY');
 
   // calculates weekly pay using array formulas
-  sheet.getRange(beginningRow, COLUMN_NUMBER.CALC_PAY, lastRow - frozenRows, 1)
-      .setFormula('=ArrayFormula(SUM(D2:H2)) * I2:I');
+  sheet.getRange(beginningRow, COLUMN_NUMBER.CALC_PAY)
+      .setFormula('=ArrayFormula(SUM(D2:H2) * I2:I)');
 
   // adds new approval column
   sheet.insertColumnAfter(COLUMN_NUMBER.CALC_PAY);
@@ -60,7 +61,7 @@ function columnSetup() {
 
   // make sure approval column is all drop-down menus
   var approvalColumnRange = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL,
-      lastRow - frozenRows, 1);
+      numRows, 1);
   var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
       .build();
@@ -73,7 +74,7 @@ function columnSetup() {
 
   // make sure notified column is all drop-down menus
   var notifiedColumnRange = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL
-      + 1, lastRow - frozenRows, 1);
+      + 1, numRows, 1);
   dropdownValues = ['NOTIFIED', 'NOT NOTIFIED'];
   rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
       .build();
@@ -92,13 +93,13 @@ function sendEmails() {
   // lastCol here is the NOTIFIED column
   var frozenRows = sheet.getFrozenRows();
   var beginningRow = frozenRows + 1;
+  var numRows = lastRow - frozenRows;
 
   // gets ranges of values all at once
-  var emailValues = sheet.getRange(beginningRow, COLUMN_NUMBER.EMAIL, lastRow
-        - frozenRows, 1).getValues();
+  var emailValues = sheet.getRange(beginningRow, COLUMN_NUMBER.EMAIL, numRows, 1).getValues();
   var approvalValues = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL,
       lastRow - frozenRows, 1).getValues();
-  var notifiedValues = sheet.getRange(beginningRow, 12, lastRow - frozenRows,
+  var notifiedValues = sheet.getRange(beginningRow, 12, numRows,
       1).getValues();
 
   // goes through the whole email column
@@ -121,7 +122,8 @@ function sendEmails() {
       continue;
     }
     MailApp.sendEmail(email, subject, message);
-    notifiedValues[i][0] = 'NOTIFIED'; sheet.getRange(i + beginningRow,
+    notifiedValues[i][0] = 'NOTIFIED';
+    sheet.getRange(i + beginningRow,
         lastCol).setValue('NOTIFIED');
   }
 }
