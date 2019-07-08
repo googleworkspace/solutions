@@ -76,7 +76,7 @@ function setup_() {
       .forForm(form)
       .onFormSubmit()
       .create();
-  // Archive completed items every 30m.
+  // Archive completed items every 5m.
   ScriptApp.newTrigger('processCompletedItems_')
       .timeBased()
       .everyMinutes(5)
