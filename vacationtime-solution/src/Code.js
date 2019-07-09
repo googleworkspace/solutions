@@ -24,7 +24,7 @@ var COLUMN_NUMBER = {
 };
 
 /**
-* Creates menu items to run scripts.
+* Add custom menu items when opening the sheet.
 */
 function onOpen() {
   var sheetUi = SpreadsheetApp.getUi();
@@ -35,7 +35,7 @@ function onOpen() {
 }
 
 /**
-* SCRIPT: Adds manager approval column with drop-down options.
+* Adds manager approval column with drop-down options.
 */
 function managerApproval() {
   var sheet = SpreadsheetApp.getActiveSheet();
@@ -43,12 +43,12 @@ function managerApproval() {
   var lastRow = sheet.getLastRow();
   var frozenRows = sheet.getFrozenRows();
 
-  // create column
+  // Creates approval column.
   sheet.insertColumnAfter(lastCol);
   var setTitle = sheet.getRange(frozenRows, COLUMN_NUMBER.APPROVAL)
       .setValue('APPROVAL');
 
-  // set drop down menu
+  // Sets drop-down menu cells in approval column.
   var bigRange = sheet.getRange(frozenRows + 1, COLUMN_NUMBER.APPROVAL,
       lastRow - frozenRows, 1);
   var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
@@ -59,7 +59,7 @@ function managerApproval() {
 }
 
 /**
-* SCRIPT: If vacation time is not approved, send notification e mail.
+* If vacation time is not approved, send notification e mail.
 * Otherwise, create a calendar event of the approved vacation time.
 * Update the approval column + status of notification to avoid double e mails.
 */
@@ -70,7 +70,7 @@ function notifyEmployees() {
   var frozenRows = sheet.getFrozenRows();
   var beginningRow = frozenRows + 1;
 
-  // create NOTIFIED column
+  // Creates notified column.
   sheet.insertColumnAfter(lastCol);
   var setTitle = sheet.getRange(1, COLUMN_NUMBER.NOTIFIED)
       .setValue('NOTIFIED STATUS');
@@ -85,12 +85,12 @@ function notifyEmployees() {
   var notifiedStatus = notifiedColRange.getValues();
 
   for (var i = 0; i <= lastRow - beginningRow; i++) {
-    // don't notify twice
+    // Ensures does not notify twice.
     if (notifiedStatus[i][0] == 'NOTIFIED') {
       continue;
     }
 
-    // get values all at once
+    // Obtains necessary values.
     var rangeValues = sheet.getRange(i + beginningRow, COLUMN_NUMBER.EMAIL,
         1, COLUMN_NUMBER.APPROVAL - COLUMN_NUMBER.EMAIL + 1).getValues();
     var employeeEmail = rangeValues[i][0];
@@ -99,7 +99,7 @@ function notifyEmployees() {
     var endDate = rangeValues[i][5];
     var approvalStatus = rangeValues[i][6];
 
-    // deals with approval cases
+    // Deals with approval cases.
     if (approvalStatus == 'NOT APPROVED') {
       var subject = 'ERR: Vacation Time NOT Approved';
       var message = 'time not approved';
@@ -111,7 +111,7 @@ function notifyEmployees() {
         COLUMN_NUMBER.EMAIL];
       var managerCal = CalendarApp.getCalendarById(managerEmail);
 
-      // create calendar event
+      // Creates a calendar event.
       var event = managerCal.createEvent('APPROVED VACATION TIME FOR ' +
         employeeName, startDate, endDate, {
         description: 'Your vacation time from ' +
