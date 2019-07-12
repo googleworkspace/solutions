@@ -14,13 +14,32 @@
 
 var REQUEST_NOTIFICATION_EMAIL = 'it-requests@example.com';
 
+var AVAILABLE_LAPTOPS = [
+  '15" high Performance Laptop (OS X)',
+  '15" high Performance Laptop (Windows)',
+  '15" high performance Laptop (Linux)',
+  '13" lightweight laptop (Windows)',
+];
+var AVAILABLE_DESKTOPS = [
+  'Standard workstation (Windows)',
+  'Standard workstation (Linux)',
+  'High performance workstation (Windows)',
+  'High performance workstation (Linux)',
+  'Mac Pro (OS X)',
+];
+var AVAILABLE_MONITORS = [
+  'Single 27"',
+  'Single 32"',
+  'Dual 24"',
+];
+
 // Form field titles, used for creating the form and as keys when handling
 // responses.
 /**
  * Add custom menu items when opening the sheet.
  */
 function onOpen() {
-  var menu = SpreadsheetApp.getUi().createMenu('Equipment requests')
+  SpreadsheetApp.getUi().createMenu('Equipment requests')
       .addItem('Set up', 'setup_')
       .addItem('Clean up', 'cleanup_')
       .addToUi();
@@ -40,33 +59,14 @@ function setup_() {
       .setCollectEmail(true)
       .setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId())
       .setLimitOneResponsePerUser(false);
-  var availableLaptops = [
-    '15" high Performance Laptop (OS X)',
-    '15" high Performance Laptop (Windows)',
-    '15" high performance Laptop (Linux)',
-    '13" lightweight laptop (Windows)',
-  ];
-  var availableDesktops = [
-    'Standard workstation (Windows)',
-    'Standard workstation (Linux)',
-    'High performance workstation (Windows)',
-    'High performance workstation (Linux)',
-    'Mac Pro (OS X)',
-  ];
-  var availableMonitors = [
-    'Single 27"',
-    'Single 32"',
-    'Dual 24"',
-  ];
-
   form.addTextItem().setTitle('Employee name').setRequired(true);
   form.addTextItem().setTitle('Desk location').setRequired(true);
   form.addDateItem().setTitle('Due date').setRequired(true);
-  form.addListItem().setTitle('Laptop').setChoiceValues(availableLaptops);
-  form.addListItem().setTitle('Desktop').setChoiceValues(availableDesktops);
-  form.addListItem().setTitle('Monitor').setChoiceValues(availableMonitors);
+  form.addListItem().setTitle('Laptop').setChoiceValues(AVAILABLE_LAPTOPS);
+  form.addListItem().setTitle('Desktop').setChoiceValues(AVAILABLE_DESKTOPS);
+  form.addListItem().setTitle('Monitor').setChoiceValues(AVAILABLE_MONITORS);
 
-  var sheets = ss.getSheets().forEach(function(sheet) {
+  ss.getSheets().forEach(function(sheet) {
     if (sheet.getFormUrl() == ss.getFormUrl()) {
       sheet.hideSheet();
     }
@@ -94,7 +94,7 @@ function cleanup_() {
   ScriptApp.getProjectTriggers().forEach(function(trigger) {
     ScriptApp.deleteTrigger(trigger);
   });
-  var form = FormApp.openByUrl(formUrl)
+  FormApp.openByUrl(formUrl)
       .deleteAllResponses()
       .setAcceptingResponses(false);
 }
@@ -158,7 +158,9 @@ function sendNewEquipmentRequestEmail_(request) {
   template.request = request;
   template.sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl();
   var msg = template.evaluate();
-  GmailApp.sendEmail(REQUEST_NOTIFICATION_EMAIL, 'New equipment request', msg.getContent(), {
+  MailApp.sendEmail({
+    to: REQUEST_NOTIFICATION_EMAIL,
+    subject: 'New equipment request',
     htmlBody: msg.getContent(),
   });
 }
@@ -172,7 +174,9 @@ function sendEquipmentRequestCompletedEmail_(request) {
   var template = HtmlService.createTemplateFromFile('request-complete.html');
   template.request = request;
   var msg = template.evaluate();
-  GmailApp.sendEmail(request.email, 'Equipment request completed', msg.getContent, {
+  MailApp.sendEmail({
+    to: request.email,
+    subject: 'Equipment request completed',
     htmlBody: msg.getContent(),
   });
 }
