@@ -31,7 +31,7 @@ notification is sent to HR once the status is marked as complete.
 1. Fill out the form and submit your response.
 1. Check your email for a notification about the equipment request.
 1. Return to the sheet.
-1. In the `Pending requests' tab, change the status of the request to `Completed'
+1. In the `Pending requests` tab, change the status of the request to `Completed`
 1. Within 5 minutes, you will receive another email notifying you the request has been completed.
 
 <!-- [END setup] -->

@@ -66,6 +66,7 @@ function setup_() {
   form.addListItem().setTitle('Desktop').setChoiceValues(AVAILABLE_DESKTOPS);
   form.addListItem().setTitle('Monitor').setChoiceValues(AVAILABLE_MONITORS);
 
+  // Hide the raw form responses.
   ss.getSheets().forEach(function(sheet) {
     if (sheet.getFormUrl() == ss.getFormUrl()) {
       sheet.hideSheet();
