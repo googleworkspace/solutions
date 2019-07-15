@@ -1,0 +1,26 @@
+{
+  "name": "equipment-requests",
+  "version": "1.0.0",
+  "description": "Simple workflow using forms and sheets to handle equipment requests for new employees.",
+  "main": "Code.js",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "push": "clasp push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsuitedevs/solutions.git"
+  },
+  "keywords": [
+    "solution",
+    "appsscript"
+  ],
+  "author": "Steven Bazyl",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@google/clasp": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0"
+  }
+}
