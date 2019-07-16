@@ -4,8 +4,9 @@
   "description": "~Quickly create an end to end offsite activity signup system. Start with the activity schedule in a Google Sheet, then use Apps Script to create a form for attendees to express their preferences. After everyone submits their responses, assign the activities to best match their preferences, activity capacities, and schedules.",
   "main": "Code.js",
   "scripts": {
-    "lint": "eslint src/*.js",
-    "lint:fix": "eslint --fix src/*.js"
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "push": "clasp push"
   },
   "repository": {
     "type": "git",

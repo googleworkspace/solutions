@@ -1,7 +1,7 @@
 {
-  "name": "event-session-signup",
+  "name": "timesheets",
   "version": "1.0.0",
-  "description": "Allows event attendees to sign up for sessions at an event and creates an itinerary.",
+  "description": "Quickly manage and approve employees' weekly timesheets",
   "main": "Code.js",
   "scripts": {
     "lint": "eslint src/**/*.js",
@@ -12,7 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/gsuitedevs/solutions.git"
   },
-  "author": "Anu Srivastava",
+  "keywords": [
+    "solution"
+  ],
+  "author": "Made Lapuerta <yoyomade@google.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/gsuitedevs/solutions/issues"

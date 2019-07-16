@@ -1,7 +1,7 @@
 {
-  "name": "event-session-signup",
+  "name": "equipment-requests",
   "version": "1.0.0",
-  "description": "Allows event attendees to sign up for sessions at an event and creates an itinerary.",
+  "description": "Simple workflow using forms and sheets to handle equipment requests for new employees.",
   "main": "Code.js",
   "scripts": {
     "lint": "eslint src/**/*.js",
@@ -12,12 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/gsuitedevs/solutions.git"
   },
-  "author": "Anu Srivastava",
+  "keywords": [
+    "solution",
+    "appsscript"
+  ],
+  "author": "Steven Bazyl",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/gsuitedevs/solutions/issues"
-  },
-  "homepage": "https://github.com/gsuitedevs/solutions#readme",
   "devDependencies": {
     "@google/clasp": "^2.1.0",
     "eslint": "^5.16.0",
