@@ -14,11 +14,11 @@ specific sessions.
 
 ## Technology highlights
 
-- Create a custom menu item in the Spreadsheet UI using Apps Script [Custom Menus](/apps-script/guides/menus).
-- Use the [onFormSubmit](/apps-script/guides/triggers/events#form-submit_4)
+- Create a custom menu item in the Spreadsheet UI using Apps Script [Custom Menus](https://developers.google.com/apps-script/guides/menus).
+- Use the [onFormSubmit](https://developers.google.com/apps-script/guides/triggers/events#form-submit_4)
   trigger to create and email the personalized schedule for each attendee when
   the user submits the form.
-- Use [MailApp](/apps-script/reference/mail/mail-app) to send emails.
+- Use [MailApp](https://developers.google.com/apps-script/reference/mail/mail-app) to send emails.
 
 ## Try it
 
