@@ -20,7 +20,7 @@ notification is sent to HR once the status is marked as complete.
 
 <!-- [START setup] -->
 
-1. Create a copy of the sample [Equopment request spreadsheet](https://docs.google.com/spreadsheets/d/1J7l9RwM0l3qshc2cTQsKaCo6oa-usL4I9EackyTzJgo/copy).
+1. Create a copy of the sample [Equipment request spreadsheet](https://docs.google.com/spreadsheets/d/1J7l9RwM0l3qshc2cTQsKaCo6oa-usL4I9EackyTzJgo/copy).
 1. Click the menu item **Tools** > **Script editor** to edit the script.
 1. In the script, change the value of `REQUEST_NOTIFICATION_EMAIL` to your email address.
 1. Save the script.
