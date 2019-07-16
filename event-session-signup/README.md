@@ -10,6 +10,8 @@ create a sign-up form. For each attendee, a personalized schedule in a Google
 Doc is emailed out and a conference calendar is created then populated with the
 specific sessions.
 
+![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/event-signup/event-signup.jpg)
+
 ## Technology highlights
 
 - Create a custom menu item in the Spreadsheet UI using Apps Script [Custom Menus](/apps-script/guides/menus).
