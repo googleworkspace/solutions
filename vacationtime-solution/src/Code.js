@@ -72,7 +72,8 @@ function createNotifiedColumn() {
   var frozenRows = sheet.getFrozenRows();
   var startRow = frozenRows + 1;
   var numRows = lastRow - frozenRows;
-    
+  
+  // Sets up column properties.
   sheet.insertColumnAfter(lastCol);
   sheet.getRange(1, COLUMN_NUMBER.NOTIFIED)
       .setValue('NOTIFIED STATUS');
@@ -80,7 +81,7 @@ function createNotifiedColumn() {
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(notifiedValues)
       .build();
 
-  // Sets cells to be drop-down menus.
+  // Sets column's cells to be drop-down menus.
   var notifiedColRange = sheet.getRange(startRow, COLUMN_NUMBER.NOTIFIED,
       lastRow - frozenRows, 1);
   notifiedColRange.setDataValidation(rule);
@@ -128,12 +129,11 @@ function sendEmails(employeeEmail) {
  * @param {String} managerEmail Manager's email.
  * @param {String} employeeName Name of employee.
  * @param {String} approvalStatus Manager-set status.
- * @param {int} currentStartRow Row currently on within loop.
  * @param {date} startDate Vacation request start date.
  * @param {date} endDate Vacation request end date.
 **/
 function checkApproval(employeeEmail, managerEmail, employeeName, 
-                       approvalStatus, currentStartRow, startDate, endDate) {
+                       approvalStatus, startDate, endDate) {
     var sheet = SpreadsheetApp.getActiveSheet();
     var managerCal = CalendarApp.getCalendarById(managerEmail);
     
@@ -141,13 +141,10 @@ function checkApproval(employeeEmail, managerEmail, employeeName,
     if (approvalStatus == 'NOT APPROVED') {
       // Sends email of disapproval.
       sendEmails(employeeEmail);
-      sheet.getRange(currentStartRow, COLUMN_NUMBER.NOTIFIED)
-          .setValue('NOTIFIED');
     } else if (approvalStatus == 'APPROVED') {
-        createCalEvent(managerEmail, employeeName, employeeEmail,
+      // Creates calendar event.
+      createCalEvent(managerEmail, employeeName, employeeEmail,
                       startDate, endDate);
-        sheet.getRange(currentStartRow, COLUMN_NUMBER.NOTIFIED)
-            .setValue('NOTIFIED');
     }
 }
 
@@ -189,6 +186,10 @@ function notifyEmployees() {
       
     // Checks approval of each employee & notifies them accordingly.
     checkApproval(employeeEmail, managerEmail, employeeName, approvalStatus,
-                  currentStartRow, startDate, endDate);
+                  startDate, endDate);
+    
+    // Set values to 'NOTIFIED'.
+    sheet.getRange(currentStartRow, COLUMN_NUMBER.NOTIFIED)
+          .setValue('NOTIFIED');
   }
 }
