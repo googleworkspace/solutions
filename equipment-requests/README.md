@@ -24,7 +24,7 @@ notification is sent to HR once the status is marked as complete.
 - The [`SpreadsheetApp` service][spreadsheetapp-docs] is used to move items in the spreadsheet through
   the workflow.
 - [Triggers][triggers-docs] are used to monitor for new requests and clean up completed items.
-- The [`MailApp` service][mailapp-docs] is used to send notifications.
+- The [`MailApp` service][mailapp-docs] is used to send email notifications.
   
 ## Try it
 
