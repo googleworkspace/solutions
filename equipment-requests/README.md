@@ -16,11 +16,19 @@ for the employee’s first day. Upon completion of the task, they update the
 status column in the sheet. With a custom Apps Script, an email
 notification is sent to HR once the status is marked as complete.
 
-## Set Up Instructions
+![demo][screenshot]
 
-<!-- [START setup] -->
+## Technology highlights
 
-1. Create a copy of the sample [Equipment request spreadsheet](https://docs.google.com/spreadsheets/d/1J7l9RwM0l3qshc2cTQsKaCo6oa-usL4I9EackyTzJgo/copy).
+- The [`FormApp` service][formapp-docs] is used to create a request form.
+- The [`SpreadsheetApp` service][spreadsheetapp-docs] is used to move items in the spreadsheet through
+  the workflow.
+- [Triggers][triggers-docs] are used to monitor for new requests and clean up completed items.
+- The [`MailApp` service][mailapp-docs] is used to send email notifications.
+  
+## Try it
+
+1. Create a copy of the sample [Equipment request spreadsheet][sheet].
 1. Click the menu item **Tools** > **Script editor** to edit the script.
 1. In the script, change the value of `REQUEST_NOTIFICATION_EMAIL` to your email address.
 1. Save the script.
@@ -34,5 +42,19 @@ notification is sent to HR once the status is marked as complete.
 1. In the `Pending requests` tab, change the status of the request to `Completed`
 1. Within 5 minutes, you will receive another email notifying you the request has been completed.
 
-<!-- [END setup] -->
+## Next steps
 
+To get started with Google Apps Script, try out [the codelab][codelab]
+which guides you through the creation of your first script.
+
+You can also view the [full source code][github] of this solution on GitHub to
+learn more about how it was built.
+
+[screenshot]: https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/equipment-requests/screenshot.png
+[sheet]: https://docs.google.com/spreadsheets/d/1J7l9RwM0l3qshc2cTQsKaCo6oa-usL4I9EackyTzJgo/copy
+[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
+[github]: https://github.com/gsuitedevs/solutions/blob/master/offsite-activity-signup
+[formapp-docs]: https://developers.google.com/apps-script/reference/forms/form-app
+[spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
+[triggers-docs]: https://developers.google.com/apps-script/guides/triggers/installable
+[mailapp-docs]: https://developers.google.com/apps-script/reference/mail/mail-app
