@@ -21,8 +21,8 @@ var COLUMN_NUMBER = {
   NOTIFIED: 8,
 };
 
-var REJECTION_EMAIL_MESSAGE = 'Your vacation time request was not approved.';
 var REJECTION_EMAIL_SUBJECT = 'ERR: Vacation Time Request NOT Approved';
+var EVENT_TITLE = "VACATION FOR ";
 
 /** TODO: Hard code your manager's email */
 var MANAGER_EMAIL = 'your-manager-email';
@@ -34,15 +34,17 @@ function onOpen() {
   var sheetUi = SpreadsheetApp.getUi();
   sheetUi.createMenu('TimeOff')
       .addItem('Form Setup', 'setUpForm')
-      .addItem('Manager Approval', 'managerApproval')
+      .addItem('Column Setup', 'createNewColumns')
       .addItem('Notify Employees', 'notifyEmployees')
       .addToUi();
 }
 
 /**
- * Adds manager approval column with drop-down options.
+ * Creates a new column for a manager to input her approval
+ * of each employee's vacation request. Uses a helper function
+ * to create an additional notification column.
  */
-function managerApproval() {
+function createNewColumns() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastCol = sheet.getLastColumn();
   var lastRow = sheet.getLastRow();
@@ -63,12 +65,15 @@ function managerApproval() {
       .build();
   approvalColumnRange.setDataValidation(rule);
   approvalColumnRange.setValue('IN PROGRESS');
+  
+  // Calls helper function to repeat the above code but for the NOTIFIED column.
+  createNotifiedColumn();
 }
 
 /** 
- * Creates Notified Column.
- *
- * @return {Object} Range of the notified column.
+ * Adds a column to allow managers to view which employees
+ * have or have not yet been notified. The value of the cells
+ * is set to 'NOT NOTIFIED' on default & changed accordingly.
  */
 function createNotifiedColumn() {
   var sheet = SpreadsheetApp.getActiveSheet();
@@ -91,7 +96,6 @@ function createNotifiedColumn() {
       .build();
   notifiedColumnRange.setDataValidation(rule);
   notifiedColumnRange.setValue('NOT NOTIFIED');
-  return notifiedColumnRange;
 }
 
 /**
@@ -106,8 +110,8 @@ function createCalEvent(employeeName, employeeEmail,
                        startDate, endDate) { 
     var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
     // Creates a calendar event.
-    var event = managerCal.createEvent('APPROVED VACATION TIME FOR ' +
-        employeeName, startDate, endDate, {
+    var event = managerCal.createEvent(EVENT_TITLE + employeeName,
+                                       startDate, endDate, {
         description: 'Your vacation time from ' +
                                             startDate + ' to ' + endDate +
                                             ' has been approved! Enjoy!',
@@ -117,18 +121,25 @@ function createCalEvent(employeeName, employeeEmail,
 }
 
 /**
- * Sends e mails to employees whose vacation time request
+ * Sends emails to employees whose vacation time request
  * was NOT approved.
  * @param {String} employeeEmail Email of employee.
  */
-function sendEmails(employeeEmail) {
+function sendRejectionEmail(employeeEmail, startDate, endDate) {
+  // Craft specific e mail body.
+  var emailBody = "Your vacation time request from " + startDate +
+    "to " + endDate + "has NOT been approved".
+    
+  // Send email.
   MailApp.sendEmail(employeeEmail, REJECTION_EMAIL_SUBJECT, 
-                        REJECTION_EMAIL_MESSAGE);
+                        emailBody);
 }
 
 /**
  * Checks the approval status of each employee and notifies
- * them of their status accordingly.
+ * them of their status accordingly, either through creating
+ * a shared calendar event or sending a notification email.
+ *
  * @param {String} employeeEmail Email of employee.
  * @param {String} employeeName Name of employee.
  * @param {String} approvalStatus Manager-set status.
@@ -137,7 +148,7 @@ function sendEmails(employeeEmail) {
  *
  * @return {String} Value of whether or not employee needs to be notified.
  */
-function checkApproval(employeeEmail, employeeName, 
+function approvalCase(employeeEmail, employeeName, 
                        approvalStatus, startDate, endDate) {
     var sheet = SpreadsheetApp.getActiveSheet();
     var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
@@ -145,7 +156,7 @@ function checkApproval(employeeEmail, employeeName,
     // Checks approval status.
     if (approvalStatus == 'NOT APPROVED') {
       // Sends email of disapproval.
-      sendEmails(employeeEmail);
+      sendRejectionEmail(employeeEmail, startDate, endDate);
       return 'NOTIFY';
     } else if (approvalStatus == 'APPROVED') {
       // Creates calendar event.
@@ -172,9 +183,9 @@ function notifyEmployees() {
   var numCols = COLUMN_NUMBER.APPROVAL - COLUMN_NUMBER.EMAIL + 1;
 
   // Gets  notified column values.
-  createNotifiedColumn();
-  var notifiedRange = createNotifiedColumn();
-  var notidiedStatus = notifiedRange.getValues();
+  var notifiedColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.NOTIFIED, 
+                                           numRows, 1);
+  var notifiedStatus = notifiedColumnRange.getValues();
   
   // Obtains range values of rows
   var range = sheet.getRange(startRow, COLUMN_NUMBER.EMAIL, 
@@ -196,7 +207,7 @@ function notifyEmployees() {
     var endDate = rangeValues[i][3];
     
     // Checks approval of each employee & notifies them accordingly.
-    var notifyKey = checkApproval(employeeEmail, employeeName, approvalStatus,
+    var notifyKey = approvalCase(employeeEmail, employeeName, approvalStatus,
                   startDate, endDate);
     
     // Set values to 'NOTIFIED'.

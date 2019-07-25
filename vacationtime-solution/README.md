@@ -41,28 +41,27 @@ click of a button.
 
 
 ## Try it out!
+First, set up your Google Sheet:
+1. Create a copy of the sample [Vacation Time Request Form][request-sheet], and name it something you'll remember.
 
-First, set up your Google Form:
+Second, set up your Google Form:
 1. Create a copy of the sample [Employee Time Off Request Form][request-form].
 1. On this form hit **Edit > View Summary***. Click the three summary dots in the top right corner, and click on **Select Response Destination** from the drop-down.
-1. For your response destination, create a new sheet & name it whatever you'd like. Your form responses will now appear in this sheet.
-
-Second, set up your Google Sheet:
-1. On your created Google Sheet, go to **Tools > Script Editor**
-1. Copy + Paste the given Code.gs code into the Script Editor, and hit Save. Now refresh your spreadsheet.
+1. For your response destination, select the new Sheet you previously created.
 
 Lastly, run the AppsScript functions:
-1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
-1. You will see a new **TimeOff** menu. Click it, and select the first drop-down option, **Form Setup**. This will set up the 'onFormSubmit' trigger to notify your manager when a new response has been submitted. Great!
-1. Next, select the second drop-down option, **Manager Approval**. In the last column you will now be able to approve/disapprove each employee’s request.
-1. Click on **TimeOff > Notify Employees**. A Google Calendar event with the corresponding start + end time will be created for every employee whose vacation has been approved. A notification email of disapproval will be sent to employees with disapproved requests.
-1. A new column entitled “NOTIFICATION STATUS” has now appeared, indicating which employees have versus have not been notified. This ensures a manager does not send out double emails. 
+1. In your sheet, adialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
+1. You will see a new **TimeOff** menu. Click it, and select the first drop-down option, **Form Setup**. This will set up the 'onFormSubmit' trigger to notify your manager when a new form response has been submitted. Great!
+1. Next, select the second drop-down option, **Column Setup**. You will see two new columns: first, an approval column, allowing you to approve/disapprove of each employee's vacation time request via drop-down menu options. Second, a notification column, indicating which employees have/have not been notified of their approval status, set to 'NOT NOTIFIED' on default.
+1. Once you've approved/disapproved your employees' requests, click on **TimeOff > Notify Employees**. A Google Calendar event with the corresponding start + end time will be created for every employee whose vacation has been approved. A notification email of disapproval will be sent to employees with disapproved requests.
+1. In the 'NOTIFICATION STATUS' column, values will now be updated, indicating which employees have versus have not been notified. This ensures a manager does not send out double emails. 
 
 When completed, check your Google Calendar to see all of the new events created between you (manager)
 and employees with approved time-off requests.
 Additionally, visit your (manager's) GMail account, and look in your Sent folder to see all of 
 the notification e mails sent to employees with unapproved requests.
 
+[request-sheet]: https://docs.google.com/spreadsheets/d/1oYNaE8ZZbZ3nTPCLBJg2ESUATwiH-OuVhZSx_01igUc/edit?usp=sharing
 [request-form]: https://forms.gle/DZ6BFS9n8PkC2ivQ9
 
 ## Next steps
@@ -70,5 +69,5 @@ the notification e mails sent to employees with unapproved requests.
 You can view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[github]: /**GITHUB LINK HERE**/
+[github]: https://github.com/gsuitedevs/solutions/tree/master/vacation-request
 
