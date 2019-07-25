@@ -22,8 +22,9 @@ var COLUMN_NUMBER = {
   APPROVAL: 11,
 };
 
-/** Creates the menu item "Timesheets" so user can run scripts on drop-down.
-*/
+/** 
+ * Creates the menu item "Timesheets" for user to run scripts on drop-down.
+ */
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Timesheets')
@@ -32,14 +33,15 @@ function onOpen() {
       .addToUi();
 }
 
-/** Runs the "Column Setup" script. Adds "WEEKLY PAY" column with calculated
- * values using array formulas. Adds an "APPROVAL" column at the end of
- * the sheet, containing drop-down menus to either approve/disapprove employee
- * timesheets.  Adds a "NOTIFIED STATUS" column indicating whether or not an
+/** 
+ * Adds "WEEKLY PAY" column with calculated values using array formulas. 
+ * Adds an "APPROVAL" column at the end of the sheet, containing 
+ * drop-down menus to either approve/disapprove employee timesheets.  
+ * Adds a "NOTIFIED STATUS" column indicating whether or not an
  * employee has yet been e mailed.
-*/
+ */
 function columnSetup() {
-  // defines variables
+  // Defines variables.
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastCol = sheet.getLastColumn();
   var lastRow = sheet.getLastRow();
@@ -47,19 +49,19 @@ function columnSetup() {
   var beginningRow = frozenRows + 1;
   var numRows = lastRow - frozenRows;
 
-  // adds new calculate pay column
+  // Adds new calculate pay column.
   sheet.insertColumnAfter(COLUMN_NUMBER.HOURLY_PAY);
   sheet.getRange(1, COLUMN_NUMBER.CALC_PAY).setValue('WEEKLY PAY');
 
-  // calculates weekly pay using array formulas
+  // Calculates weekly pay using array formulas.
   sheet.getRange(beginningRow, COLUMN_NUMBER.CALC_PAY)
       .setFormula('=ArrayFormula(SUM(D2:H2) * I2:I)');
 
-  // adds new approval column
+  // Adds new approval column.
   sheet.insertColumnAfter(COLUMN_NUMBER.CALC_PAY);
   sheet.getRange(1, COLUMN_NUMBER.APPROVAL).setValue('APPROVAL');
 
-  // make sure approval column is all drop-down menus
+  // Make sure approval column is all drop-down menus.
   var approvalColumnRange = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL,
       numRows, 1);
   var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
@@ -68,11 +70,11 @@ function columnSetup() {
   approvalColumnRange.setDataValidation(rule);
   approvalColumnRange.setValue('IN PROGRESS');
 
-  // adds new notified column
+  // Adds new notified column.
   sheet.insertColumnAfter(COLUMN_NUMBER.APPROVAL); // global
   sheet.getRange(1, COLUMN_NUMBER.APPROVAL + 1).setValue('NOTIFIED STATUS');
 
-  // make sure notified column is all drop-down menus
+  // Make sure notified column is all drop-down menus.
   var notifiedColumnRange = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL
       + 1, numRows, 1);
   dropdownValues = ['NOTIFIED', 'NOT NOTIFIED'];
@@ -82,36 +84,37 @@ function columnSetup() {
   notifiedColumnRange.setValue('NOT NOTIFIED');
 }
 
-/** Runs the script "Send Emails". Sends e mails to every employee notifying
- * them whether or not their timesheet has been approved.  Checks + updates
- * "NOTIFIED" status so employers do not send e mails more than once.
-*/
+/** 
+ * Sends e mails to every employee notifying them whether or not their 
+ * timesheet has been approved.  Checks + updates "NOTIFIED" status so 
+ * employers do not send e mails more than once.
+ */
 function sendEmails() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastRow = sheet.getLastRow();
   var lastCol = sheet.getLastColumn();
-  // lastCol here is the NOTIFIED column
+  // lastCol here is the NOTIFIED column.
   var frozenRows = sheet.getFrozenRows();
   var beginningRow = frozenRows + 1;
   var numRows = lastRow - frozenRows;
 
-  // gets ranges of values all at once
+  // Gets ranges of necessary values all at once.
   var emailValues = sheet.getRange(beginningRow, COLUMN_NUMBER.EMAIL, numRows, 1).getValues();
   var approvalValues = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL,
       lastRow - frozenRows, 1).getValues();
   var notifiedValues = sheet.getRange(beginningRow, 12, numRows,
       1).getValues();
 
-  // goes through the whole email column
+  // Traverses through email column.
   for (var i = 0; i <= lastRow - beginningRow; i++) {
-    // don't notify twice
+    // Do not notify twice.
     if (notifiedValues[i][0] == 'NOTIFIED') {
       continue;
     }
     var email = emailValues[i][0];
     var approvalValue = approvalValues[i][0];
 
-    // approval email
+    // Sends notifying emails.
     if (approvalValue == 'APPROVED') {
       var message = 'Your timesheet has been approved';
       var subject = 'TimeSheet Approval';
@@ -127,5 +130,3 @@ function sendEmails() {
         lastCol).setValue('NOTIFIED');
   }
 }
-
-
