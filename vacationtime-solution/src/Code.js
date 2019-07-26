@@ -25,7 +25,7 @@ var REJECTION_EMAIL_SUBJECT = 'ERR: Vacation Time Request NOT Approved';
 var EVENT_TITLE = "VACATION FOR ";
 
 /** TODO: Hard code your manager's email */
-var MANAGER_EMAIL = 'your-manager-email';
+var MANAGER_EMAIL = 'yoyomade@google.com';
 
 /**
  * Add custom menu items when opening the sheet.
@@ -128,7 +128,7 @@ function createCalEvent(employeeName, employeeEmail,
 function sendRejectionEmail(employeeEmail, startDate, endDate) {
   // Craft specific e mail body.
   var emailBody = "Your vacation time request from " + startDate +
-    "to " + endDate + "has NOT been approved".
+    "to " + endDate + "has NOT been approved";
     
   // Send email.
   MailApp.sendEmail(employeeEmail, REJECTION_EMAIL_SUBJECT, 
@@ -179,34 +179,32 @@ function notifyEmployees() {
   var lastCol = sheet.getLastColumn();
   var frozenRows = sheet.getFrozenRows();
   var startRow = frozenRows + 1;
-  var numRows = lastRow - frozenRows;
-  var numCols = COLUMN_NUMBER.APPROVAL - COLUMN_NUMBER.EMAIL + 1;
-
-  // Gets  notified column values.
-  var notifiedColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.NOTIFIED, 
-                                           numRows, 1);
-  var notifiedStatus = notifiedColumnRange.getValues();
+  var numRows = lastRow - startRow;
+  var numCols = COLUMN_NUMBER.NOTIFY - COLUMN_NUMBER.EMAILs;
   
-  // Obtains range values of rows
-  var range = sheet.getRange(startRow, COLUMN_NUMBER.EMAIL, 
-                                           numRows, numCols);
-
-  for (var i = 0; i <= lastRow - startRow; i++) {
+  // Go through every employee's information.
+  for (var i = 0; i < numRows; i++) {
+    var currentStartRow = i + startRow;
+    
+    // Obtains current employee's values.
+    var range = sheet.getRange(currentStartRow, COLUMN_NUMBER.EMAIL,
+        1, COLUMN_NUMBER.NOTIFIED - COLUMN_NUMBER.EMAIL + 1);
+    var rangeValues = range.getValues();
+    
     // Ensures does not notify twice.
-    if (notifiedStatus[i][0] == 'NOTIFIED') {
+    var notifiedStatus = rangeValues[0][COLUMN_NUMBER.NOTIFIED - COLUMN_NUMBER.EMAIL];
+    if (notifiedStatus == 'NOTIFIED') {
       continue;
     }
     
-    // Obtains necessary variables.
-    var currentStartRow = i + startRow;
-    var rangeValues = range.getValues();
-    var employeeEmail = rangeValues[i][0];
-    var employeeName = rangeValues[i][1];    
-    var approvalStatus = rangeValues[i][5];
-    var startDate = rangeValues[i][2];
-    var endDate = rangeValues[i][3];
+    // Obtains necessary variables for notification.
+    var employeeEmail = rangeValues[0][COLUMN_NUMBER.EMAIL - COLUMN_NUMBER.EMAIL];
+    var employeeName = rangeValues[0][COLUMN_NUMBER.NAME - COLUMN_NUMBER.EMAIL];    
+    var startDate = rangeValues[0][COLUMN_NUMBER.START_DATE - COLUMN_NUMBER.EMAIL];
+    var endDate = rangeValues[0][COLUMN_NUMBER.END_DATE - COLUMN_NUMBER.EMAIL];
+    var approvalStatus = rangeValues[0][COLUMN_NUMBER.APPROVAL - COLUMN_NUMBER.EMAIL];
     
-    // Checks approval of each employee & notifies them accordingly.
+    // Calls helper function to check approval & notify accordingly.
     var notifyKey = approvalCase(employeeEmail, employeeName, approvalStatus,
                   startDate, endDate);
     
