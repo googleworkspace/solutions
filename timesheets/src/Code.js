@@ -48,7 +48,6 @@ function onOpen() {
  * employee has yet been e mailed.
  */
 function columnSetup() {
-  // Defines variables.
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastCol = sheet.getLastColumn();
   var lastRow = sheet.getLastRow();
@@ -56,10 +55,9 @@ function columnSetup() {
   var beginningRow = frozenRows + 1;
   var numRows = lastRow - frozenRows;
 
-  // Adds new calculate pay column.
+  // Calls helper functions to add new columns.
   addCalculatePayColumn(sheet, beginningRow);
   addApprovalColumn(sheet, beginningRow, numRows);
-  // Adds new approval column.
   addNotifiedColumn(sheet, beginningRow, numRows);
 }
 
@@ -165,14 +163,14 @@ function checkApprovedStatusToNotify() {
   var beginningRow = frozenRows + 1;
   var numRows = lastRow - frozenRows;
 
-  // Gets ranges of necessary values all at once.
+  // Gets ranges of email, approval, and notified values for every employee.
   var emailValues = sheet.getRange(beginningRow, COLUMN_NUMBER.EMAIL, numRows, 1).getValues();
   var approvalValues = sheet.getRange(beginningRow, COLUMN_NUMBER.APPROVAL,
       lastRow - frozenRows, 1).getValues();
   var notifiedValues = sheet.getRange(beginningRow, COLUMN_NUMBER.NOTIFY, numRows,
       1).getValues();
 
-  // Traverses through email column.
+  // Traverses through employee's row.
   for (var i = 0; i < numRows; i++) {
     // Do not notify twice.
     if (notifiedValues[i][0] == 'NOTIFIED') {
