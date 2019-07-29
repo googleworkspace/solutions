@@ -22,7 +22,6 @@ their pay, and auto-send emails notifying them of their pay status.
 [data-val]: https://developers.google.com/apps-script/reference/spreadsheet/data-validation-builder
 
 ## Set-Up Instructions
-
 First, set up your Spreadsheet:
 1. Create a copy of the sample [Timesheets Responses][sheet-link] Google Sheet.
    
@@ -33,7 +32,9 @@ Next, set up your Google Form:
    Destination**   from the drop-down.
 1. Select the new Google Sheet you just created (the copy of the given sheet).
    The Form responses will now appear in this sheet.
-1. A dialog box will appear and tell you that the script requires authorization.
+
+Let's get your script! running!
+1. Inside of the selected Sheet, a dialog box will appear and tell you that the script requires authorization.
    Read the authorization notice and continue.
 1. You will see a new **Timesheets** menu. Click it and select **Column Setup**.
    You will now see columns for weekly pay values, approval status, and notified
@@ -47,5 +48,6 @@ Next, set up your Google Form:
    the “NOTIFIED” column change, which are in place to ensure the employer does not
    send out double emails. 
 
-[sheet-link]: https://docs.google.com/spreadsheets/d/1Yp8ZCcSrm2l7xpLx2GAxzSBsIUBpzjALtqnuZ8huUfE/edit?usp=sharing
-[form-link]: https://forms.gle/a5McDiGaVhJ1nVFA8
+[sample-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPmsfPYuF-PPjjFEIJyNpYj6YrEEbMVooXjaQ1Dj-Lsmflsw/viewform?usp=sf_link
+[sample-sheet]: https://docs.google.com/spreadsheets/d/1Yp8ZCcSrm2l7xpLx2GAxzSBsIUBpzjALtqnuZ8huUfE/edit?usp=sharing.
+
