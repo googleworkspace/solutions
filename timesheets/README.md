@@ -1,4 +1,4 @@
-# Manage employee time sheets.
+# Manage employee timesheets.
 _Quickly approve/disapprove of employees' weekly timesheet submissions, and
 send them automated notification emails after doing so._
 
@@ -26,7 +26,7 @@ First, set up your Spreadsheet:
 1. Create a copy of the sample [Timesheets Responses][sheet-link] Google Sheet.
    
 Next, set up your Google Form:
-1. Create a copy of the sample [Employee Weekly TimeSheet Form][form-link].
+1. Create a copy of the sample [Employee Weekly Timesheet Form][form-link].
 1. Once you've received responses, on your google form hit **Edit > View Summary***. 
    Click the three summary dots in the top right corner, and click on **Select Response 
    Destination**   from the drop-down.
@@ -48,6 +48,7 @@ Let's get your script! running!
    the “NOTIFIED” column change, which are in place to ensure the employer does not
    send out double emails. 
 
-[sample-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPmsfPYuF-PPjjFEIJyNpYj6YrEEbMVooXjaQ1Dj-Lsmflsw/viewform?usp=sf_link
-[sample-sheet]: https://docs.google.com/spreadsheets/d/1Yp8ZCcSrm2l7xpLx2GAxzSBsIUBpzjALtqnuZ8huUfE/edit?usp=sharing.
+[sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
+[form-link]: https://docs.google.com/forms/u/1/d/1WzMCjbM_HPl7NGvix5SCruhVky6ZoZ5Xq-3maC8UH9E/copy
+
 
