@@ -49,6 +49,6 @@ Let's get your script! running!
    send out double emails. 
 
 [sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
-[form-link]: https://docs.google.com/forms/d/e/1FAIpQLSc_e78mOlxBBnaI4EIivH_j3NTGjPJQ1n2t6wYcN8kaU1ikhw/viewform?usp=sf_link
+[form-link]: https://docs.google.com/forms/u/1/d/1WzMCjbM_HPl7NGvix5SCruhVky6ZoZ5Xq-3maC8UH9E/copy
 
 
