@@ -1,4 +1,4 @@
-# Manage employee time sheets.
+# Manage employee timesheets.
 _Quickly approve/disapprove of employees' weekly timesheet submissions, and
 send them automated notification emails after doing so._
 
@@ -48,7 +48,7 @@ Let's get your script! running!
    the “NOTIFIED” column change, which are in place to ensure the employer does not
    send out double emails. 
 
-[sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/edit?usp=sharing
+[sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
 [form-link]: https://docs.google.com/forms/d/e/1FAIpQLSc_e78mOlxBBnaI4EIivH_j3NTGjPJQ1n2t6wYcN8kaU1ikhw/viewform?usp=sf_link
 
 
