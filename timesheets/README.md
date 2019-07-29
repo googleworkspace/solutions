@@ -48,6 +48,7 @@ Let's get your script! running!
    the “NOTIFIED” column change, which are in place to ensure the employer does not
    send out double emails. 
 
-[sample-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPmsfPYuF-PPjjFEIJyNpYj6YrEEbMVooXjaQ1Dj-Lsmflsw/viewform?usp=sf_link
-[sample-sheet]: https://docs.google.com/spreadsheets/d/1Yp8ZCcSrm2l7xpLx2GAxzSBsIUBpzjALtqnuZ8huUfE/edit?usp=sharing.
+[sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/edit?usp=sharing
+[form-link]: https://docs.google.com/forms/d/e/1FAIpQLSc_e78mOlxBBnaI4EIivH_j3NTGjPJQ1n2t6wYcN8kaU1ikhw/viewform?usp=sf_link
+
 
