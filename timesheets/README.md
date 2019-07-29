@@ -14,9 +14,8 @@ their pay, and auto-send emails notifying them of their pay status.
 
 ## Set-Up Instructions
 
-1. Create a copy of the sample [Employee Weekly TimeSheet Form](***LINK***).
-1. Create a copy of the sample [Timesheets] Google Sheet
-   (https://docs.google.com/spreadsheets/d/1Yp8ZCcSrm2l7xpLx2GAxzSBsIUBpzjALtqnuZ8huUfE/edit?usp=sharing).
+1. Create a copy of the sample [Employee Weekly TimeSheet Form][sample-form].
+1. Create a copy of the sample [Timesheets][sample-sheet] Google Sheet.
 1. Once you've received responses, on your google form hit **Edit > View
    Summary***. Click the three summary dots in the top right corner, and click
 on **Select Response Destination** from the drop-down.
@@ -36,4 +35,6 @@ calculated on column setup, so the work is taken care of for you!
 the “NOTIFIED” column change, which are in place to ensure the employer does not
 send out double emails. 
 
+[sample-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPmsfPYuF-PPjjFEIJyNpYj6YrEEbMVooXjaQ1Dj-Lsmflsw/viewform?usp=sf_link
+[sample-sheet]: https://docs.google.com/spreadsheets/d/1Yp8ZCcSrm2l7xpLx2GAxzSBsIUBpzjALtqnuZ8huUfE/edit?usp=sharing.
 
