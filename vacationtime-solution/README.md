@@ -1,7 +1,7 @@
 # Manage Employee Vacation Time Requests
 
-_Quickly approve/disapprove employees' vacation time requests, and 
-create calendar events or send notification emails accordingly.._
+_Quickly approve employees' vacation time requests, and 
+create calendar events or send notification emails accordingly._
 
 Last updated: July, 2019
 
@@ -41,15 +41,11 @@ click of a button.
 
 
 ## Try it out!
-First, set up your Google Sheet:
-1. Create a copy of the sample [Vacation Time Request Form][request-sheet], and name it something you'll remember.
 
-Second, set up your Google Form:
+1. Create a copy of the sample [Vacation Time Requests Sheet][request-sheet], and name it something you'll remember.
 1. Create a copy of the sample [Employee Time Off Request Form][request-form].
 1. On this form hit **Edit > View Summary***. Click the three summary dots in the top right corner, and click on **Select Response Destination** from the drop-down.
 1. For your response destination, select the new Sheet you previously created.
-
-Lastly, run the AppsScript functions:
 1. In your sheet, adialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
 1. You will see a new **TimeOff** menu. Click it, and select the first drop-down option, **Form Setup**. This will set up the 'onFormSubmit' trigger to notify your manager when a new form response has been submitted. Great!
 1. Next, select the second drop-down option, **Column Setup**. You will see two new columns: first, an approval column, allowing you to approve/disapprove of each employee's vacation time request via drop-down menu options. Second, a notification column, indicating which employees have/have not been notified of their approval status, set to 'NOT NOTIFIED' on default.
@@ -61,7 +57,7 @@ and employees with approved time-off requests.
 Additionally, visit your (manager's) GMail account, and look in your Sent folder to see all of 
 the notification e mails sent to employees with unapproved requests.
 
-[request-sheet]: https://docs.google.com/spreadsheets/d/1oYNaE8ZZbZ3nTPCLBJg2ESUATwiH-OuVhZSx_01igUc/edit?usp=sharing
+[request-sheet]: https://docs.google.com/spreadsheets/u/1/d/17PKWX66mcKsyHjLTA7STkes0qhvtL2N6dklTzxtogZg/copy
 [request-form]: https://forms.gle/DZ6BFS9n8PkC2ivQ9
 
 ## Next steps
@@ -70,4 +66,3 @@ You can view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [github]: https://github.com/gsuitedevs/solutions/tree/master/vacation-request
-
