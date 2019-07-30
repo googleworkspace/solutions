@@ -21,11 +21,22 @@ var COLUMN_NUMBER = {
   NOTIFIED: 8,
 };
 
+var APPROVED_DROPDOWN = {
+  APPROVED: 'APPROVED',
+  NOT_APPROVED: 'NOT APPROVED',
+  IN_PROGRESS: 'IN PROGRESS',
+};
+
+var NOTIFIED_DROPDOWN = {
+  NOTIFIED: 'NOTIFIED',
+  NOT_NOTIFIED: 'NOT NOTIFIED',
+};
+
 var REJECTION_EMAIL_SUBJECT = 'ERR: Vacation Time Request NOT Approved';
 var EVENT_TITLE = "VACATION FOR ";
 
 /** TODO: Hard code your manager's email */
-var MANAGER_EMAIL = 'yoyomade@google.com';
+var MANAGER_EMAIL = 'manager-email';
 
 /**
  * Add custom menu items when opening the sheet.
@@ -60,11 +71,12 @@ function createNewColumns() {
   // Sets drop-down menu cells in approval column.
   var approvalColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.APPROVAL,
       numRows, 1);
-  var dropdownValues = ['APPROVED', 'NOT APPROVED', 'IN PROGRESS'];
+  var dropdownValues = [APPROVED_DROPDOWN.APPROVED, APPROVED_DROPDOWN.NOT_APPROVED, 
+                        APPROVED_DROPDOWN.IN_PROGRESS];
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
       .build();
   approvalColumnRange.setDataValidation(rule);
-  approvalColumnRange.setValue('IN PROGRESS');
+  approvalColumnRange.setValue(APPROVED_DROPDOWN.IN_PROGRESS);
   
   // Calls helper function to repeat the above code but for the NOTIFIED column.
   createNotifiedColumn();
@@ -91,11 +103,11 @@ function createNotifiedColumn() {
   // Sets column's cells to be drop-down menus.
   var notifiedColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.NOTIFIED, 
                                            numRows, 1);
-  var dropdownValues = ['NOTIFIED', 'NOT NOTIFIED'];
+  var dropdownValues = [NOTIFIED_DROPDOWN.NOTIFIED, NOTIFIED_DROPDOWN.NOT_NOTIFIED];
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
       .build();
   notifiedColumnRange.setDataValidation(rule);
-  notifiedColumnRange.setValue('NOT NOTIFIED');
+  notifiedColumnRange.setValue(NOTIFIED_DROPDOWN.NOT_NOTIFIED);
 }
 
 /**
@@ -109,15 +121,16 @@ function createNotifiedColumn() {
 function createCalEvent(employeeName, employeeEmail,
                        startDate, endDate) { 
     var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
+  
     // Creates a calendar event.
+    var descriptionText = Utilities.formatString('Your vacation time from %s to %s has been approved. Enjoy!',
+                                            startDate, endDate);
     var event = managerCal.createEvent(EVENT_TITLE + employeeName,
-                                       startDate, endDate, {
-        description: 'Your vacation time from ' +
-                                            startDate + ' to ' + endDate +
-                                            ' has been approved! Enjoy!',
-        guests: employeeEmail,
-        sendInvites: true,
-    });
+                                       startDate, endDate, { 
+                                       description: descriptionText, 
+                                       guests: employeeEmail,
+                                       sendInvites: true,
+                                       });
 }
 
 /**
@@ -127,8 +140,8 @@ function createCalEvent(employeeName, employeeEmail,
  */
 function sendRejectionEmail(employeeEmail, startDate, endDate) {
   // Craft specific e mail body.
-  var emailBody = "Your vacation time request from " + startDate +
-    "to " + endDate + "has NOT been approved";
+  var emailBody = Utilities.formatString('Your vacation time request from %s to %s has NOT been approved.',
+                                         startDate, endDate);
     
   // Send email.
   MailApp.sendEmail(employeeEmail, REJECTION_EMAIL_SUBJECT, 
@@ -154,16 +167,16 @@ function approvalCase(employeeEmail, employeeName,
     var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
     
     // Checks approval status.
-    if (approvalStatus == 'NOT APPROVED') {
+    if (approvalStatus == APPROVED_DROPDOWN.NOT_APPROVED) {
       // Sends email of disapproval.
       sendRejectionEmail(employeeEmail, startDate, endDate);
       return 'NOTIFY';
-    } else if (approvalStatus == 'APPROVED') {
+    } else if (approvalStatus == APPROVED_DROPDOWN.APPROVED) {
       // Creates calendar event.
       createCalEvent(employeeName, employeeEmail,
                       startDate, endDate);
       return 'NOTIFY';
-    } else if (approvalStatus == 'IN PROGRESS') {
+    } else if (approvalStatus == APPROVED_DROPDOWN.IN_PROGRESS) {
       return 'DO NOT NOTIFY';
     }
 }
@@ -193,7 +206,7 @@ function notifyEmployees() {
     
     // Ensures does not notify twice.
     var notifiedStatus = rangeValues[0][COLUMN_NUMBER.NOTIFIED - COLUMN_NUMBER.EMAIL];
-    if (notifiedStatus == 'NOTIFIED') {
+    if (notifiedStatus == NOTIFIED_DROPDOWN.NOTIFIED) {
       continue;
     }
     
@@ -211,7 +224,7 @@ function notifyEmployees() {
     // Set values to 'NOTIFIED'.
     if (notifyKey == 'NOTIFY'){
       sheet.getRange(currentStartRow, COLUMN_NUMBER.NOTIFIED)
-      .setValue('NOTIFIED');
+      .setValue(NOTIFIED_DROPDOWN.NOTIFIED);
     }
   }
 }
