@@ -26,9 +26,9 @@ mobile.
 
 1. Create a copy of the Gmail Add-on code by clicking this [link][code]. This will create a new 
 script in your G Suite Developer Hub where you can manage your Apps Script projects. 
-1. Select View > Show manifest file, which opens a file titled `appsscript.json`.
-1. Select Publish > Deploy from manifest.
-1. Next to the entry Latest Version (Head) Click Get ID.
+1. Select **View** > **Show manifest file**, which opens a file titled `appsscript.json`.
+1. Select **Publish** > **Deploy from manifest**.
+1. Next to the entry **Latest Version (Head)** click **Get ID**.
 1. Select and copy the Deployment ID value.
 1. Close the dialog and the Deployments window.
 1. Open the [Gmail add-on settings][settings] tab.
