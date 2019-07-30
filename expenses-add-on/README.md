@@ -11,8 +11,8 @@ user receives an email receipt, they can open the add-on which automatically con
 information about the expense. Users can edit that information and then submit the form to log 
 their expense into a spreadsheet.
 
-![demo][demo]
-[demo]: https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/expenseit.gif
+![demo][demogif]
+[demogif]: https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/expenseit.gif
 
 ## Technology highlights
 
