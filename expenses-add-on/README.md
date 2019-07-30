@@ -11,8 +11,7 @@ user receives an email receipt, they can open the add-on which automatically con
 information about the expense. Users can edit that information and then submit the form to log 
 their expense into a spreadsheet.
 
-![demo][demogif]
-[demogif]: https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/expenseit.gif
+![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/expenseit.gif)
 
 ## Technology highlights
 
@@ -38,14 +37,14 @@ script in your G Suite Developer Hub where you can manage your Apps Script proje
 1. In the Install developer add-on dialog that appears, click the checkbox to
 indicate that you trust this developer (yourself), then click Install.
 1. Open any message in Gmail, either on web or mobile.
-1. A new button that resembles a receipt ![icon] should appear on the right or bottom of your screen, depending on your platform.
+1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/receipt-icon.png)
+should appear on the right or bottom of your screen, depending on your platform.
 1. Click the button to authorize the add-on and follow the prompts.
 1. Open an email and fill out the receipt information and click `New Sheet`.
 1. Open your Google Drive to view the new expense report. 
 
 [code]: https://script.google.com/d/12PB96o6hZfb5NKBSFJQ2dOtzfMnr-nRPCOnRUyfFbdmeR23qFQILF67q/copy
 [settings]: https://mail.google.com/mail/u/0/#settings/addons
-[icon]: https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/receipt-icon.png
 
 ## Next steps
 
