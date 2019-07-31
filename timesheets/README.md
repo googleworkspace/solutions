@@ -10,7 +10,7 @@ create a spreadsheet to easily view, compile, and manage their data. After
 everybody submits their responses, calculate their pay, approve or disapprove
 their pay, and auto-send emails notifying them of their pay status.
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/timesheets/TimesheetsScreenRecording.webm)
+![demo](TimesheetsScreenRecording.gif)
 
 [apps-script]: https://developers.google.com/apps-script/
 
