@@ -27,8 +27,8 @@ click of a button.
 
 - The script sends automated e mails to employees with 'NOT APPROVED' status
   using [MailApp][mail-app].
-- This solution uses [FormApp][form-app] & an HTML template to notify the manager 
-  when a new form response has been submitted.
+- This solution uses [FormApp][form-app] to create a new form upon 'Form Setup'.
+- This solution uses an HTML template and a [FormApp][form-app] trigger to notify the manager once a new form response is submitted.
 - The script creates shared calendar events between manager and employee using
   [CalendarApp][cal-app].
 - The script sets certain columns to contain drop-down menu cells using 
@@ -43,11 +43,10 @@ click of a button.
 ## Try it out!
 
 1. Create a copy of the sample [Vacation Time Requests Sheet][request-sheet], and name it something you'll remember.
-1. Create a copy of the sample [Employee Time Off Request Form][request-form].
-1. On this form hit **Edit > View Summary***. Click the three summary dots in the top right corner, and click on **Select Response Destination** from the drop-down.
-1. For your response destination, select the new Sheet you previously created.
+1. You will see a new **TimeOff** menu. Click it, and select the first drop-down option, **Form Setup**. 
 1. In your sheet, adialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
-1. You will see a new **TimeOff** menu. Click it, and select the first drop-down option, **Form Setup**. This will set up the 'onFormSubmit' trigger to notify your manager when a new form response has been submitted. Great!
+1. Once **Form Setup** has finished running, enter your Google Forms and you will see a new 'Vacation Time Requests' form. This form is already linked to your sheet, & you can send it out to employees to collect their responses.
+1. Once this form receives responses, you (manager) will be notified by email and you will see the responses appear in your Sheet.
 1. Next, select the second drop-down option, **Column Setup**. You will see two new columns: first, an approval column, allowing you to approve/disapprove of each employee's vacation time request via drop-down menu options. Second, a notification column, indicating which employees have/have not been notified of their approval status, set to 'NOT NOTIFIED' on default.
 1. Once you've approved/disapproved your employees' requests, click on **TimeOff > Notify Employees**. A Google Calendar event with the corresponding start + end time will be created for every employee whose vacation has been approved. A notification email of disapproval will be sent to employees with disapproved requests.
 1. In the 'NOTIFICATION STATUS' column, values will now be updated, indicating which employees have versus have not been notified. This ensures a manager does not send out double emails. 
@@ -58,7 +57,6 @@ Additionally, visit your (manager's) GMail account, and look in your Sent folder
 the notification e mails sent to employees with unapproved requests.
 
 [request-sheet]: https://docs.google.com/spreadsheets/u/1/d/17PKWX66mcKsyHjLTA7STkes0qhvtL2N6dklTzxtogZg/copy
-[request-form]: https://forms.gle/DZ6BFS9n8PkC2ivQ9
 
 ## Next steps
 
