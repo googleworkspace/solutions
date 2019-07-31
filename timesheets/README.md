@@ -1,7 +1,7 @@
 # Collect timesheets from employees
 
-_Quickly approve of employees' weekly timesheet submissions, and send
-automated notification emails._
+_Quickly approve of employees' weekly timesheet submissions, and send automated
+notification emails._
 
 Last updated: July, 2019
 
@@ -17,7 +17,8 @@ pay status.
 ## Technology highlights
 
 -   The script uses [MailApp][mail-app] to send employees automated emails.
--   The solution uses [Data Validation Rules][data-val] to populate drop-down values.
+-   The solution uses [Data Validation Rules][data-val] to populate drop-down
+    values.
 
 [mail-app]: https://developers.google.com/apps-script/reference/mail/mail-app
 [data-val]: https://developers.google.com/apps-script/reference/spreadsheet/data-validation-builder
@@ -25,15 +26,16 @@ pay status.
 ## Set-Up Instructions
 
 1.  Create a copy of the sample [Timesheets Responses][sheet-link] Google Sheet.
-1.  Create a copy of the sample [Employee Weekly Timesheet Form][form-link].
-1.  Once you've received responses, on your Google Form hit **Edit > View
-    Summary***. Click the three summary dots in the top right corner, and click
-    on **Select Response Destination** from the drop-down.
-1.  Select the new Google Sheet you just created (the copy of the given sheet).
-    The Form responses will now appear in this sheet.
-1.  Inside of the selected Sheet, a dialog box will appear and tell you that the
-    script requires authorization. Read the authorization notice and continue.
-1.  You will see a new **Timesheets** menu. Click it and select **Column
+1.  Inside of this sheet, you will see a **Timesheets** menu. Click it and
+    select **Form Setup**.
+1.  A dialog box will appear and tell you that the script requires
+    authorization. Read the authorization notice and continue.
+1.  Once the **Form Setup** Script has finished executing, you will be able to
+    find a new Google Form entitled "Timesheets Responses" in your account. This
+    Form has automatically been linked to your sheet, meaning every time it
+    receives a new response, it will load accordingly into the Timesheets
+    Responses Sheet.
+1.  Navigate back to the **Timesheets** menu. Click it and select **Column
     Setup**. You will now see columns for weekly pay values, approval status,
     and notified status.
 1.  You will notice that the WEEKLY PAY column is full of values - these were
@@ -45,4 +47,3 @@ pay status.
     values in the 'NOTIFIED' column change.
 
 [sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
-[form-link]: https://docs.google.com/forms/u/1/d/1WzMCjbM_HPl7NGvix5SCruhVky6ZoZ5Xq-3maC8UH9E/copy
