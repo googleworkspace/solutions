@@ -45,7 +45,7 @@ var REJECTION_EMAIL_SUBJECT = 'ERR: Vacation Time Request NOT Approved';
 var EVENT_TITLE = "VACATION FOR ";
 
 /** TODO: Hard code your manager's email */
-var MANAGER_EMAIL = 'yoyomade@google.com';
+var MANAGER_EMAIL = 'your-manager-email';
 
 /**
  * Add custom menu items when opening the sheet.
