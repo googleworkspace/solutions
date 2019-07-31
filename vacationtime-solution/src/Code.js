@@ -32,11 +32,20 @@ var NOTIFIED_DROPDOWN = {
   NOT_NOTIFIED: 'NOT NOTIFIED',
 };
 
+var VACATION_REASONS = [
+  'Vacation',
+  'Sick leave',
+  'Maternity/Paternity',
+  'Bereavement',
+  'Leave of absence',
+  'Personal time',
+];
+
 var REJECTION_EMAIL_SUBJECT = 'ERR: Vacation Time Request NOT Approved';
 var EVENT_TITLE = "VACATION FOR ";
 
 /** TODO: Hard code your manager's email */
-var MANAGER_EMAIL = 'manager-email';
+var MANAGER_EMAIL = 'yoyomade@google.com';
 
 /**
  * Add custom menu items when opening the sheet.
@@ -193,7 +202,7 @@ function notifyEmployees() {
   var frozenRows = sheet.getFrozenRows();
   var startRow = frozenRows + 1;
   var numRows = lastRow - startRow;
-  var numCols = COLUMN_NUMBER.NOTIFY - COLUMN_NUMBER.EMAILs;
+  var numCols = COLUMN_NUMBER.NOTIFY - COLUMN_NUMBER.EMAIL;
   
   // Go through every employee's information.
   for (var i = 0; i < numRows; i++) {
@@ -230,13 +239,26 @@ function notifyEmployees() {
 }
 
 /** 
- * Set up the linked form's trigger to send manager an email
- * upon form submit.
+ * Set up the Vacation Time Requests form, & link the form's trigger to 
+ * send manager an email when a new request is submitted.
  */
 function setUpForm() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var formUrl = SpreadsheetApp.getActive().getFormUrl();
-  var form = FormApp.openByUrl(formUrl);
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();
+  if (sheet.getFormUrl()) {
+    var msg = 'Form already exists. Unlink the form and try again.';
+    SpreadsheetApp.getUi().alert(msg);
+    return;
+  }
+  
+  // Create the form.
+  var form = FormApp.create('Vacation Time Requests')
+      .setCollectEmail(true)
+      .setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId())
+      .setLimitOneResponsePerUser(false);
+  form.addTextItem().setTitle('Employee Name:').setRequired(true);
+  form.addTextItem().setTitle('Start Date:').setRequired(true);
+  form.addDateItem().setTitle('End Date:').setRequired(true);
+  form.addListItem().setTitle('Reason:').setChoiceValues(VACATION_REASONS);
  
   // Set up on form submit trigger.
   ScriptApp.newTrigger('onFormSubmit')
