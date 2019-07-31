@@ -27,22 +27,22 @@ pay status.
 1.  Create a copy of the sample [Timesheets Responses][sheet-link] Google Sheet.
 1.  Create a copy of the sample [Employee Weekly Timesheet Form][form-link].
 1.  Once you've received responses, on your Google Form hit **Edit > View
-    Summary***. Click the three summary dots in the top right corner, and click
+    Summary**. Click the three summary dots in the top right corner, and click
     on **Select Response Destination** from the drop-down.
 1.  Select the new Google Sheet you just created (the copy of the given sheet).
     The Form responses will now appear in this sheet.
-1.  Inside of the selected Sheet, a dialog box will appear and tell you that the
+1.  Inside of the selected sheet, a dialog box will appear and tell you that the
     script requires authorization. Read the authorization notice and continue.
 1.  You will see a new **Timesheets** menu. Click it and select **Column
     Setup**. You will now see columns for weekly pay values, approval status,
     and notified status.
-1.  You will notice that the WEEKLY PAY column is full of values - these were
+1.  You will notice that the **WEEKLY PAY** column is full of values - these were
     calculated upon setup, so the work is taken care of for you.
-1.  Use the drop down values of the 'APPROVAL' column to either approve or
+1.  Use the drop down values of the **APPROVAL** column to either approve or
     disapprove each employee’s weekly pay.
 1.  Click on **Timesheets > Notify Employees** in order to auto-send emails to
     every employee notifying them of their approval status. You will see the
-    values in the 'NOTIFIED' column change.
+    values in the **NOTIFIED** column change.
 
 [sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
 [form-link]: https://docs.google.com/forms/u/1/d/1WzMCjbM_HPl7NGvix5SCruhVky6ZoZ5Xq-3maC8UH9E/copy
