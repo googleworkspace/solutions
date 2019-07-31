@@ -14,7 +14,7 @@ specific sessions.
 
 ## Technology highlights
 
-- Create a custom menu item in the Spreadsheet UI using Apps Script [Custom Menus](https://developers.google.com/apps-script/guides/menus).
+- Create a custom menu item in the spreadsheet UI using Apps Script [Custom Menus](https://developers.google.com/apps-script/guides/menus).
 - Use the [onFormSubmit](https://developers.google.com/apps-script/guides/triggers/events#form-submit_4)
   trigger to create and email the personalized schedule for each attendee when
   the user submits the form.
@@ -23,11 +23,11 @@ specific sessions.
 ## Try it
 
 1. Create a copy of the sample [Event Session spreadsheet](https://docs.google.com/spreadsheets/d/1cpGsysprd5zl8VHYs4njsTSXwGxMA7DZPCW5o2EhR_8/copy)
-1. Click on custom menu item 'Conference' > 'Set up conference'
+1. Click on custom menu item **Conference > Set up conference**
 1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
-1. The Conference menu will now be gone, but you will see a new Form menu instead. Click it and select Go to live form.
+1. You will see a new Form menu instead. Click it and select **Go to live form**.
 1. Fill out the form
-1. Check your email for your personalized itinerary and check your Calendar on May 13th to see your registered sessions
+1. Check your email for your personalized itinerary and check your calendar for the week of May 13th, 2019 to see your registered sessions
 
 ## Next steps
 
