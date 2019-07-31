@@ -256,7 +256,7 @@ function setUpForm() {
       .setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId())
       .setLimitOneResponsePerUser(false);
   form.addTextItem().setTitle('Employee Name:').setRequired(true);
-  form.addTextItem().setTitle('Start Date:').setRequired(true);
+  form.addDateItem().setTitle('Start Date:').setRequired(true);
   form.addDateItem().setTitle('End Date:').setRequired(true);
   form.addListItem().setTitle('Reason:').setChoiceValues(VACATION_REASONS);
  
