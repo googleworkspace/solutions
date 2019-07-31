@@ -29,18 +29,18 @@ script in your G Suite Developer Hub where you can manage your Apps Script proje
 1. Select **View** > **Show manifest file**, which opens a file titled `appsscript.json`.
 1. Select **Publish** > **Deploy from manifest**.
 1. Next to the entry **Latest Version (Head)** click **Get ID**.
-1. Select and copy the Deployment ID value.
+1. Select and copy the **Deployment ID** value.
 1. Close the dialog and the Deployments window.
-1. Open the [Gmail add-on settings][settings] tab.
-1. In the Add-ons tab, ensure that you have selected the Enable developer add-ons for my account checkbox.
-1. Paste your add-on's deployment ID into the Developer add-ons textbox and click Install.
-1. In the Install developer add-on dialog that appears, click the checkbox to
-indicate that you trust this developer (yourself), then click Install.
+1. Open the **[Gmail add-on settings][settings]** tab.
+1. In the Add-ons tab, ensure that you have selected the **Enable developer add-ons for my account** checkbox.
+1. Paste your add-on's deployment ID into the Developer add-ons textbox and click **Install**.
+1. In the **Install developer add-on** dialog that appears, click the checkbox to
+indicate that you trust this developer (yourself), then click **Install**.
 1. Open any message in Gmail, either on web or mobile.
 1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/receipt-icon.png)
 should appear on the right or bottom of your screen, depending on your platform.
 1. Click the button to authorize the add-on and follow the prompts.
-1. Open an email and fill out the receipt information and click `New Sheet`.
+1. Open an email and fill out the receipt information and click **New Sheet**.
 1. Open your Google Drive to view the new expense report. 
 
 [code]: https://script.google.com/d/12PB96o6hZfb5NKBSFJQ2dOtzfMnr-nRPCOnRUyfFbdmeR23qFQILF67q/copy
