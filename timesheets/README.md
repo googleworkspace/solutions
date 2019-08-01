@@ -46,6 +46,6 @@ pay status.
     disapprove each employee’s weekly pay.
 1.  Click on **Timesheets > Notify Employees** in order to auto-send emails to
     every employee notifying them of their approval status. You will see the
-    values in the 'NOTIFIED' column change.
+    values in the **NOTIFIED** column change.
 
 [sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
