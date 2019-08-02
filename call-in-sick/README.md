@@ -43,14 +43,17 @@ First, create the script:
 Then create a Google Cloud project to use with it:
 
 1.  [Create a new project][new_project] in the Google Cloud Developer Console.
-    Give it a name, select a Billing Account if prompted, and click **CREATE**.
+    Name it "Call in Sick", select a Billing Account if prompted, and
+    click **CREATE**.
 1.  When the project creation is complete a notification appears in the
-    upper-right of the page. Click on the **Create Project: <Project Name>**
-    entry to open the project.
-1.  Open the [**OAuth consent screen**][consent_screen]) settings page for the
+    upper-right of the page. Click on the **Create Project: Call in Sick** entry
+    to open the project.
+1.  Open the [**OAuth consent screen**][consent_screen] settings page for the
     project.
 1.  In the field **Application name** enter "Attendance Bot" and click the
     **Save** button at the bottom.
+1.  Open the [**Gmail API**][library_gmail] page in the API library and click
+    the **ENABLE** button.
 1.  Open the [**Project settings**][project_settings] page for the project.
 1.  Copy the value listed under **Project number**.
 
@@ -70,18 +73,16 @@ Next, setup your script to use the new project and deploy it:
 Then configure the Hangouts Chat API to create your bot:
 
 1.  Back in the Google Cloud Developers Console, open the
-    [**Hangouts Chat API**][library]) page in the API library.
-1.  Click the **ENABLE** button. The Cloud Console displays a progress indicator
-    while enabling the API.
+    [**Hangouts Chat API**][library_chat] page in the API library and click the
+    **ENABLE** button.
 1.  Once the API is enabled, on click the **Configuration** tab.
-    Ignore any messages asking you to create credentials.
 1.  In the Configuration tab, do the following:
-    1.  In the **Bot name** box, enter ‘Attendance Bot'.
+    1.  In the **Bot name** box, enter "Attendance Bot".
     1.  In the **Avatar URL box**, enter `https://goo.gl/kv2ENA`.
     1.  In the **Description box**, enter "Call in sick with a bot".
     1.  Under **Functionality**, select **Bot works in direct messages**.
-    1.  Under **Connection settings**, select Apps Script project and paste your
-        script's Deployment ID into the text box.
+    1.  Under **Connection settings**, select **Apps Script project** and paste
+        your script's **Deployment ID** into the text box.
     1.  Under **Permissions**, select **Specific people and group in your
         domain**. In the text box under the drop-down menu, enter your email
         address.
@@ -95,6 +96,7 @@ Finally, test that your bot is working:
 1.  Click **Find people, rooms, bots > Message a bot**.
 1.  From the list, select the **Attendance Bot** that you created.
 1.  Send the message "I'm sick" to the bot.
+1.  Click the **CONFIGURE** button and authorize access to your account.
 1.  In the resulting card, click the **SET VACATION IN GMAIL** and
     **BLOCK OUT DAY IN CALENDAR** buttons.
 
@@ -103,7 +105,8 @@ Finally, test that your bot is working:
 [new_project]: https://console.cloud.google.com/projectcreate
 [consent_screen]: https://console.cloud.google.com/apis/credentials/consent
 [project_settings]: https://console.cloud.google.com/iam-admin/settings
-[library]: https://pantheon.corp.google.com/apis/library/chat.googleapis.com
+[library_gmail]: https://pantheon.corp.google.com/apis/library/gmail
+[library_chat]: https://pantheon.corp.google.com/apis/library/chat.googleapis.com
 [hangouts_chat]: https://chat.google.com
 
 ## Next steps
