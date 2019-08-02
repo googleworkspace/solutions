@@ -40,11 +40,14 @@ First, create the script:
 1.  Click the menu item **File > Make a copy** to get your own copy. You can
     later access this copy in the [G Suite Developer Hub][hub].
 
+[code]: https://script.google.com/d/1pbuGhMkTyqfeR30QfbMzsA21qM2p0HmnStGpZUKj-QLvH0BL73UbTlSq/edit
+[hub]: https://script.google.com
+
 Then create a Google Cloud project to use with it:
 
 1.  [Create a new project][new_project] in the Google Cloud Developer Console.
-    Name it "Call in Sick", select a Billing Account if prompted, and
-    click **CREATE**.
+    Name it "Call in Sick", select a **Billing Account** if prompted, and
+    click **CREATE**. More information on how to setup billing [here][billing].
 1.  When the project creation is complete a notification appears in the
     upper-right of the page. Click on the **Create Project: Call in Sick** entry
     to open the project.
@@ -57,12 +60,18 @@ Then create a Google Cloud project to use with it:
 1.  Open the [**Project settings**][project_settings] page for the project.
 1.  Copy the value listed under **Project number**.
 
+[new_project]: https://console.cloud.google.com/projectcreate
+[billing]: https://cloud.google.com/free/docs/gcp-free-tier
+[consent_screen]: https://console.cloud.google.com/apis/credentials/consent
+[library_gmail]: https://pantheon.corp.google.com/apis/library/gmail
+[project_settings]: https://console.cloud.google.com/iam-admin/settings
+
 Next, setup your script to use the new project and deploy it:
 
-1.  Back in the App Script Code Editor, click the menu item
+1.  Back in the Apps Script Code Editor, click the menu item
     **Resources > Cloud Platform project**.
 1.  Enter the project number into the text box and click **Set Project**. When
-    prompted, click Confirm.
+    prompted, click **Confirm**.
 1.  When complete, click the **Close** button or **X** icon to dismiss the
     dialog.
 1.  Click the menu item **Publish > Deploy from manifest**.
@@ -90,6 +99,8 @@ Then configure the Hangouts Chat API to create your bot:
 1.  After you save your changes, verify that the status on the Hangouts Chat API
     page shows the Bot Status to be **LIVE – available to users**.
 
+[library_chat]: https://pantheon.corp.google.com/apis/library/chat.googleapis.com
+
 Finally, test that your bot is working:
 
 1.  Open [Hangouts Chat][hangouts_chat].
@@ -100,13 +111,6 @@ Finally, test that your bot is working:
 1.  In the resulting card, click the **SET VACATION IN GMAIL** and
     **BLOCK OUT DAY IN CALENDAR** buttons.
 
-[code]: https://script.google.com/d/1pbuGhMkTyqfeR30QfbMzsA21qM2p0HmnStGpZUKj-QLvH0BL73UbTlSq/edit
-[hub]: https://script.google.com
-[new_project]: https://console.cloud.google.com/projectcreate
-[consent_screen]: https://console.cloud.google.com/apis/credentials/consent
-[project_settings]: https://console.cloud.google.com/iam-admin/settings
-[library_gmail]: https://pantheon.corp.google.com/apis/library/gmail
-[library_chat]: https://pantheon.corp.google.com/apis/library/chat.googleapis.com
 [hangouts_chat]: https://chat.google.com
 
 ## Next steps
