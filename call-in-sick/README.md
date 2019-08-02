@@ -19,9 +19,9 @@ your day in Google Calendar.
 
 ## Technology highlights
 
-- Uses the [Hangouts Chat API](hangouts_chat_api) to build a chat bot, which you
+- Uses the [Hangouts Chat API][hangouts_chat_api] to build a chat bot, which you
   can message just like a human participant.
-- The bot is implemented using [Apps Script](apps_script), allowing for rapid
+- The bot is implemented using [Apps Script][apps_script], allowing for rapid
   development and worry-free operation.
 - Uses the [Gmail API][gmail_api] to set the user's out-of-office
   auto-responder.
