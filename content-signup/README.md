@@ -1,10 +1,10 @@
-# Automatically send an email following up with content to people who signup via a form.
+# Automatically send an email following up with content to people who signup via a form
 
-For marketing activities, you may want to automate the sending of key links dynamically to content such as videos, whitepaper links, blogs, PDF summaries, etc based on what people mark as their specific interest in your contact-us form linked on your website, email signature, or wherever you share the form's link.
+ You may want to help disperse great content that is accessible as a link such as videos, whitepapers, blogs, PDF summaries, etc based on what people mark as their specific interest in your contact-us form linked on your website, email signature, or wherever you share this form's link.
 
 You can also ask if they would like to subscribe to your mailing list for future content.
 
-(last updated June 28 2019)
+(last updated July 31 2019)
 
 ## Setup
 
@@ -12,62 +12,47 @@ You can also ask if they would like to subscribe to your mailing list for future
 
 **First**, set up the **Google Form** and response spreadsheet:
 
-1. Open [Google Forms](https://docs.google.com/forms/u/0/) in your browser.
-1. **Create a new form** called **"Sign-up for information form"**
-1. Create the following **4** fields with the respective **title** and **field type**:
-   * **My name** (field type: **short answer**)
+1. Make a copy of this Google Form [by clicking this link](https://docs.google.com/forms/u/4/d/1yTz6r7PnKmRthfNwJMdjV9zmSFMAl2u7OetlojIIxpM/copy) in your browser.
 
-   * **Email address** (field type: **short answer**)
+NOTE: the form contains the following **4** fields with the respective **title** and **field type**. Please note to **not change the order of the questions** as the **script's execution** depends on this order.
 
-   * **Topics I would like to learn about** (field type: **checkboxes** with the following options. Maintain the paranethesis and capital letters as they are, the code is looking for this style).
-      * (NUTRITION) Raw vegan recipes
-      * (REPROGRAMMING HABITS) The Zero Waste white paper
-      * (URBAN FOOD) A community garden how-to
-      * (WATER DESIGN) Grey water plumbing supplies
+1. (Optionally) Rename the topics for the row question called:
 
-   * **I would also like to keep receiving information in the future** (field type: **drop down** with the following **2** options...)
-      * Yes add me to the mailing list.
-      * No just this one time send me the assets.
+   * "**Topics I would like to learn about**"
 
-1. Select a **Google Spreadsheet** as the source for **responses**.
+   **IMPORTANT** When **renaming** the topic's name and it's description, maintain the style as listed below **(TOPIC is in capital letters** and within a **parenthesis)** + **description is out of the parenthesis** since the Apps Script's code is looking for this style. You will also need to rename the same item within the code (at the top of the script)
+      * EX:
+      * Form's option: (NUTRITION) Raw vegan recipes
+      * You rename to: (ENERGY) Going solar
 
-1. Return to the Google Form and respond to all 4 fields
-populated with events, ensure to use an email address you have access to. 
+1. Make a copy of **[this Google spreadsheet](https://docs.google.com/spreadsheets/u/4/d/1rnfooWa1vQtzwBEdLe4d3fdTusoAUcZ8N5rP44OT_cc/copy#gid=725229165)** which contains the code and will be where **form responses will arrive.**
 
+1. To **map form responses** to this sheet, **return** to your **Google Form** and click **"Responses"** > **"Select response destination"** > **"Select existing spreadsheet"** > then **choose** your **newly copied** Spreadsheet from the window of files that appear, and upon selecting that file > **click** "Create."
 
-Next, paste the **Apps Script code in the script editor** (this type of script is called a **'container-bound script'** because it lives in a spreadsheet):
+1. Visit your **Google spreadsheet**, and **delete** the sheet tab called **"Delete this sheet after form responses are linked."** You should only have one sheet in the spreadsheet.
 
-1. From your Google Spreasheet click **Tools > Script Editor** 
-1. Paste the Apps Script source code that is listed in the file **src** in this GitHub.
+1. Now return to the **Google Form** > click the **top 3 dots** > select "Preview." This will bring you the live form that people will see when you share it with them. **Fill out** all the fields and **ensure** to use an **email address** you have **access** to later in order to review the email when the **run the script.**
 
-Then run the script:
+1. Finally **make a copy** of this Google Doc **template** by **[clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy).** This doc contains the **format** of the email the recipients will receive upon submitting their request for content in the form. After making a copy, you will highlight and then save its **unique ID** which can be found in its **URL address** in the **browser** by copying the **number/letter** combo after **`https://docs.google.com/document/d/`** and before **`/edit#`** which will look like this: **`1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE`
 
-1. Click the **Select function** dropdown and select **setup**.
-1. Click the Run button (►) > **SendCampaignEmail**
-1. When prompted, click the **Review permissions** button.
-1. Select your Google account from the list.
-1. Click the **Allow** button.
+NOTE** If you later wish to **change the design** of the Google Doc **template** you can by changing the font, images, colors, size. However remember to **not delete** the items **in brackets** as these are **placeholders** for the **script to populate** with custom information from the form such as `{{NAME}}` and `{{TOPICS}}` These **cannot be removed.**
 
-Setup a trigger to **automate the script's execution** whenver a new form entry is submitted moving forward:
+## Running the script
 
-1. Click **Edit > Current Project's Triggers**
-1. Click **Add trigger** (in the corner right bottom)
-1. Select the following defaults:
-   * Choose which function to run > **SendCampaignEmail**
-   * Choose which deployment should run > **Head**
-   * Select event source > **From Spreadsheet**
-   * Select event type > **On form submit**
-1. Click **Save** and accept any additional permissions if prompted.
+1. Now that you submitted at least **one response** in your Form and it was transfered over to your spreadsheet, **from your Spreadsheet** lets dive into the code by clicking on the header **Tools > Script Editor**.
 
-**Important to note:**
+1. This will bring you to the **Apps Script editor.**
 
-> If you wish to change the **topic options in the form,** you must update those options (copy and paste) in the code of the script by **replacing** the options at the top, which are listed as **contanstants under 'TOPIC_URLS** The code identifies topic selection if the form's topics have an initial subject in parenthesis and capital letters followed by your desired text **ex: (NUTRITION) Raw vegan recipes.**
->
-> For a more detailed record of what the script did, you
-can view the logs by clicking
-**View > Stackdriver Logging** and then **Apps Script Dashboard**.
+1. Locate on **line 3** the following `var emailTemplateDocId =` after the **equals sign** you will **replace the document ID** with ID you copied from the URL in the final step of the "setup" section. Ensure that when you paste the doc ID, it is within the backtic marks after the equal signs ex: ``var emailTemplateDocId = `1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE` ``
 
-[my sheet with project]: https://docs.google.com/spreadsheets/d/1E-hypjjvAth6HJcZxjz3STH-E27rljsfpU-58WpLpaM/edit#gid=1135195901
+1. (Optional) if you **changed** any of the **topic names** in your **form**, rename those **topics exactly** in the code of the script starting at **line 15,** ensuring **both** the topics listed in the form and code have the same topics in **capital letters** with a **parenthesis** followed by a short description in **lower case without parenthesis**.
 
+1. You will need to import a library called [ObjApp](https://sites.google.com/site/scriptsexamples/custom-methods/gs-objects) which helps **convert spreadsheet rows into objects** which **helps save time** by allowing one to call an element by its name rather than its column index. To import click **"Resources"** > **"Libraries..."** > **paste** the following **key: MTeYmpfWgqPbiBkVHnpgnM9kh30YExdAc** in the **"Add a library"** text box > click **"Add"** > change the version from the **"version"** drop down to **5** or the most recent after that > click **"Save."**
 
-<!-- [END setup] -->
+1. After importing the library,let's now **run the script** by clicking the **"Select function" drop down** > choose **"onForm Submit."** Then click the **run icon** (which looks like a play button)
+
+1. You will be promoted to review permissions to allow the code to email on your behalf. **IMPORTANT** if you get warning that the app is not secure because it is not verified, simply click the link that shows **"advanced options"** and follow through the steps to **continue visiting this site.**
+
+1. After granting permissions, the script will run and a new column will appear in your spreadsheet for each response entry with a date and time stamp. This confirms that the email was sent with topic URLS selected. **NOTE:** if no topics are selected, the code is meant to **not send an email.**
+
+1. Finally, to **check** the **script worked,** login to the email account you provided in your form entry and see if you received an email with the subject line **"Howdy."**
