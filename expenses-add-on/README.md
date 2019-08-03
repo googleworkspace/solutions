@@ -24,8 +24,14 @@ mobile.
 
 ## Try it
 
-1. Create a copy of the Gmail Add-on code by clicking this [link][code]. This will create a new 
-script in your G Suite Developer Hub where you can manage your Apps Script projects. 
+First, create the script:
+
+1.  [Click here][code] to open the bot code in the Apps Script code editor.
+1.  Click the menu item **File > Make a copy** to get your own copy. You can
+    later access this copy in the [G Suite Developer Hub][hub].
+
+Next, deploy the add-on:
+
 1. Select **View** > **Show manifest file**, which opens a file titled `appsscript.json`.
 1. Select **Publish** > **Deploy from manifest**.
 1. Next to the entry **Latest Version (Head)** click **Get ID**.
@@ -36,6 +42,9 @@ script in your G Suite Developer Hub where you can manage your Apps Script proje
 1. Paste your add-on's deployment ID into the **Developer add-ons** textbox and click **Install**.
 1. In the **Install developer add-on** dialog that appears, click the checkbox to
 indicate that you trust this developer (yourself), then click **Install**.
+
+Test it out and create a new expense report: 
+
 1. Open any message in Gmail, either on web or mobile.
 1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/receipt-icon.png)
 should appear on the right or bottom of your screen, depending on your platform.
@@ -44,6 +53,7 @@ should appear on the right or bottom of your screen, depending on your platform.
 1. Open your Google Drive to view the new expense report. 
 
 [code]: https://script.google.com/d/12PB96o6hZfb5NKBSFJQ2dOtzfMnr-nRPCOnRUyfFbdmeR23qFQILF67q/copy
+[hub]: https://script.google.com
 [settings]: https://mail.google.com/mail/u/0/#settings/addons
 
 ## Next steps
