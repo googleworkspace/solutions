@@ -1,0 +1,29 @@
+{
+  "name": "vacationtime-solution",
+  "version": "1.0.0",
+  "description": "Manage employee vacation time requests. Create shared calendar events for approved vacations, and send automated emails for rejected requests.",
+  "main": "Code.js",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "push": "clasp push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsuitedevs/solutions.git"
+  },
+  "keywords": [
+    "solution"
+  ],
+  "author": "Made Lapuerta <yoyomade@google.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gsuitedevs/solutions/issues"
+  },
+  "homepage": "https://github.com/gsuitedevs/solutions#readme",
+  "devDependencies": {
+    "@google/clasp": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0"
+  }
+}
