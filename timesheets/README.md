@@ -28,7 +28,6 @@ pay status.
 ## Set-Up Instructions
 
 1.  Create a copy of the sample [Timesheets Responses][sheet-link] Google Sheet.
-<<<<<<< HEAD
 1.  Inside of this sheet, you will see a new **Timesheets** menu. Click it and
     select **Form Setup**.
 1.  A dialog box will appear and tell you that the script requires
@@ -44,30 +43,9 @@ pay status.
 1.  You will notice that the **WEEKLY PAY** column is full of values - these
     were calculated upon setup, so the work is taken care of for you.
 1.  Use the drop down values of the **APPROVAL** column to either approve or
-=======
-1.  Inside of this sheet, you will see a **Timesheets** menu. Click it and
-    select **Form Setup**.
-1.  A dialog box will appear and tell you that the script requires
-    authorization. Read the authorization notice and continue.
-1.  Once the **Form Setup** Script has finished executing, you will be able to
-    find a new Google Form entitled "Timesheets Responses" in your account. This
-    Form has automatically been linked to your sheet, meaning every time it
-    receives a new response, it will load accordingly into the Timesheets
-    Responses Sheet.
-1.  Navigate back to the **Timesheets** menu. Click it and select **Column
-    Setup**. You will now see columns for weekly pay values, approval status,
-    and notified status.
-1.  You will notice that the WEEKLY PAY column is full of values - these were
-    calculated upon setup, so the work is taken care of for you.
-1.  Use the drop down values of the 'APPROVAL' column to either approve or
->>>>>>> master
     disapprove each employee’s weekly pay.
 1.  Click on **Timesheets > Notify Employees** in order to auto-send emails to
     every employee notifying them of their approval status. You will see the
     values in the **NOTIFIED** column change.
 
-<<<<<<< HEAD
 [sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
-=======
-[sheet-link]: https://docs.google.com/spreadsheets/d/17NJu4XTUsfCVPYHSqBCDGYDxJoADfwj2HP0QRD4-ihc/copy
->>>>>>> master
