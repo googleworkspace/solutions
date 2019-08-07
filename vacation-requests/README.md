@@ -21,6 +21,8 @@ Now, managers can easily see on their calendars when certain employees will be o
 vacation, and have dealt with all other requests appropriately and with the simple
 click of a button.
 
+![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/vacation-requests/VacationRequestsRecording.gif)
+
 [apps-script]: https://developers.google.com/apps-script
 
 ## Technology highlights
