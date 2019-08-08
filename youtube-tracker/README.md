@@ -2,11 +2,13 @@
 
 _Tracks views, likes, and comments for provided YouTube URLs in a Google Sheet with optional email notifications._
 
+Last updated: August, 2019
+
 Track performance of public YouTube videos, including views, likes, and comments, in a Google Sheet. 
 Refresh data automatically via the YouTube Data API. Send automatic email notifications
 that summarize new YouTube video comment activity.
 
-Last updated: July, 2019
+![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/youtube-tracker/screenshot.png)
 
 ## Technology highlights
 - Use the [YouTube advanced service](https://developers.google.com/apps-script/advanced/youtube) to collect data on specific videos (such as number of views and comment data) via the YouTube Data API.
