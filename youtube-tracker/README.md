@@ -12,7 +12,7 @@ that summarize new YouTube video comment activity.
 
 ## Technology highlights
 - Use the [YouTube advanced service](https://developers.google.com/apps-script/advanced/youtube) to collect data on specific videos (such as number of views and comment data) via the YouTube Data API.
-- Use the [Gmail Service] to send notification emails when new video comments are detected. 
+- Use the [Gmail Service](https://developers.google.com/apps-script/reference/gmail/) to send notification emails when new video comments are detected. 
 - Create an [HTML template](https://developers.google.com/apps-script/guides/html/templates#calling_apps_script_functions_from_a_template) containing an Apps Script function to send emails containing HTML tables.
 
 ## Try it
