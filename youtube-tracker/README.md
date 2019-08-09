@@ -4,7 +4,7 @@ _Stay up-to-date on YouTube video performance statistics and receive daily email
 
 Last updated: August, 2019
 
-YouTube makes it possible for anyone to create and share video content, and engage with the world. While the built-in analytics and notification options provided by YouTube are designed for a user's own channel, you may care deeply about content that extends beyond those bounds.
+YouTube makes it possible for anyone to create and share video content, and engage with viewers around the world. While the built-in analytics and notification options provided by YouTube are designed for a user's own channel, you may care deeply about content that extends beyond those bounds.
 
 This solution uses the YouTube Data API to track performance of a user-curated list of public YouTube videos, including views, likes, and comments, in a Google Sheet. Additionally, email notifications can be enabled that send daily summaries of videos that have new comment activity so that you can engage with questions and comments shared for the video.
 
