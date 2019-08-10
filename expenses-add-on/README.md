@@ -32,7 +32,6 @@ First, create the script:
 
 Next, deploy the add-on:
 
-1. Select **View** > **Show manifest file**, which opens a file titled `appsscript.json`.
 1. Select **Publish** > **Deploy from manifest**.
 1. Next to the entry **Latest Version (Head)** click **Get ID**.
 1. Select and copy the **Deployment ID** value.
