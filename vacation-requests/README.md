@@ -64,4 +64,6 @@ the notification e mails sent to employees with unapproved requests.
 You can view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[github]: https://github.com/gsuitedevs/solutions/tree/master/vacation-request
+[github]: https://github.com/gsuitedevs/solutions/tree/master/vacation-requests
+
+
