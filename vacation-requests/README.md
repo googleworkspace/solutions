@@ -66,4 +66,3 @@ learn more about how it was built.
 
 [github]: https://github.com/gsuitedevs/solutions/tree/master/vacation-requests
 
-
