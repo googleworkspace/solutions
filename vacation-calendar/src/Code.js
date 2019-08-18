@@ -100,7 +100,7 @@ function findEvents(user, keyword, start, end, optSince) {
     // This prevents the script from examining events that have not been
     // modified since the specified date (that is, the last time the
     // script was run).
-    params.updatedMin = formatDateAsRFC3339(opt_since);
+    params.updatedMin = formatDateAsRFC3339(optSince);
   }
   var pageToken = null;
   var events = [];
