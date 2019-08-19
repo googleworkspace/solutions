@@ -8,89 +8,90 @@ Last updated: August, 2019
 
 By using a Google Form, let users select topics from a predefined list,
 and store the submissions in a Google Sheet.
-Using the `onFormSubmit` installable trigger, we can send a customized email
+
+## Technology highlights
+
+- Using the `onFormSubmit` installable trigger, you can send a customized email
 as soon as a user clicks the **Submit** button on the Google Form.
-A Google Doc is used as the email template, which inserts custom names and
+- A Google Doc is used as the email template, which inserts custom names and
 links to online content such as videos, whitepapers, blogs, PDF summaries,
 or other resources.
-
-A Google Form can be accessed on your website, email signature,
+- A Google Form can be accessed on your website, email signature,
 instant message, or wherever you share the form's link.
 
-## Setup
+![Topics are selected in a form, and upon submit an email is sent](https://github.com/gsuitedevs/solutions/raw/master/content-signup/assets/content-signup.gif)
 
-1. First, make a copy of this Google Sheet
-   [by clicking this link](https://docs.google.com/spreadsheets/d/1T8EmWrxpsOxSJPUo37Lkf6S8GRP3tz9b0zUL2-_Z644/copy)
+## Try it
+
+1. Make a copy of this Google Sheet
+   [by clicking this link](https://docs.google.com/spreadsheets/d/14V2cLGRXB_iaiQWXsTwapPPZ0hMj3fTjpD_hfhAiGqI/copy)
    in your browser. It will automatically include a Google Form and the code
    you will need called an Apps Script.
 
-   > *Note:* The spreadsheet contains 5 columns. Please note to *not change
-   > the order of the questions* in the form or remove nor rename any of the
-   > columns in the sheet as the *script's execution* depends on this order.
-
-1. *[optional]* Rename the topics for the 3rd form question called:
-
-   **Topics I would like to learn about**
-
-   > *Caution:* When *renaming* the topics in the form,  ensure you rename
-   > them exactly the same in the code.
-
-1. Now return to the *Google Form* > click the **top 3 dots** > select
-**"Preview."** This will bring you to the live form that people will see when
- you share it with them. *Fill out* all the fields and *ensure* to use an 
- *email address* you have access to.
-
-## Run the script
-
-1. Since you submitted a form response in an earlier step, visit your 
-Spreadsheet and dive into the code by clicking on **Tools > Script Editor**
-in your Google Sheet.
+1. From your spreadsheet click on **Tools > Script Editor**.
 
 1. This will bring you to the *Apps Script editor.*
+Now *run the script* by clicking the **"Select function"** drop down >
+choose **"installTrigger."** Then click the Run button (►). This will create a trigger for your sheet automatically which you can
+visit on the *triggers page* by clicking the **trigger icon**
+(which looks like a clock).
 
-1. *[optional]* if you *changed* any of the *topic names* in your *form*,
-paste the exact *topic names* in the code of the script starting around 
-**line 18.**
+   > *Caution*: If you run this script more than once, it will generate *multiple
+   > triggers* which would duplicate emails. Ensure you only run the script once
+   > and that there aren't multiple triggers on the triggers page.
 
-1. Let's now *run the script* by clicking the **"Select function"** drop down >
-choose **"onForm Submit."** Then click the **run icon** (which looks like a
-play button). This will create a trigger for you automatically which you can
-visit at https://script.google.com/home at a later time.
-
-1. You will be promoted to review permissions to allow the code to email on
+1. When prompted, click the **Review permissions** and click **Allow** so the script can email on
 your behalf.
 
-   > *Important:* if you get a warning that the app is not secure because it
-   > is not verified, simply click the link that shows **"advanced options"**
-   > and follow through > the steps to *continue visiting this site.*
+   > *Important:* If you get a warning that **This app isn't verified**
+   > continue with the verification process by clicking
+   > **Advanced** and then scroll down and click the grey text at the bottom
+   > that says **Go to (Copy this) Script to send content**
 
-1. After granting permissions, the script will run and the **Sent Date** column
- in your spreadsheet will begin to have time stamps confirming the time an 
- email was sent if topics were selected in the form by a user.
+1. After granting permissions, return to your spreadsheet and locate **Form** >
+**Go to live form.** This will bring you to the Google form that people will
+see when you share its link. *Fill out* all the fields and *ensure* to use an
+*email address* you have access to, and click **Submit**.
 
    > *Note:* if no topics are selected in the Google Form, the code is meant
-   > to *not send an email.*
+   > to *not send an email.* Ensure to select a topic in order to receive an email.
 
-1. Finally to *check* the *script worked,* login to the email account you
+1. Return to your spreadsheet, you should have a row of values entered based
+on your form submission. One of the columns called **Confirmation** will
+say **Sent**, confirming that the topics you selected in the form were emailed.
+
+1. Finally, login to the email account you
 provided in your form entry and see if you received an email with the subject
-line: *"Howdy."*
+line: **"Howdy"** along with links to the topics you selected.
+
+## Customize your script
 
 1. *[optional]* The email sent out comes from a Google Doc template already
 setup. However, if you wish to customize that template, you can make your 
-own copy by *[clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy).* and then copy its 
+own copy by [clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy). and then copy its
 **unique ID** which can be found in its **URL address** in the *browser* by
 copying the *number/letter* combo after `https://docs.google.com/document/d/`
 and before `/edit#` which will look like this: 
-`1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE` and replacing the Google Doc ID
+`1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE` and replace the Google Doc ID
 in the code on **line 3**. You must set this template's sharing rights to
-*"viewed by anyone with this link"* or at least *"viewed by anyone with this
-link on my organization."*
+viewed by **Anyone with this link** or at least *viewable by anyone in your
+organization.*
 
-   > Caution: Remember to *not delete* the items *in brackets* in the Google
+   > *Caution:* Remember to *not delete* the items *in brackets* in the Google
    > Doc as these are *placeholders* for the *script to populate* with custom
    > information from the form such as `{{NAME}}` and `{{TOPICS}}.` These
    > *cannot be removed* but you can change their color and size.
 
 1. *[optional]* If you wish to change the subject line of your email,
-replace the text `Howdy` on **line 71** to your preferred text *within* the
+replace the text `Howdy` on **line 4** to your preferred text *within* the
 backtick marks.
+
+1. *[optional]* If you wish to rename the topics in the form, upon changing them, also paste the new topic names into the spreadsheets code starting on **line 8.**
+   > *Caution:* When *renaming* the topics in the form,  ensure you paste
+   > the exact *topics names* in the code as well.
+   > You do not need to add the entire description that you add in the form
+   > however. Ex: rename topic called “(NUTRITION) Raw vegan recipes” to
+   > “(MINDFULNESS) Learning how to meditate in a busy world” in the form,
+   > make sure to go back to the code on line 8 and replace “Nutrition” with
+   > “Mindfulness” + `the link you want people to receive` within their
+   > respective backtick marks.
