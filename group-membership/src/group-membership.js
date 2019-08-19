@@ -1,85 +1,93 @@
 /*
-1) Resources -> Advanced Google Services...
-    Admin Directory API
-    Google Sheets API
+TODOS TO MAKE YOUR SOLUTION WORK:
+1) Enable Admin Directory API (Resources -> Advanced Google Services)
 2) Paste your Google Doc IDs below
-
-TODO:group used myfavoritegroup@googlegroups.com, change body
-3) 
+3) Make Google Doc shareable to anyone with the link (or anyone in 
+   your organization).
+4) Run function `installTrigger` to auto create onFormSubmit function
 */
 
 var addedToGroupSubject = 'Added to group';
-var addedToGroupDocId = '1umU1M67IKdvdf6UpKsGpcxhTJc_78hrlRU7OtXviCtU';
+var addedToGroupDocId = '1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70';
 
-var alreadyInGroupSubject = 'Already in group';
-var alreadyInGroupDocId = '16U9nddvplFHOFLmEawt8Kxzf7Vtplntlty0S0C9mePQ';
-
-// Reviews each row upon submission from form.
-function onFormSubmit() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var rows = sheet.getDataRange().getValues();
-  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-
-  // ObjApp library uses the rangeToObjects() method to create a list of
-  // objects from the spreadsheet's rows.
-  // Each row is converted into an object, which we will refer to as `user`.
-  var users = ObjApp.rangeToObjects(rows);
-  for (var i in users) {
-    // `user` includes all the fields in a row as an object.
-    var user = users[i];
-
-    // If we make any changes to `user`, we want to keep track that there
-    // were changes so we can mirror those changes in the spreadsheet.
-    var rowUpdated = false;
-
-    // Check if the group contains the user's email.
-    var group = GroupsApp.getGroupByEmail(user.googleGroup);
-    if (group.hasUser(user.email)) {
-      // User is already in group, send a confirmation email.
-      var emailBody = docToHtml(alreadyInGroupDocId);
-      emailBody = emailBody.replace('{{EMAIL}}', user.email);
-      MailApp.sendEmail({
-        to: user.email,
-        subject: alreadyInGroupSubject,
-        htmlBody: emailBody,
-      });
-
-      // If the membership status is blank, means the user was already added.
-      if (!user.membershipStatus) {
-        user.membershipStatus = 'ALREADY ADDED';
-        rowUpdated = true;
-      }
-    }
-    else {
-      // User is not part of the group, add user to group.
-      var member = {email: user.email, role: 'MEMBER'};
-      AdminDirectory.Members.insert(member, user.googleGroup);
-  
-      // Send a confirmation email that the member was now added.
-      var emailBody = docToHtml(addedToGroupDocId);
-      emailBody = emailBody.replace('{{EMAIL}}', user.email);
-      MailApp.sendEmail({
-        to: user.email,
-        subject: addedToGroupSubject,
-        htmlBody: emailBody,
-      });
-
-      // Mark the membership status to the current date.
-      user.membershipStatus = new Date().toString();
-      rowUpdated = true;
-    }
-
-    if (rowUpdated) {
-      // Update the entire row in the sheet with the new `user` values.
-      var userRow = ObjApp.objectToArray(headers, [user]);
-      sheet.getRange(i+2, 1, 1, userRow.length).setValues(userRow);
-    }
-  }
+/**
+ * Must click this function from the top drop-down and click 'run' icon to
+ * create the onEdit trigger.
+ */
+function installTrigger() {
+  ScriptApp.newTrigger('onEdit')
+      .forSpreadsheet(SpreadsheetApp.getActive())
+      .onEdit()
+      .create();
 }
 
-// Fetches a Google Doc as an HTML string for email. 
+/**
+ * Sends a customized email when a user is added to a group.
+ *
+ * To see more of the onFormSubmit event, see:
+ * https://developers.google.com/apps-script/guides/triggers/events#edit
+ */
+function onEdit(e) {
+  // Get an object from the modified row.
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var headers = sheet.getDataRange().offset(0, 0, 1).getValues()[0];
+  var row = sheet.getRange(e.range.getRow(), 1, 1, headers.length).getValues();
+  var responses = ObjApp.splitRangesToObjects(headers, row)[0];
+
+  // Get all the response values and store them in local variables.
+  // ObjApp will create an object with all the fields in camelCase.
+  var userEmail = responses.email.trim();
+  var groupEmail = responses.googleGroup.trim();
+  var allowed = responses.allowed.toLowerCase();
+
+  // If the user is not allowed, exit from function.
+  if (allowed != 'yes')
+    return;
+  
+  // Check if the group contains the user's email.
+  var group = GroupsApp.getGroupByEmail(groupEmail);
+  if (!group.hasUser(userEmail)) {
+    // User is not part of the group, add user to group.
+    var member = {email: userEmail, role: 'MEMBER'};
+    AdminDirectory.Members.insert(member, groupEmail);
+
+    // Send a confirmation email that the member was now added.
+    var emailBody = docToHtml(addedToGroupDocId);
+    emailBody = emailBody.replace('{{EMAIL}}', userEmail);
+    emailBody = emailBody.replace('{{GOOGLE_GROUP}}', groupEmail);
+    MailApp.sendEmail({
+      to: userEmail,
+      subject: addedToGroupSubject,
+      htmlBody: emailBody,
+    });
+    responses.status = 'Newly added';
+  }
+  else {
+    // User is already in group, do nothing.
+    responses.status = 'Already in group';
+  }
+
+  // Append the status on the spreadsheet to the responses' row.
+  var sheet = SpreadsheetApp.getActiveSheet();
+  row = ObjApp.objectToArray(headers, [responses])[0];
+  sheet.getRange(e.range.getRow(), 1, 1, row.length).setValues([row]);
+  
+  // Log activity.
+  Logger.log("responses=" + JSON.stringify(responses));
+}
+
+/**
+ * Fetches a Google Doc as an HTML string.
+ * 
+ * @param {string} docId - The ID of a Google Doc to fetch content from.
+ * @return {string} The Google Doc rendered as an HTML string.
+ */
 function docToHtml(docId) {
-  var url = "https://docs.google.com/feeds/download/documents/export/Export?id="+docId+"&exportFormat=html";
+  // This is only used to ask for Drive scope permissions.
+  // It can be commented out like it is below.
+  // DriveApp.getStorageUsed();
+  var url = "https://docs.google.com/feeds/download/documents/export/Export?id=" +
+            docId + "&exportFormat=html";
   var param = {
     method: "get",
     headers: {"Authorization": "Bearer " + ScriptApp.getOAuthToken()},
