@@ -36,7 +36,8 @@ function sync() {
   lastRun = lastRun ? new Date(lastRun) : null;
 
   // Get the list of users in the Google Group.
-  var users = GroupsApp.getGroupByEmail(GROUP_EMAIL).getUsers();
+  var group = GroupsApp.getGroupByEmail(GROUP_EMAIL);
+  var users = getAllUsers(group);
 
   // For each user, find events having one or more of the keywords in the event
   // summary in the specified date range. Import each of those to the team
@@ -55,6 +56,37 @@ function sync() {
 
   PropertiesService.getScriptProperties().setProperty('lastRun', today);
   console.log('Imported ' + count + ' events');
+}
+
+/**
+ * Gets all the users that are members of a Google Group, including indirect
+ * members (for groups that contain other groups).
+ * @param {GroupsApp.Group} group The group to get the users for.
+ * @param {Number} optMaxDepth The maximum depth of sub-groups that should be
+ *     searched.
+ * @return {Session.User[]} The users within the group.
+ */
+function getAllUsers(group, optMaxDepth) {
+  var maxDepth = optMaxDepth;
+  if (isNaN(parseInt(optMaxDepth))) {
+    maxDepth = Number.MAX_VALUE;
+  }
+  var users = group.getUsers();
+  if (maxDepth > 0) {
+    group.getGroups().forEach(function(childGroup) {
+      users = users.concat(getAllUsers(childGroup, maxDepth - 1));
+    })
+  }
+  // Remove duplicates.
+  var emailsSeen = {};
+  users = users.reduce(function(result, user) {
+    if (!emailsSeen[user.getEmail()]) {
+      emailsSeen[user.getEmail()] = true;
+      result.push(user);
+    }
+    return result;
+  }, []);
+  return users;
 }
 
 /**
