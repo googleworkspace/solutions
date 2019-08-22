@@ -61,31 +61,34 @@ function sync() {
 /**
  * Gets all the users that are members of a Google Group, including indirect
  * members (for groups that contain other groups).
- * @param {GroupsApp.Group} group The group to get the users for.
+ * @param {GoogleAppsScript.GroupsApp.Group} group The group to get the users
+ *     for.
  * @param {Number} optMaxDepth The maximum depth of sub-groups that should be
- *     searched.
- * @return {Session.User[]} The users within the group.
+ *     searched. The default is not to limit the depth.
+ * @param {boolean} optRemoveDuplicates Whether or not to remove duplicate users
+ *     in the results. The default is true.
+ * @return {GoogleAppsScript.User[]} The users within the group.
  */
-function getAllUsers(group, optMaxDepth) {
-  var maxDepth = optMaxDepth;
-  if (isNaN(parseInt(optMaxDepth))) {
-    maxDepth = Number.MAX_VALUE;
-  }
+function getAllUsers(group, optMaxDepth, optRemoveDuplicates) {
+  var maxDepth = optMaxDepth != null ? optMaxDepth : Number.MAX_VALUE;
+  var removeDuplicates = optRemoveDuplicates != null ?
+      optRemoveDuplicates : true;
   var users = group.getUsers();
   if (maxDepth > 0) {
     group.getGroups().forEach(function(childGroup) {
-      users = users.concat(getAllUsers(childGroup, maxDepth - 1));
+      users = users.concat(getAllUsers(childGroup, maxDepth - 1, false));
     })
   }
-  // Remove duplicates.
-  var emailsSeen = {};
-  users = users.reduce(function(result, user) {
-    if (!emailsSeen[user.getEmail()]) {
-      emailsSeen[user.getEmail()] = true;
-      result.push(user);
-    }
-    return result;
-  }, []);
+  if (removeDuplicates) {
+    var contains = {};
+    users = users.reduce(function(result, user) {
+      if (!contains[user.getEmail()]) {
+        contains[user.getEmail()] = true;
+        result.push(user);
+      }
+      return result;
+    }, []);
+  }
   return users;
 }
 
