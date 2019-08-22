@@ -1,7 +1,7 @@
 // Paste Google Doc ID of your custom email template.
 // Make sure that Google Doc is shareable.
-var emailTemplateDocId = '1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE';
-var emailSubject = 'Howdy';
+var EMAIL_TEMPLATE_DOC_ID = '1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE';
+var EMAIL_SUBJECT = 'Howdy';
 
 // Links to send based on topics selected in form by user.
 var topicUrls = {
@@ -41,21 +41,18 @@ function onFormSubmit(e) {
 
   // Parse topics of interest into a list (since there are multiple items
   // that are saved in the row as blob of text).
-  var topics = [];
-  for (var topic in topicUrls) {
+  var topics = Object.keys(topicUrls).filter(function(topic) {
     // indexOf searches for the topic in topicsString and returns a non-negative
     // index if the topic is found, or it will return -1 if it's not found.
-    if (topicsString.indexOf(topic.toLowerCase()) != -1) {
-      topics.push(topic);
-    }
-  }
+    return topicsString.indexOf(topic.toLowerCase()) != -1;
+  });
 
   // If there is at least one topic selected, send an email to the recipient.
   var status = '';
   if (topics.length > 0) {
     MailApp.sendEmail({
       to: email,
-      subject: emailSubject,
+      subject: EMAIL_SUBJECT,
       htmlBody: createEmailBody(name, topics),
     });
     status = 'Sent';
@@ -66,7 +63,7 @@ function onFormSubmit(e) {
 
   // Append the status on the spreadsheet to the responses' row.
   var sheet = SpreadsheetApp.getActiveSheet();
-  var row = e.range.getRow();
+  var row = sheet.getActiveRange().getRow();
   var column = e.values.length + 1;
   sheet.getRange(row, column).setValue(status);
 
@@ -82,18 +79,16 @@ function onFormSubmit(e) {
  * @return {string} The email body as an HTML string.
  */
 function createEmailBody(name, topics) {
-  var topicsHTML = '<ul>\n';
-  for (var i in topics) {
-    var topic = topics[i];
-    var url = topicUrls[topic];
-    topicsHTML += '<li><a href="' + url + '">' + topic + '</a></li>\n';
-  }
-  topicsHTML += '</ul>';
+  var topicsHtml = topics.map(function(topic) {
+  var url = topicUrls[topic];
+    return '<li><a href="' + url + '">' + topic + '</a></li>';
+  }).join('');
+  topicsHtml = '<ul>' + topicsHtml + '</ul>';
   
   // Make sure to update the emailTemplateDocId at the top.
-  var emailBody = docToHtml(emailTemplateDocId);
-  emailBody = emailBody.replace('{{NAME}}', name);
-  emailBody = emailBody.replace('{{TOPICS}}', topicsHTML);
+  var emailBody = docToHtml(EMAIL_TEMPLATE_DOC_ID);
+  emailBody = emailBody.replace(/{{NAME}}/g, name);
+  emailBody = emailBody.replace(/{{TOPICS}}/g, topicsHtml);
   return emailBody;
 }
 

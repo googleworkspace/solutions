@@ -26,22 +26,24 @@ instant message, or wherever you share the form's link.
 1. Make a copy of this Google Sheet
    [by clicking this link](https://docs.google.com/spreadsheets/d/14V2cLGRXB_iaiQWXsTwapPPZ0hMj3fTjpD_hfhAiGqI/copy)
    in your browser. It will automatically include a Google Form and the code
-   you will need called an Apps Script.
+   you will need.
 
 1. From your spreadsheet click on **Tools > Script Editor**.
 
 1. This will bring you to the *Apps Script editor.*
-Now *run the script* by clicking the **"Select function"** drop down >
-choose **"installTrigger."** Then click the Run button (►). This will create a trigger for your sheet automatically which you can
-visit on the *triggers page* by clicking the **trigger icon**
-(which looks like a clock).
+   Now *run the script* by clicking the **Select function** drop down >
+   choose **"installTrigger."** Then click the Run button (►). This will
+   install a trigger in your project that runs the code everytime a new form
+   entry is submitted.
+   You can optionally visit the newly installed trigger by clicking
+   the *trigger icon* (which looks like a clock).
 
    > *Caution*: If you run this script more than once, it will generate *multiple
    > triggers* which would duplicate emails. Ensure you only run the script once
    > and that there aren't multiple triggers on the triggers page.
 
-1. When prompted, click the **Review permissions** and click **Allow** so the script can email on
-your behalf.
+1. When prompted, click the **Review permissions** and click **Allow** button
+   so the script can email on your behalf.
 
    > *Important:* If you get a warning that **This app isn't verified**
    > continue with the verification process by clicking
@@ -53,8 +55,9 @@ your behalf.
 see when you share its link. *Fill out* all the fields and *ensure* to use an
 *email address* you have access to, and click **Submit**.
 
-   > *Note:* if no topics are selected in the Google Form, the code is meant
-   > to *not send an email.* Ensure to select a topic in order to receive an email.
+   > *Note:* if no topics are selected in the Google Form, the code will
+   > *will not send an email*. Ensure to select a topic in order to receive an
+   > email.
 
 1. Return to your spreadsheet, you should have a row of values entered based
 on your form submission. One of the columns called **Confirmation** will
@@ -69,7 +72,7 @@ line: **"Howdy"** along with links to the topics you selected.
 1. *[optional]* The email sent out comes from a Google Doc template already
 setup. However, if you wish to customize that template, you can make your 
 own copy by [clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy). and then copy its
-**unique ID** which can be found in its **URL address** in the *browser* by
+*unique ID* which can be found in its *URL address* in the *browser* by
 copying the *number/letter* combo after `https://docs.google.com/document/d/`
 and before `/edit#` which will look like this: 
 `1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE` and replace the Google Doc ID
