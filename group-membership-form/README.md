@@ -1,21 +1,19 @@
-# Grant access to external stakeholders
+# Automate access to new team members
 
-*Give access to resources in G Suite via a Google Group and an Apps Script.*
+*Set new hires up for success with the resources they need.*
 
 Last updated: August 2019
 
 ## Description
 
-The following Google Spreadsheet contains a script that helps to quickly enter
-an email address as well as the Google Group of the user who wishes to join,
-and adds them to the group while sending them a confirmation email.
+It’s hard to give incoming peers a consistently good experience when joining the team because of how error prone giving access to resources can sometimes be. This solution contains a Google Sheet with a Google Form to help automate a bit of this usually manual task.
 
 ## Technology highlights
 
 * Using the **onFormSubmit** installable trigger in a Google Sheet, you can
   grant access to resources by clicking the **Submit** button in a Google Form.
 * Leverage Google Groups permission roles.
-* Use a Google Document as the email’s template.
+* Use a Google Document as the email templates.
 
 ## Try it
 
@@ -39,17 +37,11 @@ and adds them to the group while sending them a confirmation email.
    > with the verification process by clicking **Advanced** and then scroll
    > down and click the grey text at the bottom that says
    > **Go to (Copy this) OnFormSubmit internal-access (Groups via onFormSubmit Sheet)**
-1. After granting permissions, return to your spreadsheet and type an email
-   address in the **Email column**, the Google group address you wish to add
-   them to within the **Google Group column**, and the word **yes** in the
-   **Allowed column.**
-   > Note: if you do not populate the column **Allowed** with the word **yes**,
-   > the script is instructed to *not run*. This is helpful if you wish to
-   > capture requests but not process them until you populate that column.
+1. After granting permissions, return to your spreadsheet and locate **Form > Go to live form**. This will bring you to the Google form that people in your organization can fill out on a *new team member's* behalf. This helpa distribute the efforts of giving access across the team. 
+   > Important: while trying this script, enter a Google Group you have rights to manage its membership.
 
 1. To *test*, enter *your own email* and a Google Group *you already are
-   a member of* and have *manager rights*, in order to *receive* the
-   *confirmation* email.
+   a member of* in the Google Form in order to receive an mail.
 
 ## Optionally customize your script
 
