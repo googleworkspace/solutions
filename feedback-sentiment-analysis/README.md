@@ -36,7 +36,7 @@ using the Cloud Natural Language API.
 
 ## Try it
 
-### Google Cloud Platform project setup
+### Set up a Google Cloud Platform project
 This solution requires a [Google Cloud Platform account and project](https://cloud.google.com/apis/docs/getting-started). The service used in this solution, Cloud Natural Language API, 
 has a [free tier](https://cloud.google.com/natural-language/#natural-language-api-pricing) 
 that you can use to test this solution for free.
@@ -50,7 +50,7 @@ for your Google Cloud Platform project.
 1. [Enable the Google Natural Language API](https://console.cloud.google.com/flows/enableapi?apiid=language.googleapis.com&redirect=https://console.cloud.google.com) for your project.
 1. Create an API key following [these instructions](https://cloud.google.com/docs/authentication/api-keys).
 
-### Spreadsheet setup
+### Set up a spreadsheet
 
 1. Make of copy of the spreadsheet [here](https://docs.google.com/spreadsheets/d/1BwcPKL3bSpwGHcNrbYRsuUPZTW8kH_c_NT2gFKnwj_8/copy).
 1. From the spreadsheet, open the script editor by selecting 
