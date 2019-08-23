@@ -1,6 +1,6 @@
-# Analyze sentiment of text data in Google Sheets
+# Analyze sentiment of open-ended feedback in Google Sheets
 
-_Analyze text data at scale by performing entity and sentiment analysis 
+_Analyze text data, such as open-ended feedback, at scale by performing entity and sentiment analysis 
 directly in Google Sheets._
 
 Last updated: August, 2019
