@@ -1,3 +1,15 @@
+---
+title: Track YouTube video views and comments
+description: >
+  Tracks views, likes, and comments for provided YouTube URLs in a Google Sheet with optional email notifications.
+labels:
+- Apps Script
+- Sheets
+- Gmail
+- YouTube
+update_time: 2019-08-12
+---
+
 # Track YouTube video views and comments
 
 _Stay up-to-date on YouTube video performance statistics and receive daily email

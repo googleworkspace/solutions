@@ -1,3 +1,14 @@
+---
+title: Create expense reports directly from email receipts
+description: >
+  Allows employees to move information from email receipts into their spreadsheet expense reports without copying and pasting.
+labels:
+- Apps Script
+- Sheets
+- Gmail
+update_time: 2019-08-12
+---
+
 # Create expense reports directly from email receipts
 
 _Allow your employees to directly import expense report information from their email._
