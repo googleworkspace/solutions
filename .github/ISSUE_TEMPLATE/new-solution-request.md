@@ -1,7 +1,6 @@
 ---
 name: New Solution Request
-about: 'Submit this template to request a solution submission. Please note this issue
-  must be approved by an owner we will review your solution pull request. '
+about: 'Use this issue template to propose a solution. Please wait for approval before sending a pull request.'
 title: ''
 labels: enhancement (new solution)
 assignees: ''
