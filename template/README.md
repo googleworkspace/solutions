@@ -14,7 +14,7 @@ One to two paragraph motivation and description of the business problems solved.
 
 ## Try it out!
 
-1. Please thorough instructions on how to demo the solution.
+1. Please provide thorough instructions on how to demo the solution.
 1. We prefer users to copy a document, spreadsheet or slide deck with the code already in file.
 1. However this is not mandatory, see
 
