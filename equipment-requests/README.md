@@ -1,3 +1,14 @@
+---
+title: Manage new employee equipment requests
+description: Create a form-based workflow to request equipment from IT for new employees.
+labels:
+- Apps Script
+- Sheets
+- Forms
+material_icon: computer
+update_time: 2019-07-23
+---
+
 # Manage new employee equipment requests
 
 This solution is a a simple form-based workflow to request equipment from IT
