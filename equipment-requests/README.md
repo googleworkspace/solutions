@@ -5,7 +5,7 @@ labels:
 - Apps Script
 - Sheets
 - Forms
-material_icom: computer
+material_icon: computer
 update_time: 2019-07-23
 ---
 
