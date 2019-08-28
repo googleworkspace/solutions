@@ -6,6 +6,7 @@ labels:
 - Apps Script
 - Sheets
 - Gmail
+material_icon: receipt
 update_time: 2019-08-12
 ---
 

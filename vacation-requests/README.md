@@ -7,6 +7,7 @@ labels:
 - Sheets
 - Forms
 - Calendar
+material_icon: pool
 update_time: 2019-08-26
 ---
 

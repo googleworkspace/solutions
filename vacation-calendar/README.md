@@ -5,6 +5,7 @@ description: >
 labels:
 - Apps Script
 - Calendar
+material_icon: event
 update_time: 2019-08-19
 ---
 

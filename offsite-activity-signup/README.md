@@ -6,6 +6,7 @@ labels:
 - Apps Script
 - Sheets
 - Forms
+material_icon: poll
 update_time: 2019-07-23
 ---
 
