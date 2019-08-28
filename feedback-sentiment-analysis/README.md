@@ -11,12 +11,12 @@ Google Sheets can come from many sources: Google Form responses, notes columns,
 descriptions, and more. As humans we can make sense of this data by reading it, 
 but this becomes difficult as your data grows into hundreds or thousands of rows.
 
-The [Cloud Natural Language API](https://cloud.google.com/natural-language/docs/) 
+The <a href="https://cloud.google.com/natural-language/docs/" target="_blank">Cloud Natural Language API</a> 
 takes the machine learning technology used by Google Search and Google Assistant 
 and makes it possible for anyone to perform sentiment and entity analysis on
 their own data. 
 
-This solution uses [Apps Script](https://developers.google.com/apps-script/) in
+This solution uses <a href="https://developers.google.com/apps-script/" target="_blank">Apps Script</a> in
 a Google Sheet to perform entity and sentiment analysis on vacation rental reviews
 using the Cloud Natural Language API.
 
