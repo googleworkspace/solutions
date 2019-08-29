@@ -94,5 +94,6 @@ which guides you through the creation of your first script.
 You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
+
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
 [github]: https://github.com/gsuitedevs/solutions/blob/master/vacation-calendar
