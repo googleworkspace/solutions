@@ -1,7 +1,6 @@
 ---
 title: Manage employee vacation time requests
-description: >
-  Quickly approve employees' vacation time requests, and create calendar events or send notification emails accordingly.
+description: Quickly approve employees' vacation time requests, and create calendar events or send notification emails accordingly.
 labels: Apps Script, Sheets, Forms, Calendar
 material_icon: pool
 update_time: 2019-08-26

@@ -1,8 +1,6 @@
 ---
 title: Sign up for sessions at an event
-description: >
-    Allows event attendees to sign up for sessions at an event then creates and emails a
-    personalized itinerary.
+description: Allows event attendees to sign up for sessions at an event then creates and emails a personalized itinerary.
 labels: Apps Script, Sheets, Forms, Docs, Gmail
 material_icon: event
 update_time: 2019-07-31
