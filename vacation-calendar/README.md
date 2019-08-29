@@ -2,9 +2,7 @@
 title: Automatically populate a team vacation calendar
 description: >
   Quickly see when your colleagues are out of the office, with no manual entry required.
-labels:
-- Apps Script
-- Calendar
+labels: Apps Script, Calendar
 material_icon: event
 update_time: 2019-08-19
 ---

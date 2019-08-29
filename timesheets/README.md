@@ -2,10 +2,7 @@
 title: Collect timesheets from employees
 description: >
   Create a hands-free employee pay management system. Lets managers approve/disapprove employees' weekly timesheets & automatically notify them of this status.
-labels:
-- Apps Script
-- Sheets
-- Forms
+labels: Apps Script, Sheets, Forms
 material_icon: alarm
 update_time: 2019-08-05
 ---
