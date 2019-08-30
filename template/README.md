@@ -8,7 +8,7 @@ One to two paragraph motivation and description of the business problems solved.
 
 ![image or preferably gif](URL to asset on jsdelivr)
 
-## Technology Highlits
+## Technology Highlights
 
 - Please add bullet points that use interesting API features
 
