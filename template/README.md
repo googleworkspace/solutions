@@ -1,4 +1,4 @@
-# Solution Title
+# Solution title
 
 _One sentence summary._
 
@@ -8,11 +8,11 @@ One to two paragraph motivation and description of the business problems solved.
 
 ![image or preferably gif](URL to asset on jsdelivr)
 
-## Technology Highlits
+## Technology highlights
 
 - Please add bullet points that use interesting API features
 
-## Try it out!
+## Try it
 
 1. Please provide thorough instructions on how to demo the solution.
 1. We prefer users to copy a document, spreadsheet or slide deck with the code already in file.
