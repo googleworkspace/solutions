@@ -1,12 +1,9 @@
 ---
 title: Collect timesheets from employees
-description: >
-  Create a hands-free employee pay management system. Lets managers approve/disapprove employees' weekly timesheets & automatically notify them of this status.
-labels:
-- Apps Script
-- Sheets
-- Forms
+description: Create a hands-free employee pay management system. Lets managers approve/disapprove employees' weekly timesheets & automatically notify them of this status.
+labels: Apps Script, Sheets, Forms
 material_icon: alarm
+create_time: 2019-07-10
 update_time: 2019-08-05
 ---
 
@@ -14,8 +11,6 @@ update_time: 2019-08-05
 
 _Quickly approve of employees' weekly timesheet submissions, and send automated
 notification emails._
-
-Last updated: August, 2019
 
 Quickly create a hands-free employee pay management system. Start with
 collecting employees' timesheets in a Google Form, then use

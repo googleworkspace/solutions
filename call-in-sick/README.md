@@ -1,12 +1,9 @@
 ---
 title: Call in sick with a custom bot for Hangouts Chat
 description: Update your calendar and auto-responder with a single message to your custom bot.
-labels:
-- Apps Script
-- Hangouts Chat
-- Gmail
-- Calendar
+labels: Apps Script, Hangouts Chat, Gmail, Calendar
 material_icon: sentiment_very_dissatisfied
+create_time: 2019-08-02
 update_time: 2019-08-02
 ---
 
@@ -14,8 +11,6 @@ update_time: 2019-08-02
 
 _Update your calendar and auto-responder with a single message to your custom
 bot._
-
-Last updated: August, 2019
 
 ## Description
 
