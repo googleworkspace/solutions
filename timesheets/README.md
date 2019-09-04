@@ -7,11 +7,6 @@ create_time: 2019-07-10
 update_time: 2019-08-05
 ---
 
-# Collect timesheets from employees
-
-_Quickly approve of employees' weekly timesheet submissions, and send automated
-notification emails._
-
 Quickly create a hands-free employee pay management system. Start with
 collecting employees' timesheets in a Google Form, then use
 [Apps Script][apps-script] to create a spreadsheet to easily view, compile, and

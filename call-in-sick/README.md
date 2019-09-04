@@ -7,11 +7,6 @@ create_time: 2019-08-02
 update_time: 2019-08-02
 ---
 
-# Call in sick with a custom bot for Hangouts Chat
-
-_Update your calendar and auto-responder with a single message to your custom
-bot._
-
 ## Description
 
 When you wake up feeling ill the last thing you want to do is log in to your

@@ -7,11 +7,6 @@ create_time: 2019-08-09
 update_time: 2019-08-12
 ---
 
-# Track YouTube video views and comments
-
-_Stay up-to-date on YouTube video performance statistics and receive daily email
-notifications for new comments on videos you care about._
-
 YouTube makes it possible for anyone to create and share video content, and
 engage with viewers around the world. While the built-in analytics and
 notification options provided by YouTube are designed for a user's own channel,
