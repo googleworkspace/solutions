@@ -3,6 +3,7 @@ title: Sign up for activities at an offsite or event
 description: Create an offsite activity signup system. Lets attendees pick their preferred activities via a form and fairly assigns them based on availability.
 labels: Apps Script, Sheets, Forms
 material_icon: poll
+create_time: 2019-06-12
 update_time: 2019-07-23
 ---
 
