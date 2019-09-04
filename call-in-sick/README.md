@@ -7,8 +7,6 @@ create_time: 2019-08-02
 update_time: 2019-08-02
 ---
 
-## Description
-
 When you wake up feeling ill the last thing you want to do is log in to your
 work account and update your status in multiple applications. With this
 solution, you simply send the message "I'm sick" to a custom bot in Hangouts

@@ -7,8 +7,6 @@ create_time: 2019-07-11
 update_time: 2019-08-19
 ---
 
-# Description
-
 A shared vacation calendar is a great tool for helping your team collaborate;
 anyone can determine who's out of the office at a glance. However, booking time
 off is already a chore, and an additional step to update the calendar can be
