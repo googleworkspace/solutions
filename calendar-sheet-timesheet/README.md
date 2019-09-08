@@ -11,7 +11,7 @@ update_time: 2019-09-08
 
 _Create calender events for your activities, and synchronise to your timesheet in sheets for reporting._
 
-Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)!
+Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
 
 Keeping track of the time spent on project for customers can be a challange. Not all time writing apps are user friendly and sometimes you need to record your time in multiple systems. You can end up spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to other systems.
 
@@ -22,22 +22,21 @@ To solve this problem we can use the one time related application we have open e
 
 ## Technology highlights
 
-- Please add bullet points that use interesting API features
+- The [`SpreadsheetApp` service][https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app] is used to write the events to the sheet
+- [Custom Menus](https://developers.google.com/apps-script/guides/menus) are used to trigger the synchronisation
+- The [`CalendarApp` service][https://developers.google.com/apps-script/reference/calendar/calendar-app] is used to write the events to the sheet
+
 
 ## Try it
 
-1. Please provide thorough instructions on how to demo the solution.
-1. We prefer users to copy a document, spreadsheet or slide deck with the code already in file.
-1. However this is not mandatory if note possible, see the [Call in Sick](https://github.com/gsuitedevs/solutions/tree/master/call-in-sick) 
-solution for an example.
+1. create your secondary calendar [Create a new calendar] [https://support.google.com/calendar/answer/37095]
+1. Copy the calendar id. This can be found in the calendar settings
+1. Copy this sheet [sheet][https://docs.google.com/spreadsheets/d/1ay_SBrFhIqbJs0-ifgU7E8jg4dmBbLlc4yIS_-PPSXA/copy]
+1. In the configuration tab you paste the id of the calendar you created in step one.
 
 ## Next steps
 
-_Please select a next step for the user to learn more. If there is a specific codelab or blog
-that explains your solution, please link here. If not, please use the Intro to Apps Script
-codelab with the text below. For the full source code section, your code does not have to
-live in this repo if is already in a Github repo, please update the replace the URL to the 
-appropriate location._
+_This solutions is based on this [Article][https://medium.com/@duizendstra/record-time-and-activities-with-google-sheets-calendar-and-apps-script-41bf69244346]_
 
 To get started with Google Apps Script, try out [the codelab][codelab]
 which guides you through the creation of your first script.
