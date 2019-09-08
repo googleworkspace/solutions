@@ -22,21 +22,21 @@ To solve this problem we can use the one time related application we have open e
 
 ## Technology highlights
 
-- The [`SpreadsheetApp` service][https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app] is used to write the events to the sheet
+- The [`SpreadsheetApp` service][spreadsheetapp-docs] is used to write the events to the sheet
 - [Custom Menus](https://developers.google.com/apps-script/guides/menus) are used to trigger the synchronisation
-- The [`CalendarApp` service][https://developers.google.com/apps-script/reference/calendar/calendar-app] is used to write the events to the sheet
+- The [`CalendarApp` service][calendarapp-docs] is used to write the events to the sheet
 
 
 ## Try it
 
-1. create your secondary calendar [Create a new calendar] [https://support.google.com/calendar/answer/37095]
+1. create your secondary calendar [Create a new calendar] [create-calendar]
 1. Copy the calendar id. This can be found in the calendar settings
-1. Copy this sheet [sheet][https://docs.google.com/spreadsheets/d/1ay_SBrFhIqbJs0-ifgU7E8jg4dmBbLlc4yIS_-PPSXA/copy]
+1. Copy this sheet [sheet][sheet-copy]
 1. In the configuration tab you paste the id of the calendar you created in step one.
 
 ## Next steps
 
-_This solutions is based on this [Article][https://medium.com/@duizendstra/record-time-and-activities-with-google-sheets-calendar-and-apps-script-41bf69244346]_
+_This solutions is based on this [Article][article-medium]_
 
 To get started with Google Apps Script, try out [the codelab][codelab]
 which guides you through the creation of your first script.
@@ -45,4 +45,9 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/YOUR-SOLUTION-HERE
+[github]: https://github.com/gsuitedevs/solutions/blob/master/calendar-sheet-timesheet
+[create-calendar]:[https://support.google.com/calendar/answer/37095]
+[spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
+[calendarapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/calendar-app
+[sheet-copy]: https://docs.google.com/spreadsheets/d/1ay_SBrFhIqbJs0-ifgU7E8jg4dmBbLlc4yIS_-PPSXA/copy
+[article-medium]: https://medium.com/@duizendstra/record-time-and-activities-with-google-sheets-calendar-and-apps-script-41bf69244346
