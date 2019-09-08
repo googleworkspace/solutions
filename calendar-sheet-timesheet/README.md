@@ -18,7 +18,7 @@ Keeping track of the time spent on project for customers can be a challange. Not
 To solve this problem we can use the one time related application we have open every day, the Google calendar. In an additional calendar we can quickly add an event for the appropriate timeslot. Then add a short description and forget about it. Art the end of the week you synchronise the calendar with a Google sheet. Catagorize by customer, project and task based on the description and the data is structured for further processing. Use the dashboard or write a simple query to report or copy in other time sheets.
 
 
-![image or preferably gif](URL to asset on jsdelivr)
+![screenshot](https://cdn.jsdelivr.net/gh/duizendstra/solutions@master/calendar-sheet-timesheet/calendar-to-sheet-screenshot.png)
 
 ## Technology highlights
 
