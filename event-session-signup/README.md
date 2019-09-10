@@ -7,10 +7,6 @@ create_time: 2019-06-20
 update_time: 2019-07-31
 ---
 
-# Sign Up for Sessions at an Event
-
-_Allows event attendees to sign up for sessions at an event and creates an itinerary._
-
 Quickly create an end to end conference registration system. Start with the
 conference event information listed in a Google Sheet, then use Apps Script to
 create a sign-up form. For each attendee, a personalized schedule in a Google

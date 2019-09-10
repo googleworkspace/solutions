@@ -1,15 +1,11 @@
 ---
 title: Title as appears in https://developers.google.com/gsuite/solutions
-description: Short description of the solution as appears in gallery.
+description: One or two sentence summary.
 labels: One or more product names, comma delimited
 material_icon: Icon name from https://material.io/resources/icons/?style=baseline
 create_time: Create time in form YYYY-MM-DD
 update_time: Update time in form YYYY-MM-DD.
 ---
-
-# Solution title
-
-_One sentence summary._
 
 Contributed by <Your Name Here>, follow me at [Github/Twitter/PersonalPage](url)!
 

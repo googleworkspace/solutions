@@ -7,12 +7,6 @@ create_time: 2019-07-31
 update_time: 2019-08-12
 ---
 
-# Create expense reports directly from email receipts
-
-_Allow your employees to directly import expense report information from their email._
-
-## Description
-
 Simplify how your employees do expense reporting with a Gmail Add-on and Google Sheets. Anytime a
 user receives an email receipt, they can open the add-on which automatically contains relevant 
 information about the expense. Users can edit that information and then submit the form to log 
