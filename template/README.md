@@ -1,6 +1,11 @@
-# Solution Title
-
-_One sentence summary._
+---
+title: Title as appears in https://developers.google.com/gsuite/solutions
+description: One or two sentence summary.
+labels: One or more product names, comma delimited
+material_icon: Icon name from https://material.io/resources/icons/?style=baseline
+create_time: Create time in form YYYY-MM-DD
+update_time: Update time in form YYYY-MM-DD.
+---
 
 Contributed by <Your Name Here>, follow me at [Github/Twitter/PersonalPage](url)!
 
@@ -8,11 +13,11 @@ One to two paragraph motivation and description of the business problems solved.
 
 ![image or preferably gif](URL to asset on jsdelivr)
 
-## Technology Highlits
+## Technology highlights
 
 - Please add bullet points that use interesting API features
 
-## Try it out!
+## Try it
 
 1. Please provide thorough instructions on how to demo the solution.
 1. We prefer users to copy a document, spreadsheet or slide deck with the code already in file.
