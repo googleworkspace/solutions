@@ -37,10 +37,11 @@ in other time sheets.
 
 ## Try it
 
-1. create your secondary calendar [Create a new calendar] [create-calendar]
+1. Create your secondary calendar [Create a new calendar] [create-calendar]
 1. Copy the calendar id. This can be found in the calendar settings
 1. Copy this sheet [sheet][sheet-copy]
 1. In the configuration tab you paste the id of the calendar you created in step one.
+1. Add some events to the secondary calender and hit MyTime -> Sync calendar events
 
 ## Next steps
 
