@@ -7,7 +7,7 @@ create_time: 2019-09-08
 update_time: 2019-09-08
 ---
 
-# Manage your timesheet with the calender and sheets
+# Record time and activities in Calendar and Sheets
 
 _Create calender events for your activities, and synchronise to your timesheet in sheets for reporting._
 
