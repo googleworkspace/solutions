@@ -1,5 +1,5 @@
 ---
-title: Manage your timesheet with the calender and sheets
+title: Record time and activities in Calendar and Sheets
 description: Create calender events for your activities, and synchronise to your timesheet in sheets for reporting.
 labels: Apps Script, Sheets, Calendar
 material_icon: event
@@ -13,9 +13,17 @@ _Create calender events for your activities, and synchronise to your timesheet i
 
 Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
 
-Keeping track of the time spent on project for customers can be a challange. Not all time writing apps are user friendly and sometimes you need to record your time in multiple systems. You can end up spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to other systems.
+Keeping track of the time spent on project for customers can be a challange. Not all time writing
+apps are user friendly and sometimes you need to record your time in multiple systems. You can end up
+spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to
+other systems.  
 
-To solve this problem we can use the one time related application we have open every day, the Google calendar. In an additional calendar we can quickly add an event for the appropriate timeslot. Then add a short description and forget about it. Art the end of the week you synchronise the calendar with a Google sheet. Catagorize by customer, project and task based on the description and the data is structured for further processing. Use the dashboard or write a simple query to report or copy in other time sheets.
+To solve this problem we can use the one time related application we have open every
+day, the Google calendar. In an additional calendar we can quickly add an event for the appropriate
+timeslot. Then add a short description and forget about it. Art the end of the week you synchronise the
+calendar with a Google sheet. Catagorize by customer, project and task based on the description and the
+data is structured for further processing. Use the dashboard or write a simple query to report or copy
+in other time sheets.
 
 
 ![screenshot](https://cdn.jsdelivr.net/gh/duizendstra/solutions@master/calendar-sheet-timesheet/calendar-to-sheet-screenshot.png)
