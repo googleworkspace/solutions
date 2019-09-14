@@ -17,10 +17,14 @@
  * are simply linking your code from another repo, please delete this file. 
  */
 
+/** 
+ * Runs when the spreadsheet is opened and adds the menu option "Sync calendar events"
+ * to the spreadsheet menu
+ */
 function onOpen() {
     "use strict";
     var menuEntries = [{
-            name: "run",
+            name: "Sync calendar events",
             functionName: 'run'
         }],
         activeSheet;
@@ -30,6 +34,9 @@ function onOpen() {
 
 }
 
+/** 
+ * Builds the myTime object and runs the synchronisation
+ */
 function run() {
     "use strict";
     myTime({
@@ -37,8 +44,9 @@ function run() {
     }).run();
 }
 
-/* global UrlFetchApp:false */
-// eslint-disable-next-line no-unused-vars
+/** 
+ * The main function used for the synchronisation
+ */
 function myTime(par) {
     "use strict";
     var objectName = "myTime";
@@ -48,6 +56,7 @@ function myTime(par) {
     var codesSheet;
     var dataRange;
 
+    // get a row from the datarange in the sheet
     function getDataRow(key) {
         var dataRow;
 
@@ -63,10 +72,12 @@ function myTime(par) {
         return dataRow;
     }
 
+    // handle an event already in the sheet
     function handleNewEvent(event) {
         hourSheet.appendRow([event.getId(), event.getStartTime(), event.getEndTime(), event.getTitle(), "tbd", "tbd", "tbd", event.getDescription()]);
     }
 
+    // handle an event not found in the sheet
     function handleExistingEvent(event, dataRow) {
 
         if (event.getStartTime() - dataRow.value[1] !== 0) {
@@ -100,6 +111,7 @@ function myTime(par) {
         }
     }
 
+    // format the sheet
     function formatSheet() {
         var updateRange,
             codeRange,
@@ -144,6 +156,7 @@ function myTime(par) {
         updateRange.setFormulaR1C1("=R[0]C[-3]");
     }
 
+    // activate the synchronisation
     function run() {
         var startProcessDate;
         var endProcessDate;
@@ -196,9 +209,7 @@ function myTime(par) {
         SpreadsheetApp.flush();
         SpreadsheetApp.setActiveSheet(hourSheet);
 
-
         console.log("Finished processing hours.");
-
     }
 
     mainSpreadsheet = SpreadsheetApp.openById(mainSpreadSheetId);
@@ -208,4 +219,5 @@ function myTime(par) {
     return Object.freeze({
         run: run
     });
+    
 }
