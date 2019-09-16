@@ -1,49 +1,57 @@
-# Send content automatically
+---
+title: Send follow-up emails automatically
+description: Send users in an online community follow up content based on their
+interests.
+material_icon: autorenew
+create_time: 2019-07-15
+update_time: 2019-09-17
+---
 
-*From a list of topics, let users receive content specific to their interests.*
+Contributed by Tech and Eco, follow me on [Twitter](https://twitter.com/TechandEco)
 
-Last updated: August, 2019
+By using a Google Form, let users select topics from a predefined list of
+content that you offer, and store the submissions in a Google Sheet. The
+content is then automatically sent to their email using a Google Doc as the
+email's template. The template inserts the user's name and the online content
+they selected which can be a video, whitepaper, blog, PDF summary, or other
+resources referenced via a URL.
 
-## Description
-
-By using a Google Form, let users select topics from a predefined list,
-and store the submissions in a Google Sheet.
-
-## Technology highlights
-
-- Using the `onFormSubmit` installable trigger, you can send a customized email
-as soon as a user clicks the **Submit** button on the Google Form.
-- A Google Doc is used as the email template, which inserts custom names and
-links to online content such as videos, whitepapers, blogs, PDF summaries,
-or other resources.
-- A Google Form can be accessed on your website, email signature,
+The Google Form can be accessed on your website, email signature,
 instant message, or wherever you share the form's link.
 
 ![Topics are selected in a form, and upon submit an email is sent](https://github.com/gsuitedevs/solutions/raw/master/content-signup/assets/content-signup.gif)
 
+## Technology highlights
+
+- Using the `onFormSubmit` installable trigger, you can send a customized email
+  as soon as a user clicks the **Submit** button on the Google Form. To see
+  more of the `onFormSubmit` event, see the
+  [Event Objects](https://developers.google.com/apps-script/guides/triggers/events#form-submit)
+  page.
+
 ## Try it
 
 1. Make a copy of this Google Sheet
-   [by clicking this link](https://docs.google.com/spreadsheets/d/14V2cLGRXB_iaiQWXsTwapPPZ0hMj3fTjpD_hfhAiGqI/copy)
-   in your browser. It will automatically include a Google Form and the code
-   you will need.
+   [by clicking this link](https://docs.google.com/spreadsheets/d/1vyv-QcQ0wgaGNV7XklZI1jq95Cg_QVBq-o4rhTJqg00/copy)
+   in your browser. It automatically includes a Google Form and the code
+   you need.
 
-1. From your spreadsheet click on **Tools > Script Editor**.
+1. From your spreadsheet click on **Tools > Script Editor**. This brings
+   you to the _Apps Script editor._
 
-1. This will bring you to the *Apps Script editor.*
-   Now *run the script* by clicking the **Select function** drop down >
-   choose **"installTrigger."** Then click the Run button (►). This will
-   install a trigger in your project that runs the code everytime a new form
+1. Now _run the script_ by clicking the **Select function** drop down >
+   choose **"installTrigger."** Then click the Run button (►). This installs
+   a trigger in your project that runs the code everytime a new form
    entry is submitted.
-   You can optionally visit the newly installed trigger by clicking
-   the *trigger icon* (which looks like a clock).
 
-   > *Caution*: If you run this script more than once, it will generate *multiple
-   > triggers* which would duplicate emails. Ensure you only run the script once
-   > and that there aren't multiple triggers on the triggers page.
+   > _Caution_: If you run this script more than once, it generates
+   > _multiple triggers_ which would duplicate emails. Ensure you only run the
+   > script once and that there aren't multiple triggers on the triggers page.
+   > You can optionally visit the triggers page by clicking on the
+   > _trigger icon_ (which looks like a clock) to confirm there is only one.
 
-1. When prompted, click the **Review permissions** and click **Allow** button
-   so the script can email on your behalf.
+1. When prompted, click **Review permissions** and **Allow**
+   so the script can send email on your behalf.
 
    > *Important:* If you get a warning that **This app isn't verified**
    > continue with the verification process by clicking
@@ -51,50 +59,68 @@ instant message, or wherever you share the form's link.
    > that says **Go to (Copy this) Script to send content**
 
 1. After granting permissions, return to your spreadsheet and locate **Form** >
-**Go to live form.** This will bring you to the Google form that people will
-see when you share its link. *Fill out* all the fields and *ensure* to use an
-*email address* you have access to, and click **Submit**.
+   **Go to live form.** This brings you to the Google form that people
+   see when you share its link. _Fill out_ all the fields and _ensure_ to use
+   an _email address_ you have access to, and click **Submit**.
 
-   > *Note:* if no topics are selected in the Google Form, the code will
-   > *will not send an email*. Ensure to select a topic in order to receive an
-   > email.
+   > _Note_: if no topics are selected in the Google Form, the code
+   > _will not send an email_.
 
 1. Return to your spreadsheet, you should have a row of values entered based
-on your form submission. One of the columns called **Confirmation** will
-say **Sent**, confirming that the topics you selected in the form were emailed.
+   on your form submission. One of the columns called **Confirmation**
+   say **Sent**, confirming that the topics you selected in the form were
+   emailed.
 
-1. Finally, login to the email account you
-provided in your form entry and see if you received an email with the subject
-line: **"Howdy"** along with links to the topics you selected.
+   > _Note_: if you do not see the form responses in your sheet, you need
+   > to unlink and relink your form to it. From your sheet click **Form >
+   > Unlink Form** then visit your form in edit mode and in the _responses_
+   > section click **Select response destination > Select existing
+   > spreadsheet** , and choose _your spreadsheet_ as the source. This creates
+   > a new sheet called **Form Responses 2**. You can _delete_ the tab
+   > **Form Responses 1** so you only have one active sheet.
+
+1. Finally, login to the email account you provided in your form entry and
+   see if you received an email with the subject line: **"Howdy"** along with
+   links to the topics you selected.
 
 ## Customize your script
 
-1. *[optional]* The email sent out comes from a Google Doc template already
-setup. However, if you wish to customize that template, you can make your 
-own copy by [clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy). and then copy its
-*unique ID* which can be found in its *URL address* in the *browser* by
-copying the *number/letter* combo after `https://docs.google.com/document/d/`
-and before `/edit#` which will look like this: 
-`1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE` and replace the Google Doc ID
-in the code on **line 3**. You must set this template's sharing rights to
-viewed by **Anyone with this link** or at least *viewable by anyone in your
-organization.*
+1. *[optional]*
+   The email sent out comes from a Google Doc template already setup.
+   However, if you wish to customize that template,
+   you can make your own copy by
+   [clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy) and set permissions to
+   viewable by _anyone_ unless your audience are people within your
+   organization, set to _anyone in your organization_. Then copy its
+   _URL address_ from the _browser_ and replace the URL in the
+   `EMAIL_TEMPLATE_DOC_URL` variable in the script's code.
 
-   > *Caution:* Remember to *not delete* the items *in brackets* in the Google
-   > Doc as these are *placeholders* for the *script to populate* with custom
-   > information from the form such as `{{NAME}}` and `{{TOPICS}}.` These
-   > *cannot be removed* but you can change their color and size.
+   > _Note_: `{{NAME}}` and `{{TOPICS}}` in the Google Doc are placeholders
+   > that insert the name and the content links from the topics selected
+   > by the user upon them submitting the form.
 
-1. *[optional]* If you wish to change the subject line of your email,
-replace the text `Howdy` on **line 4** to your preferred text *within* the
-backtick marks.
+1. _[optional]_ If you wish to change the subject line of your email,
+   replace the text in the `EMAIL_SUBJECT` variable in the script's code.
 
-1. *[optional]* If you wish to rename the topics in the form, upon changing them, also paste the new topic names into the spreadsheets code starting on **line 8.**
+1. *[optional]* If you wish to rename the topics in the form, upon changing
+   them, also paste the new topic names into the `topicUrls` variable in the
+   script's code.
+
    > *Caution:* When *renaming* the topics in the form,  ensure you paste
-   > the exact *topics names* in the code as well.
-   > You do not need to add the entire description that you add in the form
-   > however. Ex: rename topic called “(NUTRITION) Raw vegan recipes” to
+   > the exact *topic names* in the code as well. Ensure the word is
+   > contained in the form's choices.
+   > Ex: if you rename “(NUTRITION) Raw vegan recipes” to
    > “(MINDFULNESS) Learning how to meditate in a busy world” in the form,
-   > make sure to go back to the code on line 8 and replace “Nutrition” with
-   > “Mindfulness” + `the link you want people to receive` within their
-   > respective backtick marks.
+   > make sure to go back the `topicUrls` variable and replace “Nutrition” with
+   > “Mindfulness” + _the link you want people to receive_
+
+## Next steps
+
+To get started with Google Apps Script, try out [the codelab][codelab]
+which guides you through the creation of your first script.
+
+You can also view the [full source code][github] of this solution on GitHub to
+learn more about how it was built.
+
+[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
+[github]: https://github.com/gsuitedevs/solutions/blob/master/content-signup

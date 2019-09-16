@@ -1,19 +1,15 @@
-// Paste Google Doc ID of your custom email template.
-// Make sure that Google Doc is shareable.
-var EMAIL_TEMPLATE_DOC_ID = '1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE';
-var EMAIL_SUBJECT = 'Howdy';
+var EMAIL_TEMPLATE_DOC_URL = 'https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/edit?usp=sharing';
+var EMAIL_SUBJECT = 'Howdy, here is the content you requested';
 
-// Links to send based on topics selected in form by user.
 var topicUrls = {
-  'Nutrition': 'https://www.youtube.com/watch?v=yBJ54pSJOvg',
-  'Reprogramming Habits': 'https://www.tonyrobbins.com/ask-tony/priming/',
+  'Nutrition': 'https://youtu.be/kCjDirATBos',
+  'Reprogramming Habits': 'https://www.mindful.org/category/meditation/',
   'Urban Food': 'https://www.urbanfarm.org/',
-  'Water Design': 'http://oasisdesign.net/',
+  'Water Design': 'https://greywateraction.org/',
 };
 
 /**
- * Must click this function from the top drop-down and click 'run' icon to
- * create the onFormSubmit trigger.
+ * Installs a trigger on the Spreadsheet for when a Form response is submitted.
  */
 function installTrigger() {
   ScriptApp.newTrigger('onFormSubmit')
@@ -24,14 +20,12 @@ function installTrigger() {
 
 /**
  * Sends a customized email for every response on a form.
- *
- * To see more of the onFormSubmit event, see:
- * https://developers.google.com/apps-script/guides/triggers/events#form-submit
+ * 
+ * @param {Object} event - Form submit event
  */
 function onFormSubmit(e) {
   var responses = e.namedValues;
 
-  // Get all the response values and store them in local variables.
   // If the question title is a label, it can be accessed as an object field.
   // If it has spaces or other characters, it can be accessed as a dictionary.
   var timestamp = responses.Timestamp[0];
@@ -67,7 +61,6 @@ function onFormSubmit(e) {
   var column = e.values.length + 1;
   sheet.getRange(row, column).setValue(status);
 
-  // Log activity.
   Logger.log("status=" + status + "; responses=" + JSON.stringify(responses));
 }
 
@@ -76,7 +69,7 @@ function onFormSubmit(e) {
  *
  * @param {string} recipient - The recipient's email address.
  * @param {string[]} topics - List of topics to include in the email body.
- * @return {string} The email body as an HTML string.
+ * @return {string} - The email body as an HTML string.
  */
 function createEmailBody(name, topics) {
   var topicsHtml = topics.map(function(topic) {
@@ -86,7 +79,8 @@ function createEmailBody(name, topics) {
   topicsHtml = '<ul>' + topicsHtml + '</ul>';
   
   // Make sure to update the emailTemplateDocId at the top.
-  var emailBody = docToHtml(EMAIL_TEMPLATE_DOC_ID);
+  var docId = DocumentApp.openByUrl(EMAIL_TEMPLATE_DOC_URL).getId();
+  var emailBody = docToHtml(docId);
   emailBody = emailBody.replace(/{{NAME}}/g, name);
   emailBody = emailBody.replace(/{{TOPICS}}/g, topicsHtml);
   return emailBody;
@@ -99,10 +93,6 @@ function createEmailBody(name, topics) {
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-  // We need Drive scope permissions to fetch a Google Doc with UrlFetchApp.
-  // Calling any DriveApp function will ask for those permissions,
-  // this can be commented in the following line:
-  //   DriveApp.getStorageUsed();
 
   // Downloads a Google Doc as an HTML string.
   var url = "https://docs.google.com/feeds/download/documents/export/Export?id=" +
