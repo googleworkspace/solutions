@@ -1,11 +1,8 @@
----
-title: Automatically populate a team vacation calendar
-description: Quickly see when your colleagues are out of the office, with no manual entry required.
-labels: Apps Script, Calendar
-material_icon: event
-create_time: 2019-07-11
-update_time: 2019-08-19
----
+# Automatically populate a team vacation calendar
+
+_Quickly see when your colleagues are out of the office, with no manual entry required._
+
+Last updated: August, 2019
 
 A shared vacation calendar is a great tool for helping your team collaborate;
 anyone can determine who's out of the office at a glance. However, booking time

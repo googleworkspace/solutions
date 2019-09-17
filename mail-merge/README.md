@@ -1,11 +1,8 @@
----
-title: Create a mail merge using Gmail and Google Sheets
-description: Create and distribute visually rich mail merges with Gmail and Google Sheets.
-labels: Google Sheets, Gmail
-material_icon: merge_type
-create_time: 2019-09-13
-update_time: 2019-09-13
----
+# Create a mail merge using Gmail and Google Sheets
+
+_Create and distribute visually rich mail merges with Gmail and Google Sheets._
+
+Last updated: September, 2019
 
 Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.com/mhawksey) or [read my Google Apps Script related blog posts](https://mashe.hawksey.info/category/google-apps-script/).
 

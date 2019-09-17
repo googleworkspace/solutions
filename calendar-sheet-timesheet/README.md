@@ -1,15 +1,8 @@
----
-title: Record time and activities in Calendar and Sheets
-description: Create calender events for your activities, and synchronise to your timesheet in sheets for reporting.
-labels: Apps Script, Sheets, Calendar
-material_icon: event
-create_time: 2019-09-08
-update_time: 2019-09-08
----
-
 # Record time and activities in Calendar and Sheets
 
 _Create calender events for your activities, and synchronise to your timesheet in sheets for reporting._
+
+Last updated: September, 2019
 
 Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
 

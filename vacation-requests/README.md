@@ -1,11 +1,8 @@
----
-title: Manage employee vacation time requests
-description: Quickly approve employees' vacation time requests, and create calendar events or send notification emails accordingly.
-labels: Apps Script, Sheets, Forms, Calendar
-material_icon: pool
-create_time: 2019-08-05
-update_time: 2019-08-26
----
+# Manage employee vacation time requests
+
+_Quickly approve employees' vacation time requests, and create calendar events or send notification emails accordingly._
+
+Last updated: August, 2019
 
 A Google Form is a great tool for employees to quickly submit vacation
 time requests in a uniform manner. However, it can be difficult for employers

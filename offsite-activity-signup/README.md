@@ -1,11 +1,8 @@
----
-title: Sign up for activities at an offsite or event
-description: Create an offsite activity signup system. Lets attendees pick their preferred activities via a form and fairly assigns them based on availability.
-labels: Apps Script, Sheets, Forms
-material_icon: poll
-create_time: 2019-06-12
-update_time: 2019-07-23
----
+# Sign up for activities at an offsite or event
+
+_Create an offsite activity signup system. Lets attendees pick their preferred activities via a form and fairly assigns them based on availability._
+
+Last updated: July, 2019
 
 Quickly create an end to end offsite activity signup system. Start with the activity schedule in a Google Sheet, then
 use Apps Script to create a form for attendees to express their preferences. After everyone submits their responses,
