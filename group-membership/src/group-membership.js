@@ -1,14 +1,5 @@
-/*
-TODOS TO MAKE YOUR SOLUTION WORK:
-1) Enable Admin Directory API (Resources -> Advanced Google Services)
-2) Paste your Google Doc IDs below
-3) Make Google Doc shareable to anyone with the link (or anyone in 
-   your organization).
-4) Run function `installTrigger` to auto create onFormSubmit function
-*/
-
-var addedToGroupSubject = 'Added to group';
 var addedToGroupDocId = '1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70';
+var addedToGroupSubject = 'Added to group';
 
 /**
  * Must click this function from the top drop-down and click 'run' icon to
@@ -24,8 +15,6 @@ function installTrigger() {
 /**
  * Sends a customized email when a user is added to a group.
  *
- * To see more of the onFormSubmit event, see:
- * https://developers.google.com/apps-script/guides/triggers/events#edit
  */
 function onEdit(e) {
   // Get an object from the modified row.
@@ -72,7 +61,6 @@ function onEdit(e) {
   row = ObjApp.objectToArray(headers, [responses])[0];
   sheet.getRange(e.range.getRow(), 1, 1, row.length).setValues([row]);
   
-  // Log activity.
   Logger.log("responses=" + JSON.stringify(responses));
 }
 
@@ -83,9 +71,6 @@ function onEdit(e) {
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-  // This is only used to ask for Drive scope permissions.
-  // It can be commented out like it is below.
-  // DriveApp.getStorageUsed();
   var url = "https://docs.google.com/feeds/download/documents/export/Export?id=" +
             docId + "&exportFormat=html";
   var param = {

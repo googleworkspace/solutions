@@ -1,39 +1,93 @@
-# Give external users access to resources
+---
+title: Give external users access to resources
+description: Scale access to external vendors and customers via a Google Sheet 
+and a Google Group.
+labels: Apps Script, Sheets, Groups for Business
+material_icon: assignment turned in
+create_time: 2019-08-30
+update_time: 2019-09-17
+---
 
-*Scale access to external vendors and customers via a Google Sheet and an Apps
-Script in G Suite.*
+Contributed by Tech and Eco, follow me on
+[Twitter](https://twitter.com/TechandEco)!
 
-## Description
-
-You may manage multiple Google Groups for your organization and wish to streamline this process, especially if you have to manually send an email upon granting users membership. The following Google Spreadsheet contains a script that helps add the email address of a user to a Google Group, and then sends them an email confirming they have been added.
+You may manage multiple Google Groups for your organization and wish to
+streamline this process, especially if you have to manually send an email upon
+granting users membership. The following Google Spreadsheet contains a script
+that helps add the email address of a user to a G Suite Google Group,
+and then sends them an email confirming they have been added.
 
 ## Technology highlights
 
-* Using the `onEdit` *simple trigger* in a *Google Sheet*, you can grant access to multiple resources from a spreadsheet.
-* *Google Group permissions* are respected.
-* A *Google Document* is used as the email's *template*.
+* Using the `onEdit` _simple trigger_ in a Google Sheet, you can grant access
+  to multiple resources from a spreadsheet.
+  To learn more [click here](https://developers.google.com/apps-script/guides/triggers/#onedite)
+* Manage group members using the
+  [Admin Directory](https://developers.google.com/admin-sdk/directory/v1/guides/manage-group-members)
+* A _Google Document_ is used as the email's _template_.
 
 ## Try it
 
 1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1kNuOc_evfqbu8dVJIA5N4r27d_Ubnr915eln4cbq2cU/copy) from your G Suite account.
-1. From your spreadsheet, click on **Tools > Script Editor**. This will bring you to the *Apps Script editor*.
-1. Ensure the **Admin Directory API** is enabled via **Resources > Advanced Google Services**.
-1. Now run the script by clicking the **"Select function"** drop down > choose **"installTrigger."** Then click the Run button (►). This will create a trigger for your sheet automatically which you can visit on the triggers page by clicking the **trigger icon** (which looks like a clock).
+1. From your spreadsheet, click on **Tools > Script Editor**. This will bring
+   you to the _Apps Script editor_.
+1. Ensure the **Admin Directory API** is enabled via
+   **Resources > Advanced Google Services**.
+1. Now run the script by clicking the **Select function** drop down > choose            **"installTrigger."** Then click the Run button (►). This will create a
+   trigger for your sheet automatically.
 
-    > *Caution:* If you run this script *more than once*, it will generate *multiple triggers* which would duplicate emails. Ensure you run the script once and that there aren't multiple triggers on the triggers page.
-1. When prompted, click the **Review permissions** and click **Allow** so the script can email on your behalf.
+    > _Caution_: If you run this script _more than once_, it will generate
+    > _multiple triggers_ causing duplicate emails. Ensure you run the script
+    > once and that there aren't multiple triggers on the triggers page.
+    > You can visit the triggers page by clicking the _trigger icon_ (which
+    > looks like a clock from the script's page.
 
-   > *Important:* If you get the warning **This app isn't verified**, continue with the verification process by clicking **Advanced** and then scroll down and click the grey text at the bottom that says **Go to (Copy this) external-access to a Google Group via onEdit Sheet**
-1. After granting permissions, return to your spreadsheet and *type an email address* in the `Email` column and the *group address* in the `Google Group` column, and the word `yes` in the `Allowed` column.
+1. When prompted, click the **Review permissions** and click **Allow** so the
+   script can email on your behalf.
 
-   > Note if you do not populate the column `allowed` with the word `yes`, the script is instructed to not run. This is helpful if you wish to capture requests but not process them yet until you populate the *allowed* column. 
+   > _Important_: If you get the warning **This app isn't verified**, continue
+   > with the verification process by clicking **Advanced** and then scroll
+   > down and click the grey text at the bottom that says
+   > **Go to (Copy this external-access to a Google Group via onEdit Sheet**
 
-1. To *test*, enter *your own email* and a *Google Group* you already are a *member* of and have *manager rights* to its membership in order to *receive* the *confirmation* email.
+1. After granting permissions, return to your spreadsheet and _type an email
+   address_ in the `Email` column and the _group address_ in the `Google Group`
+   column, and the word `yes` in the `Allowed` column.
+
+   > _Note_: if you do not populate the column `allowed` with the word `yes`,
+   > the script is instructed to _not run_. This is helpful if you wish to
+   > capture requests to join a group in the sheet but not add them the users
+   > yet until you populate the **allowed** column.
+
+1. To _test_, enter _your own email_ and a Google Group that you already
+   are a member of and have _manager rights_ to adding members in order to
+   receive the confirmation email.
 
 ## Optionally customize your email template
 
-1. *[optional]* You can modify the font, color, and images of your email template by [making a copy of this doc](https://docs.google.com/document/d/1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70/copy). Then copy its unique ID within its URL address (it's a string of text after https://docs.google.com/document/d/ and before `/edit#`  which will look like this: `1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70`). Then replace the Google Doc ID in the spreadsheet's code, starting on **line 11**. You must set this template's *sharing rights* to **Viewable by anyone with this link** or at least **Viewable by anyone in your organization**.
+1. _[optional]_ You can modify the font, color, and images of your email
+   template by [making a copy of this doc](https://docs.google.com/document/d/1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70/copy). Then copy its
+   URL address and replace the one listed in the vairable `addedToGroupDocId`
+   in the sheet's script.
 
-   > *Caution*: Remember to *not delete* the items in brackets within the *Google Doc* as these are *placeholders* for the script to populate with *custom information* from the sheet such as `{{EMAIL}}` and `{{GOOGLE_GROUP}}`.
+   > _Note_: `{{EMAIL}}` and `{{GOOGLE_GROUP}}` are placeholders in your
+   > template that insert the values from the Google Sheet. In order for
+   > external users to receive the template's format, the Google doc's
+   > permissions must be set to **Viewable by anyone with this link**; and at
+   > least **Viewable by anyone in your organization** to share with anyone 
+   > in your domain.
 
-1. [optional] Modify the *subject line* of the confirmation email in the sheet's code on **line 10** by replacing `Added to group` to the text you desire.
+1. _[optional]_ To modify the _subject line_ of the confirmation email, enter
+   the desired message in the variable `addedToGroupSubject` in the sheet's
+   script.
+
+## Next steps
+
+To get started with Google Apps Script, try out [the codelab][codelab]
+which guides you through the creation of your first script.
+
+You can also view the [full source code][github] of this solution on GitHub to
+learn more about how it was built.
+
+[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
+[github]: https://github.com/gsuitedevs/solutions/blob/master/group-membership
