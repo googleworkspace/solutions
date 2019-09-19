@@ -1,7 +1,7 @@
 ---
 title: Create a mail merge using Gmail and Google Sheets
 description: Create and distribute visually rich mail merges with Gmail and Google Sheets.
-labels: Google Sheets, Gmail
+labels: Sheets, Gmail
 material_icon: merge_type
 create_time: 2019-09-13
 update_time: 2019-09-13
@@ -11,7 +11,7 @@ Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.
 
 Simplify the process of producing visually rich mail merges using Gmail and combining it with data from Google Sheets. With this solution you can automatically populate an email template created as a Gmail draft with data from Google Sheets. Merged emails are sent from your Gmail account allowing you to respond to recipient replies.
 
-![Mail merge with Gmail and Google Sheets](mailmerge.gif)
+![Mail merge with Gmail and Google Sheets](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/mail-merge/mailmerge.gif)
 
 ## Technology highlights
 
