@@ -1,21 +1,11 @@
-/*
-TODOS TO MAKE YOUR SOLUTION WORK:
-1) Enable Admin Directory API (Resources -> Advanced Google Services...
-2) Paste your Google Doc IDs below
-3) Make Google Doc shareable to anyone with the link (or anyone in 
-   your organization).
-4) Run function `installTrigger` to auto create onFormSubmit function
-*/
+var ADDED_TO_GROUP_SUBJECT = 'Added to group';
+var ADDED_TO_GROUP_DOC_URL = 'https://docs.google.com/document/d/1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70/edit?usp=sharing';
 
-var addedToGroupSubject = 'Added to group';
-var addedToGroupDocId = '1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70';
-
-var alreadyInGroupSubject = 'Already in group';
-var alreadyInGroupDocId = '11AO7vwk6179ohuxGO_NXSoDB0m_H5e-5XEtwiWRVNOM';
+var ALREADY_IN_GROUP_SUBJECT = 'Already in group';
+var ALREADY_IN_GROUP_DOC_URL = 'https://docs.google.com/document/d/11AO7vwk6179ohuxGO_NXSoDB0m_H5e-5XEtwiWRVNOM/edit?usp=sharing';
 
 /**
- * Must click this function from the top drop-down and click 'run' icon to
- * create the onFormSubmit trigger.
+ * Installs a trigger on the Spreadsheet for when a Form response is submitted.
  */
 function installTrigger() {
   ScriptApp.newTrigger('onFormSubmit')
@@ -25,15 +15,13 @@ function installTrigger() {
 }
 
 /**
- * Sends a customized email for every response on a form.
+ * Sends a customized email for every response in a form.
  *
- * To see more of the onFormSubmit event, see:
- * https://developers.google.com/apps-script/guides/triggers/events#form-submit
+ * @param {Object} e - Form submit event.
  */
 function onFormSubmit(e) {
   var responses = e.namedValues;
 
-  // Get all the response values and store them in local variables.
   // If the question title is a label, it can be accessed as an object field.
   // If it has spaces or other characters, it can be accessed as a dictionary.
   var timestamp = responses.Timestamp[0];
@@ -45,12 +33,13 @@ function onFormSubmit(e) {
   var group = GroupsApp.getGroupByEmail(groupEmail);
   if (group.hasUser(userEmail)) {
     // User is already in group, send a confirmation email.
+    var alreadyInGroupDocId = DocumentApp.openByUrl(ALREADY_IN_GROUP_DOC_URL).getId();
     var emailBody = docToHtml(alreadyInGroupDocId);
     emailBody = emailBody.replace('{{EMAIL}}', userEmail);
     emailBody = emailBody.replace('{{GOOGLE_GROUP}}', groupEmail);
     MailApp.sendEmail({
       to: userEmail,
-      subject: alreadyInGroupSubject,
+      subject: ALREADY_IN_GROUP_SUBJECT,
       htmlBody: emailBody,
     });
     status = 'Already in group';
@@ -61,12 +50,13 @@ function onFormSubmit(e) {
     AdminDirectory.Members.insert(member, groupEmail);
 
     // Send a confirmation email that the member was now added.
+    var addedToGroupDocId = DocumentApp.openByUrl(ADDED_TO_GROUP_DOC_URL).getId();
     var emailBody = docToHtml(addedToGroupDocId);
     emailBody = emailBody.replace('{{EMAIL}}', userEmail);
     emailBody = emailBody.replace('{{GOOGLE_GROUP}}', groupEmail);
     MailApp.sendEmail({
       to: userEmail,
-      subject: addedToGroupSubject,
+      subject: ADDED_TO_GROUP_SUBJECT,
       htmlBody: emailBody,
     });
     status = 'Newly added';
@@ -78,7 +68,6 @@ function onFormSubmit(e) {
   var column = e.values.length + 1;
   sheet.getRange(row, column).setValue(status);
 
-  // Log activity.
   Logger.log("status=" + status + "; responses=" + JSON.stringify(responses));
 }
 
@@ -89,9 +78,6 @@ function onFormSubmit(e) {
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-  // This is only used to ask for Drive scope permissions.
-  // It can be commented out like it is below.
-  // DriveApp.getStorageUsed();
   var url = "https://docs.google.com/feeds/download/documents/export/Export?id=" +
             docId + "&exportFormat=html";
   var param = {
