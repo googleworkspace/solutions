@@ -34,7 +34,7 @@ to receive an email everytime a new form submission occurs.
 
 ## Try it
 
-1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1MH_cyvP_0DVTsQ0A606Tx3vuQU_2kjpbDCs_AhRH1lA/copy) from your *G Suite* account.
+1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1MH_cyvP_0DVTsQ0A606Tx3vuQU_2kjpbDCs_AhRH1lA/copy) from your _G Suite_ account.
 1. From your spreadsheet, click on **Tools > Script Editor**.
 1. Ensure the _Admin Directory API_ is enabled via
    **Resources > Advanced Google Services**.
@@ -58,6 +58,17 @@ to receive an email everytime a new form submission occurs.
    **Form > Go to live form**.
 1. Fill out the form and enter *your own email* and a Google Group you have
    rights to manage its membership in order to receive an email.
+   The membership status will be populated by the words **Newly added** if the
+   user was added to the group, or **Already added** if it recognizes the user
+   is already a member.
+   > _Note_: if you do not see the form responses in your sheet, you need to
+   > unlink and relink your form to it. From your sheet click
+   > **Form > Unlink Form**. Then visit your form in edit mode and in the
+   > responses section click select
+   > **response destination > Select existing spreadsheet**, and choose
+   > your spreadsheet as the source. This creates a new sheet called
+   > **Form Responses 2**. You can delete the tab **Form Responses 1**
+   > so you only have one active sheet.
 
 ## _[optional]_ Customize your script
 
@@ -89,4 +100,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/group-membership
+[github]: https://github.com/gsuitedevs/solutions/blob/master/group-membership-form

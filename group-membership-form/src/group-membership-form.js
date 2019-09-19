@@ -5,7 +5,7 @@ var ALREADY_IN_GROUP_SUBJECT = 'Already in group';
 var ALREADY_IN_GROUP_DOC_URL = 'https://docs.google.com/document/d/11AO7vwk6179ohuxGO_NXSoDB0m_H5e-5XEtwiWRVNOM/edit?usp=sharing';
 
 /**
- * Installs a trigger on the Spreadsheet for when a Form response is submitted.
+ * Installs a trigger on the Spreadsheet when a Form response is submitted.
  */
 function installTrigger() {
   ScriptApp.newTrigger('onFormSubmit')
