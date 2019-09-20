@@ -6,20 +6,20 @@ Last updated: September, 2019
 
 Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
 
-Keeping track of the time spent on project for customers can be a challange. Not all time writing
+Keeping track of the time spent on project for customers can be a challenge. Not all time writing
 apps are user friendly and sometimes you need to record your time in multiple systems. You can end up
 spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to
 other systems.  
 
 To solve this problem we can use the one time related application we have open every
-day, the Google calendar. In an additional calendar we can quickly add an event for the appropriate
+day, Google Calendar. In an additional calendar we can quickly add an event for the appropriate
 timeslot. Then add a short description and forget about it. Art the end of the week you synchronise the
-calendar with a Google sheet. Catagorize by customer, project and task based on the description and the
+calendar with a Google sheet. Categorize by customer, project and task based on the description and the
 data is structured for further processing. Use the dashboard or write a simple query to report or copy
 in other time sheets.
 
 
-![screenshot](https://cdn.jsdelivr.net/gh/duizendstra/solutions@master/calendar-sheet-timesheet/calendar-to-sheet-screenshot.png)
+![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/calendar-sheet-timesheet/calendar-to-sheet-screenshot.png)
 
 ## Technology highlights
 
@@ -34,11 +34,11 @@ in other time sheets.
 1. Copy the calendar id. This can be found in the calendar settings
 1. Copy this [sheet][sheet-copy]
 1. In the configuration tab you paste the id of the calendar you created in step one.
-1. Add some events to the secondary calender and hit MyTime -> Sync calendar events
+1. Add some events to the secondary calender and hit **MyTime -> Sync** calendar events
 
 ## Next steps
 
-_This solutions is based on this [Article][article-medium]_
+_This solution is based on this [article][article-medium]_
 
 To get started with Google Apps Script, try out [the codelab][codelab]
 which guides you through the creation of your first script.
