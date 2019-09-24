@@ -19,7 +19,7 @@ resources referenced via a URL.
 The Google Form can be accessed on your website, email signature,
 instant message, or wherever you share the form's link.
 
-![Topics are selected in a form, and upon submit an email is sent](https://github.com/gsuitedevs/solutions/raw/master/content-signup/assets/content-signup.gif)
+![Topics are selected in a form, and upon submit an email is sent](../assets/content-signup.gif)
 
 ## Technology highlights
 
