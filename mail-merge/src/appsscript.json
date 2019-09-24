@@ -1,0 +1,5 @@
+{
+    "timeZone": "YOUR TIMEZONE HERE",
+    "dependencies": {},
+    "exceptionLogging": "STACKDRIVER"
+}

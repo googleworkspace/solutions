@@ -2,3 +2,5 @@
 node_modules
 .gradle
 
+# Visual Studio Code
+.vscode/

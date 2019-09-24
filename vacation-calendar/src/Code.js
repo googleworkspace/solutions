@@ -66,7 +66,7 @@ function sync() {
 function importEvent(username, event) {
   event.summary = '[' + username + '] ' + event.summary;
   event.organizer = {
-    id: TEAM_CALENDAR_ID
+    id: TEAM_CALENDAR_ID,
   };
   event.attendees = [];
   console.log('Importing: %s', event.summary);
@@ -86,21 +86,21 @@ function importEvent(username, event) {
  * @param {string} keyword The keyword to look for.
  * @param {Date} start The starting date of the range to examine.
  * @param {Date} end The ending date of the range to examine.
- * @param {Date} opt_since A date indicating the last time this script was run.
+ * @param {Date} optSince A date indicating the last time this script was run.
  * @return {Calendar.Event[]} An array of calendar events.
  */
-function findEvents(user, keyword, start, end, opt_since) {
+function findEvents(user, keyword, start, end, optSince) {
   var params = {
     q: keyword,
     timeMin: formatDateAsRFC3339(start),
     timeMax: formatDateAsRFC3339(end),
-    showDeleted: true
+    showDeleted: true,
   };
-  if (opt_since) {
+  if (optSince) {
     // This prevents the script from examining events that have not been
     // modified since the specified date (that is, the last time the
     // script was run).
-    params.updatedMin = formatDateAsRFC3339(opt_since);
+    params.updatedMin = formatDateAsRFC3339(optSince);
   }
   var pageToken = null;
   var events = [];
