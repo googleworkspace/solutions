@@ -20,8 +20,8 @@ function installTrigger() {
 
 /**
  * Sends a customized email for every response on a form.
- * 
- * @param {Object} event - Form submit event
+ *
+ * @param {Object} e - Form submit event
  */
 function onFormSubmit(e) {
   var responses = e.namedValues;
@@ -50,8 +50,7 @@ function onFormSubmit(e) {
       htmlBody: createEmailBody(name, topics),
     });
     status = 'Sent';
-  }
-  else {
+  } else {
     status = 'No topics selected';
   }
 
@@ -61,23 +60,23 @@ function onFormSubmit(e) {
   var column = e.values.length + 1;
   sheet.getRange(row, column).setValue(status);
 
-  Logger.log("status=" + status + "; responses=" + JSON.stringify(responses));
+  Logger.log('status=' + status + '; responses=' + JSON.stringify(responses));
 }
 
 /**
  * Creates email body and includes the links based on topic.
  *
- * @param {string} recipient - The recipient's email address.
+ * @param {string} name - The recipient's name.
  * @param {string[]} topics - List of topics to include in the email body.
  * @return {string} - The email body as an HTML string.
  */
 function createEmailBody(name, topics) {
   var topicsHtml = topics.map(function(topic) {
-  var url = topicUrls[topic];
+    var url = topicUrls[topic];
     return '<li><a href="' + url + '">' + topic + '</a></li>';
   }).join('');
   topicsHtml = '<ul>' + topicsHtml + '</ul>';
-  
+
   // Make sure to update the emailTemplateDocId at the top.
   var docId = DocumentApp.openByUrl(EMAIL_TEMPLATE_DOC_URL).getId();
   var emailBody = docToHtml(docId);
@@ -88,18 +87,17 @@ function createEmailBody(name, topics) {
 
 /**
  * Downloads a Google Doc as an HTML string.
- * 
+ *
  * @param {string} docId - The ID of a Google Doc to fetch content from.
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-
   // Downloads a Google Doc as an HTML string.
-  var url = "https://docs.google.com/feeds/download/documents/export/Export?id=" +
-            docId + "&exportFormat=html";
+  var url = 'https://docs.google.com/feeds/download/documents/export/Export?id=' +
+            docId + '&exportFormat=html';
   var param = {
-    method: "get",
-    headers: {"Authorization": "Bearer " + ScriptApp.getOAuthToken()},
+    method: 'get',
+    headers: {'Authorization': 'Bearer ' + ScriptApp.getOAuthToken()},
     muteHttpExceptions: true,
   };
   return UrlFetchApp.fetch(url, param).getContentText();
