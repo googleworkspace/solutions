@@ -43,8 +43,7 @@ function onFormSubmit(e) {
       htmlBody: emailBody,
     });
     status = 'Already in group';
-  }
-  else {
+  } else {
     // User is not part of the group, add user to group.
     var member = {email: userEmail, role: 'MEMBER'};
     AdminDirectory.Members.insert(member, groupEmail);
@@ -68,21 +67,21 @@ function onFormSubmit(e) {
   var column = e.values.length + 1;
   sheet.getRange(row, column).setValue(status);
 
-  Logger.log("status=" + status + "; responses=" + JSON.stringify(responses));
+  Logger.log('status=' + status + '; responses=' + JSON.stringify(responses));
 }
 
 /**
  * Fetches a Google Doc as an HTML string.
- * 
+ *
  * @param {string} docId - The ID of a Google Doc to fetch content from.
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-  var url = "https://docs.google.com/feeds/download/documents/export/Export?id=" +
-            docId + "&exportFormat=html";
+  var url = 'https://docs.google.com/feeds/download/documents/export/Export?id=' +
+            docId + '&exportFormat=html';
   var param = {
-    method: "get",
-    headers: {"Authorization": "Bearer " + ScriptApp.getOAuthToken()},
+    method: 'get',
+    headers: {'Authorization': 'Bearer ' + ScriptApp.getOAuthToken()},
     muteHttpExceptions: true,
   };
   return UrlFetchApp.fetch(url, param).getContentText();
