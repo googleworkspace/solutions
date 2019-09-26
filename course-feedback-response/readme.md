@@ -47,7 +47,7 @@ To get started with Google Apps Script, try out [the codelab][codelab]
 which guides you through the creation of your first script.
 
 [benlcollins-link]: https://www.benlcollins.com
-[solution-gif]: https://www.benlcollins.com/wp-content/uploads/2019/09/autoDraftReplies.gif
+[solution-gif]: https://www.benlcollins.com/wp-content/uploads/2019/09/courseFeedbackResponse.gif
 [gmailapp-docs]: https://developers.google.com/apps-script/reference/gmail
 [custommenu-docs]: https://developers.google.com/apps-script/guides/menus
 [sample-sheet-url]: https://docs.google.com/spreadsheets/d/1rObN-HNAqrbLVEnecrtt2BOZAfcAbXrDmGSktfvY_eI/edit?usp=sharing
