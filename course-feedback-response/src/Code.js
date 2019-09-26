@@ -47,8 +47,8 @@ function createEmailBody(responses) {
   // parse form response data
   var name = responses.Name[0].trim();
   var industry = responses['What industry do you work in?'][0];
-  var source = responses['How did you find out about product XYZ?'][0];
-  var rating = responses['On a scale of 1 - 5 how would you rate this product?'][0];
+  var source = responses['How did you find out about this course?'][0];
+  var rating = responses['On a scale of 1 - 5 how would you rate this course?'][0];
   var productFeedback = responses['What could be different to make it a 5 rating?'][0];
   var otherFeedback = responses['Any other feedback?'][0];
 
@@ -86,7 +86,7 @@ function createDraft(timestamp, email, emailBody) {
   Logger.log('draft email create process started');
 
   // create subject line
-  var subjectLine = 'Thanks for your product feedback! ' + timestamp;
+  var subjectLine = 'Thanks for your course feedback! ' + timestamp;
 
   // create draft email
   GmailApp.createDraft(
