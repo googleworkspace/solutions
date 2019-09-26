@@ -1,19 +1,19 @@
 ---
-title: Automatically Create Draft Gmail Replies To Form Responses
-description: Use Apps Script to quickly create draft email replies to Google Form Responses.
+title: Respond to feedback from students in a course
+description: Use Apps Script to quickly create draft email replies to course feedback via Google Forms.
 labels: Apps Script, Sheets, Forms, Gmail
 material_icon: email
 create_time: 2019-09-26
 update_time: 2019-09-26
 ---
 
-# Automatically Create Draft Gmail Replies To Form Responses
+# Respond to feedback from students in a course
 
-_Create draft replies to your product survey in Gmail, including feedback._
+_Automatically Create Draft Gmail Replies To Course Feedback via Google Forms._
 
 Contributed by Ben Collins, find me at [benlcollins.com][benlcollins-link]
 
-Quickly respond to large volumes of Form Responses by having Apps Script generate draft email replies ready for sending. The draft replies include the form responses, which can be reviewed inside the email. A generic thank you message is created and additional personal feedback can be added before hitting send.
+Quickly respond to course feedback via Google Forms by having Apps Script generate draft email replies ready for sending. The draft replies include the form responses, which can be reviewed inside the email. A generic thank you message is created and additional personal feedback can be added before hitting send.
 
 ![Generate draft Gmail replies to Google Form Responses automatically][solution-gif]
 
@@ -37,7 +37,7 @@ Quickly respond to large volumes of Form Responses by having Apps Script generat
 
 Share the form to accept form responses from others.
 
-Modify the questions in your Google Form to suit your business need.
+Modify the questions in your Google Form to suit your scenario.
 
 Modify the HTML code in the `createEmailBody` function to match the questions in your Google Form.
 
