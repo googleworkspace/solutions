@@ -57,18 +57,18 @@ function createEmailBody(responses) {
   
   // create email body
   var htmlBody = 'Hi ' + name + ',<br><br>' +
-    'Thanks for responding to our product feedback questionnaire.<br><br>' +
-      'It\'s really useful to us to help improve this product.<br><br>' +
+    'Thanks for responding to our course feedback questionnaire.<br><br>' +
+      'It\'s really useful to us to help improve this course.<br><br>' +
         'Have a great day!<br><br>' +
           'Thanks,<br>' +
-            'Product Team<br><br>' +
+            'Course Team<br><br>' +
               '****************************************************************<br><br>' +
                 '<i>Your feedback:<br><br>' +
                   'What industry do you work in?<br><br>' +
                     industry + '<br><br>' +
-                      'How did you find out about product XYZ?<br><br>' +
+                      'How did you find out about this course?<br><br>' +
                         source + '<br><br>' +
-                          'On a scale of 1 - 5 how would you rate this product?<br><br>' +
+                          'On a scale of 1 - 5 how would you rate this course?<br><br>' +
                             rating + '<br><br>' +
                               'What could be different to make it a 5 rating?<br><br>' +
                                 productFeedback + '<br><br>' +
