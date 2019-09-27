@@ -1,0 +1,19 @@
+{
+  "name": "gsuite-solutions",
+  "version": "1.0.0",
+  "description": "G Suite solutions gallery",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsuitedevs/solutions.git"
+  },
+  "keywords": [
+    "solution",
+    "appsscript"
+  ],
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@google/clasp": "^2.3.0",
+    "eslint": "^6.4.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
