@@ -26,7 +26,7 @@ data is structured for further processing. Use the dashboard or write a simple q
 in other time sheets.
 
 
-![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/calendar-sheet-timesheet/calendar-to-sheet-screenshot.png)
+![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/calendar-timesheet/calendar-to-sheet-screenshot.png)
 
 ## Technology highlights
 
