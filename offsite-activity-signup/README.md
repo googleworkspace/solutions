@@ -27,11 +27,11 @@ assign the activities to best match their preferences, activity capacities, and 
 1. Click on custom menu item **Activities** > **Create Form**.
 1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice
    and continue.
-1. Click on custom menu item **Activities > Generate test data** to generate sample responses.
+1. Click on custom menu item **Activities** > **Generate test data** to generate sample responses.
 1. Click **Form** > **Go to live form**.
 1. Fill out the form and submit your own response.
 1. Return to the sheet.
-1. Click on custom menu item **Activities > Assign activities**.
+1. Click on custom menu item **Activities** > **Assign activities**.
 1. Two new sheets will appear with the activity assignments. View them.
 
 ## Next steps
