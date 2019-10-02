@@ -7,10 +7,6 @@ create_time: 2019-09-08
 update_time: 2019-09-08
 ---
 
-# Record time and activities in Calendar and Sheets
-
-_Create calender events for your activities, and synchronise to your timesheet in sheets for reporting._
-
 Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
 
 Keeping track of the time spent on project for customers can be a challenge. Not all time writing
