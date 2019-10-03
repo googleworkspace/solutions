@@ -7,10 +7,6 @@ create_time: 2019-09-08
 update_time: 2019-09-08
 ---
 
-# Record time and activities in Calendar and Sheets
-
-_Create calender events for your activities, and synchronise to your timesheet in sheets for reporting._
-
 Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
 
 Keeping track of the time spent on project for customers can be a challenge. Not all time writing
@@ -54,7 +50,7 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/calendar-sheet-timesheet
+[github]: https://github.com/gsuitedevs/solutions/blob/master/calendar-timesheet
 [create-calendar]:[https://support.google.com/calendar/answer/37095]
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
 [calendarapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/calendar-app
