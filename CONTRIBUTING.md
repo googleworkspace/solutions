@@ -46,7 +46,7 @@ Once you have approval from one of the repo owners, proceed to the next step.
 
 ## Step 2
 
-Implement your solution and use the [template directory][template_directorhy] to structure your
+Implement your solution and use the [template directory][template_directory] to structure your
 code sample. If your solution involves a spreadsheet, document or presentation, please include
 sample data in the data directory (see [example][data_example]). You must fill in the 
 [README.md][template_readme] with an image or gif for us to surface on the gallery page. 
