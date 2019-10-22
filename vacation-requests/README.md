@@ -24,6 +24,7 @@ vacation, and have dealt with all other requests appropriately and with the simp
 click of a button.
 
 ![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/vacation-requests/VacationRequestsRecording.gif)
+
 [apps-script]: https://developers.google.com/apps-script
 
 ## Technology highlights
