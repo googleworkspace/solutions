@@ -27,7 +27,7 @@ Simplify the process of producing visually rich mail merges using Gmail and comb
 
 3. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
 
-4. Click on custom menu item **Mail Merge > Send Emails**.
+4. In the copied spreadsheet, click on custom menu item **Mail Merge > Send Emails**.
 
 5. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
 
