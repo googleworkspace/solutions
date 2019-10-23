@@ -23,17 +23,17 @@ Simplify the process of producing visually rich mail merges using Gmail and comb
 
 1. Create a copy of the sample [Gmail/Sheets Mail Merge spreadsheet](https://docs.google.com/spreadsheets/d/1EfjLuYGab8Xt8wCn4IokBIG0_W4tBtiU4vxl3Y7FPsA/copy).
 
-2. Update the **Recipients** column with email addresses you would like to use in the mail merge
+1. Update the **Recipients** column with email addresses you would like to use in the mail merge
 
-3. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
+1. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
 
-4. In the copied spreadsheet, click on custom menu item **Mail Merge > Send Emails**.
+1. In the copied spreadsheet, click on custom menu item **Mail Merge > Send Emails**.
 
-5. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
+1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
 
-6. When prompted enter or copy/paste the subject line used in your draft Gmail message and click **OK**
+1. When prompted enter or copy/paste the subject line used in your draft Gmail message and click **OK**
 
-7. The **Email Sent** column will update with the message status.
+1. The **Email Sent** column will update with the message status.
 
 ## Next steps
 
