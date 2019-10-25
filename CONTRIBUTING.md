@@ -67,5 +67,5 @@ solution code, we will file an issue against you in this repo. All issues assign
 be addressed within two weeks.
 
 We reserve the right to edit or remove solutions in the gallery if they become outdated, lack of
-maintenance, or another concernt. If your solution is removed, you are welcome to resubmit an 
+maintenance, or another concern. If your solution is removed, you are welcome to resubmit an 
 updated version at a later time.
