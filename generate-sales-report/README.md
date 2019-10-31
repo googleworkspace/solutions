@@ -8,20 +8,19 @@ _Bring sales data from your data warehouse directly into
 Last updated: November, 2019
 
 Annual and quarterly reports are a standard part of business 
-for many enterprises. But automation can help eliminate the 
+for many enterprises. Luckily, automation can help eliminate the 
 repetition inherent in these periodic obligations. 
 If you find yourself needing to analyze and present findings 
 from large sets of stored data, consider using automation 
 to help streamline your reporting. 
 
 This solution creates a tool that connects to sales data in 
-BigQuery, an analytics data warehouse, from directly within 
+[BigQuery][bigquery], an analytics data warehouse, from directly within 
 Google Sheets. A configuration sheet allows a user to provide 
-parameters for the report, such as the Account Name and 
-Region. With the click of a button, a customized report
+parameters for the report, such as the _Account Name_ and 
+_Region_. With the click of a button, a customized report
 with the latest sales data is automatically created in just 
 a matter of seconds! 
-
 
 ![summary](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/generate-sales-report/demo.gif)
 
@@ -51,7 +50,6 @@ that you can use to test this solution.
 or Education Account credentials. 
 1. In the [GCP Console][console], select or create a new GCP project.
 
-
 ### Create a templatized slide deck
 
 1. Make a copy of the template slide deck [here][slide-deck].
@@ -68,11 +66,10 @@ be derived from the URL: `https://docs.google.com/presentation/d/`_**`slideId`**
 the quotes.
 1. Save the changes by navigating to **File > Save**.
 
-
 ### Generate a new report
 
 1. Navigate to the Generator tab of your spreadsheet.
-1. Choose an Account Name and Region in drop-down cells.
+1. Choose an _Account Name_ and _Region_ in drop-down cells.
 1. Navigate to the Data Results tab and click **Refresh** 
 in the bottom left-hand corner of the spreadsheet grid.   
 1. Return to the Generator tab and click on the large 
@@ -85,7 +82,6 @@ initiate the creation of the report.
 [Google Drive][drive] and click on Recent in the 
 left-side navigation bar. Your newly minted report 
 will be at the top of the list!
-
 
 ## Next steps
 
