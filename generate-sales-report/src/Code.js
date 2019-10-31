@@ -16,8 +16,8 @@
  */
 
 // Default values
-var ACCOUNT_NAME = 'Acme';
-var REGION = 'Midwest';
+var accountName = 'Acme';
+var region = 'Midwest';
 
 /**
  * Creates a slide deck of sales opportunity data from the spreadsheet.
@@ -27,8 +27,8 @@ function generateReport() {
   var sheet = spreadsheet.getSheetByName('Data Results');
   var dataRange = sheet.getDataRange();
   var numRows = dataRange.getNumRows();
-  ACCOUNT_NAME = spreadsheet.getRangeByName('AccountName').getValue();
-  REGION = spreadsheet.getRangeByName('Region').getValue();
+  accountName = spreadsheet.getRangeByName('AccountName').getValue();
+  region = spreadsheet.getRangeByName('Region').getValue();
   
   var presentationID = copyReportTemplate();
   var presentation = SlidesApp.openById(presentationID);
@@ -49,16 +49,16 @@ function generateReport() {
 }
 
 function introSlide(slide, presentation) {
-  slide.replaceAllText('{{ACCOUNT_NAME}}', ACCOUNT_NAME);
-  slide.replaceAllText('{{REGION}}', REGION);
+  slide.replaceAllText('{{ACCOUNT_NAME}}', accountName);
+  slide.replaceAllText('{{REGION}}', region);
   
   var date = Utilities.formatDate(new Date(), "GMT+1", "yyyy-MM-dd");
   slide.replaceAllText('{{DATE}}', date);
   
   var imageUrl = DEFAULT_LOGO_IMAGE;
-  if (ACCOUNT_NAME == 'Acme') {
+  if (accountName == 'Acme') {
     imageUrl = ACME_IMAGE;
-  } else if (ACCOUNT_NAME == 'Uniket') {
+  } else if (accountName == 'Uniket') {
     imageUrl = UNIKET_IMAGE;
   } else {
     imageUrl = GLOBAL_MEDIA_IMAGE;
@@ -205,15 +205,15 @@ function leadsSlide(slide, sheet, presentation, numRows) {
   slide.replaceAllText('{{LEADS}}', leads);
   
   var imageUrl = DEFAULT_REGIONAL_IMAGE;
-  if (REGION == 'Midwest') {
+  if (region == 'Midwest') {
     imageUrl = MIDWEST_IMAGE;
-  } else if (REGION == 'Northeast') {
+  } else if (region == 'Northeast') {
     imageUrl = NORTHEAST_IMAGE;
-  } else if (REGION == 'Southwest') {
+  } else if (region == 'Southwest') {
     imageUrl = SOUTHWEST_IMAGE;
-  } else if (REGION == 'West') {
+  } else if (region == 'West') {
     imageUrl = WEST_IMAGE;
-  } else if (REGION == 'Southeast') {
+  } else if (region == 'Southeast') {
     imageUrl = SOUTHEAST_IMAGE;
   }
   
@@ -234,10 +234,9 @@ function leadsSlide(slide, sheet, presentation, numRows) {
 
 function copyReportTemplate() {
   var date = Utilities.formatDate(new Date(), "GMT+1", "MM-yyyy");
-  var title = ACCOUNT_NAME + ' ' + REGION + '-' + date;
+  var title = accountName + ' ' + region + '-' + date;
   var template = DriveApp.getFileById(REPORT_SLIDES_TEMPLATE_ID);
-  var driveResponse = template.makeCopy(title); 
-  Logger.log(driveResponse.getId());
+  var driveResponse = template.makeCopy(title);
   return driveResponse.getId();
 }
 
