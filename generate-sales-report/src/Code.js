@@ -16,8 +16,8 @@
  */
 
 // Default values
-var accountName = 'Acme';
-var region = 'Midwest';
+var ACCOUNT_NAME = 'Acme';
+var REGION = 'Midwest';
 
 /**
  * Creates a slide deck of sales opportunity data from the spreadsheet.
@@ -27,38 +27,38 @@ function generateReport() {
   var sheet = spreadsheet.getSheetByName('Data Results');
   var dataRange = sheet.getDataRange();
   var numRows = dataRange.getNumRows();
-  accountName = spreadsheet.getRangeByName('AccountName').getValue();
-  region = spreadsheet.getRangeByName('Region').getValue();
+  ACCOUNT_NAME = spreadsheet.getRangeByName('AccountName').getValue();
+  REGION = spreadsheet.getRangeByName('Region').getValue();
   
   var presentationID = copyReportTemplate();
   var presentation = SlidesApp.openById(presentationID);
   
   var slides = presentation.getSlides();
-  introSlide(slides[0], presentation);
-  leadsSlide(slides[1], sheet, presentation, numRows);
+  introSlide_(slides[0], presentation);
+  leadsSlide_(slides[1], sheet, presentation, numRows);
   
   // Create a charts sheet to delete later
   var tempSheet = spreadsheet.insertSheet('Charts Sheet', spreadsheet.getSheets().length);
-  stageSlide(slides[2], presentation, sheet, tempSheet, numRows);
-  businessSlide(slides[3], presentation, sheet, tempSheet, numRows);
-  topSlide(slides[4], sheet);
-  nearSlide(slides[5], sheet);
-  needsSlide(slides[6], sheet);
+  stageSlide_(slides[2], presentation, sheet, tempSheet, numRows);
+  businessSlide_(slides[3], presentation, sheet, tempSheet, numRows);
+  topSlide_(slides[4], sheet);
+  nearSlide_(slides[5], sheet);
+  needsSlide_(slides[6], sheet);
 
   spreadsheet.deleteSheet(tempSheet);
 }
 
-function introSlide(slide, presentation) {
-  slide.replaceAllText('{{ACCOUNT_NAME}}', accountName);
-  slide.replaceAllText('{{REGION}}', region);
+function introSlide_(slide, presentation) {
+  slide.replaceAllText('{{ACCOUNT_NAME}}', ACCOUNT_NAME);
+  slide.replaceAllText('{{REGION}}', REGION);
   
   var date = Utilities.formatDate(new Date(), "GMT+1", "yyyy-MM-dd");
   slide.replaceAllText('{{DATE}}', date);
   
   var imageUrl = DEFAULT_LOGO_IMAGE;
-  if (accountName == 'Acme') {
+  if (ACCOUNT_NAME == 'Acme') {
     imageUrl = ACME_IMAGE;
-  } else if (accountName == 'Uniket') {
+  } else if (ACCOUNT_NAME == 'Uniket') {
     imageUrl = UNIKET_IMAGE;
   } else {
     imageUrl = GLOBAL_MEDIA_IMAGE;
@@ -79,7 +79,7 @@ function introSlide(slide, presentation) {
   image.setLeft(newX).setTop(newY);
 }
 
-function stageSlide(slide, presentation, sheet, chartSheet, numRows) {
+function stageSlide_(slide, presentation, sheet, chartSheet, numRows) {
   var chart = sheet.newChart()
     .setChartType(Charts.ChartType.PIE)
     .addRange(sheet.getRange('F1:F' + numRows))
@@ -99,7 +99,7 @@ function stageSlide(slide, presentation, sheet, chartSheet, numRows) {
   chartImage.setLeft(newX).setTop(newY);
 }
 
-function businessSlide(slide, presentation, sheet, chartSheet, numRows) {
+function businessSlide_(slide, presentation, sheet, chartSheet, numRows) {
   var chart = sheet.newChart()
     .setChartType(Charts.ChartType.COLUMN)
     .addRange(sheet.getRange('H1:H' + numRows))
@@ -119,14 +119,12 @@ function businessSlide(slide, presentation, sheet, chartSheet, numRows) {
   chartImage.setLeft(newX).setTop(newY);
 }
 
-function topSlide(slide, sheet) {
+function topSlide_(slide, sheet) {
   var range = sheet.getDataRange().getValues();
   var won = [];
   for (var i = 1; i < range.length; i++) {
     var row = range[i];
-    console.log('row: %s', row);
     if (row[5] == 'Closed Won') {
-      console.log('WON');
       won.push(row);
     }
   }
@@ -143,12 +141,11 @@ function topSlide(slide, sheet) {
   }
 }
 
-function nearSlide(slide, sheet) {
+function nearSlide_(slide, sheet) {
   var range = sheet.getDataRange().getValues();
   var near = [];
   for (var i = 1; i < range.length; i++) {
     var row = range[i];
-    console.log('row: %s', row);
     if ((row[5] == 'Qualification' || row[5] == 'Needs Analysis' 
          || row[5] == 'Negotiation') && row[6] > .5) {
       near.push(row);
@@ -167,15 +164,13 @@ function nearSlide(slide, sheet) {
   }
 }
 
-function needsSlide(slide, sheet) {
+function needsSlide_(slide, sheet) {
   var range = sheet.getDataRange().getValues();
   var needs = [];
   for (var i = 1; i < range.length; i++) {
     var row = range[i];
-    console.log('row: %s', row);
     if ((row[5] == 'Qualification' || row[5] == 'Needs Analysis' 
         || row[5] == 'Negotiation') && row[6] <.5) {
-      console.log('WON');
       needs.push(row);
     }
   }
@@ -192,11 +187,9 @@ function needsSlide(slide, sheet) {
   }
 }
 
-function leadsSlide(slide, sheet, presentation, numRows) {
+function leadsSlide_(slide, sheet, presentation, numRows) {
   var names = sheet.getRange('J2:J' + numRows).getValues();
-  names = removeDupes(names);
-  console.log('names: %s', names);
-  console.log('REMOVED DUPES: %s', removeDupes(names));
+  names = removeDupes_(names);
   // Format the string of Owners
   var leads = names[0];
   for (var i = 1; i < names.length; i++) {
@@ -205,15 +198,15 @@ function leadsSlide(slide, sheet, presentation, numRows) {
   slide.replaceAllText('{{LEADS}}', leads);
   
   var imageUrl = DEFAULT_REGIONAL_IMAGE;
-  if (region == 'Midwest') {
+  if (REGION == 'Midwest') {
     imageUrl = MIDWEST_IMAGE;
-  } else if (region == 'Northeast') {
+  } else if (REGION == 'Northeast') {
     imageUrl = NORTHEAST_IMAGE;
-  } else if (region == 'Southwest') {
+  } else if (REGION == 'Southwest') {
     imageUrl = SOUTHWEST_IMAGE;
-  } else if (region == 'West') {
+  } else if (REGION == 'West') {
     imageUrl = WEST_IMAGE;
-  } else if (region == 'Southeast') {
+  } else if (REGION == 'Southeast') {
     imageUrl = SOUTHEAST_IMAGE;
   }
   
@@ -234,18 +227,16 @@ function leadsSlide(slide, sheet, presentation, numRows) {
 
 function copyReportTemplate() {
   var date = Utilities.formatDate(new Date(), "GMT+1", "MM-yyyy");
-  var title = accountName + ' ' + region + '-' + date;
+  var title = ACCOUNT_NAME + ' ' + REGION + '-' + date;
   var template = DriveApp.getFileById(REPORT_SLIDES_TEMPLATE_ID);
-  var driveResponse = template.makeCopy(title);
+  var driveResponse = template.makeCopy(title); 
   return driveResponse.getId();
 }
 
-function removeDupes(names) {
-  console.log('names[0]: %s', names[0]);
+function removeDupes_(names) {
   names = names.sort();
   var result = [names[0].toString()];
   for each (var name in names) {
-    console.log('result %s', result);
     if (result[result.length-1].toString() != name.toString()) {
       result.push(name);
     }
