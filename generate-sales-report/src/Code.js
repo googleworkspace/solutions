@@ -30,7 +30,7 @@ function generateReport() {
   ACCOUNT_NAME = spreadsheet.getRangeByName('AccountName').getValue();
   REGION = spreadsheet.getRangeByName('Region').getValue();
   
-  var presentationID = copyReportTemplate();
+  var presentationID = copyReportTemplate_();
   var presentation = SlidesApp.openById(presentationID);
   
   var slides = presentation.getSlides();
@@ -46,6 +46,14 @@ function generateReport() {
   needsSlide_(slides[6], sheet);
 
   spreadsheet.deleteSheet(tempSheet);
+}
+
+function copyReportTemplate_() {
+  var date = Utilities.formatDate(new Date(), "GMT+1", "MM-yyyy");
+  var title = ACCOUNT_NAME + ' ' + REGION + '-' + date;
+  var template = DriveApp.getFileById(REPORT_SLIDES_TEMPLATE_ID);
+  var driveResponse = template.makeCopy(title); 
+  return driveResponse.getId();
 }
 
 function introSlide_(slide, presentation) {
@@ -223,14 +231,6 @@ function leadsSlide_(slide, sheet, presentation, numRows) {
   var newX = pageWidth/2.;
   var newY = pageHeight/2. - imgHeight/2.;
   image.setLeft(newX).setTop(newY);
-}
-
-function copyReportTemplate() {
-  var date = Utilities.formatDate(new Date(), "GMT+1", "MM-yyyy");
-  var title = ACCOUNT_NAME + ' ' + REGION + '-' + date;
-  var template = DriveApp.getFileById(REPORT_SLIDES_TEMPLATE_ID);
-  var driveResponse = template.makeCopy(title); 
-  return driveResponse.getId();
 }
 
 function removeDupes_(names) {
