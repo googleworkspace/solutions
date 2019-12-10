@@ -1,11 +1,11 @@
-# Generate custom sales reports automatically
-
-_Bring sales data from your data warehouse directly into
- Google Sheets, and then automatically generate presentations 
- to summarize wins and opportunities for particular regions 
- and customers._
-
-Last updated: November, 2019
+---
+title: Generate custom sales reports automatically
+description: Connect to your sales data warehouse and automatically generate presentations for particular customers.
+labels: Apps Script, Sheets, Slides, BigQuery
+material_icon: pie_chart
+create_time: 2019-12-10
+update_time: 2019-12-10
+---
 
 Annual and quarterly reports are a standard part of business 
 for many enterprises. Luckily, automation can help eliminate the 
