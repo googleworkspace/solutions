@@ -23,6 +23,8 @@ the group, and be granted access to the resources the group is permitted.
 For larger teams, you can optionally enable notficiations in the spreadsheet
 to receive an email everytime a new form submission occurs.
 
+![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/group-membership-form/demo.gif)
+
 ## Technology highlights
 
 - The _onFormSubmit_ installable trigger is used to run the script upon
