@@ -16,7 +16,7 @@ address, it makes it easy to help new hires get access to what they need to be
 productive in one step.
 
 If you have permissions to add users to a group, you
-can use this script to distribute the responsability to other members of your
+can use this script to distribute the responsibility to other members of your
 team to fill out the form as you, and have the new person's email added to
 the group, and be granted access to the resources the group is permitted.
 
