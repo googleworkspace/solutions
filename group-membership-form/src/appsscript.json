@@ -1,0 +1,20 @@
+{
+  "timeZone": "America/Los_Angeles",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "AdminDirectory",
+      "serviceId": "admin",
+      "version": "directory_v1"
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/documents",
+    "https://www.googleapis.com/auth/drive.readonly",
+    "https://www.googleapis.com/auth/groups",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/script.scriptapp",
+    "https://www.googleapis.com/auth/script.send_mail",
+    "https://www.googleapis.com/auth/spreadsheets.currentonly"
+  ]
+}
