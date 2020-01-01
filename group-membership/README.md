@@ -1,85 +1,108 @@
 ---
-title: Give external users access to resources
-description: Scale access to external vendors and customers via a Google Sheet 
-and a Google Group.
-labels: Apps Script, Sheets, Groups for Business
-material_icon: assignment turned in
+title: Scale access to external vendors and partners
+description: Share documents, events, and communications with users outside 
+your domain
+labels:  Sheets, Groups for Business, Apps Script
+material_icon: group_work
 create_time: 2019-08-30
-update_time: 2019-09-17
+update_time: 2019-12-27
 ---
-
 Contributed by Tech and Eco, follow me on
 [Twitter](https://twitter.com/TechandEco)!
 
-You may manage multiple Google Groups for your organization and wish to
-streamline this process, especially if you have to manually send an email upon
-granting users membership. The following Google Spreadsheet contains a script
-that helps add the email address of a user to a G Suite Google Group,
-and then sends them an email confirming they have been added.
+Use a Google Group to work cross-functionally with vendors, partners,
+customers, and volunteers outside of your domain, and scale access
+to work assignments and leverage security controls. You can add an external
+user's Google email (this can be their own G Suite account, a G Suite user
+account you created for them within your domain, or a free Gmail account) to
+your G Suite Google group (not available for consumer Google Groups) via a
+Google Sheet to manage users in bulk and keep track of the onboarding history.
+
+Top 6 benefits of this solution:
+
+ 1. Adds a new external user to a G Suite Google Group you create
+   (example: externalteam@mydomain.com) once, and it allows users to open all
+   resources that are shared with that group moving forward (calendar, files,
+   training site, dashboards (built on DataStudio), etc.
+
+ 1. When adding one or more users to your Google Group, users can receive a
+    welcome email with the links they can access. Creating a Google Site is
+    optional but recommended to centralize information in a
+    beautiful website interface.
+
+ 1. The template of the welcome email is composed in a Google Doc. You
+    can use seperate Google Docs for different recipients to customize
+    messaging.
+
+ 1. Capture the email addresses of users in your Sheet, and add them in bulk to
+    the desired Google Groups at a later time by changing the column "Allowed"
+    to "yes" for each row of users.
+
+ 1. You or members of your team, can add users to different Google Groups as
+    long as the person who made a copy of this sheet has
+    _manager_ or _owner_ rights in each of those Google Groups.
+
+ 1. Removing a user from a Group (via the Google Group's interface) will revoke
+    their access to all resources. You can also limit documents to be available
+    to that group for a
+    [specific period of time](https://support.google.com/docs/answer/2494893?co=GENIE.Platform%3DDesktop&hl=en).
+
+![Users are added to a Google Group via a Google Sheet](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/group-membership/demo.gif)
 
 ## Technology highlights
 
-* Using the `onEdit` _simple trigger_ in a Google Sheet, you can grant access
-  to multiple resources from a spreadsheet.
-  To learn more [click here](https://developers.google.com/apps-script/guides/triggers/#onedite)
-* Manage group members using the
-  [Admin Directory](https://developers.google.com/admin-sdk/directory/v1/guides/manage-group-members)
-* A _Google Document_ is used as the email's _template_.
+- Install a trigger with a click so the script is setup to run everytime the
+Sheet is edited. To learn more visit
+ [this page](https://developers.google.com/apps-script/guides/triggers/installable))
+- Add members to a _Google Group for Business_ using the
+ [Admin Directory API](https://developers.google.com/apps-script/advanced/admin-sdk-directory)
 
 ## Try it
 
-1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1kNuOc_evfqbu8dVJIA5N4r27d_Ubnr915eln4cbq2cU/copy) from your G Suite account.
-1. From your spreadsheet, click on **Tools > Script Editor**. This will bring
-   you to the _Apps Script editor_.
-1. Ensure the **Admin Directory API** is enabled via
-   **Resources > Advanced Google Services**.
-1. Now run the script by clicking the **Select function** drop down > choose            **"installTrigger."** Then click the Run button (►). This will create a
-   trigger for your sheet automatically.
+1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1KJKc2DcCr2bHLCq5Judvvwuen3k3ifFY8wtQWKfHDXU/copy)     from your _G Suite_ account.
 
-    > _Caution_: If you run this script _more than once_, it will generate
-    > _multiple triggers_ causing duplicate emails. Ensure you run the script
-    > once and that there aren't multiple triggers on the triggers page.
-    > You can visit the triggers page by clicking the _trigger icon_ (which
-    > looks like a clock from the script's page.
+1. Enter for testing purposes a _Gmail address you own_ and a Google Group you
+   have _rights to manage_ its membership.
+
+  > _Note_: The membership status will be populated by the words
+  **Newly added** if the
+  > user was added to the group, or **Already added** if it recognizes the user
+  > is already a member of that group.
+
+1. Enter “yes” in the “Allowed” column.
+1. Let’s visit the code now by clicking on **Tools > Script Editor**.
+1. Ensure the _Admin Directory API_ is enabled via
+  **Resources > Advanced Google Services**.
+1. Create a trigger by clicking the clock-like icon and choosing the
+   “onEditInstallableTrigger” function from the drop-down to run the event on
+   “onOpen”
+1. Return to the script page and _run the script_ by clicking the
+   **"Select function"** drop down >
+   choose **"onEditInstallableTrigger."** Then click the Run button (►).
+   This will create a trigger for your sheet automatically.
 
 1. When prompted, click the **Review permissions** and click **Allow** so the
-   script can email on your behalf.
+  script can email on your behalf.
 
-   > _Important_: If you get the warning **This app isn't verified**, continue
-   > with the verification process by clicking **Advanced** and then scroll
-   > down and click the grey text at the bottom that says
-   > **Go to (Copy this external-access to a Google Group via onEdit Sheet**
+  > _Note_: If you get a warning that **This app isn't verified** continue
+  > with the verification process by clicking **Advanced** and then scroll
+  > down and click the grey text at the bottom that begins with **Go to...**
 
-1. After granting permissions, return to your spreadsheet and _type an email
-   address_ in the `Email` column and the _group address_ in the `Google Group`
-   column, and the word `yes` in the `Allowed` column.
+1. Check your inbox and Google Group’s interface under it’s _members_ section.
 
-   > _Note_: if you do not populate the column `allowed` with the word `yes`,
-   > the script is instructed to _not run_. This is helpful if you wish to
-   > capture requests to join a group in the sheet but not add them the users
-   > yet until you populate the **allowed** column.
+## _[optional]_ Customize your messaging
 
-1. To _test_, enter _your own email_ and a Google Group that you already
-   are a member of and have _manager rights_ to adding members in order to
-   receive the confirmation email.
+- If you wish to change the subject lines of your emails, replace
+ the text in the “Email subject” column.
 
-## Optionally customize your email template
-
-1. _[optional]_ You can modify the font, color, and images of your email
-   template by [making a copy of this doc](https://docs.google.com/document/d/1-ajkkIP8gUWqMcnpXhkqwlM_2Y18USLdJ-pFZdDEZ70/copy). Then copy its
-   URL address and replace the one listed in the vairable `addedToGroupDocId`
-   in the sheet's script.
-
-   > _Note_: `{{EMAIL}}` and `{{GOOGLE_GROUP}}` are placeholders in your
-   > template that insert the values from the Google Sheet. In order for
-   > external users to receive the template's format, the Google doc's
-   > permissions must be set to **Viewable by anyone with this link**; and at
-   > least **Viewable by anyone in your organization** to share with anyone 
-   > in your domain.
-
-1. _[optional]_ To modify the _subject line_ of the confirmation email, enter
-   the desired message in the variable `addedToGroupSubject` in the sheet's
-   script.
+- If you wish to change the email template that is sent out, replace the URL
+  in the “Email template” column with your preferred Google Doc. If you wish
+  to include any of the column values in the template, enter them as such in
+  the template {{Column_name}} like this: _Welcome, we have added your
+  {{Email}} to this {{Google_Group}} in order give you access to the following
+  resources..._
+  > _Note_: If you encounter any issues with the welcome email, change the
+  > permission levels of the Google Doc templates to more open settings.
 
 ## Next steps
 
