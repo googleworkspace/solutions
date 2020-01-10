@@ -39,7 +39,7 @@ questions and comments shared for the video.
 1. Change the name of the sheet to the full email address where you’d like to
    receive email notifications.
 1. Locate URLs of videos you would like to track and add them in column A below
-   cell A1.
+   cell A1. The URLs must be in format starting with "www.youtube.com/watch?v=".
 
 ### YouTube Advanced Service setup
 
