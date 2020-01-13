@@ -1,7 +1,7 @@
 ---
 title: Create a mail merge using Gmail and Google Sheets
 description: Create and distribute visually rich mail merges with Gmail and Google Sheets.
-labels: Google Sheets, Gmail
+labels: Sheets, Gmail
 material_icon: merge_type
 create_time: 2019-09-13
 update_time: 2019-09-13
@@ -11,7 +11,7 @@ Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.
 
 Simplify the process of producing visually rich mail merges using Gmail and combining it with data from Google Sheets. With this solution you can automatically populate an email template created as a Gmail draft with data from Google Sheets. Merged emails are sent from your Gmail account allowing you to respond to recipient replies.
 
-![Mail merge with Gmail and Google Sheets](mailmerge.gif)
+![Mail merge with Gmail and Google Sheets](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/mail-merge/mailmerge.gif)
 
 ## Technology highlights
 
@@ -23,17 +23,17 @@ Simplify the process of producing visually rich mail merges using Gmail and comb
 
 1. Create a copy of the sample [Gmail/Sheets Mail Merge spreadsheet](https://docs.google.com/spreadsheets/d/1EfjLuYGab8Xt8wCn4IokBIG0_W4tBtiU4vxl3Y7FPsA/copy).
 
-2. Update the **Recipients** column with email addresses you would like to use in the mail merge
+1. Update the **Recipients** column with email addresses you would like to use in the mail merge
 
-3. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
+1. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
 
-4. Click on custom menu item **Mail Merge > Send Emails**.
+1. In the copied spreadsheet, click on custom menu item **Mail Merge > Send Emails**.
 
-5. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
+1. A dialog box will appear and tell you that the script requires authorization. Read the authorization notice and continue.
 
-6. When prompted enter or copy/paste the subject line used in your draft Gmail message and click **OK**
+1. When prompted enter or copy/paste the subject line used in your draft Gmail message and click **OK**
 
-7. The **Email Sent** column will update with the message status.
+1. The **Email Sent** column will update with the message status.
 
 ## Next steps
 
