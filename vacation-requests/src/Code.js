@@ -42,7 +42,7 @@ var VACATION_REASONS = [
 ];
 
 var REJECTION_EMAIL_SUBJECT = 'ERR: Vacation Time Request NOT Approved';
-var EVENT_TITLE = "VACATION FOR ";
+var EVENT_TITLE = 'VACATION FOR ';
 
 /** TODO: Hard code your manager's email */
 var MANAGER_EMAIL = 'your-manager-email';
@@ -80,18 +80,18 @@ function createNewColumns() {
   // Sets drop-down menu cells in approval column.
   var approvalColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.APPROVAL,
       numRows, 1);
-  var dropdownValues = [APPROVED_DROPDOWN.APPROVED, APPROVED_DROPDOWN.NOT_APPROVED, 
-                        APPROVED_DROPDOWN.IN_PROGRESS];
+  var dropdownValues = [APPROVED_DROPDOWN.APPROVED, APPROVED_DROPDOWN.NOT_APPROVED,
+    APPROVED_DROPDOWN.IN_PROGRESS];
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
       .build();
   approvalColumnRange.setDataValidation(rule);
   approvalColumnRange.setValue(APPROVED_DROPDOWN.IN_PROGRESS);
-  
+
   // Calls helper function to repeat the above code but for the NOTIFIED column.
   createNotifiedColumn();
 }
 
-/** 
+/**
  * Adds a column to allow managers to view which employees
  * have or have not yet been notified. The value of the cells
  * is set to 'NOT NOTIFIED' on default & changed accordingly.
@@ -103,15 +103,15 @@ function createNotifiedColumn() {
   var frozenRows = sheet.getFrozenRows();
   var startRow = frozenRows + 1;
   var numRows = lastRow - frozenRows;
-  
+
   // Sets up column properties.
-  sheet.insertColumnAfter(lastCol); 
+  sheet.insertColumnAfter(lastCol);
   sheet.getRange(frozenRows, COLUMN_NUMBER.NOTIFIED)
       .setValue('NOTIFIED STATUS');
 
   // Sets column's cells to be drop-down menus.
-  var notifiedColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.NOTIFIED, 
-                                           numRows, 1);
+  var notifiedColumnRange = sheet.getRange(startRow, COLUMN_NUMBER.NOTIFIED,
+      numRows, 1);
   var dropdownValues = [NOTIFIED_DROPDOWN.NOTIFIED, NOTIFIED_DROPDOWN.NOT_NOTIFIED];
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(dropdownValues)
       .build();
@@ -128,18 +128,18 @@ function createNotifiedColumn() {
  * @param {date} endDate Vacation request end date.
 **/
 function createCalEvent(employeeName, employeeEmail,
-                       startDate, endDate) { 
-    var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
-  
-    // Creates a calendar event.
-    var descriptionText = Utilities.formatString('Your vacation time from %s to %s has been approved. Enjoy!',
-                                            startDate, endDate);
-    var event = managerCal.createEvent(EVENT_TITLE + employeeName,
-                                       startDate, endDate, { 
-                                       description: descriptionText, 
-                                       guests: employeeEmail,
-                                       sendInvites: true,
-                                       });
+    startDate, endDate) {
+  var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
+
+  // Creates a calendar event.
+  var descriptionText = Utilities.formatString('Your vacation time from %s to %s has been approved. Enjoy!',
+      startDate, endDate);
+  var event = managerCal.createEvent(EVENT_TITLE + employeeName,
+      startDate, endDate, {
+        description: descriptionText,
+        guests: employeeEmail,
+        sendInvites: true,
+      });
 }
 
 /**
@@ -150,11 +150,11 @@ function createCalEvent(employeeName, employeeEmail,
 function sendRejectionEmail(employeeEmail, startDate, endDate) {
   // Craft specific e mail body.
   var emailBody = Utilities.formatString('Your vacation time request from %s to %s has NOT been approved.',
-                                         startDate, endDate);
-    
+      startDate, endDate);
+
   // Send email.
-  MailApp.sendEmail(employeeEmail, REJECTION_EMAIL_SUBJECT, 
-                        emailBody);
+  MailApp.sendEmail(employeeEmail, REJECTION_EMAIL_SUBJECT,
+      emailBody);
 }
 
 /**
@@ -170,29 +170,29 @@ function sendRejectionEmail(employeeEmail, startDate, endDate) {
  *
  * @return {String} Value of whether or not employee needs to be notified.
  */
-function approvalCase(employeeEmail, employeeName, 
-                       approvalStatus, startDate, endDate) {
-    var sheet = SpreadsheetApp.getActiveSheet();
-    var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
-    
-    // Checks approval status.
-    if (approvalStatus == APPROVED_DROPDOWN.NOT_APPROVED) {
-      // Sends email of disapproval.
-      sendRejectionEmail(employeeEmail, startDate, endDate);
-      return 'NOTIFY';
-    } else if (approvalStatus == APPROVED_DROPDOWN.APPROVED) {
-      // Creates calendar event.
-      createCalEvent(employeeName, employeeEmail,
-                      startDate, endDate);
-      return 'NOTIFY';
-    } else if (approvalStatus == APPROVED_DROPDOWN.IN_PROGRESS) {
-      return 'DO NOT NOTIFY';
-    }
+function approvalCase(employeeEmail, employeeName,
+    approvalStatus, startDate, endDate) {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
+
+  // Checks approval status.
+  if (approvalStatus == APPROVED_DROPDOWN.NOT_APPROVED) {
+    // Sends email of disapproval.
+    sendRejectionEmail(employeeEmail, startDate, endDate);
+    return 'NOTIFY';
+  } else if (approvalStatus == APPROVED_DROPDOWN.APPROVED) {
+    // Creates calendar event.
+    createCalEvent(employeeName, employeeEmail,
+        startDate, endDate);
+    return 'NOTIFY';
+  } else if (approvalStatus == APPROVED_DROPDOWN.IN_PROGRESS) {
+    return 'DO NOT NOTIFY';
+  }
 }
 
 /**
  * Checks the notification status of each employee and, if not notified,
- * notifies them of their status accordingly, through use of helper 
+ * notifies them of their status accordingly, through use of helper
  * functions.
  */
 function notifyEmployees() {
@@ -203,43 +203,43 @@ function notifyEmployees() {
   var startRow = frozenRows + 1;
   var numRows = lastRow - startRow;
   var numCols = COLUMN_NUMBER.NOTIFY - COLUMN_NUMBER.EMAIL;
-  
+
   // Go through every employee's information.
   for (var i = 0; i < numRows; i++) {
     var currentStartRow = i + startRow;
-    
+
     // Obtains current employee's values.
     var range = sheet.getRange(currentStartRow, COLUMN_NUMBER.EMAIL,
         1, COLUMN_NUMBER.NOTIFIED - COLUMN_NUMBER.EMAIL + 1);
     var rangeValues = range.getValues();
-    
+
     // Ensures does not notify twice.
     var notifiedStatus = rangeValues[0][COLUMN_NUMBER.NOTIFIED - COLUMN_NUMBER.EMAIL];
     if (notifiedStatus == NOTIFIED_DROPDOWN.NOTIFIED) {
       continue;
     }
-    
+
     // Obtains necessary variables for notification.
     var employeeEmail = rangeValues[0][COLUMN_NUMBER.EMAIL - COLUMN_NUMBER.EMAIL];
-    var employeeName = rangeValues[0][COLUMN_NUMBER.NAME - COLUMN_NUMBER.EMAIL];    
+    var employeeName = rangeValues[0][COLUMN_NUMBER.NAME - COLUMN_NUMBER.EMAIL];
     var startDate = rangeValues[0][COLUMN_NUMBER.START_DATE - COLUMN_NUMBER.EMAIL];
     var endDate = rangeValues[0][COLUMN_NUMBER.END_DATE - COLUMN_NUMBER.EMAIL];
     var approvalStatus = rangeValues[0][COLUMN_NUMBER.APPROVAL - COLUMN_NUMBER.EMAIL];
-    
+
     // Calls helper function to check approval & notify accordingly.
     var notifyKey = approvalCase(employeeEmail, employeeName, approvalStatus,
-                  startDate, endDate);
-    
+        startDate, endDate);
+
     // Set values to 'NOTIFIED'.
-    if (notifyKey == 'NOTIFY'){
+    if (notifyKey == 'NOTIFY') {
       sheet.getRange(currentStartRow, COLUMN_NUMBER.NOTIFIED)
-      .setValue(NOTIFIED_DROPDOWN.NOTIFIED);
+          .setValue(NOTIFIED_DROPDOWN.NOTIFIED);
     }
   }
 }
 
-/** 
- * Set up the Vacation Time Requests form, & link the form's trigger to 
+/**
+ * Set up the Vacation Time Requests form, & link the form's trigger to
  * send manager an email when a new request is submitted.
  */
 function setUpForm() {
@@ -249,7 +249,7 @@ function setUpForm() {
     SpreadsheetApp.getUi().alert(msg);
     return;
   }
-  
+
   // Create the form.
   var form = FormApp.create('Vacation Time Requests')
       .setCollectEmail(true)
@@ -259,12 +259,12 @@ function setUpForm() {
   form.addDateItem().setTitle('Start Date:').setRequired(true);
   form.addDateItem().setTitle('End Date:').setRequired(true);
   form.addListItem().setTitle('Reason:').setChoiceValues(VACATION_REASONS);
- 
+
   // Set up on form submit trigger.
   ScriptApp.newTrigger('onFormSubmit')
       .forForm(form)
       .onFormSubmit()
-      .create(); 
+      .create();
 }
 
 /**
@@ -275,7 +275,7 @@ function setUpForm() {
 function onFormSubmit(event) {
   var response = getResponsesByName(event.response);
   sendFormSubmitEmail(response);
-  
+
   // Load form responses into a new row.
   var row = ['New',
     '',
@@ -306,7 +306,7 @@ function getResponsesByName(response) {
     return obj;
   }, initialValue);
 }
- 
+
 /**
  * Sends email notifying the manager a new vacation time request
  * has been submitted.
@@ -318,7 +318,7 @@ function sendFormSubmitEmail(request) {
   template.request = request;
   template.sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl();
   var msg = template.evaluate();
-  
+
   // Send email to manager.
   MailApp.sendEmail({
     to: MANAGER_EMAIL,

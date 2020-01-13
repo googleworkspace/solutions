@@ -1,0 +1,3 @@
+{
+  "extends": "../configs/appsscript.eslintrc.json"
+}

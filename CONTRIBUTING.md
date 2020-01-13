@@ -46,7 +46,7 @@ Once you have approval from one of the repo owners, proceed to the next step.
 
 ## Step 2
 
-Implement your solution and use the [template directory][template_directorhy] to structure your
+Implement your solution and use the [template directory][template_directory] to structure your
 code sample. If your solution involves a spreadsheet, document or presentation, please include
 sample data in the data directory (see [example][data_example]). You must fill in the 
 [README.md][template_readme] with an image or gif for us to surface on the gallery page. 
@@ -67,5 +67,5 @@ solution code, we will file an issue against you in this repo. All issues assign
 be addressed within two weeks.
 
 We reserve the right to edit or remove solutions in the gallery if they become outdated, lack of
-maintenance, or another concernt. If your solution is removed, you are welcome to resubmit an 
+maintenance, or another concern. If your solution is removed, you are welcome to resubmit an 
 updated version at a later time.
