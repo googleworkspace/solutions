@@ -38,7 +38,7 @@ function onOpen() {
  */
 function sendEmails() {
   var subjectLine = Browser.inputBox("Mail Merge", 
-                                     "Type or ccopy/paste the subject line of the Gmail " +
+                                     "Type or copy/paste the subject line of the Gmail " +
                                      "draft message you would like to mail merge with:",
                                      Browser.Buttons.OK_CANCEL);
                                      
