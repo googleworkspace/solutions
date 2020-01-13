@@ -141,6 +141,9 @@ function fillInTemplateFromObject_(template, data) {
   // Search for all the variables to be replaced, for instance {{Column name}}
   var templateVars = template.match(/{{([^}]+)}}/g);
  
+  // H/T @jackboyce https://github.com/gsuitedevs/solutions/issues/98#issue-545173529
+  if(templateVars == null) return JSON.parse(template);
+ 
   // Replace variables from the template with the actual values from the data object.
   // If no value is available, replace with the empty string.
   for (var i = 0; i < templateVars.length; ++i) {
