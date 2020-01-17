@@ -2,7 +2,7 @@
 title: Scale access to external vendors and partners
 description: Share documents, events, and communications with users outside 
 your domain
-labels:  Sheets, Groups for Business, Apps Script
+labels:  Sheets, Groups, Apps Script
 material_icon: group_work
 create_time: 2019-08-30
 update_time: 2019-12-27
@@ -26,9 +26,9 @@ Top 6 benefits of this solution:
    training site, dashboards (built on DataStudio), etc.
 
  1. When adding one or more users to your Google Group, users can receive a
-    welcome email with the links they can access. Creating a Google Site is
-    optional but recommended to centralize information in a
-    beautiful website interface.
+    welcome email with the links they can access.
+    [Creating a Google Site](https://sites.google.com/new) is optional but
+    recommended to centralize information in a beautiful website interface.
 
  1. The template of the welcome email is composed in a Google Doc. You
     can use seperate Google Docs for different recipients to customize
@@ -59,15 +59,15 @@ Sheet is edited. To learn more visit
 
 ## Try it
 
-1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1KJKc2DcCr2bHLCq5Judvvwuen3k3ifFY8wtQWKfHDXU/copy)     from your _G Suite_ account.
+1. Copy the [External Sustainability Group List](https://docs.google.com/spreadsheets/d/1KJKc2DcCr2bHLCq5Judvvwuen3k3ifFY8wtQWKfHDXU/copy) from your _G Suite_ account.
 
 1. Enter for testing purposes a _Gmail address you own_ and a Google Group you
-   have _rights to manage_ its membership.
+   have _rights to manage_ its membership. You can learn about
+   [group permissions here](https://support.google.com/groups/answer/2464975?hl=en)
 
   > _Note_: The membership status will be populated by the words
-  **Newly added** if the
-  > user was added to the group, or **Already added** if it recognizes the user
-  > is already a member of that group.
+  > **Newly added** if the user was added to the group, or **Already added**
+  > if it recognizes the user is already a member of that group.
 
 1. Enter “yes” in the “Allowed” column.
 1. Let’s visit the code now by clicking on **Tools > Script Editor**.

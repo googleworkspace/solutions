@@ -1,3 +1,10 @@
+var EMAIL = 'Email';
+var GOOGLE_GROUP = 'Google Group';
+var ALLOWED = 'Allowed';
+var EMAIL_TEMPLATE_DOC_URL = 'Email template doc URL';
+var EMAIL_SUBJECT = 'Email subject';
+var STATUS = 'Status';
+
 /**
  * Trigger that runs on edit after being installed via the interface.
  *
@@ -19,16 +26,16 @@ function onEditInstallableTrigger(e) {
 
   // Update the entries Object with the status returned by addToGroup().
   try {
-    entries['Status'] = addToGroup(
-        entries['Email'],
-        entries['Google Group'],
-        entries['Allowed'],
-        entries['Email template doc URL'],
-        entries['Email subject']
+    entries[STATUS] = addToGroup(
+        entries[EMAIL],
+        entries[GOOGLE_GROUP],
+        entries[ALLOWED],
+        entries[EMAIL_TEMPLATE_DOC_URL],
+        entries[EMAIL_SUBJECT]
     );
   } catch (e) {
     // If there's an error, report that as the status.
-    entries['Status'] = e;
+    entries[STATUS] = e;
   }
 
   // Convert the updated entries Object into a row Array.
