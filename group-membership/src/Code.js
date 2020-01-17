@@ -57,7 +57,8 @@ function onEditInstallableTrigger(e) {
  * @param {string} allowed - 'yes' flag to add user to group.
  * @param {string} emailTemplateDocUrl - Google Doc URL that serves as template
  *        of the welcome email sent to a user added to the group.
- * @param {string} emailSubject - subject of welcome email sent to user added to group.
+ * @param {string} emailSubject - subject of welcome email sent to user added
+ *        to group.
  * @return {string} - status if email was sent to a user added in the sheet.
  */
 function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSubject) {
@@ -75,7 +76,7 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
     // Send a confirmation email that the member was now added.
     var docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
     var emailBody = docToHtml(docId);
-    
+
     // Replace the template variables like {{VARIABLE}} with real values.
     emailBody = emailBody.replace('{{EMAIL}}', userEmail);
     emailBody = emailBody.replace('{{GOOGLE_GROUP}}', groupEmail);
