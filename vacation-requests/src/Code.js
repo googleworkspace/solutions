@@ -172,8 +172,6 @@ function sendRejectionEmail(employeeEmail, startDate, endDate) {
  */
 function approvalCase(employeeEmail, employeeName,
     approvalStatus, startDate, endDate) {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var managerCal = CalendarApp.getCalendarById(MANAGER_EMAIL);
 
   // Checks approval status.
   if (approvalStatus == APPROVED_DROPDOWN.NOT_APPROVED) {
@@ -198,11 +196,9 @@ function approvalCase(employeeEmail, employeeName,
 function notifyEmployees() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastRow = sheet.getLastRow();
-  var lastCol = sheet.getLastColumn();
   var frozenRows = sheet.getFrozenRows();
   var startRow = frozenRows + 1;
-  var numRows = lastRow - startRow;
-  var numCols = COLUMN_NUMBER.NOTIFY - COLUMN_NUMBER.EMAIL;
+  var numRows = lastRow - frozenRows;
 
   // Go through every employee's information.
   for (var i = 0; i < numRows; i++) {
