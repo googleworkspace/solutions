@@ -63,7 +63,7 @@ Then create a Google Cloud project to use with it:
 [new_project]: https://console.cloud.google.com/projectcreate
 [billing]: https://cloud.google.com/free/docs/gcp-free-tier
 [consent_screen]: https://console.cloud.google.com/apis/credentials/consent
-[library_gmail]: https://pantheon.corp.google.com/apis/library/gmail
+[library_gmail]: https://console.cloud.google.com/apis/library/gmail
 [project_settings]: https://console.cloud.google.com/iam-admin/settings
 
 Next, setup your script to use the new project and deploy it:
@@ -99,7 +99,7 @@ Then configure the Hangouts Chat API to create your bot:
 1.  After you save your changes, verify that the status on the Hangouts Chat API
     page shows the Bot Status to be **LIVE – available to users**.
 
-[library_chat]: https://pantheon.corp.google.com/apis/library/chat.googleapis.com
+[library_chat]: https://console.cloud.google.com/apis/library/chat.googleapis.com
 
 Finally, test that your bot is working:
 
