@@ -32,6 +32,8 @@ questions and comments shared for the video.
 
 ## Try it
 
+[![Learn more about this solution](https://img.youtube.com/vi/YOZNAQwtbyI/0.jpg)](hhttps://www.youtube.com/watch?v=YOZNAQwtbyI&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=3)
+
 ### Spreadsheet setup
 
 1. Make of copy of the spreadsheet [here](https://docs.google.com/spreadsheets/d/12rQe1ndU_VmmHl0QIqUi-XxQ8lWovjh0xfOHTfxOHoo/copy).
