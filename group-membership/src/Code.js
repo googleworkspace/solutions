@@ -1,9 +1,42 @@
-var EMAIL = 'Email';
-var GOOGLE_GROUP = 'Google Group';
-var ALLOWED = 'Allowed';
-var EMAIL_TEMPLATE_DOC_URL = 'Email template doc URL';
-var EMAIL_SUBJECT = 'Email subject';
-var STATUS = 'Status';
+const EMAIL = 'Email';
+const GOOGLE_GROUP = 'Google Group';
+const ALLOWED = 'Allowed';
+const EMAIL_TEMPLATE_DOC_URL = 'Email template doc URL';
+const EMAIL_SUBJECT = 'Email subject';
+const STATUS = 'Status';
+
+const STATUS_VALUE = {
+  sent: 'Sent',
+  alreadyInGroup: 'Already in group',
+  notSent: 'Not sent',
+  requiredFieldMissing: 'Required field(s) missing: fill out all fields for this row',
+  emptyRow: '',
+};
+
+/**
+ * Installs a trigger in the Spreadsheet to run upon the Sheet being opened.
+ * To learn more about triggers read:
+ * https://developers.google.com/apps-script/guides/triggers
+ */
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('Install trigger')
+    .addItem('onEdit', 'installOnEditTrigger')
+    .addToUi();
+}
+
+/**
+ * Installs a trigger in the Spreadsheet that is scheduled
+ * to run upon when values in the Sheet are edited.
+ * To learn more about triggers read:
+ * https://developers.google.com/apps-script/guides/triggers/installable
+ */
+function installOnEditTrigger() {
+  ScriptApp.newTrigger('onEditInstallableTrigger')
+    .forSpreadsheet(SpreadsheetApp.getActive())
+    .onEdit()
+    .create();
+}
 
 /**
  * Trigger that runs on edit after being installed via the interface.
@@ -12,36 +45,37 @@ var STATUS = 'Status';
  */
 function onEditInstallableTrigger(e) {
   // Get the headers, row range and values from the active sheet.
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var headers = sheet.getDataRange().offset(0, 0, 1).getValues()[0];
-  var range = sheet.getRange(e.range.getRow(), 1, 1, headers.length);
-  var row = range.getValues()[0];
+  let sheet = SpreadsheetApp.getActiveSheet();
+  let headers = sheet.getDataRange().offset(0, 0, 1).getValues()[0];
+  let range = sheet.getRange(e.range.getRow(), 1, 1, headers.length);
+  let row = range.getValues()[0];
 
   // Convert the row Array into an entries Object using the headers for the
   // field names.
-  var entries = headers.reduce(function(result, columnName, i) {
+  let entries = headers.reduce((result, columnName, i) => {
     result[columnName] = row[i];
     return result;
   }, {});
 
   // Update the entries Object with the status returned by addToGroup().
   try {
-    entries[STATUS] = addToGroup(
+    let statusValue = addToGroup(
         entries[EMAIL],
         entries[GOOGLE_GROUP],
         entries[ALLOWED],
         entries[EMAIL_TEMPLATE_DOC_URL],
         entries[EMAIL_SUBJECT]
     );
+    entries[STATUS] = statusValue == STATUS_VALUE.sent
+        ? `${statusValue}: ${new Date()}`
+        : statusValue;
   } catch (e) {
     // If there's an error, report that as the status.
     entries[STATUS] = e;
   }
 
   // Convert the updated entries Object into a row Array.
-  var rowToWrite = headers.map(function(columnName) {
-    return entries[columnName];
-  });
+  let rowToWrite = headers.map(columnName => entries[columnName]);
 
   // setValues() receives a 2D array, so we create an array with the row
   // contents.
@@ -62,24 +96,31 @@ function onEditInstallableTrigger(e) {
  * @return {string} - status if email was sent to a user added in the sheet.
  */
 function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSubject) {
+  if (!allowed) {
+    return STATUS_VALUE.emptyRow;
+  }
+  if (!userEmail || !groupEmail || !emailTemplateDocUrl || !emailSubject) {
+    return STATUS_VALUE.requiredFieldMissing;
+  }
   if (allowed.toLowerCase() != 'yes') {
-    return 'Not sent';
+    return STATUS_VALUE.notSent;
   }
 
   // If the group does not contain the user's email, add it and send an email.
-  var group = GroupsApp.getGroupByEmail(groupEmail);
+  let group = GroupsApp.getGroupByEmail(groupEmail);
   if (!group.hasUser(userEmail)) {
     // User is not part of the group, add user to the group.
-    var member = {email: userEmail, role: 'MEMBER'};
+    let member = {email: userEmail, role: 'MEMBER'};
     AdminDirectory.Members.insert(member, groupEmail);
 
     // Send a confirmation email that the member was now added.
-    var docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
-    var emailBody = docToHtml(docId);
+    let docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
+    let emailBody = docToHtml(docId);
 
     // Replace the template variables like {{VARIABLE}} with real values.
-    emailBody = emailBody.replace('{{EMAIL}}', userEmail);
-    emailBody = emailBody.replace('{{GOOGLE_GROUP}}', groupEmail);
+    emailBody = emailBody
+        .replace('{{EMAIL}}', userEmail)
+        .replace('{{GOOGLE_GROUP}}', groupEmail);
 
     MailApp.sendEmail({
       to: userEmail,
@@ -88,9 +129,9 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
     });
 
     // Set the status to the current date.
-    return new Date();
+    return STATUS_VALUE.sent;
   }
-  return 'Already in group';
+  return STATUS_VALUE.alreadyInGroup;
 }
 
 /**
@@ -100,9 +141,9 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-  var url = 'https://docs.google.com/feeds/download/documents/export/Export?id=' +
+  let url = 'https://docs.google.com/feeds/download/documents/export/Export?id=' +
             docId + '&exportFormat=html';
-  var param = {
+  let param = {
     method: 'get',
     headers: {'Authorization': 'Bearer ' + ScriptApp.getOAuthToken()},
     muteHttpExceptions: true,
