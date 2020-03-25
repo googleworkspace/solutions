@@ -20,9 +20,9 @@ const STATUS_VALUE = {
  */
 function onOpen() {
   SpreadsheetApp.getUi()
-    .createMenu('Install trigger')
-    .addItem('onEdit', 'installOnEditTrigger')
-    .addToUi();
+      .createMenu('Install trigger')
+      .addItem('onEdit', 'installOnEditTrigger')
+      .addToUi();
 }
 
 /**
@@ -33,9 +33,9 @@ function onOpen() {
  */
 function installOnEditTrigger() {
   ScriptApp.newTrigger('onEditInstallableTrigger')
-    .forSpreadsheet(SpreadsheetApp.getActive())
-    .onEdit()
-    .create();
+      .forSpreadsheet(SpreadsheetApp.getActive())
+      .onEdit()
+      .create();
 }
 
 /**
@@ -45,37 +45,36 @@ function installOnEditTrigger() {
  */
 function onEditInstallableTrigger(e) {
   // Get the headers, row range and values from the active sheet.
-  let sheet = SpreadsheetApp.getActiveSheet();
-  let headers = sheet.getDataRange().offset(0, 0, 1).getValues()[0];
-  let range = sheet.getRange(e.range.getRow(), 1, 1, headers.length);
-  let row = range.getValues()[0];
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const headers = sheet.getDataRange().offset(0, 0, 1).getValues()[0];
+  const range = sheet.getRange(e.range.getRow(), 1, 1, headers.length);
+  const row = range.getValues()[0];
 
   // Convert the row Array into an entries Object using the headers for the
   // field names.
-  let entries = headers.reduce((result, columnName, i) => {
+  const entries = headers.reduce((result, columnName, i) => {
     result[columnName] = row[i];
     return result;
   }, {});
 
   // Update the entries Object with the status returned by addToGroup().
   try {
-    let statusValue = addToGroup(
+    const statusValue = addToGroup(
         entries[EMAIL],
         entries[GOOGLE_GROUP],
         entries[ALLOWED],
         entries[EMAIL_TEMPLATE_DOC_URL],
         entries[EMAIL_SUBJECT]
     );
-    entries[STATUS] = statusValue == STATUS_VALUE.sent
-        ? `${statusValue}: ${new Date()}`
-        : statusValue;
+    entries[STATUS] = statusValue == STATUS_VALUE.sent ?
+        `${statusValue}: ${new Date()}` : statusValue;
   } catch (e) {
     // If there's an error, report that as the status.
     entries[STATUS] = e;
   }
 
   // Convert the updated entries Object into a row Array.
-  let rowToWrite = headers.map(columnName => entries[columnName]);
+  const rowToWrite = headers.map((columnName) => entries[columnName]);
 
   // setValues() receives a 2D array, so we create an array with the row
   // contents.
@@ -107,15 +106,15 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
   }
 
   // If the group does not contain the user's email, add it and send an email.
-  let group = GroupsApp.getGroupByEmail(groupEmail);
+  const group = GroupsApp.getGroupByEmail(groupEmail);
   if (!group.hasUser(userEmail)) {
     // User is not part of the group, add user to the group.
-    let member = {email: userEmail, role: 'MEMBER'};
+    const member = {email: userEmail, role: 'MEMBER'};
     AdminDirectory.Members.insert(member, groupEmail);
 
     // Send a confirmation email that the member was now added.
-    let docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
-    let emailBody = docToHtml(docId);
+    const docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
+    const emailBody = docToHtml(docId);
 
     // Replace the template variables like {{VARIABLE}} with real values.
     emailBody = emailBody
@@ -141,9 +140,9 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
  * @return {string} The Google Doc rendered as an HTML string.
  */
 function docToHtml(docId) {
-  let url = 'https://docs.google.com/feeds/download/documents/export/Export?id=' +
+  const url = 'https://docs.google.com/feeds/download/documents/export/Export?id=' +
             docId + '&exportFormat=html';
-  let param = {
+  const param = {
     method: 'get',
     headers: {'Authorization': 'Bearer ' + ScriptApp.getOAuthToken()},
     muteHttpExceptions: true,

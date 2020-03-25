@@ -1,3 +1,6 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "extends": "../configs/appsscript.eslintrc.json"
 }
