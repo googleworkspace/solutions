@@ -60,7 +60,7 @@ Sheet is edited. To learn more visit the
 
 ## Try it
 
-1. Copy the [External Sustainability Group List](https://docs.google.com/spreadsheets/d/1toqdDkWSAOL7aIElil59RHJH0b1Efebg7GBlgjn3B2Y/edit#gid=0) from your _G Suite_ account.
+1. Copy the [External Sustainability Group List](https://docs.google.com/spreadsheets/d/1toqdDkWSAOL7aIElil59RHJH0b1Efebg7GBlgjn3B2Y/copy) from your _G Suite_ account.
 
 1. Enter for testing purposes a _Gmail address you own_ and a Google Group you
    have _rights to manage_ its membership. You can learn about
