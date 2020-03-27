@@ -3,14 +3,14 @@ const GOOGLE_GROUP = 'Google Group';
 const ALLOWED = 'Allowed';
 const EMAIL_TEMPLATE_DOC_URL = 'Email template doc URL';
 const EMAIL_SUBJECT = 'Email subject';
-const STATUS = 'Status';
+const EMAIL_STATE = 'Email state';
 
-const STATUS_VALUE = {
+const EMAIL_STATE_VALUE = {
   sent: 'Sent',
   alreadyInGroup: 'Already in group',
   notSent: 'Not sent',
   requiredFieldMissing: 'Required field(s) missing: fill out all fields for this row',
-  emptyRow: '',
+  allowedFieldNotSpecified: '',
 };
 
 /**
@@ -57,20 +57,20 @@ function onEditInstallableTrigger(e) {
     return result;
   }, {});
 
-  // Update the entries Object with the status returned by addToGroup().
+  // Update the entries Object with the email state returned by addToGroup().
   try {
-    const statusValue = addToGroup(
+    const emailState = addToGroup(
         entries[EMAIL],
         entries[GOOGLE_GROUP],
         entries[ALLOWED],
         entries[EMAIL_TEMPLATE_DOC_URL],
         entries[EMAIL_SUBJECT]
     );
-    entries[STATUS] = statusValue == STATUS_VALUE.sent ?
-        `${statusValue}: ${new Date()}` : statusValue;
+    entries[EMAIL_STATE] = emailState == EMAIL_STATE_VALUE.sent ?
+        `${emailState}: ${new Date()}` : emailState;
   } catch (e) {
-    // If there's an error, report that as the status.
-    entries[STATUS] = e;
+    // If there's an error, report that as the email state.
+    entries[EMAIL_STATE] = e;
   }
 
   // Convert the updated entries Object into a row Array.
@@ -92,17 +92,17 @@ function onEditInstallableTrigger(e) {
  *        of the welcome email sent to a user added to the group.
  * @param {string} emailSubject - subject of welcome email sent to user added
  *        to group.
- * @return {string} - status if email was sent to a user added in the sheet.
+ * @return {string} - state if email was sent to a user added in the sheet.
  */
 function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSubject) {
   if (!allowed) {
-    return STATUS_VALUE.emptyRow;
+    return EMAIL_STATE_VALUE.allowedFieldNotSpecified;
   }
   if (!userEmail || !groupEmail || !emailTemplateDocUrl || !emailSubject) {
-    return STATUS_VALUE.requiredFieldMissing;
+    return EMAIL_STATE_VALUE.requiredFieldMissing;
   }
   if (allowed.toLowerCase() != 'yes') {
-    return STATUS_VALUE.notSent;
+    return EMAIL_STATE_VALUE.notSent;
   }
 
   // If the group does not contain the user's email, add it and send an email.
@@ -127,10 +127,9 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
       htmlBody: emailBody,
     });
 
-    // Set the status to the current date.
-    return STATUS_VALUE.sent;
+    return EMAIL_STATE_VALUE.sent;
   }
-  return STATUS_VALUE.alreadyInGroup;
+  return EMAIL_STATE_VALUE.alreadyInGroup;
 }
 
 /**
