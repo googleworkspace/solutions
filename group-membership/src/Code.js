@@ -223,7 +223,7 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
 
     // Send a confirmation email that the member was now added.
     const docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
-    const emailBody = docToHtml(docId);
+    let emailBody = docToHtml(docId);
 
     // Replace the template variables like {{VARIABLE}} with real values.
     emailBody = emailBody
