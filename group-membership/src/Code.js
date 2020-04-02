@@ -154,6 +154,11 @@ function installOnEditTrigger() {
  * @param {Object} e - onEdit trigger event.
  */
 function onEditInstallableTrigger(e) {
+  // Don't do anything if the header row (first row) was updated.
+  if (e.range.getRow() == 1) {
+    return;
+  }
+
   // Get the headers, row range and values from the active sheet.
   const sheet = SpreadsheetApp.getActiveSheet();
   const headers = sheet.getDataRange().offset(0, 0, 1).getValues()[0];
@@ -186,6 +191,7 @@ function onEditInstallableTrigger(e) {
 
   // setValues() receives a 2D array, so we create an array with the row
   // contents.
+  console.log(JSON.stringify(rowToWrite));
   range.setValues([rowToWrite]);
 }
 
@@ -223,10 +229,9 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
 
     // Send a confirmation email that the member was now added.
     const docId = DocumentApp.openByUrl(emailTemplateDocUrl).getId();
-    let emailBody = docToHtml(docId);
 
     // Replace the template variables like {{VARIABLE}} with real values.
-    emailBody = emailBody
+    const emailBody = docToHtml(docId)
         .replace('{{EMAIL}}', userEmail)
         .replace('{{GOOGLE_GROUP}}', groupEmail);
 
@@ -236,7 +241,7 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
       htmlBody: emailBody,
     });
 
-    return new StateSent(Date.now());
+    return new StateSent(new Date());
   }
   return new StateAlreadyInGroup();
 }
