@@ -5,13 +5,123 @@ const EMAIL_TEMPLATE_DOC_URL = 'Email template doc URL';
 const EMAIL_SUBJECT = 'Email subject';
 const EMAIL_STATE = 'Email state';
 
-const EMAIL_STATE_VALUE = {
-  sent: 'Sent',
-  alreadyInGroup: 'Already in group',
-  notSent: 'Not sent',
-  requiredFieldMissing: 'Required field(s) missing: fill out all fields for this row',
-  allowedFieldNotSpecified: '',
-};
+/**
+ * Email state base class.
+ */
+class EmailState {
+  /**
+   * Converts state to string.
+   * @return {string}
+   */
+  toString() {
+    return '';
+  }
+}
+
+/**
+ * 'Email sent' state.
+ */
+class StateSent extends EmailState {
+  /**
+   * Class constructor.
+   * @param {Date} date - date when the email was sent.
+   */
+  constructor(date) {
+    super();
+    this.date = date;
+  }
+  /**
+   * Converts state to string.
+   * @return {string}
+   */
+  toString() {
+    return `Sent: ${this.date}`;
+  }
+}
+
+/**
+ * 'Already in group' state.
+ */
+class StateAlreadyInGroup extends EmailState {
+  /**
+   * Converts state to string.
+   * @return {string}
+   */
+  toString() {
+    return 'Already in group';
+  }
+}
+
+/**
+ * 'Not sent' state.
+ */
+class StateNotSent extends EmailState {
+  /**
+   * Converts state to string.
+   * @return {string}
+   */
+  toString() {
+    return 'Not sent';
+  }
+}
+
+/**
+ * 'Requiered field missing' state.
+ */
+class StateRequiredFieldMissing extends EmailState {
+  /**
+   * Class constructor.
+   * @param {string} user - email of user to add to the group.
+   * @param {string} group - address of Google Group to add user to.
+   * @param {string} template - Google Doc URL that serves as template
+   *        of the welcome email sent to a user added to the group.
+   * @param {string} subject - subject of welcome email sent to user added
+   */
+  constructor(user, group, template, subject) {
+    super();
+    this.user = user;
+    this.group = group;
+    this.template = template;
+    this.subject = subject;
+  }
+  /**
+   * Converts state to string.
+   * @return {string}
+   */
+  toString() {
+    return `Required field missing: ${
+        !this.user ? EMAIL :
+        !this.group ? GOOGLE_GROUP :
+        !this.template ? EMAIL_TEMPLATE_DOC_URL :
+        EMAIL_SUBJECT}`;
+  }
+}
+
+/**
+ * 'Allowed field not specified' state.
+ */
+class StateAllowedFieldNotSpecified extends EmailState {}
+
+/**
+ * 'Error' state.
+ */
+class StateError extends EmailState {
+  /**
+   * Class constructor.
+   * @param {Exception} error - error message.
+   */
+  constructor(error) {
+    super();
+    this.error = error;
+  }
+  /**
+   * Converts state to string.
+   * @return {string}
+   */
+  toString() {
+    return `${this.error}`;
+  }
+}
 
 /**
  * Installs a trigger in the Spreadsheet to run upon the Sheet being opened.
@@ -59,18 +169,16 @@ function onEditInstallableTrigger(e) {
 
   // Update the entries Object with the email state returned by addToGroup().
   try {
-    const emailState = addToGroup(
+    entries[EMAIL_STATE] = addToGroup(
         entries[EMAIL],
         entries[GOOGLE_GROUP],
         entries[ALLOWED],
         entries[EMAIL_TEMPLATE_DOC_URL],
         entries[EMAIL_SUBJECT]
-    );
-    entries[EMAIL_STATE] = emailState == EMAIL_STATE_VALUE.sent ?
-        `${emailState}: ${new Date()}` : emailState;
+    ).toString();
   } catch (e) {
     // If there's an error, report that as the email state.
-    entries[EMAIL_STATE] = e;
+    entries[EMAIL_STATE] = new StateError(e).toString();
   }
 
   // Convert the updated entries Object into a row Array.
@@ -92,17 +200,18 @@ function onEditInstallableTrigger(e) {
  *        of the welcome email sent to a user added to the group.
  * @param {string} emailSubject - subject of welcome email sent to user added
  *        to group.
- * @return {string} - state if email was sent to a user added in the sheet.
+ * @return {EmailState} - state if email was sent to a user added in the sheet.
  */
 function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSubject) {
   if (!allowed) {
-    return EMAIL_STATE_VALUE.allowedFieldNotSpecified;
+    return new StateAllowedFieldNotSpecified();
   }
   if (!userEmail || !groupEmail || !emailTemplateDocUrl || !emailSubject) {
-    return EMAIL_STATE_VALUE.requiredFieldMissing;
+    return new StateRequiredFieldMissing(
+        userEmail, groupEmail, emailTemplateDocUrl, emailSubject);
   }
   if (allowed.toLowerCase() != 'yes') {
-    return EMAIL_STATE_VALUE.notSent;
+    return new StateNotSent();
   }
 
   // If the group does not contain the user's email, add it and send an email.
@@ -127,9 +236,9 @@ function addToGroup(userEmail, groupEmail, allowed, emailTemplateDocUrl, emailSu
       htmlBody: emailBody,
     });
 
-    return EMAIL_STATE_VALUE.sent;
+    return new StateSent(Date.now());
   }
-  return EMAIL_STATE_VALUE.alreadyInGroup;
+  return new StateAlreadyInGroup();
 }
 
 /**
