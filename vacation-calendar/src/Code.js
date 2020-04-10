@@ -134,7 +134,7 @@ function shoudImportEvent(user, keyword, event) {
   // Filter out events where the keyword did not appear in the summary
   // (that is, the keyword appeared in a different field, and are thus
   // is not likely to be relevant).
-  if (event.summary.toLowerCase().indexOf(keyword) < 0) {
+  if (event.summary.toLowerCase().indexOf(keyword.toLowerCase()) < 0) {
     return false;
   }
   if (!event.organizer || event.organizer.email == user.getEmail()) {
