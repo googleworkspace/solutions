@@ -1,7 +1,7 @@
 ---
 title: Send follow-up emails automatically
 description: Send users in an online community follow up content based on their interests.
-label: Apps Script, Gmail, Forms, Docs
+labels: Apps Script, Gmail, Forms, Docs
 material_icon: autorenew
 create_time: 2019-07-15
 update_time: 2019-09-17
