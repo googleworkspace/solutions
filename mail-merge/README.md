@@ -4,7 +4,7 @@ description: Create and distribute visually rich mail merges with Gmail and Goog
 labels: Sheets, Gmail
 material_icon: merge_type
 create_time: 2019-09-13
-update_time: 2020-04-24
+update_time: 2020-04-29
 ---
 
 Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.com/mhawksey) or [read my Google Apps Script related blog posts](https://mashe.hawksey.info/category/google-apps-script/).
@@ -25,7 +25,7 @@ Simplify the process of producing visually rich mail merges using Gmail and comb
 
 1. Update the **Recipients** column with email addresses you would like to use in the mail merge
 
-1. Create a draft message in your Gmail account using markers like `${First name}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
+1. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
 
 1. In the copied spreadsheet, click on custom menu item **Mail Merge > Send Emails**.
 

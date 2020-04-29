@@ -57,14 +57,13 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
   
   // get the data from the passed sheet
   const dataRange = sheet.getDataRange();
-  // Fetch values for each row in the Range 
-  // @see https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/get
-  const data = Sheets.Spreadsheets.Values.get(SpreadsheetApp.getActive().getId(), sheet.getName()).values;
+  // Fetch displayed values for each row in the Range HT Andrew Roberts 
+  // https://mashe.hawksey.info/2020/04/a-bulk-email-mail-merge-with-gmail-and-google-sheets-solution-evolution-using-v8/#comment-187490
+  // @see https://developers.google.com/apps-script/reference/spreadsheet/range#getdisplayvalues
+  const data = dataRange.getDisplayValues();
+
   // assuming row 1 contains our column headings
   const heads = data.shift(); 
-  // build an A1 notation of the data range for addFilteredRows_()
-  const valuesRange = dataRange.offset(1,0,sheet.getLastRow()-1);
-  const valueRangeA1 = sheet.getName() + '!' + valuesRange.getA1Notation();
   
   // get the index of column named 'Email Status' (Assume header names are unique)
   // @see http://ramblings.mcpher.com/Home/excelquirks/gooscript/arrayfunctions
@@ -75,16 +74,13 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
   // for pretty version see https://mashe.hawksey.info/?p=17869/#comment-184945
   const obj = data.map(r => (heads.reduce((o, k, i) => (o[k] = r[i] || '', o), {})));
 
-  // get filtered row data to only send to visible rows
-  const sub_obj = addFilteredRows_(SpreadsheetApp.getActive().getId(), valueRangeA1, obj);
-
   // used to record sent emails
   const out = [];
 
   // loop through all the rows of data
-  sub_obj.forEach(function(row, rowIdx){
-    // only send emails is email_sent cell is blank
-    if (row[EMAIL_SENT_COL] == '' && !row.hidden){
+  obj.forEach(function(row, rowIdx){
+    // only send emails is email_sent cell is blank and not hidden by filter
+    if (row[EMAIL_SENT_COL] == ''){
       try {
         const msgObj = fillInTemplateFromObject_(emailTemplate.message, row);
 
@@ -168,31 +164,4 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
     });
     return  JSON.parse(template_string);
   }
-
-  /**
-   * Add hidden row identifier to sheet data.
-   * @see https://sites.google.com/site/scriptsexamples/learn-by-example/google-sheets-api/filters#TOC-Get-filtered-rows
-   * @see https://tanaikech.github.io/2019/07/28/retrieving-values-from-filtered-sheet-in-spreadsheet-using-google-apps-script/
-   * @param {string} ssId of the spreadsheet
-   * @param {string} range of the sheet
-   * @param {Object} sourceData of sheet as object
-   * @return {Array} of data with hidden row identifier.
-   */
-  function addFilteredRows_(ssId, range, sourceData) {
-    // limit what's returned from the API
-    const fields = "sheets/data/rowMetadata/hiddenByFilter";
-
-    // make Sheets API call
-    const sheet = Sheets.Spreadsheets.get(ssId, {
-      fields: fields,
-      ranges: [range]
-    }).sheets[0];
-
-    // get the row metadata
-    const data = sheet.data[0].rowMetadata;
-    // update sourceData with hidden row status
-    data.map((ar,i) => {(ar.hiddenByFilter) ? sourceData[i].hidden = true : sourceData[i].hidden = false;});
-    return sourceData;
-  }
 }
- 
