@@ -1,5 +1,5 @@
 {
-    "timeZone": "YOUR TIMEZONE HERE",
-    "dependencies": {},
-    "exceptionLogging": "STACKDRIVER"
-}
+    "timeZone": "Europe/London",
+    "exceptionLogging": "STACKDRIVER",
+    "runtimeVersion": "V8"
+  }
