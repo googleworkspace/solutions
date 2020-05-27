@@ -160,8 +160,26 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
 
     // token replacement
     template_string = template_string.replace(/{{[^{}]+}}/g, key => {
-      return data[key.replace(/[{}]+/g, "")] || "";
+      return escapeData_(data[key.replace(/[{}]+/g, "")]) || "";
     });
     return  JSON.parse(template_string);
   }
+
+  /**
+   * Escape cell data to make JSON safe
+   * @see https://stackoverflow.com/a/9204218/1027723
+   * @param {string} str to escape JSON special characters from
+   * @return {string} escaped string
+  */
+  function escapeData_(str) {
+    return str
+      .replace(/[\\]/g, '\\\\')
+      .replace(/[\"]/g, '\\\"')
+      .replace(/[\/]/g, '\\/')
+      .replace(/[\b]/g, '\\b')
+      .replace(/[\f]/g, '\\f')
+      .replace(/[\n]/g, '\\n')
+      .replace(/[\r]/g, '\\r')
+      .replace(/[\t]/g, '\\t');
+  };
 }
