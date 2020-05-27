@@ -86,15 +86,16 @@ will be at the top of the list!
 ## Next steps
 
 To learn more about how a similar solution was built, 
-check out [this blog post][blog-post].
+check out [this blog post][blog-post]. You can also view
+the [full source code][github] of this solution on GitHub to
+learn more about how it was built.
 
 You can read more about BigQuery in the 
 [product documentation][bigquery], and learn how to 
 load your own data [directly][load-data] or 
 [through solution providers][bq-providers].
 
-
-
+[github]: https://github.com/gsuitedevs/solutions/blob/master/generate-sales-report
 [connector-support]: https://support.google.com/docs/answer/9077536
 [google-slides]: https://slides.google.com
 [apps-script]: https://developers.google.com/apps-script/
