@@ -4,6 +4,17 @@ One sentence summary: Creates an agenda for a calendar event you create automati
 
 Description (1 - 2 paragraphs):
 
+---
+title: Agenda Maker for Google Calendar
+description: Creates an agenda for a calendar event you create automatically
+labels: Apps Script,  Calendar
+material_icon: event
+create_time: 2020-07-19
+update_time: 2020-07-19
+---
+
+Contributed by Jeremy Glassenberg [Site](https://www.apistrategist.com)
+
 So many meetings are time lost. No agenda means no one is prepared to discuss. No minutes means no one will remember what was decided. Most companies ask everyone to set agendas for their meetings, but can't create a good habit.
 
 It's just too burdensome to create an agenda, but very easy to create a meeting. With Agenda maker, the process of creating an agenda is much easier.
@@ -13,7 +24,7 @@ By simply adding "#agenda" to the description of your Google Calendar invite, an
 Design Details:
 
 
-![demo](https://github.com/jglassenberg/appscript-calendar-agendas/blob/master/AgendaMakerScreenshot.png)
+![demo](screenshot.png)
 
 ## Technology highlights
 
