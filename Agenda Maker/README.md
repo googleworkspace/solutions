@@ -1,9 +1,3 @@
-Solution title: Agenda Maker for Google Calendar
-
-One sentence summary: Creates an agenda for a calendar event you create automatically
-
-Description (1 - 2 paragraphs):
-
 ---
 title: Agenda Maker for Google Calendar
 description: Creates an agenda for a calendar event you create automatically
