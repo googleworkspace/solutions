@@ -18,7 +18,7 @@ By simply adding "#agenda" to the description of your Google Calendar invite, an
 Design Details:
 
 
-![demo](screenshot.png)
+![demo](AgendaMakerScreenshot.png)
 
 ## Technology highlights
 
