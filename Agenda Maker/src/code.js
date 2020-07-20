@@ -1,6 +1,3 @@
-function myFunction() {
-  
-}
 
 /*
 See if the folder of Agenda docs exists, or otherwise create it.
