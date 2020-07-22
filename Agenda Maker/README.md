@@ -41,7 +41,7 @@ First, create the script:
 2.  Click the menu item **File > Make a copy** to get your own copy. You can
     later access this copy in the [G Suite Developer Hub][hub].
 
-[code]: https://script.google.com/home/projects/1YJjo1s8TUnbGlYUOYSUw4Y30R0uihSMw4Yz-V6UGfr4Wbll4ETXNohD8/edit
+[code]: https://github.com/gsuitedevs/solutions/tree/master/Agenda%20Maker/src/code.js
 [hub]: https://script.google.com
 
 
