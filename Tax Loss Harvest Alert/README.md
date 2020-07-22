@@ -37,7 +37,7 @@ which guides you through the creation of your first script.
 You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[script-copy]: https://script.google.com/d/1EnQmcbBeHAvM9vpSOOaVFnuS-XdPvvDFl5CwwQpadqAzgOXICmyM_fzn/edit
+[script-copy]: https://github.com/gsuitedevs/solutions/tree/master/Tax%20Loss%20Harvest%20Alert/src/code.js
 [github]: https://github.com/gsuitedevs/solutions/blob/master/
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
 [sheet-copy]: https://docs.google.com/spreadsheets/d/1G4VZLU7mSb-cVLXyMfCjM1R5EHQMV8mmRKeZSvXEQsU/copy
