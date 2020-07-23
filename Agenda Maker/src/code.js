@@ -39,7 +39,7 @@ function getTemplateId(folderId) {
   // Feel free to adjust the default template here
   var doc = DocumentApp.create("Agenda TEMPLATE##");
   var body = doc.getBody();
-  //var rowsData = [['Plants', 'Animals'], ['Ficus', 'Goat'], ['Basil', 'Cat'], ['Moss', 'Frog']];
+  
   body
     .appendParagraph("##Attendees##")
     .setHeading(DocumentApp.ParagraphHeading.HEADING1)
@@ -150,7 +150,7 @@ function onCalendarChange() {
       //Invite attendees to the Google doc so they automatically receive access to the agenda
       newDoc.addEditor(newDoc.getOwner());
 
-      //Logger.log("event added: "+event.getTitle()+description);
+      
     }
   }
   //}
