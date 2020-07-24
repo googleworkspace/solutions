@@ -149,6 +149,12 @@ function onCalendarChange() {
 
       //Invite attendees to the Google doc so they automatically receive access to the agenda
       newDoc.addEditor(newDoc.getOwner());
+      
+      for (var i in event.getGuestList()){
+          var guest = event.getGuestList()[i];
+        
+          newDoc.addEditor(guest.getEmail());
+      }
 
       
     }
