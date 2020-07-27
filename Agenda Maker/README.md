@@ -17,7 +17,6 @@ By simply adding "#agenda" to the description of your Google Calendar invite, an
 
 Design Details:
 
-
 ![demo](AgendaMakerScreenshot.png)
 
 ## Technology highlights
@@ -44,7 +43,6 @@ First, create the script:
 [code]: https://github.com/gsuitedevs/solutions/tree/master/Agenda%20Maker/src/code.js
 [hub]: https://script.google.com
 
-
 Finally, test that your script is working:
 
 1.  Open [Google Calendar][calendar].
@@ -60,8 +58,6 @@ If you'd like to adjust the style of the Agenda template:
 1. After creating your first agenda in a calendar event, visit to your Google Drive account.
 2. In Google Drive there should be a folder named "Agenda Maker - App".
 3. Within that folder, look for the file named "Agenda TEMPLATE##".  This is the template you can adjust.
-
-
 
 ## Next steps
 
