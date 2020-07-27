@@ -1,6 +1,7 @@
 /*
 See if the folder of Agenda docs exists, or otherwise create it.
 */
+
 function checkFolder() {
   var folders = DriveApp.getFoldersByName("Agenda Maker - App");
   //Find the folder if it exists
@@ -17,7 +18,7 @@ function checkFolder() {
 
   //If the folder doesn't exist, create one
   var folder = DriveApp.createFolder("Agenda Maker - App");
-  folder.setDescription("App Script App - Do not change this description");
+  folder.setDescription("Apps Script App - Do not change this description");
 
   return folder.getId();
 }
@@ -25,6 +26,7 @@ function checkFolder() {
 /*
 Find the template agenda doc, or create a default if it doesn't exist
 */
+
 function getTemplateId(folderId) {
   var folder = DriveApp.getFolderById(folderId);
   var files = folder.getFilesByName("Agenda TEMPLATE##");
@@ -92,6 +94,7 @@ function getTemplateId(folderId) {
 This is triggered whenever there is a change to the calendar
 When there is a change, it searches for events that include "#agenda" in the decription.
 */
+
 function onCalendarChange() {
   //Get recent events with the tag
   var now = new Date();
@@ -159,6 +162,5 @@ function onCalendarChange() {
       
     }
   }
-  //}
   return;
 }
