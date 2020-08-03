@@ -17,7 +17,7 @@ By simply adding "#agenda" to the description of your Google Calendar invite, an
 
 Design Details
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@agenda-maker/agenda-maker/AgendarMakerScreenshot.png)
+![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/agenda-maker/AgendaMakerScreenshot.png)
 
 ## Technology highlights
 
@@ -40,7 +40,7 @@ First, create the script:
 2.  Click the menu item **File > Make a copy** to get your own copy. You can
     later access this copy in the [G Suite Developer Hub][hub].
 
-[code]: https://github.com/gsuitedevs/solutions/tree/master/Agenda%20Maker/src/code.js
+[code]: https://github.com/gsuitedevs/solutions/tree/master/agenda-maker/src/Code.js
 [hub]: https://script.google.com
 
 Finally, test that your script is working:
