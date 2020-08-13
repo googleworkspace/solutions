@@ -1,7 +1,7 @@
-/*
-Whenever the spreadsheet changes, 
-which happens when Google Finance reports a change in price to one of your stocks, 
-this function is triggered
+/* 
+When Google Finance reports a change in price to one of your stocks, 
+the spreadsheet will be updated, triggering a change in the spreadsheet.
+That event then triggers this function.
 */
 
 function onChange() {
@@ -44,16 +44,12 @@ function onChange() {
       send_message = true;
     }
   }
-  //MailApp.sendEmail("jglassenberg@gmail.com","Tax-loss harvest", message);
   if (!send_message) return;
 
   MailApp.sendEmail({
     to: SpreadsheetApp.getActiveSpreadsheet().getOwner().getEmail(),
     subject: "Tax-loss harvest",
     htmlBody: message,
-    /*inlineImages:
-      {
-       
-      }*/
+    
   });
 }
