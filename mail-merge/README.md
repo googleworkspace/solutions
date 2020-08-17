@@ -21,11 +21,13 @@ Simplify the process of producing visually rich mail merges using Gmail and comb
 
 ## Try it
 
+[![Learn more about this solution](https://img.youtube.com/vi/YTeV4i1W3Zo/0.jpg)](https://www.youtube.com/watch?v=YTeV4i1W3Zo&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=4)
+
 1. Create a copy of the sample [Gmail/Sheets Mail Merge spreadsheet](https://docs.google.com/spreadsheets/d/1EfjLuYGab8Xt8wCn4IokBIG0_W4tBtiU4vxl3Y7FPsA/copy).
 
 1. Update the **Recipients** column with email addresses you would like to use in the mail merge
 
-1. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet. 
+1. Create a draft message in your Gmail account using markers like `{{First name}}`, which correspond to column names, to indicate text you’d like to be replaced with data from the copied spreadsheet.
 
 1. In the copied spreadsheet, click on custom menu item **Mail Merge > Send Emails**.
 
@@ -41,7 +43,7 @@ Additional columns can be added to the spreadsheet with other data you would lik
 
 The source code includes a number of additional parameters, currently commented out, which can be used to control the name of the account email is sent from, reply to email addresses, as well as bcc and cc'd email addresses. If you would like to find out more about the features of this solution including some modifications you can make for additional functionality like setting up scheduled sending [here is a related blog post](https://mashe.hawksey.info/2020/04/a-bulk-email-mail-merge-with-gmail-and-google-sheets-solution-evolution-using-v8/). 
 
-For more information on the number of email recipients that can be contacted per day you can read the [Current Quotas documentation](https://developers.google.com/apps-script/guides/services/quotas#current_quotas). 
+For more information on the number of email recipients that can be contacted per day you can read the [Current Quotas documentation](https://developers.google.com/apps-script/guides/services/quotas#current_quotas). If you would like to find out more about the coding pattern used to conditionally read and write Google Sheets data [here is a related blog post](https://mashe.hawksey.info/2018/02/google-apps-script-patterns-conditionally-updating-rows-of-google-sheet-data-by-reading-and-writing-data-once/).
 
 To learn more about Google Apps Script, try out [the codelab](https://codelabs.developers.google.com/codelabs/apps-script-intro) which guides you through the creation of your first script.
 

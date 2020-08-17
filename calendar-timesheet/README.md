@@ -12,7 +12,7 @@ Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.c
 Keeping track of the time spent on project for customers can be a challenge. Not all time writing
 apps are user friendly and sometimes you need to record your time in multiple systems. You can end up
 spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to
-other systems.  
+other systems.
 
 To solve this problem we can use the one time related application we have open every
 day, Google Calendar. In an additional calendar we can quickly add an event for the appropriate
@@ -20,7 +20,6 @@ timeslot. Then add a short description and forget about it. Art the end of the w
 calendar with a Google sheet. Categorize by customer, project and task based on the description and the
 data is structured for further processing. Use the dashboard or write a simple query to report or copy
 in other time sheets.
-
 
 ![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/calendar-timesheet/calendar-to-sheet-screenshot.png)
 
@@ -30,8 +29,9 @@ in other time sheets.
 - [Custom Menus](https://developers.google.com/apps-script/guides/menus) are used to trigger the synchronisation
 - The [`CalendarApp` service][calendarapp-docs] is used to write the events to the sheet
 
-
 ## Try it
+
+[![Learn more about this solution](https://img.youtube.com/vi/CVHLgQ90zJo/0.jpg)](https://www.youtube.com/watch?v=CVHLgQ90zJo&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=5)
 
 1. Create your secondary calendar: [Create a new calendar][create-calendar]
 1. Copy the calendar id. This can be found in the calendar settings

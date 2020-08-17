@@ -27,8 +27,10 @@ notification is sent to HR once the status is marked as complete.
   the workflow.
 - [Triggers][triggers-docs] are used to monitor for new requests and clean up completed items.
 - The [`MailApp` service][mailapp-docs] is used to send email notifications.
-  
+
 ## Try it
+
+[![Learn more about this solution](https://img.youtube.com/vi/-R_MK1HFlZE/0.jpg)](https://www.youtube.com/watch?v=-R_MK1HFlZE&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=7)
 
 1. Create a copy of the sample [Equipment request spreadsheet][sheet].
 1. Click the menu item **Tools** > **Script editor** to edit the script.

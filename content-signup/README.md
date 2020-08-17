@@ -31,6 +31,8 @@ instant message, or wherever you share the form's link.
 
 ## Try it
 
+[![Learn more about this solution](https://img.youtube.com/vi/xxgQr-jSu9o/0.jpg)](https://www.youtube.com/embed/xxgQr-jSu9o)
+
 1. Make a copy of this Google Sheet
    [by clicking this link](https://docs.google.com/spreadsheets/d/1vyv-QcQ0wgaGNV7XklZI1jq95Cg_QVBq-o4rhTJqg00/copy)
    in your browser. It automatically includes a Google Form and the code
