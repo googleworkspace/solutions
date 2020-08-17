@@ -36,14 +36,7 @@ First, create the script:
 Next, deploy the add-on:
 
 1. Select **Publish** > **Deploy from manifest**.
-1. Next to the entry **Latest Version (Head)** click **Get ID**.
-1. Select and copy the **Deployment ID** value.
-1. Close the dialog and the **Deployments** window.
-1. Open the **[Gmail add-on settings][settings]** tab.
-1. In the Add-ons tab, ensure that you have selected the **Enable developer add-ons for my account** checkbox.
-1. Paste your add-on's deployment ID into the **Developer add-ons** textbox and click **Install**.
-1. In the **Install developer add-on** dialog that appears, click the checkbox to
-indicate that you trust this developer (yourself), then click **Install**.
+1. Next to the entry **Latest Version (Head)** click **Install add-on**.
 
 Test it out and create a new expense report:
 

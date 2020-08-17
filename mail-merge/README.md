@@ -4,7 +4,7 @@ description: Create and distribute visually rich mail merges with Gmail and Goog
 labels: Sheets, Gmail
 material_icon: merge_type
 create_time: 2019-09-13
-update_time: 2019-09-13
+update_time: 2020-04-29
 ---
 
 Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.com/mhawksey) or [read my Google Apps Script related blog posts](https://mashe.hawksey.info/category/google-apps-script/).
@@ -40,6 +40,8 @@ Simplify the process of producing visually rich mail merges using Gmail and comb
 ## Next steps
 
 Additional columns can be added to the spreadsheet with other data you would like to use. Using the `{{}}` annotation and including your column name as part of your Gmail draft will allow you to include other data from your spreadsheet. If you change the name of the **Recipient** or **Email Sent** columns this will need to be updated by opening **Tools > Script Editor**.
+
+The source code includes a number of additional parameters, currently commented out, which can be used to control the name of the account email is sent from, reply to email addresses, as well as bcc and cc'd email addresses. If you would like to find out more about the features of this solution including some modifications you can make for additional functionality like setting up scheduled sending [here is a related blog post](https://mashe.hawksey.info/2020/04/a-bulk-email-mail-merge-with-gmail-and-google-sheets-solution-evolution-using-v8/). 
 
 For more information on the number of email recipients that can be contacted per day you can read the [Current Quotas documentation](https://developers.google.com/apps-script/guides/services/quotas#current_quotas). If you would like to find out more about the coding pattern used to conditionally read and write Google Sheets data [here is a related blog post](https://mashe.hawksey.info/2018/02/google-apps-script-patterns-conditionally-updating-rows-of-google-sheet-data-by-reading-and-writing-data-once/).
 
