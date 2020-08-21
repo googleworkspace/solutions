@@ -4,7 +4,7 @@ description: List your stocks and purchase prices in a Google Sheet, and this sc
 labels: Apps Script, Sheets, Google Finance
 material_icon: event
 create_time: 2020-06-14
-update_time: 2020-006-14
+update_time: 2020-06-14
 ---
 
 Contributed by Jeremy Glassenberg [Site](https://www.apistrategist.com)
