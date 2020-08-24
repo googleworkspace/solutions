@@ -13,7 +13,7 @@ When we purchase a stock and find the value dropped, there's an opportunity to s
 
 This script works with Google Sheets to alert you when stocks in your portfolio fall below purchase price.  To use this script, your portfolio information into the Google Sheet, so the sheet knows what stocks you own and at what purchase prices. If anything falls below purchase price, you'll be notified via email of a tax loss harvest opportunity.
 
-![screenshot](screenshot.png)
+![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/tax-loss-harvest-alerts/screenshot.png)
 
 ## Technology highlights
 
