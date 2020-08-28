@@ -82,6 +82,8 @@ function getTemplateId(folderId) {
   body.appendParagraph('- Accountable: ');
   body.appendParagraph('- Consult: ');
   body.appendParagraph('- Inform: ');
+  
+  doc.saveAndClose();
 
   folder.addFile(DriveApp.getFileById(doc.getId()));
 
@@ -161,4 +163,12 @@ function onCalendarChange() {
     }
   }
   return;
+}
+
+/**
+ * Register a trigger to watch for calendar changes.
+ */
+function setUp() {
+  var email = Session.getActiveUser().getEmail();
+  ScriptApp.newTrigger("onCalendarChange").forUserCalendar(email).onEventUpdated().create();
 }
