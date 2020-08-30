@@ -14,7 +14,7 @@
 
 // Global variables representing the index of certain columns.
 var COLUMN_NUMBER = {
-  EMAIL: 3,
+  EMAIL: 2,
   HOURS_START: 4,
   HOURS_END: 8,
   HOURLY_PAY: 9,
