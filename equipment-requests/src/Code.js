@@ -108,10 +108,10 @@ function cleanup_() {
 function onFormSubmit_(event) {
   var response = mapResponse_(event.response);
   sendNewEquipmentRequestEmail_(response);
-  var equipmentDetails = Utilities.formatString('%s\n%s\n%s',
-      response['Laptop'],
-      response['Desktop'],
-      response['Monitor']);
+  var laptop = response['Laptop'] || 'Laptop not requested';
+  var desktop = response['Desktop'] || 'Desktop not requested';
+  var monitor = response['Monitor'] || 'Monitor not requested';
+  var equipmentDetails = Utilities.formatString('%s\n%s\n%s', laptop, desktop, monitor);
   var row = ['New',
     '',
     response['Desk location'],
