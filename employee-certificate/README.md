@@ -14,7 +14,7 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 ![employee-certificate-gif](https://user-images.githubusercontent.com/37455462/91755079-25f56280-ebe8-11ea-9b19-725744400893.gif)
 
 ## Technology highlights
-- A
+- The [`DriveApp` service](https://developers.google.com/apps-script/reference/drive/drive-app) is used to make copies of the orignal Google Slide template
 - B
 - C
 
