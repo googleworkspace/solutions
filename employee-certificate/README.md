@@ -11,7 +11,7 @@ Manually creating customized employee certificates in Google Slides can be tires
 
 This setup would make use of the 'Employee Certificate' template from Google Slides and a Google Sheet with all the employee details. The script would start by making a copy of the template and replace some of the key placeholders (like Employee Name, Company name etc.) with data from the sheet. Once a slide for every employee is created, we then run another function that would extract individual slides as a PDF attachment and send it to each employee's email ID.
 
-![employee-certificate-gif](https://user-images.githubusercontent.com/37455462/91753105-06a90600-ebe5-11ea-9ebf-cd41c5faff1e.gif)
+![employee-certificate-gif](https://user-images.githubusercontent.com/37455462/91755079-25f56280-ebe8-11ea-9b19-725744400893.gif)
 
 ## Technology highlights
 - A
