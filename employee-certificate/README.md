@@ -1,7 +1,7 @@
 ---
 title: Send personalized appreciation certificate to employees
 description: Automatically customize an existing Google Slide certificate template with employee data in Google Sheets and share them using Gmail.
-labels: Slides, Sheets, Apps Script
+labels: Slides, Sheets, Apps Script, Gmail, Drive
 material_icon: emoji_events
 create_time: 2020-09-01
 update_time: 2020-09-01
@@ -14,8 +14,8 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 ![employee-certificate-gif](https://user-images.githubusercontent.com/37455462/91755079-25f56280-ebe8-11ea-9b19-725744400893.gif)
 
 ## Technology highlights
-- The [`DriveApp` service](https://developers.google.com/apps-script/reference/drive/drive-app) is used to make copies of the original Google Slide template
-- B
+- The [`DriveApp` service](https://developers.google.com/apps-script/reference/drive/drive-app) is used to make copies of the original Google Slide template.
+- The [`SpreadsheetApp` service](https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app) is used to refer employee details and update the status against each of them
 - C
 
 ## Try it
