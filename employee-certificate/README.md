@@ -20,9 +20,20 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 - The [`GmailApp` service](https://developers.google.com/apps-script/reference/gmail/gmail-app) is used to get the individual slides as a PDF and send it to respective employee's email ID
 
 ## Try it
-- Create a copy of the [Employee certificate slide](https://docs.google.com/presentation/d/1bFj09xI7g_kbA76Xb60tYyxVdi-zrpm6zQ6gu696vKs/copy) template
-- Create a copy of the sample [Employee data spreadsheet](https://docs.google.com/spreadsheets/d/1cgK1UETpMF5HWaXfRE6c0iphWHhl7v-dQ81ikFtkIVk/copy)
-- Make a copy of the [Apps Script file](https://script.google.com/d/1cjD-P2NQrbshysRGUsGTwmH_V1BF_RSNSjzfHSvfFHTZ4a8npFCe5GNB/edit) by navigating to **File > Make a copy** or create a new script file by navigating to [script.new](https://script.new) and copy everything from the [source code](src/Code.gs) file into it
+
+### Select the templatized slide deck
+
+1. Make a copy of the [Employee Certificate](https://docs.google.com/presentation/d/1bFj09xI7g_kbA76Xb60tYyxVdi-zrpm6zQ6gu696vKs/copy) slide template or select it from the Slides template gallery [here](https://docs.google.com/presentation/u/0/?tgif=c&ftv=1)
+2. Identify the unique ID of your Slides document. The ID can be derived from the URL: `https://docs.google.com/presentation/d/`_**`slideId`**_`/edit`
+3. Create an empty folder in Google Drive and identify its unique ID as well. The ID can be derived from the URL: `https://drive.google.com/drive/folders/`_**`folderId`**_
+
+### Set up the employee spreadsheet
+
+1. Make of copy of the sample [Employee data spreadsheet](https://docs.google.com/spreadsheets/d/1cgK1UETpMF5HWaXfRE6c0iphWHhl7v-dQ81ikFtkIVk/copy) and fill it with all the required data
+2. From the spreadsheet, open the script editor by selecting **Tools > Script editor**
+3. Copy and paste your Slides document ID into line 1 of `Code.gs` replacing `SLIDE-ID-GOES-HERE` and maintaining the quotes
+4. Copy and paste the Drive folder ID into line 2 of `Code.gs` replacing `TEMPORARY-FOLDER-ID-GOES-HERE` and maintaining the quotes
+5. Save the changes by navigating to **File > Save** and run the `onOpen` function to authorize the setup by navigating to **Run > Run function > onOpen**
 
 ## Next steps
 
