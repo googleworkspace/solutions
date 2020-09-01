@@ -1,5 +1,5 @@
 var slideTemplateId = "SLIDE-ID-GOES-HERE"; // Sample: https://docs.google.com/spreadsheets/d/1cgK1UETpMF5HWaXfRE6c0iphWHhl7v-dQ81ikFtkIVk
-var tempFolderId = "TEMPORARY-FOLDER-ID-GOES-HERE";
+var tempFolderId = "TEMPORARY-FOLDER-ID-GOES-HERE"; // Create an empty folder in Google Drive
 
 /**
  * Creates a custom menu "Appreciation" in the spreadsheet
