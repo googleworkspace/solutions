@@ -23,7 +23,7 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 
 ### Select the templatized slide deck
 
-1. Make a copy of the [Employee Certificate](https://docs.google.com/presentation/d/1bFj09xI7g_kbA76Xb60tYyxVdi-zrpm6zQ6gu696vKs/copy) slide template or select it from the Slides template gallery [here](https://docs.google.com/presentation/u/0/?tgif=c&ftv=1)
+1. Make a copy of the [Employee Certificate](https://docs.google.com/presentation/d/1bFj09xI7g_kbA76Xb60tYyxVdi-zrpm6zQ6gu696vKs/copy) slide or select it from the Slides template gallery [here](https://docs.google.com/presentation/u/0/?tgif=c&ftv=1)
 2. Identify the unique ID of your Slides document. The ID can be derived from the URL: `https://docs.google.com/presentation/d/`_**`slideId`**_`/edit`
 3. Create an empty folder in Google Drive and identify its unique ID as well. The ID can be derived from the URL: `https://drive.google.com/drive/folders/`_**`folderId`**_
 
@@ -34,8 +34,13 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 3. Copy and paste your Slides document ID into line 1 of `Code.gs` replacing `SLIDE-ID-GOES-HERE` while maintaining the quotes and the Drive folder ID into line 2 by replacing `TEMPORARY-FOLDER-ID-GOES-HERE`
 5. Save the changes by navigating to **File > Save** and run the `onOpen` function to authorize the setup by navigating to **Run > Run function > onOpen**
 
+### Create and send certificates
+
+1. A
+2. B
+
 ## Next steps
 
 To get started with Google Apps Script, try out [the codelab](https://codelabs.developers.google.com/codelabs/apps-script-intro) which guides you through the creation of your first script.
 
-You can also view the [full source code](https://github.com/schoraria911/google-apps-script/blob/master/Random/Employee%20certificate/code.gs) of this solution on GitHub to learn more about how it was built.
+You can also view the [full source code](src/Code.gs) of this solution on GitHub to learn more about how it was built.
