@@ -7,6 +7,8 @@ create_time: 2020-09-01
 update_time: 2020-09-01
 ---
 
+Contributed by [Sourabh Choraria](https://developers.google.com/community/experts/directory/profile/profile-sourabh_choraria). Find me on Twitter [@schoraria911](https://twitter.com/schoraria911), [LinkedIn](https://www.linkedin.com/in/schoraria/) or via my blog - [script.gs](https://script.gs/)
+
 Manually creating customized employee certificates in Google Slides can be tiresome. Having to download, attach and send them to each individual can get equally cumbersome. Google Apps Script is the perfect tool to simplify such repetitive work and also eliminate any accidents that end-up having one employee get an appreciation certificate of another.
 
 This setup would make use of the 'Employee Certificate' template from Google Slides and a Google Sheet with all the employee details. The script would start by making a copy of the template and replace some of the key placeholders (like Employee Name, Company Name etc.) with data from the sheet. Once a slide for every employee is created, we then run another function that would extract individual slides as a PDF attachment and send it to each employee's email ID.
@@ -45,4 +47,4 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 
 To get started with Google Apps Script, try out [the codelab](https://codelabs.developers.google.com/codelabs/apps-script-intro) which guides you through the creation of your first script.
 
-You can also view the [full source code](src/Code.gs) of this solution on GitHub to learn more about how it was built.
+You can also view the [full source code](https://github.com/schoraria911/google-apps-script/blob/master/Random/Employee%20certificate/code.gs) of this solution on GitHub or check out [this blog post](https://script.gs/send-personalized-appreciation-certificate-to-employees/) to learn more about how it was built.
