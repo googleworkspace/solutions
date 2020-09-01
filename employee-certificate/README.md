@@ -32,12 +32,14 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 1. Make a copy of the sample [Employee data spreadsheet](https://docs.google.com/spreadsheets/d/1cgK1UETpMF5HWaXfRE6c0iphWHhl7v-dQ81ikFtkIVk/copy) and fill it with all the required details
 2. From the spreadsheet, open the script editor by selecting **Tools > Script editor**
 3. Copy and paste your Slides document ID into line 1 of `Code.gs` replacing `SLIDE-ID-GOES-HERE` while maintaining the quotes and the Drive folder ID into line 2 by replacing `TEMPORARY-FOLDER-ID-GOES-HERE`
-5. Save the changes by navigating to **File > Save** and run the `onOpen` function to authorize the setup by navigating to **Run > Run function > onOpen**
+5. Save the changes by navigating to **File > Save**
+6. Run the `onOpen` function to authorize the setup by navigating to **Run > Run function > onOpen**
 
 ### Create and send certificates
 
-1. A
-2. B
+1. From the spreadsheet, click on custom menu item **Appreciation > Create certificates** to start the process
+   - Wait till the creation process is complete; you'll get to see a **Finished script** message at the end
+2. Once all the rows have the _Status_ as "CREATED", then navigate to **Appreciation > Send certificates** to start sending the certificates to each employee's email ID
 
 ## Next steps
 
