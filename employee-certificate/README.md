@@ -22,7 +22,7 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 ## Try it
 - Create a copy of the [Employee certificate slide](https://docs.google.com/presentation/d/1bFj09xI7g_kbA76Xb60tYyxVdi-zrpm6zQ6gu696vKs/copy) template
 - Create a copy of the sample [Employee data spreadsheet](https://docs.google.com/spreadsheets/d/1cgK1UETpMF5HWaXfRE6c0iphWHhl7v-dQ81ikFtkIVk/copy)
-- Make a copy of the [Apps Script file](https://script.google.com/d/1cjD-P2NQrbshysRGUsGTwmH_V1BF_RSNSjzfHSvfFHTZ4a8npFCe5GNB/edit) by navigating to *File > Make a copy* or create a new script file by navigating to [script.new](https://script.new) and copy everything from the [source code](src/Code.gs) file into it
+- Make a copy of the [Apps Script file](https://script.google.com/d/1cjD-P2NQrbshysRGUsGTwmH_V1BF_RSNSjzfHSvfFHTZ4a8npFCe5GNB/edit) by navigating to **File > Make a copy** or create a new script file by navigating to [script.new](https://script.new) and copy everything from the [source code](src/Code.gs) file into it
 
 ## Next steps
 
