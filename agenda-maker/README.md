@@ -21,8 +21,7 @@ Design Details
 
 ## Technology highlights
 
-- Uses [Apps Script][apps_script], allowing for rapid
-  development and worry-free operation.
+- Uses [Apps Script][apps_script], allowing for rapid development and worry-free operation.
 - Uses the [Google Docs API][gdocs_api] to create a new Google Doc from the Agenda Template
 - Uses the [Google Drive API][gdrive_api] to set up an agenda folder
 - Uses the [Calendar API][calendar_api] to detect new events and update the event description with a link to the Agenda.
@@ -39,8 +38,9 @@ First, create the script:
 1.  [Click here][code] to open the code in the Apps Script code editor.
 2.  Click the menu item **File > Make a copy** to get your own copy. You can
     later access this copy in the [G Suite Developer Hub][hub].
+3. Run the `setUp` function to set up a trigger for calendar changes.
 
-[code]: https://github.com/gsuitedevs/solutions/tree/master/agenda-maker/src/Code.js
+[code]: https://script.google.com/d/1Q-lPfAtsADktF1cpW0x9qw0CuMAXUiqiusfvz6WW4u2FXP1XMprxL7ZH/edit?usp=sharing
 [hub]: https://script.google.com
 
 Finally, test that your script is working:
@@ -61,12 +61,10 @@ If you'd like to adjust the style of the Agenda template:
 
 ## Next steps
 
-To learn more about how the bot was made, follow [this codelab][codelab] for
-detailed instructions on each step in the process. You can also view the
-[full source code][github] of this solution on GitHub if you want to jump right
-to the end.
+To get started with Google Apps Script, try out [the codelab][codelab]
+which guides you through the creation of your first script.
 
-[codelab]: https://codelabs.developers.google.com/codelabs/
-[github]: https://github.com/googlecodelabs/
+You can also view the [full source code][github] of this solution on GitHub to
+learn more about how it was built.
 
-(The code is ready in a Github repo, from which I'd be happy to transfer everything here)
+[github]: https://github.com/gsuitedevs/solutions/blob/master/agenda-maker
