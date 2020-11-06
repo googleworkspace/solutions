@@ -1,10 +1,7 @@
 /* 
-When Google Finance reports a change in price to one of your stocks, 
-the spreadsheet will be updated, triggering a change in the spreadsheet.
-That event then triggers this function.
+* Check for losses in the sheet.
 */
-
-function onChange() {
+function checkLosses() {
   // Pull data from the spreadsheet
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(
     "Calculations"

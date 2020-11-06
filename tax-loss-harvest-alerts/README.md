@@ -25,11 +25,11 @@ This script works with Google Sheets to alert you when stocks in your portfolio 
 
 1. Copy this [sheet][sheet-copy]
 2. In the calculations tab make sure your information in columns A through D are up to date
-3. Copy and apply this [script] [script-copy] to check for tax-loss harvesting opportunities.
-4. Set a trigger for the script to run hourly, or daily, or however frequently you want to check for opportunities.
+3. Open the script editor and run the `checkLosses` function to check for tax-loss
+   harvesting opportunities.
+4. Set a trigger for the script to run hourly, or daily, or however frequently you want to check for opportunities on a continued basis.
 
 ## Next steps
-
 
 To get started with Google Apps Script, try out [the codelab][codelab]
 which guides you through the creation of your first script.
@@ -37,7 +37,7 @@ which guides you through the creation of your first script.
 You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[script-copy]: https://github.com/gsuitedevs/solutions/tree/master/Tax%20Loss%20Harvest%20Alert/src/code.js
-[github]: https://github.com/gsuitedevs/solutions/blob/master/
+
+[github]: https://github.com/gsuitedevs/solutions/blob/master/tax-loss-harvest-alerts
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
-[sheet-copy]: https://docs.google.com/spreadsheets/d/1G4VZLU7mSb-cVLXyMfCjM1R5EHQMV8mmRKeZSvXEQsU/copy
+[sheet-copy]: https://script.google.com/d/11f6RLaZ1mrd6xmhW6wRuAmoqjGocfV8X9LhnkgnxUHFIlBLV5vtOqNcu/copy
