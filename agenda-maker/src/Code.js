@@ -10,7 +10,7 @@ function checkFolder() {
     var folder = folders.next();
     if (
       folder.getDescription() ==
-        'App Script App - Do not change this description' &&
+        'Apps Script App - Do not change this description' &&
       folder.getOwner().getEmail() == Session.getActiveUser().getEmail()
     ) {
       return folder.getId();
@@ -145,7 +145,7 @@ function onCalendarChange() {
       // Replace the tag with a link to the agenda document
       const agendaUrl = 'https://docs.google.com/document/d/' + newDoc.getId();
       description = description.replace(
-          '##agenda',
+          '#agenda',
           '<a href=' + agendaUrl + '>Agenda Doc</a>',
       );
       event.setDescription(description);
