@@ -18,7 +18,7 @@
  */
 
 /**
- * Runs when the spreadsheet is opened and adds the menu option "Sync calendar events"
+ * Runs when the spreadsheet is opened and adds the menu option "myTime"
  * to the spreadsheet menu
  */
 function onOpen() {
