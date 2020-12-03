@@ -4,7 +4,7 @@ description: Create calendar events for your activities, and synchronise to your
 labels: Apps Script, Sheets, Calendar
 material_icon: event
 create_time: 2019-09-08
-update_time: 2020-11-06
+update_time: 2020-12-03
 ---
 
 Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.com/duizendstra)
@@ -14,10 +14,12 @@ apps are user friendly and sometimes you need to record your time in multiple sy
 spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to
 other systems.
 
-To solve this problem we can use the one time related application we have open every
+To solve this problem we can use the main time related application we have open every
 day, Google Calendar. In an additional calendar we can quickly add an event for the appropriate
-timeslot. Then add a short description and forget about it. Art the end of the week you synchronise the
-calendar with a Google sheet. Categorize by customer, project and task based on the description and the
+timeslot. Then add a short description and forget about it. At the end of the week you synchronise the
+calendar with a Google sheet. 
+
+You can categorize this information by customer, project and task based on the description and the
 data is structured for further processing. Use the dashboard or write a simple query to report or copy
 in other time sheets.
 
