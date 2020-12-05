@@ -236,7 +236,7 @@ const myTime = (par) => {
             event.getTag('Task') || 'tbd',
             (isUpdateCalendarItemTitle) ? '' : event.getTitle(),
             (isUpdateCalendarItemDescription) ? '' : event.getDescription(),
-            event.getGuestList().map((guest) => guest.getName()).join(','),
+            event.getGuestList().map((guest) => guest.getEmail()).join(','),
             event.getLocation(),
             undefined,
             undefined,
@@ -262,8 +262,8 @@ const myTime = (par) => {
           hourSheet.getRange(exisitingEventRow, creatorsColumn).setValue(event.getCreators()[0]);
         }
 
-        if (event.getGuestList().map((guest) => guest.getName()).join(',') !== exisitingEvent[guestListColumn - 1]) {
-          hourSheet.getRange(exisitingEventRow, guestListColumn).setValue(event.getGuestList().map((guest) => guest.getName()).join(','));
+        if (event.getGuestList().map((guest) => guest.getEmail()).join(',') !== exisitingEvent[guestListColumn - 1]) {
+          hourSheet.getRange(exisitingEventRow, guestListColumn).setValue(event.getGuestList().map((guest) => guest.getEmail()).join(','));
         }
 
         if (event.getLocation() !== exisitingEvent[locationColumn - 1]) {
