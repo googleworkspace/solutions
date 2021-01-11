@@ -40,4 +40,5 @@ learn more about how it was built.
 
 [github]: https://github.com/gsuitedevs/solutions/blob/master/tax-loss-harvest-alerts
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
-[sheet-copy]: https://script.google.com/d/11f6RLaZ1mrd6xmhW6wRuAmoqjGocfV8X9LhnkgnxUHFIlBLV5vtOqNcu/copy
+[sheet-copy]: https://docs.google.com/spreadsheets/d/1p389iohh_XVsYbj7EYz1xIbNSYz90k5yckAQ-fWA3C8/copy
+[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
