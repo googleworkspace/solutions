@@ -35,7 +35,7 @@ pay status.
 1.  A dialog box will appear and tell you that the script requires
     authorization. Read the authorization notice and continue.
 1.  Once **Form Setup** finishes running, you will see a new Form in your Google
-    Drive entitled "Employee Weekly Timesheets". You can now send this Form out
+    Drive entitled "Employee Weekly Timesheets." You can now send this Form out
     to your employees & have them fill in their information accordingly. You
     will see any new Form responses fill into new rows of your Sheet.
 1.  Once you've received responses, go back to the **Timesheets** menu and
