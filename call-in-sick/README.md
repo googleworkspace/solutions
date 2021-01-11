@@ -28,7 +28,7 @@ your day in Google Calendar.
 - Blocks off the user's calendar using the [Calendar API][calendar_api].
 
 [hangouts_chat_api]: https://developers.google.com/hangouts/chat/
-[app_script]: https://developers.google.com/apps-script/
+[apps_script]: https://developers.google.com/apps-script/
 [gmail_api]: https://developers.google.com/gmail/api/
 [calendar_api]: https://developers.google.com/calendar/
 
