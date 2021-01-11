@@ -22,10 +22,9 @@ _Region_. With the click of a button, a customized report
 with the latest sales data is automatically created in just 
 a matter of seconds! 
 
-![summary](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/generate-sales-report/demo.gif)
+![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/generate-sales-report/demo.gif)
 
-Note: This solution requires a G Suite Business, Enterprise, 
-or Education account, and a Google Cloud Platform account and 
+Note: This solution requires a Google Workspace Enterprise account and a Google Cloud Platform account and 
 project.
 
 ## Technology highlights
@@ -46,7 +45,7 @@ This solution requires a [Google Cloud Platform account and project][gcp-account
 has a [sandbox environment][sandbox] 
 that you can use to test this solution.
 
-1. [Sign in][sign-in] with your G Suite Business, Enterprise, 
+1. [Sign in][sign-in] with your Google Workspace Business, Enterprise, 
 or Education Account credentials. 
 1. In the [GCP Console][console], select or create a new GCP project.
 
@@ -76,7 +75,7 @@ in the bottom left-hand corner of the spreadsheet grid.
 Generate button at the bottom of the spreadsheet grid to 
 initiate the creation of the report.
 1. When prompted, click the **Review permissions** button.
-1. Select your G Suite account from the list.
+1. Select your Google Workspace account from the list.
 1. Click the **Allow** button.
 1. Once the script finishes executing, navigate to 
 [Google Drive][drive] and click on Recent in the 
@@ -95,7 +94,7 @@ You can read more about BigQuery in the
 load your own data [directly][load-data] or 
 [through solution providers][bq-providers].
 
-[github]: https://github.com/gsuitedevs/solutions/blob/master/generate-sales-report
+[github]: https://github.com/googleworkspace/solutions/blob/master/generate-sales-report
 [connector-support]: https://support.google.com/docs/answer/9077536
 [google-slides]: https://slides.google.com
 [apps-script]: https://developers.google.com/apps-script/

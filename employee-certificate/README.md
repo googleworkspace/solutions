@@ -18,7 +18,7 @@ This setup would make use of the 'Employee Certificate' template from Google Sli
 ## Technology highlights
 - The [`DriveApp` service](https://developers.google.com/apps-script/reference/drive/drive-app) is used to make copies of the original Google Slides template
 - The [`SpreadsheetApp` service](https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app) is used to refer employee details and update the status against each of them
-   - We'll also make use of [Custom Menus in G Suite](https://developers.google.com/apps-script/guides/menus)
+   - We'll also make use of [Custom Menus in Google Workspace](https://developers.google.com/apps-script/guides/menus)
 - The [`SlidesApp` service](https://developers.google.com/apps-script/reference/slides/slides-app) is used to replace the placeholders from the template, with actual employee data
 - The [`GmailApp` service](https://developers.google.com/apps-script/reference/gmail/gmail-app) is used to get the individual slides as a PDF and send it to respective employee's email ID
 

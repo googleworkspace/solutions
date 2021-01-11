@@ -17,7 +17,7 @@ By simply adding "#agenda" to the description of your Google Calendar invite, an
 
 Design Details
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/agenda-maker/AgendaMakerScreenshot.png)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/agenda-maker/AgendaMakerScreenshot.png)
 
 ## Technology highlights
 
@@ -37,7 +37,7 @@ First, create the script:
 
 1.  [Click here][code] to open the code in the Apps Script code editor.
 2.  Click the menu item **File > Make a copy** to get your own copy. You can
-    later access this copy in the [G Suite Developer Hub][hub].
+    later access this copy in the [Google Workspace Developer Hub][hub].
 3. Run the `setUp` function to set up a trigger for calendar changes.
 
 [code]: https://script.google.com/d/1Q-lPfAtsADktF1cpW0x9qw0CuMAXUiqiusfvz6WW4u2FXP1XMprxL7ZH/edit?usp=sharing
@@ -67,5 +67,5 @@ which guides you through the creation of your first script.
 You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[github]: https://github.com/gsuitedevs/solutions/blob/master/agenda-maker
+[github]: https://github.com/googleworkspace/solutions/blob/master/agenda-maker
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
