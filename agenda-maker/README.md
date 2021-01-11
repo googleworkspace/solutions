@@ -50,14 +50,14 @@ Finally, test that your script is working:
 3.  In the description, enter a description you'd like, and add "#agenda" where you'd like to create the agenda.
 4. Wait for an email from Google Docs, or refresh Google Calendar and click on the event again. You should see a link to a newly created Agenda document to edit.
 
-Note: All attendees will receive the invitation from Google Docs in addition to your invite, to view the agenda.  They will have editing rights, but you may adjust the script to give commenter or viewer rights.
+Note: All attendees will receive the invitation from Google Docs in addition to your invite, to view the agenda.  They will have editing rights, but you can adjust the script to give commenter or viewer rights.
 
 [calendar]: https://calendar.google.com
 
 If you'd like to adjust the style of the Agenda template:
 1. After creating your first agenda in a calendar event, visit to your Google Drive account.
-2. In Google Drive there should be a folder named "Agenda Maker - App".
-3. Within that folder, look for the file named "Agenda TEMPLATE##".  This is the template you can adjust.
+2. In Google Drive there should be a folder named "Agenda Maker - App."
+3. Within that folder, look for the file named "Agenda TEMPLATE##."  This is the template you can adjust.
 
 ## Next steps
 
@@ -68,3 +68,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [github]: https://github.com/gsuitedevs/solutions/blob/master/agenda-maker
+[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
