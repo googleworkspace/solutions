@@ -16,13 +16,13 @@ This solution uses [Google Apps Script][apps-script] to automatically populate
 a shared vacation calendar based on the individual calendars of each person on
 the team. When someone books time off they just need to remember to add an event
 to their personal Google Calendar using a keyword like "Vacation" or "Out of
-office". The script acts behind the scenes, scanning the calendars of all the
+office." The script acts behind the scenes, scanning the calendars of all the
 members in a Google Group and syncing appropriate events to the shared calendar.
 
 Note: This solution only accesses Calendar events that your colleagues have made
 visible to you via their [privacy settings][privacy_settings].
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/vacation-calendar/demo.gif)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/vacation-calendar/demo.gif)
 
 [apps-script]: https://developers.google.com/apps-script
 [privacy_settings]: https://support.google.com/calendar/answer/34580
@@ -47,7 +47,7 @@ visible to you via their [privacy settings][privacy_settings].
 First, set up Google Calendar:
 
 1. Open [Google Calendar][calendar] in your browser.
-1. [Create a new calendar][calendar_setup] called "Team Vacations".
+1. [Create a new calendar][calendar_setup] called "Team Vacations."
 1. Still in the settings screen, select the new calendar from the left menu.
 1. Scroll to **Integrate calendar** and copy the value under **Calendar ID**.
 
@@ -65,7 +65,7 @@ Then run the script:
 1. Click the **Select function** dropdown and select **setup**.
 1. Click the Run button (►).
 1. When prompted, click the **Review permissions** button.
-1. Select your G Suite account from the list.
+1. Select your Google Workspace account from the list.
 1. Click the **Allow** button.
 
 When complete, return to Google Calendar to see the Team Vacations calendar
@@ -86,4 +86,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/vacation-calendar
+[github]: https://github.com/googleworkspace/solutions/blob/master/vacation-calendar

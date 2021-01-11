@@ -15,7 +15,7 @@ your day in Google Calendar.
 
 <!-- TODO: Fix update image path to "master" before comitting. -->
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@call-in-sick/call-in-sick/demo.png)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@call-in-sick/call-in-sick/demo.png)
 
 ## Technology highlights
 
@@ -38,7 +38,7 @@ First, create the script:
 
 1.  [Click here][code] to open the bot code in the Apps Script code editor.
 1.  Click the menu item **File > Make a copy** to get your own copy. You can
-    later access this copy in the [G Suite Developer Hub][hub].
+    later access this copy in the [Google Workspace Developer Hub][hub].
 
 [code]: https://script.google.com/d/1pbuGhMkTyqfeR30QfbMzsA21qM2p0HmnStGpZUKj-QLvH0BL73UbTlSq/edit
 [hub]: https://script.google.com
@@ -86,9 +86,9 @@ Then configure the Hangouts Chat API to create your bot:
     **ENABLE** button.
 1.  Once the API is enabled, on click the **Configuration** tab.
 1.  In the Configuration tab, do the following:
-    1.  In the **Bot name** box, enter "Attendance Bot".
+    1.  In the **Bot name** box, enter "Attendance Bot."
     1.  In the **Avatar URL box**, enter `https://goo.gl/kv2ENA`.
-    1.  In the **Description box**, enter "Call in sick with a bot".
+    1.  In the **Description box**, enter "Call in sick with a bot."
     1.  Under **Functionality**, select **Bot works in direct messages**.
     1.  Under **Connection settings**, select **Apps Script project** and paste
         your script's **Deployment ID** into the text box.

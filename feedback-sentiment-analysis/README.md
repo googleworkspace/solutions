@@ -22,7 +22,7 @@ This solution uses <a href="https://developers.google.com/apps-script/" target="
 a Google Sheet to perform entity and sentiment analysis on vacation rental reviews
 using the Cloud Natural Language API.
 
-![summary](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/feedback-sentiment-analysis/summaryimage.png)
+![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/feedback-sentiment-analysis/summaryimage.png)
 
 ## Technology highlights
 
@@ -83,7 +83,7 @@ populated using the formula provided in row 2 of the template.
 **Sentiment tools > Mark entities and sentiment**.
 If the menu is not present, reload your browser window.
 1. When prompted, click the **Review permissions** button.
-1. Select your G Suite account from the list.
+1. Select your Google Workspace account from the list.
 1. Click the **Allow** button.
 1. As the script executes, you will see response data populating
 the Entity Sentiment Data sheet and a completion flag in each
