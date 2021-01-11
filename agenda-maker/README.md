@@ -26,7 +26,7 @@ Design Details
 - Uses the [Google Drive API][gdrive_api] to set up an agenda folder
 - Uses the [Calendar API][calendar_api] to detect new events and update the event description with a link to the Agenda.
 
-[app_script]: https://developers.google.com/apps-script/
+[apps_script]: https://developers.google.com/apps-script/
 [gdrive_api]: https://developers.google.com/drive/api/
 [gdocs_api]: https://developers.google.com/docs/api/
 [calendar_api]: https://developers.google.com/calendar/
