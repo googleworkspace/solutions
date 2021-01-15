@@ -1,6 +1,6 @@
 ---
 title: Record time and activities in Calendar and Sheets
-description: Create calendar events for your activities, and synchronise to your timesheet in sheets for reporting.
+description: Create calendar events for your activities, and synchronize to your timesheet in sheets for reporting.
 labels: Apps Script, Sheets, Calendar
 material_icon: event
 create_time: 2019-09-08
@@ -11,12 +11,12 @@ Contributed by Jasper Duizendstra, follow me at [@Duizendstra](https://twitter.c
 
 Keeping track of the time spent on project for customers can be a challenge. Not all time writing
 apps are user friendly and sometimes you need to record your time in multiple systems. You can end up
-spending a lot of time writing time on a daily basis in a stubborn system and synchronise that time to
+spending a lot of time writing time on a daily basis in a stubborn system and synchronize that time to
 other systems.
 
 To solve this problem we can use the main time related application we have open every
 day, Google Calendar. In an additional calendar we can quickly add an event for the appropriate
-timeslot. Then add a short description and forget about it. At the end of the week you synchronise the
+timeslot. Then add a short description and forget about it. At the end of the week you synchronize the
 calendar with a Google sheet. 
 
 You can categorize this information by customer, project and task based on the description and the
@@ -27,21 +27,21 @@ in other time sheets.
 
 ## Technology highlights
 
-- The [`SpreadsheetApp` service][spreadsheetapp-docs] is used to write the events to the sheet
-- [Custom Menus](https://developers.google.com/apps-script/guides/menus) are used to trigger the synchronisation
-- The [`CalendarApp` service][calendarapp-docs] is used to write the events to the sheet
+- The [`SpreadsheetApp` service][spreadsheetapp-docs] is used to write the events to the sheet.
+- [Custom Menus](https://developers.google.com/apps-script/guides/menus) are used to trigger the synchronization.
+- The [`CalendarApp` service][calendarapp-docs] is used to write the events to the sheet.
 
 ## Try it
 
 [![Learn more about this solution](https://img.youtube.com/vi/CVHLgQ90zJo/0.jpg)](https://www.youtube.com/watch?v=CVHLgQ90zJo&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=5)
 
-1. Create your secondary calendar: [Create a new calendar][create-calendar]
-1. Copy this [sheet][sheet-copy]
-1. Open the sheet and wait until the **myTime** menu option appears. (This wil take 10 to 20 seconds)
-1. Select the **Settings** option from the **myTime** menu. An autorisation dialog will appear
-1. Authorize the script
-1. Run the **MyTime -> Settings** option again, create the configuration and save it
-1. Add some events to the secondary calender and hit **MyTime -> Sync Calendar events** calendar events
+1. Create your secondary calendar: [Create a new calendar][create-calendar].
+1. Copy this [sheet][sheet-copy].
+1. Open the sheet and wait until the **myTime** menu option appears. (This wil take 10 to 20 seconds.)
+1. Select the **Settings** option from the **myTime** menu. An authorization dialog will appear
+1. Authorize the script.
+1. Run the **MyTime -> Settings** option again, create the configuration and save it.
+1. Add some events to the secondary calender and hit **MyTime -> Sync Calendar events** calendar events.
 
 ## Next steps
 
