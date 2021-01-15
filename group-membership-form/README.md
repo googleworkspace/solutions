@@ -1,6 +1,6 @@
 ---
 title: Offer a one stop shop onboarding experience
-description: Set new hires up for success with the resources they need
+description: Set new hires up for success with the resources they need.
 labels:  Sheets, Forms, Groups for Business, Apps Script
 material_icon: settings_input_component
 create_time: 2019-08-30
