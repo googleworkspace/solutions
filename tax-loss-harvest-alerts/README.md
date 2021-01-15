@@ -1,6 +1,6 @@
 ---
 title: Tax Loss Harvest Alert with Google Finance
-description: List your stocks and purchase prices in a Google Sheet, and this script will alert you if you can sell the stock for a "tax loss harvest"
+description: List your stocks and purchase prices in a Google Sheet, and this script will alert you if you can sell the stock for a "tax loss harvest."
 labels: Apps Script, Sheets, Google Finance
 material_icon: event
 create_time: 2020-06-14
