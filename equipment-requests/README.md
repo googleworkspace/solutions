@@ -57,7 +57,7 @@ learn more about how it was built.
 [screenshot]: https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/equipment-requests/screenshot.png
 [sheet]: https://docs.google.com/spreadsheets/d/1J7l9RwM0l3qshc2cTQsKaCo6oa-usL4I9EackyTzJgo/copy
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/offsite-activity-signup
+[github]: https://github.com/googleworkspace/solutions/blob/master/equipment-requests
 [formapp-docs]: https://developers.google.com/apps-script/reference/forms/form-app
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
 [triggers-docs]: https://developers.google.com/apps-script/guides/triggers/installable
