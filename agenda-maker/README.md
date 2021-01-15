@@ -1,6 +1,6 @@
 ---
 title: Agenda Maker for Google Calendar
-description: Creates an agenda for a calendar event you create automatically
+description: Creates an agenda for a calendar event you create automatically.
 labels: Apps Script,  Calendar
 material_icon: event
 create_time: 2020-07-19
