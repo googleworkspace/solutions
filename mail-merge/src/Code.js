@@ -95,7 +95,8 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
           // name: 'name of the sender',
           // replyTo: 'a.reply@email.com',
           // noReply: true, // if the email should be sent from a generic no-reply email address (not available to gmail.com users)
-          attachments: emailTemplate.attachments
+          attachments: emailTemplate.attachments,
+          inlineImages: emailTemplate.inlineImages
         });
         // modify cell to record email sent date
         out.push([new Date()]);
@@ -115,6 +116,9 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
    * Get a Gmail draft message by matching the subject line.
    * @param {string} subject_line to search for draft message
    * @return {object} containing the subject, plain and html message body and attachments
+   * 
+   * Incorporates code to correctly parse and insert inline images
+   * @see https://stackoverflow.com/a/49621562
   */
   function getGmailTemplateFromDrafts_(subject_line){
     try {
@@ -126,8 +130,39 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
       const msg = draft.getMessage();
       // getting attachments so they can be included in the merge
       const attachments = msg.getAttachments();
-      return {message: {subject: subject_line, text: msg.getPlainBody(), html:msg.getBody()}, 
-              attachments: attachments};
+      // get HTML body text
+      var html_Body = msg.getBody();
+      // Configure a RegExp for identifying draft Image Tags that indicate "inline" images
+      const regDraftImgTag = new RegExp('img data-surl="cid:', "g");
+
+      if (html_Body.match(regDraftImgTag) != null) {
+        var inlineImages = {};
+        var imgVars = html_Body.match(/<img[^>]+>/g);
+        var imgToReplace = [];
+        if(imgVars != null){
+          for (var i = 0; i < imgVars.length; i++) {
+            if (imgVars[i].search(regDraftImgTag) != -1) {
+              var id = imgVars[i].match(/src="cid:([^"]+)"/);
+              if (id != null) {
+                var imgTitle = imgVars[i].match(/alt="([^"]+)"/);
+                if (imgTitle != null) imgToReplace.push([imgTitle[1], imgVars[i], id[1]]);
+              }
+            }
+          }
+        }
+        for (var i = 0; i < imgToReplace.length; i++) {
+          for (var j = 0; j < attachments.length; j++) {
+            if(attachments[j].getName() == imgToReplace[i][0]) {
+              inlineImages[imgToReplace[i][2]] = attachments[j].copyBlob();
+              attachments.splice(j, 1);
+              var newImg = imgToReplace[i][1].replace(/ data-surl="[^"]+"/, "");
+              html_Body = html_Body.replace(imgToReplace[i][1], newImg);
+            }
+          }
+        }
+      }
+      return {message: {subject: subject_line, text: msg.getPlainBody(), html: html_Body }, 
+              attachments: attachments, inlineImages: inlineImages};
     } catch(e) {
       throw new Error("Oops - can't find Gmail draft");
     }
