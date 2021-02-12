@@ -217,4 +217,4 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
       .replace(/[\r]/g, '\\r')
       .replace(/[\t]/g, '\\t');
   };
-}
+} 
