@@ -180,7 +180,7 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
 
     // token replacement
     template_string = template_string.replace(/{{[^{}]+}}/g, key => {
-      return escapeData_(data[key.replace(/[{}]+/g, "")] || "");
+      return escapeData_(data[key.replace(/[{}]+/g, "")]) || "";
     });
     return  JSON.parse(template_string);
   }
