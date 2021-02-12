@@ -18,7 +18,7 @@
  
 /**
  * Change these to match the column names you are using for email 
- * recepient addresses and email sent column.
+ * recipient addresses and email sent column.
 */
 const RECIPIENT_COL  = "Recipient";
 const EMAIL_SENT_COL = "Email Sent";
@@ -95,7 +95,8 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
           // name: 'name of the sender',
           // replyTo: 'a.reply@email.com',
           // noReply: true, // if the email should be sent from a generic no-reply email address (not available to gmail.com users)
-          attachments: emailTemplate.attachments
+          attachments: emailTemplate.attachments,
+          inlineImages: emailTemplate.inlineImages
         });
         // modify cell to record email sent date
         out.push([new Date()]);
@@ -124,10 +125,29 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
       const draft = drafts.filter(subjectFilter_(subject_line))[0];
       // get the message object
       const msg = draft.getMessage();
-      // getting attachments so they can be included in the merge
-      const attachments = msg.getAttachments();
-      return {message: {subject: subject_line, text: msg.getPlainBody(), html:msg.getBody()}, 
-              attachments: attachments};
+
+      // Handling inline images and attachments so they can be included in the merge
+      // Based on https://stackoverflow.com/a/65813881/1027723
+      // Get all attachments and inline image attachments
+      const allInlineImages = draft.getMessage().getAttachments({includeInlineImages: true,includeAttachments:false});
+      const attachments = draft.getMessage().getAttachments({includeInlineImages: false});
+      const htmlBody = msg.getBody(); 
+
+      // Create an inline image object with the image name as key 
+      // (can't rely on image index as array based on insert order)
+      const img_obj = allInlineImages.reduce((obj, i) => (obj[i.getName()] = i, obj) ,{});
+
+      //Regexp to search for all img string positions with cid
+      const imgexp = RegExp('<img.*?src="cid:(.*?)".*?alt="(.*?)"[^\>]+>', 'g');
+      const matches = [...htmlBody.matchAll(imgexp)];
+
+      //Initiate the allInlineImages object
+      const inlineImagesObj = {};
+      // built an inlineImagesObj from inline image matches
+      matches.forEach(match => inlineImagesObj[match[1]] = img_obj[match[2]]);
+
+      return {message: {subject: subject_line, text: msg.getPlainBody(), html:htmlBody}, 
+              attachments: attachments, inlineImages: inlineImagesObj };
     } catch(e) {
       throw new Error("Oops - can't find Gmail draft");
     }
@@ -160,7 +180,7 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
 
     // token replacement
     template_string = template_string.replace(/{{[^{}]+}}/g, key => {
-      return escapeData_(data[key.replace(/[{}]+/g, "")]) || "";
+      return escapeData_(data[key.replace(/[{}]+/g, "")] || "");
     });
     return  JSON.parse(template_string);
   }
