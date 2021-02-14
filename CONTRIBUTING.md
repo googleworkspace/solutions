@@ -42,7 +42,7 @@ No: Use the Sheets API onEdit trigger to send notifications
 
 Once you have approval from one of the repo owners, proceed to the next step.
 
-[issue_template]: https://github.com/gsuitedevs/solutions/issues/new?assignees=&labels=enhancement+%28new+solution%29&template=new-solution-request.md&title=
+[issue_template]: https://github.com/googleworkspace/solutions/issues/new?assignees=&labels=enhancement+%28new+solution%29&template=new-solution-request.md&title=
 
 ## Step 2
 
@@ -51,9 +51,9 @@ code sample. If your solution involves a spreadsheet, document or presentation, 
 sample data in the data directory (see [example][data_example]). You must fill in the 
 [README.md][template_readme] with an image or gif for us to surface on the gallery page. 
 
-[template_directory]: https://github.com/gsuitedevs/solutions/tree/master/template
-[template_readme]: https://github.com/gsuitedevs/solutions/tree/master/template
-[data_example]: https://github.com/gsuitedevs/solutions/tree/master/equipment-requests
+[template_directory]: https://github.com/googleworkspace/solutions/tree/master/template
+[template_readme]: https://github.com/googleworkspace/solutions/tree/master/template
+[data_example]: https://github.com/googleworkspace/solutions/tree/master/equipment-requests
 
 ## Step 3
 

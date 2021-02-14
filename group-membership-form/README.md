@@ -1,6 +1,6 @@
 ---
 title: Offer a one stop shop onboarding experience
-description: Set new hires up for success with the resources they need
+description: Set new hires up for success with the resources they need.
 labels:  Sheets, Forms, Groups for Business, Apps Script
 material_icon: settings_input_component
 create_time: 2019-08-30
@@ -23,7 +23,7 @@ the group, and be granted access to the resources the group is permitted.
 For larger teams, you can optionally enable notficiations in the spreadsheet
 to receive an email everytime a new form submission occurs.
 
-![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/group-membership-form/demo.gif)
+![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/group-membership-form/demo.gif)
 
 ## Technology highlights
 
@@ -36,7 +36,7 @@ to receive an email everytime a new form submission occurs.
 
 ## Try it
 
-1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1MH_cyvP_0DVTsQ0A606Tx3vuQU_2kjpbDCs_AhRH1lA/copy) from your _G Suite_ account.
+1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1MH_cyvP_0DVTsQ0A606Tx3vuQU_2kjpbDCs_AhRH1lA/copy) from your _Google Workspace_ account.
 1. From your spreadsheet, click on **Tools > Script Editor**.
 1. Ensure the _Admin Directory API_ is enabled via
    **Resources > Advanced Google Services**.
@@ -102,4 +102,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/group-membership-form
+[github]: https://github.com/googleworkspace/solutions/blob/master/group-membership-form

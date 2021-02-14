@@ -27,8 +27,10 @@ notification is sent to HR once the status is marked as complete.
   the workflow.
 - [Triggers][triggers-docs] are used to monitor for new requests and clean up completed items.
 - The [`MailApp` service][mailapp-docs] is used to send email notifications.
-  
+
 ## Try it
+
+[![Learn more about this solution](https://img.youtube.com/vi/-R_MK1HFlZE/0.jpg)](https://www.youtube.com/watch?v=-R_MK1HFlZE&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=7)
 
 1. Create a copy of the sample [Equipment request spreadsheet][sheet].
 1. Click the menu item **Tools** > **Script editor** to edit the script.
@@ -52,10 +54,10 @@ which guides you through the creation of your first script.
 You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[screenshot]: https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/equipment-requests/screenshot.png
+[screenshot]: https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/equipment-requests/screenshot.png
 [sheet]: https://docs.google.com/spreadsheets/d/1J7l9RwM0l3qshc2cTQsKaCo6oa-usL4I9EackyTzJgo/copy
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/offsite-activity-signup
+[github]: https://github.com/googleworkspace/solutions/blob/master/equipment-requests
 [formapp-docs]: https://developers.google.com/apps-script/reference/forms/form-app
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
 [triggers-docs]: https://developers.google.com/apps-script/guides/triggers/installable

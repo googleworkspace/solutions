@@ -8,16 +8,16 @@ update_time: 2019-08-12
 ---
 
 Simplify how your employees do expense reporting with a Gmail Add-on and Google Sheets. Anytime a
-user receives an email receipt, they can open the add-on which automatically contains relevant 
-information about the expense. Users can edit that information and then submit the form to log 
+user receives an email receipt, they can open the add-on which automatically contains relevant
+information about the expense. Users can edit that information and then submit the form to log
 their expense into a spreadsheet.
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/expenseit.gif)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/expenses-add-on/expenseit.gif)
 
 ## Technology highlights
 
 - Use the [Card Service][cardservice] for Gmail add-ons to build a UI to works both on web and
-mobile. 
+mobile.
 - Store user values using Google Apps Script's [Properties Service][propertiesservice].
 
 [cardservice]: https://developers.google.com/apps-script/reference/card-service/
@@ -25,32 +25,27 @@ mobile.
 
 ## Try it
 
+[![Learn more about this solution](https://img.youtube.com/vi/1vxIyNWczJo/0.jpg)](https://www.youtube.com/watch?v=1vxIyNWczJo&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=6)
+
 First, create the script:
 
 1.  [Click here][code] to open the bot code in the Apps Script code editor.
 1.  Click the menu item **File > Make a copy** to get your own copy. You can
-    later access this copy in the [G Suite Developer Hub][hub].
+    later access this copy in the [Google Workspace Developer Hub][hub].
 
 Next, deploy the add-on:
 
 1. Select **Publish** > **Deploy from manifest**.
-1. Next to the entry **Latest Version (Head)** click **Get ID**.
-1. Select and copy the **Deployment ID** value.
-1. Close the dialog and the **Deployments** window.
-1. Open the **[Gmail add-on settings][settings]** tab.
-1. In the Add-ons tab, ensure that you have selected the **Enable developer add-ons for my account** checkbox.
-1. Paste your add-on's deployment ID into the **Developer add-ons** textbox and click **Install**.
-1. In the **Install developer add-on** dialog that appears, click the checkbox to
-indicate that you trust this developer (yourself), then click **Install**.
+1. Next to the entry **Latest Version (Head)** click **Install add-on**.
 
-Test it out and create a new expense report: 
+Test it out and create a new expense report:
 
 1. Open any message in Gmail, either on web or mobile.
-1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/expenses-add-on/receipt-icon.png)
+1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/expenses-add-on/receipt-icon.png)
 should appear on the right or bottom of your screen, depending on your platform.
 1. Click the button to authorize the add-on and follow the prompts.
 1. Open an email and fill out the receipt information and click **New Sheet**.
-1. Open your Google Drive to view the new expense report. 
+1. Open your Google Drive to view the new expense report.
 
 [code]: https://script.google.com/d/12PB96o6hZfb5NKBSFJQ2dOtzfMnr-nRPCOnRUyfFbdmeR23qFQILF67q/edit
 [hub]: https://script.google.com

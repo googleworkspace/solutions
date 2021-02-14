@@ -18,7 +18,7 @@ Sheet. Additionally, email notifications can be enabled that send daily
 summaries of videos that have new comment activity so that you can engage with
 questions and comments shared for the video.
 
-![screenshot](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/youtube-tracker/screenshot.png)
+![screenshot](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/youtube-tracker/screenshot.png)
 
 ## Technology highlights
 
@@ -32,6 +32,8 @@ questions and comments shared for the video.
 
 ## Try it
 
+[![Learn more about this solution](https://img.youtube.com/vi/YOZNAQwtbyI/0.jpg)](hhttps://www.youtube.com/watch?v=YOZNAQwtbyI&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=3)
+
 ### Spreadsheet setup
 
 1. Make of copy of the spreadsheet [here](https://docs.google.com/spreadsheets/d/12rQe1ndU_VmmHl0QIqUi-XxQ8lWovjh0xfOHTfxOHoo/copy).
@@ -39,7 +41,7 @@ questions and comments shared for the video.
 1. Change the name of the sheet to the full email address where you’d like to
    receive email notifications.
 1. Locate URLs of videos you would like to track and add them in column A below
-   cell A1. The URLs must be in format starting with "www.youtube.com/watch?v=".
+   cell A1. The URLs must be in format starting with "www.youtube.com/watch?v=."
 
 ### YouTube Advanced Service setup
 
@@ -55,7 +57,7 @@ questions and comments shared for the video.
 1. From the script editor, choose `markVideos` from the select box in the
    toolbar, then click the Run button (▶).
 1. When prompted, click the **Review permissions** button.
-1. Select your G Suite account from the list.
+1. Select your Google Workspace account from the list.
 1. Click the **Allow** button.
 1. When the script execution completes, you should see the details added in
    columns C through H, and you will receive an email for any videos that have

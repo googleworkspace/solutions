@@ -19,7 +19,7 @@ resources referenced via a URL.
 The Google Form can be accessed on your website, email signature,
 instant message, or wherever you share the form's link.
 
-![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/content-signup/demo.gif)
+![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/content-signup/demo.gif)
 
 ## Technology highlights
 
@@ -30,6 +30,8 @@ instant message, or wherever you share the form's link.
   page.
 
 ## Try it
+
+[![Learn more about this solution](https://img.youtube.com/vi/xxgQr-jSu9o/0.jpg)](https://www.youtube.com/embed/xxgQr-jSu9o)
 
 1. Make a copy of this Google Sheet
    [by clicking this link](https://docs.google.com/spreadsheets/d/1vyv-QcQ0wgaGNV7XklZI1jq95Cg_QVBq-o4rhTJqg00/copy)
@@ -123,4 +125,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/gsuitedevs/solutions/blob/master/content-signup
+[github]: https://github.com/googleworkspace/solutions/blob/master/content-signup

@@ -1,5 +1,5 @@
 ---
-title: Call in sick with a custom bot for Hangouts Chat
+title: Call in sick with a custom bot for Google Chat
 description: Update your calendar and auto-responder with a single message to your custom bot.
 labels: Apps Script, Hangouts Chat, Gmail, Calendar
 material_icon: sentiment_very_dissatisfied
@@ -9,17 +9,17 @@ update_time: 2019-08-02
 
 When you wake up feeling ill the last thing you want to do is log in to your
 work account and update your status in multiple applications. With this
-solution, you simply send the message "I'm sick" to a custom bot in Hangouts
+solution, you simply send the message "I'm sick" to a custom bot in Google
 Chat and it will turn on your out of office message in Gmail and block off
 your day in Google Calendar.
 
 <!-- TODO: Fix update image path to "master" before comitting. -->
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@call-in-sick/call-in-sick/demo.png)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@call-in-sick/call-in-sick/demo.png)
 
 ## Technology highlights
 
-- Uses the [Hangouts Chat API][hangouts_chat_api] to build a chat bot, which you
+- Uses the [Google Chat API][google_chat_api] to build a chat bot, which you
   can message just like a human participant.
 - The bot is implemented using [Apps Script][apps_script], allowing for rapid
   development and worry-free operation.
@@ -27,8 +27,8 @@ your day in Google Calendar.
   auto-responder.
 - Blocks off the user's calendar using the [Calendar API][calendar_api].
 
-[hangouts_chat_api]: https://developers.google.com/hangouts/chat/
-[app_script]: https://developers.google.com/apps-script/
+[google_chat_api]: https://developers.google.com/hangouts/chat/
+[apps_script]: https://developers.google.com/apps-script/
 [gmail_api]: https://developers.google.com/gmail/api/
 [calendar_api]: https://developers.google.com/calendar/
 
@@ -38,7 +38,7 @@ First, create the script:
 
 1.  [Click here][code] to open the bot code in the Apps Script code editor.
 1.  Click the menu item **File > Make a copy** to get your own copy. You can
-    later access this copy in the [G Suite Developer Hub][hub].
+    later access this copy in the [Google Workspace Developer Hub][hub].
 
 [code]: https://script.google.com/d/1pbuGhMkTyqfeR30QfbMzsA21qM2p0HmnStGpZUKj-QLvH0BL73UbTlSq/edit
 [hub]: https://script.google.com
@@ -79,16 +79,16 @@ Next, setup your script to use the new project and deploy it:
 1.  Select and copy the **Deployment ID** value.
 1.  Close the dialog and the **Deployments** window.
 
-Then configure the Hangouts Chat API to create your bot:
+Then configure the Google Chat API to create your bot:
 
 1.  Back in the Google Cloud Developers Console, open the
-    [**Hangouts Chat API**][library_chat] page in the API library and click the
+    [**Google Chat API**][library_chat] page in the API library and click the
     **ENABLE** button.
 1.  Once the API is enabled, on click the **Configuration** tab.
 1.  In the Configuration tab, do the following:
-    1.  In the **Bot name** box, enter "Attendance Bot".
+    1.  In the **Bot name** box, enter "Attendance Bot."
     1.  In the **Avatar URL box**, enter `https://goo.gl/kv2ENA`.
-    1.  In the **Description box**, enter "Call in sick with a bot".
+    1.  In the **Description box**, enter "Call in sick with a bot."
     1.  Under **Functionality**, select **Bot works in direct messages**.
     1.  Under **Connection settings**, select **Apps Script project** and paste
         your script's **Deployment ID** into the text box.
@@ -96,14 +96,14 @@ Then configure the Hangouts Chat API to create your bot:
         domain**. In the text box under the drop-down menu, enter your email
         address.
     1.  Click Save changes.
-1.  After you save your changes, verify that the status on the Hangouts Chat API
+1.  After you save your changes, verify that the status on the Google Chat API
     page shows the Bot Status to be **LIVE – available to users**.
 
 [library_chat]: https://console.cloud.google.com/apis/library/chat.googleapis.com
 
 Finally, test that your bot is working:
 
-1.  Open [Hangouts Chat][hangouts_chat].
+1.  Open [Google Chat][google_chat].
 1.  Click **Find people, rooms, bots > Message a bot**.
 1.  From the list, select the **Attendance Bot** that you created.
 1.  Send the message "I'm sick" to the bot.
@@ -111,7 +111,7 @@ Finally, test that your bot is working:
 1.  In the resulting card, click the **SET VACATION IN GMAIL** and
     **BLOCK OUT DAY IN CALENDAR** buttons.
 
-[hangouts_chat]: https://chat.google.com
+[google_chat]: https://chat.google.com
 
 ## Next steps
 

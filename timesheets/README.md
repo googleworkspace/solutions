@@ -14,7 +14,7 @@ manage their data. After everybody submits their responses, calculate their pay,
 approve or disapprove their pay, and auto-send emails notifying them of their
 pay status.
 
-![demo](https://cdn.jsdelivr.net/gh/gsuitedevs/solutions@master/timesheets/TimesheetsRecording.gif)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/timesheets/TimesheetsRecording.gif)
 
 [apps-script]: https://developers.google.com/apps-script/
 
@@ -35,7 +35,7 @@ pay status.
 1.  A dialog box will appear and tell you that the script requires
     authorization. Read the authorization notice and continue.
 1.  Once **Form Setup** finishes running, you will see a new Form in your Google
-    Drive entitled "Employee Weekly Timesheets". You can now send this Form out
+    Drive entitled "Employee Weekly Timesheets." You can now send this Form out
     to your employees & have them fill in their information accordingly. You
     will see any new Form responses fill into new rows of your Sheet.
 1.  Once you've received responses, go back to the **Timesheets** menu and

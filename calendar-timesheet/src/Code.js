@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Jasper Duizendstra
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,231 +12,348 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Please add your solution here if you are housing your implementation in this repo. If you
- * are simply linking your code from another repo, please delete this file.
- */
 
 /**
- * Runs when the spreadsheet is opened and adds the menu option "Sync calendar events"
+ * Runs when the spreadsheet is opened and adds the menu options
  * to the spreadsheet menu
  */
-function onOpen() {
-  'use strict';
-  var menuEntries = [{
-    name: 'Sync calendar events',
-    functionName: 'run',
-  }];
-  var activeSheet;
+const onOpen = () => {
+  SpreadsheetApp.getUi()
+    .createMenu('myTime')
+    .addItem('Sync calendar events', 'run')
+    .addItem('Settings', 'settings')
+    .addToUi();
+};
 
-  activeSheet = SpreadsheetApp.getActiveSpreadsheet();
-  activeSheet.addMenu('myTime', menuEntries);
-}
+/**
+ * Opens the sidebar
+ */
+const settings = () => {
+  const html = HtmlService.createHtmlOutputFromFile('Page')
+    .setTitle('Settings');
+
+  SpreadsheetApp.getUi().showSidebar(html);
+};
+
+/**
+* returns the settings from the script properties
+*/
+const getSettings = () => {
+  const settings = {};
+  
+  // get the current settings
+  const savedCalendarSettings = JSON.parse(PropertiesService.getScriptProperties().getProperty('calendar') || '[]');
+  
+  // get the primary calendar
+  const primaryCalendar = CalendarApp.getAllCalendars()
+    .filter((cal) => cal.isMyPrimaryCalendar())
+    .map((cal) => ({
+      name: 'Primary calendar',
+      id: cal.getId()
+    }));
+    
+  // get the secondary calendars
+  const secundaryCalendars = CalendarApp.getAllCalendars()
+    .filter((cal) => cal.isOwnedByMe() && !cal.isMyPrimaryCalendar())
+    .map((cal) => ({
+      name: cal.getName(),
+      id: cal.getId()
+    }));
+
+  // the current available calendars
+  const availableCalendars = primaryCalendar.concat(secundaryCalendars);
+  
+  // find any calendars that were removed
+  const unavailebleCalendars = [];
+  savedCalendarSettings.forEach((savedCalendarSetting) => {
+    if (!availableCalendars.find((availableCalendar) => availableCalendar.id === savedCalendarSetting.id)) {
+      unavailebleCalendars.push(savedCalendarSetting);
+    }
+  });
+ 
+  // map the current settings to the available calendars
+  const calendarSettings = availableCalendars.map((availableCalendar) => {
+    if (savedCalendarSettings.find((savedCalendar) => savedCalendar.id === availableCalendar.id)) {
+      availableCalendar.sync = true;
+
+    }
+    return availableCalendar;
+  });
+
+  // add the calendar settings to the settings
+  settings.calendarSettings = calendarSettings;
+
+  const savedFrom = PropertiesService.getScriptProperties().getProperty('syncFrom');
+  settings.syncFrom = savedFrom;
+ 
+  const savedTo = PropertiesService.getScriptProperties().getProperty('syncTo');
+  settings.syncTo = savedTo;
+
+  const savedIsUpdateTitle = PropertiesService.getScriptProperties().getProperty('isUpdateTitle') === 'true';
+  settings.isUpdateCalendarItemTitle = savedIsUpdateTitle;
+
+  const savedIsUseCategoriesAsCalendarItemTitle = PropertiesService.getScriptProperties().getProperty('isUseCategoriesAsCalendarItemTitle') === 'true';
+  settings.isUseCategoriesAsCalendarItemTitle = savedIsUseCategoriesAsCalendarItemTitle;
+
+  const savedIsUpdateDescription = PropertiesService.getScriptProperties().getProperty('isUpdateDescription') === 'true';
+  settings.isUpdateCalendarItemDescription = savedIsUpdateDescription;
+  
+  return settings;
+};
+
+/**
+* Saves the settings from the sidebar
+*/
+const saveSettings = (settings) => {
+  PropertiesService.getScriptProperties().setProperty('calendar', JSON.stringify(settings.calendarSettings));
+  PropertiesService.getScriptProperties().setProperty('syncFrom', settings.syncFrom);
+  PropertiesService.getScriptProperties().setProperty('syncTo', settings.syncTo);
+  PropertiesService.getScriptProperties().setProperty('isUpdateTitle', settings.isUpdateCalendarItemTitle);
+  PropertiesService.getScriptProperties().setProperty('isUseCategoriesAsCalendarItemTitle', settings.isUseCategoriesAsCalendarItemTitle);
+  PropertiesService.getScriptProperties().setProperty('isUpdateDescription', settings.isUpdateCalendarItemDescription);
+  return 'Settings saved';
+};
 
 /**
  * Builds the myTime object and runs the synchronisation
  */
-function run() {
+const run = () => {
   'use strict';
   myTime({
     mainSpreadsheetId: SpreadsheetApp.getActiveSpreadsheet().getId(),
   }).run();
-}
+};
 
 /**
  * The main function used for the synchronisation
  * @param {Object} par The main parameter object.
  * @return {Object} The myTime Object.
  */
-function myTime(par) {
+const myTime = (par) => {
   'use strict';
-  var objectName = 'myTime';
-  var mainSpreadSheetId = par.mainSpreadsheetId;
-  var mainSpreadsheet;
-  var hourSheet;
-  var codesSheet;
-  var dataRange;
-
 
   /**
-     * Get a row from the datarange in the sheet
-     * @param {String} key The event ID.
-     * @return {Object} The row from the dataRange.
-     */
-  function getDataRow(key) {
-    var dataRow;
+  * Format the sheet
+  */
+  const formatSheet = () => {
+    // sort decending on start date 
+    hourSheet.sort(3, false);
 
-    dataRange.some(function(entry, index) {
-      if (entry[0] === key) {
-        dataRow = {
-          row: index + 1,
-          value: entry,
-        };
-        return true;
-      }
-    });
-    return dataRow;
-  }
+    // hide the technical columns
+    hourSheet.hideColumns(1, 2);
 
-  /**
-     * Handle a new event
-     * @param {Object} event The calendar event.
-     */
-  function handleNewEvent(event) {
-    hourSheet.appendRow([event.getId(), event.getStartTime(), event.getEndTime(), event.getTitle(),
-      'tbd', 'tbd', 'tbd', event.getDescription(),
-    ]);
-  }
-
-  /**
-     * Handle an existing event
-     * @param {Object} event The calendar event.
-     * @param {Object} dataRow The datarow fromm the datarange in the sheet.
-     */
-  function handleExistingEvent(event, dataRow) {
-    if (event.getStartTime() - dataRow.value[1] !== 0) {
-      hourSheet.getRange(dataRow.row, 2).setValue(event.getStartTime());
+    // remove any extra rows
+    if (hourSheet.getLastRow() > 1 && hourSheet.getLastRow() < hourSheet.getMaxRows()) {
+      hourSheet.deleteRows(hourSheet.getLastRow() + 1, hourSheet.getMaxRows() - hourSheet.getLastRow());
     }
 
-    if (event.getEndTime() - dataRow.value[2] !== 0) {
-      hourSheet.getRange(dataRow.row, 3).setValue(event.getEndTime());
-    }
+    // set the validation for the customers
+    let rule = SpreadsheetApp.newDataValidation()
+      .requireValueInRange(categoriesSheet.getRange('A2:A'), true)
+      .setAllowInvalid(true)
+      .build();
+    hourSheet.getRange('I2:I').setDataValidation(rule);
 
-    if (event.getTag('Client') !== dataRow.value[4]) {
-      event.setTag('Client', dataRow.value[4]);
-    }
-
-    if (event.getTag('Project') !== dataRow.value[5]) {
-      event.setTag('Project', dataRow.value[5]);
-    }
-
-    if (event.getTag('Task') !== dataRow.value[6]) {
-      event.setTag('Task', dataRow.value[6]);
-    }
-
-    if (event.getTitle() !== dataRow.value[4] + ' ' + dataRow.value[5] + ' ' + dataRow.value[6]) {
-      if (dataRow.value[4] !== 'tbd' && dataRow.value[5] !== 'tbd' && dataRow.value[5] !== 'tbd') {
-        event.setTitle(dataRow.value[4] + ' ' + dataRow.value[5] + ' ' + dataRow.value[6]);
-      }
-    }
-
-    if (event.getDescription() !== dataRow.value[7]) {
-      event.setDescription(dataRow.value[7]);
-    }
-  }
-
-  /**
-     * Format the sheet
-     */
-  function formatSheet() {
-    var updateRange;
-    var codeRange;
-    var rule;
-
-    hourSheet.sort(2, false);
-
-    updateRange = hourSheet.getRange('E2:E');
-    codeRange = codesSheet.getRange('A2:A');
+    // set the validation for the projects
     rule = SpreadsheetApp.newDataValidation()
-        .requireValueInRange(codeRange, true)
-        .setAllowInvalid(false)
-        .build();
-    updateRange.setDataValidation(rule);
+      .requireValueInRange(categoriesSheet.getRange('B2:B'), true)
+      .setAllowInvalid(true)
+      .build();
+    hourSheet.getRange('J2:J').setDataValidation(rule);
 
-    updateRange = hourSheet.getRange('F2:F');
-    codeRange = codesSheet.getRange('B2:B');
+    // set the validation for the tsaks
     rule = SpreadsheetApp.newDataValidation()
-        .requireValueInRange(codeRange, true)
-        .setAllowInvalid(false)
-        .build();
-    updateRange.setDataValidation(rule);
+      .requireValueInRange(categoriesSheet.getRange('C2:C'), true)
+      .setAllowInvalid(true)
+      .build();
+    hourSheet.getRange('K2:K').setDataValidation(rule);
 
-    updateRange = hourSheet.getRange('G2:G');
-    codeRange = codesSheet.getRange('C2:C');
-    rule = SpreadsheetApp.newDataValidation()
-        .requireValueInRange(codeRange, true)
-        .setAllowInvalid(false)
-        .build();
-    updateRange.setDataValidation(rule);
-
-    updateRange = hourSheet.getRange('I2:I');
-    updateRange.setFormulaR1C1('=IF(R[0]C[-6]="";"";R[0]C[-6]-R[0]C[-7])');
-
-    updateRange = hourSheet.getRange('J2:J');
-    updateRange.setFormulaR1C1('=IF(R[0]C[-7]="";"";month(R[0]C[-7]))');
-
-    updateRange = hourSheet.getRange('K2:K');
-    updateRange.setFormulaR1C1('=IF(R[0]C[-7]="";"";WEEKNUM(R[0]C[-9];2))');
-
-    updateRange = hourSheet.getRange('L2:L');
-    updateRange.setFormulaR1C1('=R[0]C[-3]');
-  }
+    if(isUseCategoriesAsCalendarItemTitle) {
+      hourSheet.getRange('L2:L').setFormulaR1C1('IF(OR(R[0]C[-3]="tbd";R[0]C[-2]="tbd";R[0]C[-1]="tbd");""; CONCATENATE(R[0]C[-3];"|";R[0]C[-2];"|";R[0]C[-1];"|"))');
+    }
+    // set the hours, month, week and number collumns
+    hourSheet.getRange('P2:P').setFormulaR1C1('=IF(R[0]C[-12]="";"";R[0]C[-12]-R[0]C[-13])');
+    hourSheet.getRange('Q2:Q').setFormulaR1C1('=IF(R[0]C[-13]="";"";month(R[0]C[-13]))');
+    hourSheet.getRange('R2:R').setFormulaR1C1('=IF(R[0]C[-14]="";"";WEEKNUM(R[0]C[-14];2))');
+    hourSheet.getRange('S2:S').setFormulaR1C1('=R[0]C[-3]');
+  };
 
   /**
      * Activate the synchronisation
      */
   function run() {
-    var startProcessDate;
-    var endProcessDate;
-    var calendar;
-    var events;
-    var currentIds = [];
-    var dataRow;
-
     console.log('Started processing hours.');
 
-    dataRange = hourSheet.getDataRange().getValues();
-    calendar = CalendarApp.getCalendarById(mainSpreadsheet.getRangeByName('calendarId').getValue());
-    startProcessDate = mainSpreadsheet.getRangeByName('startProcessDate').getValue();
-    endProcessDate = new Date();
+    const processCalendar = (setting) => {
+      SpreadsheetApp.flush();
 
-    try {
-      events = calendar.getEvents(startProcessDate, endProcessDate);
-      if (events.length == 0) {
-        SpreadsheetApp.getUi().alert('No events were found for this period');
-      }
-    } catch (e) {
-      SpreadsheetApp.getUi().alert('Could not get events for calendar:' + configData.calendar_id +
-                ' starting from ' + startProcessDate);
-      return;
-    }
+      // current calendar info
+      const calendarName = setting.name;
+      const calendarId = setting.id;
 
-    dataRange = hourSheet.getDataRange().getValues();
+      console.log(`processing ${calendarName} with the id ${calendarId} from ${syncStartDate} to ${syncEndDate}`);
 
-    events.forEach(function(entry) {
-      currentIds.push(entry.getId());
-      dataRow = getDataRow(entry.getId());
-      if (dataRow) {
-        handleExistingEvent(entry, dataRow);
-      } else {
-        handleNewEvent(entry);
-      }
-    });
+      // get the calendar
+      const calendar = CalendarApp.getCalendarById(calendarId);
 
-    dataRange.forEach(function(entry, index) {
-      var id;
+      // get the calendar events and create lookups
+      const events = calendar.getEvents(syncStartDate, syncEndDate);
+      const eventsLookup = events.reduce((jsn, event) => {
+        jsn[event.getId()] = event;
+        return jsn;
+      }, {});
 
-      if (index > 0 && (entry[1] instanceof Date) &&
-                (entry[1].getTime() > startProcessDate.getTime())) {
-        id = entry[0];
-        if (currentIds.indexOf(id) === -1 && id !== '') {
-          hourSheet.deleteRow(index + 1);
+      // get the sheet events and create lookups
+      const existingEvents = hourSheet.getDataRange().getValues().slice(1);
+      const existingEventsLookUp = existingEvents.reduce((jsn, row, index) => {
+        if (row[0] !== calendarId) {
+          return jsn;
         }
-      }
-    });
+        jsn[row[1]] = {
+          event: row,
+          row: index + 2
+        };
+        return jsn;
+      }, {});
+
+      // handle a calendar event
+      const handleEvent = (event) => {
+        const eventId = event.getId();
+
+        // new event
+        if (!existingEventsLookUp[eventId]) {
+          hourSheet.appendRow([
+            calendarId,
+            eventId,
+            event.getStartTime(),
+            event.getEndTime(),
+            calendarName,
+            event.getCreators().join(','),
+            event.getTitle(),
+            event.getDescription(),
+            event.getTag('Client') || 'tbd',
+            event.getTag('Project') || 'tbd',
+            event.getTag('Task') || 'tbd',
+            (isUpdateCalendarItemTitle) ? '' : event.getTitle(),
+            (isUpdateCalendarItemDescription) ? '' : event.getDescription(),
+            event.getGuestList().map((guest) => guest.getEmail()).join(','),
+            event.getLocation(),
+            undefined,
+            undefined,
+            undefined,
+            undefined
+          ]);
+          return true;
+        }
+
+        // existing event
+        const exisitingEvent = existingEventsLookUp[eventId].event;
+        const exisitingEventRow = existingEventsLookUp[eventId].row;
+
+        if (event.getStartTime() - exisitingEvent[startTimeColumn - 1] !== 0) {
+          hourSheet.getRange(exisitingEventRow, startTimeColumn).setValue(event.getStartTime());
+        }
+
+        if (event.getEndTime() - exisitingEvent[endTimeColumn - 1] !== 0) {
+          hourSheet.getRange(exisitingEventRow, endTimeColumn).setValue(event.getEndTime());
+        }
+
+        if (event.getCreators().join(',') !== exisitingEvent[creatorsColumn - 1]) {
+          hourSheet.getRange(exisitingEventRow, creatorsColumn).setValue(event.getCreators()[0]);
+        }
+
+        if (event.getGuestList().map((guest) => guest.getEmail()).join(',') !== exisitingEvent[guestListColumn - 1]) {
+          hourSheet.getRange(exisitingEventRow, guestListColumn).setValue(event.getGuestList().map((guest) => guest.getEmail()).join(','));
+        }
+
+        if (event.getLocation() !== exisitingEvent[locationColumn - 1]) {
+          hourSheet.getRange(exisitingEventRow, locationColumn).setValue(event.getLocation());
+        }
+
+        if(event.getTitle() !== exisitingEvent[titleColumn - 1]) {
+          if(!isUpdateCalendarItemTitle) {
+            hourSheet.getRange(exisitingEventRow, titleColumn).setValue(event.getTitle());
+          }
+          if(isUpdateCalendarItemTitle) {
+            event.setTitle(exisitingEvent[titleColumn - 1]);
+          }
+        }
+       
+        if(event.getDescription() !== exisitingEvent[descriptionColumn - 1]) { 
+          if(!isUpdateCalendarItemDescription) {
+            hourSheet.getRange(exisitingEventRow, descriptionColumn).setValue(event.getDescription());
+          }
+          if(isUpdateCalendarItemDescription) {
+            event.setDescription(exisitingEvent[descriptionColumn - 1]);
+          }
+        }
+
+        return true;
+      };
+
+      // process each event for the calendar
+      events.every(handleEvent);
+
+      // remove any events in the sheet that are not in de calendar
+      existingEvents.every((event, index) => {
+        if (event[0] !== calendarId) {
+          return true;
+        };
+
+        if (eventsLookup[event[1]]) {
+          return true;
+        }
+        
+        if (event[3] < syncStartDate) {
+          return true;
+        }
+
+        hourSheet.getRange(index + 2, 1, 1, 20).clear();
+        return true;
+      });
+
+      return true;
+    };
+
+    // process the calendars
+    settings.calendarSettings.filter((calenderSetting) => calenderSetting.sync === true).every(processCalendar);
 
     formatSheet();
-    SpreadsheetApp.flush();
     SpreadsheetApp.setActiveSheet(hourSheet);
 
     console.log('Finished processing hours.');
   }
 
-  mainSpreadsheet = SpreadsheetApp.openById(mainSpreadSheetId);
-  hourSheet = mainSpreadsheet.getSheetByName('Hours');
-  codesSheet = mainSpreadsheet.getSheetByName('Codes');
+  const mainSpreadSheetId = par.mainSpreadsheetId;
+  const mainSpreadsheet = SpreadsheetApp.openById(mainSpreadSheetId);
+  const hourSheet = mainSpreadsheet.getSheetByName('Hours');
+  const categoriesSheet = mainSpreadsheet.getSheetByName('Categories');
+  const settings = getSettings();
+
+  const syncStartDate = new Date();
+  syncStartDate.setDate(syncStartDate.getDate() - Number(settings.syncFrom));
+  
+  const syncEndDate = new Date();
+  syncEndDate.setDate(syncEndDate.getDate() + Number(settings.syncTo));
+  
+  const isUpdateCalendarItemTitle = settings.isUpdateCalendarItemTitle;
+  const isUseCategoriesAsCalendarItemTitle = settings.isUseCategoriesAsCalendarItemTitle;
+  const isUpdateCalendarItemDescription = settings.isUpdateCalendarItemDescription;
+
+  const startTimeColumn = 3;
+  const endTimeColumn = 4;
+  const creatorsColumn = 6;
+  const originalTitleColumn = 7;
+  const originalDescriptionColumn = 8;
+  const clientColumn = 9;
+  const projectColumn = 10;
+  const taskColumn = 11;
+  const titleColumn = 12;
+  const descriptionColumn = 13;
+  const guestListColumn = 14;
+  const locationColumn = 15;
 
   return Object.freeze({
     run: run,
   });
-}
+};

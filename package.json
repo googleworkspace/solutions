@@ -1,10 +1,10 @@
 {
   "name": "gsuite-solutions",
   "version": "1.0.0",
-  "description": "G Suite solutions gallery",
+  "description": "Google Workspace solutions gallery",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gsuitedevs/solutions.git"
+    "url": "git+https://github.com/googleworkspace/solutions.git"
   },
   "keywords": [
     "solution",
