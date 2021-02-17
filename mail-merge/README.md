@@ -4,7 +4,7 @@ description: Create and distribute visually rich mail merges with Gmail and Goog
 labels: Sheets, Gmail
 material_icon: merge_type
 create_time: 2019-09-13
-update_time: 2020-04-29
+update_time: 2021-02-14
 ---
 
 Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.com/mhawksey) or [read my Google Apps Script related blog posts](https://mashe.hawksey.info/category/google-apps-script/).
