@@ -1,5 +1,5 @@
 ---
-title: News Headlines Sentiment Detection
+title: News Headlines Sentiment Detection Sample
 description: Fetches news headlines via API and then runs sentiment analysis on each headline.
 labels: Apps Script, Sheets, Natural Language AI Sentiment
 material_icon: autorenew
