@@ -4,7 +4,7 @@ description: Fetches news headlines via API and then runs sentiment analysis on 
 labels: Apps Script, Sheets, Natural Language AI Sentiment
 material_icon: autorenew
 create_time: 2021-01-15
-update_time: 2021-02-17
+update_time: 2021-02-19
 ---
 
 A Google Sheet uses Apps Script to fetch the current headlines based on a user supplied topic.
