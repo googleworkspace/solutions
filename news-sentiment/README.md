@@ -1,6 +1,6 @@
 ---
 title: News Headlines Sentiment Detection Sample
-description: Fetches news headlines via API and then runs sentiment analysis on each headline.
+description: Fetches news headlines via API and then runs sentiment analysis on each news headline.
 labels: Apps Script, Sheets, Natural Language AI Sentiment
 material_icon: autorenew
 create_time: 2021-01-15
