@@ -4,7 +4,7 @@ description: Fetches news headlines via API and then runs sentiment analysis on 
 labels: Apps Script, Sheets, Natural Language AI Sentiment
 material_icon: autorenew
 create_time: 2021-01-15
-update_time: 2021-02-19
+update_time: 2021-02-22
 ---
 
 A Google Sheet uses Apps Script to fetch the current headlines based on a user supplied topic.
@@ -36,7 +36,7 @@ getSentiments()
    a trigger in your project that runs the code everytime a new form
    entry is submitted.
 
-   //WIP!! EDITING DRAFT BELOW.....
+   //WIP!! EDITING DRAFT BELOW..... Still testing github checkins....
 
    > _Caution_: If you run this script more than once, it generates
    > _multiple triggers_ which would duplicate emails. Ensure you only run the
