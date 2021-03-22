@@ -1,120 +1,78 @@
 ---
-title: News Headlines Sentiment Detection Sample
-description: Fetches news headlines via API and then runs sentiment analysis on each news headline.
-labels: Apps Script, Sheets, Natural Language AI Sentiment
-material_icon: autorenew
-create_time: 2021-01-15
-update_time: 2021-02-22
+title: Analyze the Sentiment of News Headlines
+description: A Google Sheet with Apps Script that Analyzes the sentiment of news headlines retrieved for a user specified topic from a free News API.
+labels: Apps Script, Sheets, Cloud Natural Language
+material_icon: Feed
+create_time: 2021-03-22
+update_time: 2021-03-22
 ---
 
-A Google Sheet uses Apps Script to fetch the current headlines based on a user supplied topic.
-The news headlines are fetched from the free news API @ newsapi.org.
+This solution consists of a Google Sheet that uses Apps Script to fetch the current news headlines from the free news API `newsapi.org` using a user provded `topic`.
 
-Once the news headlines are fetched, the owner of the sheet can then run a Natural Language detection for sentiment against all of the fetched headlines. 
-As the results are returned for each headline, the sheet is updated with both a numeric sentiment score as well as a happy or sad icon depending on the sentiment.
-
-
+Once the news headlines are fetched and loaded onto the sheet, it runs a Natural Language sentiment detection for each headline. 
+As the sentiments are returned from the Google Cloud Language API, the sheet is updated with both a numeric score as well as a `happy`, `meh` or `sad` icon depending on the sentiment.
+ 
 ## Technology highlights
 
-- In the `onOpen` function, the sheet is loaded with 2 menu options to 1: fetch news items and 2. Analyze the headlines. The corresponding functions:
-getNewsHeadlines()
-getSentiments()
+- The sheet provides an extra menu option: **News Headlines Sentiments** and when clicked renders the option: **Analyze News headlines...**.  When selected, it calls the `showNewsPrompt()` function and triggers a popup dialog to allow the user to enter their own news topic of choice. 
+- After entering a topic, the function `analyzeNewsHeadlines()` executes and calls the following key functions:
+   * `reformatSheet()` Clears and reformats the sheet.
+   * `getHeadlinesArray()` Fetches a fresh set of headlines by passing the user entered topic to the News API. It then syncs the returned headlines to the sheet.
+   * `getSentiments()` Iterates through each headline and calls the Natural Language API to obtain a sentiment value and then updates the sheet with values.
 
 ## Try it
 
+### Pre-Steps - Obtaining your API keys
+To run this solution you will need to obtain 2 API keys, one from the [Google Cloud Natural Language API](https://cloud.google.com/natural-language), and the second from the free News API @ http://newsapi.org/.
 
-1. Make a copy of this Google Sheet
-   [by clicking this link](https://docs.google.com/spreadsheets/d/<TBA>/copy)
-   in your browser. It automatically includes a Google the Apps Script code
+1.  **Google** - Configure a GCP Project to obtain an API key for the Natural Language API.
+   * Create a new or use an existing GCP project: https://console.cloud.google.com 
+   * If creating a new project: 
+      * Select your associated Billing account.
+      * Accept the defaults for Organization and Location.
+      * Click CREATE, and then select the new project in the console.
+   * Enable the Google Cloud Natural Language API on your GCP project by going to **APIs and Services** dashboard.
+      * Click + ENABLE APIS AND SERVICES
+      * Search for 'Cloud Natural Language API', and enable it.
+   * Click 'Credentials' on the left side menu and click + CREATE CREDENTIALS
+      * Select 'Api key' in the drop down menu. 
+      * Save this key to add to your Apps Script `Code.gs` file. 
+
+1.  **News API** - Register for a free News API key.
+   * Register for a free News API account at: https://newsapi.org/
+   * Click 'Get API Key' and follow the steps.
+   * Save the key to add to your Apps Script `Code.gs` file. 
+
+### Pre-Steps - Customizing your copy of the solution
+Follow these steps to copy and customize the solution with your API keys.
+
+1. Make a copy of example Google Sheet and code.
+   [by clicking this link](https://docs.google.com/spreadsheets/d/1XwxcB9W9dkNBu8sSag3cwvQxGLNAeMCxXcfjm9zS9H4/copy)
+   in your browser. It automatically includes Google the Apps Script code
    you need.
 
-1. From your spreadsheet click on **Tools > Script Editor**. This brings
-   you to the _Apps Script editor._
+1. Open the associated Apps Script Project from the Sheets menu: `Extensions -> Apps Script`.
+1. Update the `Code.gs` script with your API keys:
+   - const googleAPIKey = `YOUR_GOOGLE_API_KEY`;
+   - const newsApiKey = `YOUR_NEWS_API_KEY`;
+1. Save the script and return to the Spreadsheet.
 
-1. Now _run the script_ by clicking the **Select function** drop down >
-   choose **"getNewsHeadlines"** Then click the Run button (►). This installs
-   a trigger in your project that runs the code everytime a new form
-   entry is submitted.
-
-   //WIP!! EDITING DRAFT BELOW..... Still testing github checkins....
-
-   > _Caution_: If you run this script more than once, it generates
-   > _multiple triggers_ which would duplicate emails. Ensure you only run the
-   > script once and that there aren't multiple triggers on the triggers page.
-   > You can optionally visit the triggers page by clicking on the
-   > _trigger icon_ (which looks like a clock) to confirm there is only one.
-
-1. When prompted, click **Review permissions** and **Allow**
-   so the script can send email on your behalf.
-
-   > *Important:* If you get a warning that **This app isn't verified**
-   > continue with the verification process by clicking
-   > **Advanced** and then scroll down and click the grey text at the bottom
-   > that says **Go to (Copy this) Script to send content**
-
-1. After granting permissions, return to your spreadsheet and locate **Form** >
-   **Go to live form.** This brings you to the Google form that people
-   see when you share its link. _Fill out_ all the fields and _ensure_ to use
-   an _email address_ you have access to, and click **Submit**.
-
-   > _Note_: if no topics are selected in the Google Form, the code
-   > _will not send an email_.
-
-1. Return to your spreadsheet, you should have a row of values entered based
-   on your form submission. One of the columns called **Confirmation**
-   say **Sent**, confirming that the topics you selected in the form were
-   emailed.
-
-   > _Note_: if you do not see the form responses in your sheet, you need
-   > to unlink and relink your form to it. From your sheet click **Form >
-   > Unlink Form** then visit your form in edit mode and in the _responses_
-   > section click **Select response destination > Select existing
-   > spreadsheet** , and choose _your spreadsheet_ as the source. This creates
-   > a new sheet called **Form Responses 2**. You can _delete_ the tab
-   > **Form Responses 1** so you only have one active sheet.
-
-1. Finally, login to the email account you provided in your form entry and
-   see if you received an email with the subject line: **"Howdy"** along with
-   links to the topics you selected.
-
-## Customize your script
-
-1. *[optional]*
-   The email sent out comes from a Google Doc template already setup.
-   However, if you wish to customize that template,
-   you can make your own copy by
-   [clicking this link](https://docs.google.com/document/d/1HGXj6551jxUqFqxsuYMWovI0_nypSUPIdlc-RXf2pHE/copy) and set permissions to
-   viewable by _anyone_ unless your audience are people within your
-   organization, set to _anyone in your organization_. Then copy its
-   _URL address_ from the _browser_ and replace the URL in the
-   `EMAIL_TEMPLATE_DOC_URL` variable in the script's code.
-
-   > _Note_: `{{NAME}}` and `{{TOPICS}}` in the Google Doc are placeholders
-   > that insert the name and the content links from the topics selected
-   > by the user upon them submitting the form.
-
-1. _[optional]_ If you wish to change the subject line of your email,
-   replace the text in the `EMAIL_SUBJECT` variable in the script's code.
-
-1. *[optional]* If you wish to rename the topics in the form, upon changing
-   them, also paste the new topic names into the `topicUrls` variable in the
-   script's code.
-
-   > *Caution:* When *renaming* the topics in the form,  ensure you paste
-   > the exact *topic names* in the code as well. Ensure the word is
-   > contained in the form's choices.
-   > Ex: if you rename “(NUTRITION) Raw vegan recipes” to
-   > “(MINDFULNESS) Learning how to meditate in a busy world” in the form,
-   > make sure to go back the `topicUrls` variable and replace “Nutrition” with
-   > “Mindfulness” + _the link you want people to receive_
+### Running the News Sentiment Analyzer
+1. Click the `News Headlines Sentiments` custom menu option at the top of the sheet.
+1. Select 'Analyze News Headlines...'
+    - Note: Upon first run, you will have to step through the Google Authorization steps. This will leave the script running, but paused. Click 'Dismiss', and click 'Analyze News Headlines...' again.
+1. A popup dialog appears, 'Enter news topic:', and allows you to enter your own news topic.. For example 'Global Warming'.
+1. After entering a topic, Watch the sentiment results as they are returned! 
+1. Try experimenting with other topics! 'Covid', 'Puppies', 'Tacos' ...
 
 ## Next steps
 
-To get started with Google Apps Script, try out [the codelab][codelab]
-which guides you through the creation of your first script.
+* Try other random news topics!
 
-You can also view the [full source code][github] of this solution on GitHub to
-learn more about how it was built.
+* Try adding code to do further steps. For example, you could save all topics and their average sentiments over time in a different tab to see if any trends emerge.
 
-[codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/content-signup
+* Try running the code via a Trigger on a daily basis with a set of topics selected from a different tab.
+
+* For further help on Apps Script coding, try the [Apps Script Fundamentals codelabs](https://developers.google.com/apps-script/quickstart/fundamentals-codelabs)
+
+* For further info on the Google Cloud Natural Language API [See the following quickstarts](https://cloud.google.com/natural-language/docs/quickstarts).
