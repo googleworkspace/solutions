@@ -13,8 +13,8 @@
 // limitations under the License.
 
 // Global variables
-const googleAPIKey = '<YOUR_GOOGLE_API_KEY>';
-const newsApiKey = '<YOUR_NEWS_API_KEY>';
+const googleAPIKey = 'YOUR_GOOGLE_API_KEY';
+const newsApiKey = 'YOUR_NEWS_API_KEY';
 const apiEndPointHdr = 'https://newsapi.org/v2/everything?q=';
 const happyFace =
   '=IMAGE(\"https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635449_1280.png\")';
