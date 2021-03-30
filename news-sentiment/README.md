@@ -4,7 +4,7 @@ description: Analyze the sentiment of news headlines retrieved for a user-specif
 labels: Apps Script, Sheets, Cloud Natural Language
 material_icon: Feed
 create_time: 2021-03-22
-update_time: 2021-03-29
+update_time: 2021-03-22
 ---
 
 This solution showcases natural language sentiment analysis on current news headlines. It consists of a Google Sheet that uses Apps Script to fetch the current news headlines from the free news API `newsapi.org` using a user-provided `topic`.
@@ -21,30 +21,27 @@ As the sentiments are returned from the API, the script updates the sheet with b
 ## Try it
 
 ### Before you begin: Obtain your API keys
-To run this solution you need to get 2 API keys, one from the [Google Cloud Natural Language API](https://cloud.google.com/natural-language), and the second from the free News API @ [http://newsapi.org/](http://newsapi.org/).
+To run this solution you need to get 2 API keys, one from the [Google Cloud Natural Language API](https://cloud.google.com/natural-language), and the second from the free [News API](http://newsapi.org/).
 
 #### Get the Google Cloud Natural Language API key
 
 To get an API key for the Google Cloud Natural Language API, you must configure a Google Cloud Platform (GCP) project.
 
-1. Create a new or use an existing GCP project: 
-1. Navigate to the main {{console_name_short}} page.
-
-    [Cloud Console]({{console_url}}){: class="button button-primary" target="console" track-name="consoleLink" track-type="tutorial" track-metadata-position="body"}
-
-   * If you need to create a new project: 
-      * Select your associated billing account.
-      * Accept the defaults for organization and location.
-      * Click **Create**, and then select the new project in the console.
-   
-1.  At the top of the console, click <span class=”material-icons”>menu</span> <span aria-label="and then">></span> **APIs & Services**. 
-Click **+ Enable APIs and Services**.
+1. Create a new or use an existing GCP project.
+1. Navigate to the [Google Cloud Platform console](https://console.cloud.google.com)
+    * If you create a new project: 
+        * Select your associated billing account.
+        * Accept the defaults for organization and location.
+        * Click **Create**, and then select the new project in the console.
+1. At the top of the console, click <span class=”material-icons”>menu</span> <span aria-label="and then">></span> **APIs & Services**. 
+1. Click **+ Enable APIs and Services**.
 1. Search for `Cloud Natural Language API`, and enable it.
 1. On the left, click **Credentials** <span aria-label="and then">></span> **+ Create credentials**.
 1. In the drop-down menu, select **API key**. 
-1. Save this key to add to your Apps Script `Code.gs` file. 
+    * Save this key to add to your Apps Script `Code.gs` file. 
 
-#### Register for the News API key.
+#### Register for the News API key
+
 To get an API key for the News API, you need to create a free News API account.
 1. To create an account, go to the [News API](https://newsapi.org/) site.
 1. Click **Get API Key** and follow the steps.
@@ -53,7 +50,7 @@ To get an API key for the News API, you need to create a free News API account.
 ### Create your copy of the solution
 Copy and customize the solution with your API keys.
 
-1. Click to make a copy of the [News Sentiment Analyzer - External spreadsheet](https://docs.google.com/spreadsheets/d/1Jw-d2ihbjSyO4SyzgXSiC5dzs36GY5aMGxuf_nc7WKU/copy). 
+1. Make a copy of the [News Sentiment Analyzer - External spreadsheet](https://docs.google.com/spreadsheets/d/1Jw-d2ihbjSyO4SyzgXSiC5dzs36GY5aMGxuf_nc7WKU/copy). 
 
 1. To open the associated Apps Script Project, at the top, click **Tools <span aria-label="and then">></span> Script editor**.
 1. Update the `Code.gs` script file with your API keys:
@@ -65,7 +62,7 @@ Copy and customize the solution with your API keys.
 1. At the top of the spreadsheet, click the custom menu item **News Headlines Sentiments**.
 1. Select **Analyze News Headlines**. 
     * Note: Upon first run, you must go through the Google authorization steps. This leaves the script running, but paused. After you authorize the script, click **Dismiss**, and select **Analyze News Headlines** again.
-1. In the popup dialog, enter a news topic or keyword. For example `Global Warming`.
+1. In the dialog, enter a news topic or keyword. For example `Global Warming`.
 1. Click **Ok** to start the analysis. 
 
 ## Next steps
