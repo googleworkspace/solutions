@@ -1,5 +1,5 @@
 ---
-title: Analyze the Sentiment of News Headlines
+title: Analyze the sentiment of news headlines
 description: Analyze the sentiment of news headlines retrieved for a user-specified topic from a free news API.
 labels: Apps Script, Sheets, Cloud Natural Language
 material_icon: Feed
@@ -28,17 +28,17 @@ To run this solution you need to get 2 API keys, one from the [Google Cloud Natu
 To get an API key for the Google Cloud Natural Language API, you must configure a Google Cloud Platform (GCP) project.
 
 1. Create a new or use an existing GCP project.
-1. Navigate to the [Google Cloud Platform console](https://console.cloud.google.com)
+1. Navigate to the [Google Cloud Platform console](https://console.cloud.google.com).
     * If you create a new project: 
         * Select your associated billing account.
         * Accept the defaults for organization and location.
         * Click **Create**, and then select the new project in the console.
-1. At the top of the console, click <span class=”material-icons”>menu</span> <span aria-label="and then">></span> **APIs & Services**. 
+1. At the top of the console, click Menu <span class=”material-icons”>menu</span> <span aria-label="and then">></span> **APIs & Services**. 
 1. Click **+ Enable APIs and Services**.
 1. Search for `Cloud Natural Language API`, and enable it.
 1. On the left, click **Credentials** <span aria-label="and then">></span> **+ Create credentials**.
 1. In the drop-down menu, select **API key**. 
-    * Save this key to add to your Apps Script `Code.gs` file. 
+1. Save this key to add to your Apps Script `Code.gs` file. 
 
 #### Register for the News API key
 
