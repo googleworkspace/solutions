@@ -4,7 +4,7 @@ description: Analyze the sentiment of news headlines retrieved for a user-specif
 labels: Apps Script, Sheets, Cloud Natural Language
 material_icon: Feed
 create_time: 2021-03-22
-update_time: 2021-03-22
+update_time: 2021-03-30
 ---
 
 This solution showcases natural language sentiment analysis on current news headlines. It consists of a Google Sheet that uses Apps Script to fetch the current news headlines from the free news API `newsapi.org` using a user-provided `topic`.
