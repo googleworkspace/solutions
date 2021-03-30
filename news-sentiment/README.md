@@ -33,7 +33,7 @@ To get an API key for the Google Cloud Natural Language API, you must configure 
         * Select your associated billing account.
         * Accept the defaults for organization and location.
         * Click **Create**, and then select the new project in the console.
-1. At the top of the console, click Menu <span class=”material-icons”>menu</span> <span aria-label="and then">></span> **APIs & Services**. 
+1. At the top of the console, click Menu <span class="material-icons">menu</span> <span aria-label="and then">></span> **APIs & Services**. 
 1. Click **+ Enable APIs and Services**.
 1. Search for `Cloud Natural Language API`, and enable it.
 1. On the left, click **Credentials** <span aria-label="and then">></span> **+ Create credentials**.
