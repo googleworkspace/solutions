@@ -47,19 +47,19 @@ questions and comments shared for the video.
 
 1. From the spreadsheet, open the script editor by selecting **Tools > Script**
    editor.
-1. In the script editor, select **Resources > Advanced Google services**.
-1. In the Advanced Google Service dialog that appears, click the on/off switch
-   next to the YouTube Data API service.
-1. Click **OK** in the dialog.
+1. In the left-hand navigation pane, select **+** next to **Services**.
+1. Choose the YouTube Data API service, and click **Add**. Note: When using the template,
+   you may find that this service has already been activated, in which case it will appear 
+   listed below **Services** in the left-hand navigation pane.
 
 ### Test the code
 
-1. From the script editor, choose `markVideos` from the select box in the
-   toolbar, then click the Run button (▶).
-1. When prompted, click the **Review permissions** button.
-1. Select your Google Workspace account from the list.
-1. Click the **Allow** button.
-1. When the script execution completes, you should see the details added in
+1. From the script editor, choose `markVideos` from the drop-down box in the toolbar, 
+   then click the Run button (▶).
+3. When prompted, click the **Review permissions** button.
+4. Select your Google Workspace account from the list.
+5. Click the **Allow** button.
+6. When the script execution completes, you should see the details added in
    columns C through H, and you will receive an email for any videos that have
    more than zero comments. When running the function in the future, you will
    only receive an email with videos whose comment count has increased since the
@@ -72,16 +72,16 @@ questions and comments shared for the video.
 Instead of running the script manually, set it up to run at regular intervals
 (such as once a day).
 
-1. From the script editor, choose **Edit > Current project's triggers**.
-1. Click the link that says **No triggers set up. Click here to add one now**.
+1. From the script editor, navigate to the left-hand vertical toolbar, and click the **Triggers** icon.
+1. In the bottom right-hand corner, click the **+Add Trigger** button.
 1. Under **Run**, select the `markVideos` function.
 1. Under **Select event source**, choose **Time-driven**.
-1. Under **Select type of time based trigger**, select **Day timer**.
-1. Under **Select hour interval**, choose a desired time interval such as 6am to
+1. Under **Type**, select **Day timer**.
+1. Select the desired time interval, such as 6am to
    7am.
-1. Optionally, click **Notifications** to configure how and when you are
+1. Optionally, adjust the **Failure notification settings** to configure how and when you are 
    contacted by email if your triggered function fails.
-1. Click **Save**.
+3. Click **Save**.
 
 ## Next steps
 
