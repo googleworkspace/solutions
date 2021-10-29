@@ -45,8 +45,7 @@ questions and comments shared for the video.
 
 ### YouTube Advanced Service setup
 
-1. From the spreadsheet, open the script editor by selecting **Tools > Script**
-   editor.
+1. From the spreadsheet, open the script editor by selecting **Extensions** <span aria-label="and then">></span> **Apps Script**.
 1. In the left-hand navigation pane, select **+** next to **Services**.
 1. Choose the YouTube Data API service, and click **Add**. Note: When using the template,
    you may find that this service has already been activated, in which case it will appear 
