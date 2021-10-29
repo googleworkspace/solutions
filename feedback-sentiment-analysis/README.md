@@ -58,7 +58,7 @@ for your Google Cloud Platform project.
 
 1. Make of copy of the spreadsheet [here](https://docs.google.com/spreadsheets/d/1BwcPKL3bSpwGHcNrbYRsuUPZTW8kH_c_NT2gFKnwj_8/copy).
 1. From the spreadsheet, open the script editor by selecting
-**Tools > Script editor**.
+**Extensions** <span aria-label="and then">></span> **Apps Script**.
 1. Copy and paste your API key into line 1 of `code.gs` replacing
 `YOUR_API_KEY_HERE` and maintaining the quotes.
 1. Save the changes by navigating to **File > Save**.
