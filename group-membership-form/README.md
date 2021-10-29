@@ -37,7 +37,7 @@ to receive an email everytime a new form submission occurs.
 ## Try it
 
 1. Make a [copy of this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1MH_cyvP_0DVTsQ0A606Tx3vuQU_2kjpbDCs_AhRH1lA/copy) from your _Google Workspace_ account.
-1. From your spreadsheet, click on **Tools > Script Editor**.
+1. From your spreadsheet, click on **Extensions** <span aria-label="and then">></span> **Apps Script**.
 1. Ensure the _Admin Directory API_ is enabled via
    **Resources > Advanced Google Services**.
 1. Now _run the script_ by clicking the **"Select function"** drop down >
