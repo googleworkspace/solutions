@@ -52,7 +52,7 @@ Copy and customize the solution with your API keys.
 
 1. Make a copy of the [News Sentiment Analyzer - External spreadsheet](https://docs.google.com/spreadsheets/d/1Jw-d2ihbjSyO4SyzgXSiC5dzs36GY5aMGxuf_nc7WKU/copy). 
 
-1. To open the associated Apps Script Project, at the top, click **Tools <span aria-label="and then">></span> Script editor**.
+1. To open the associated Apps Script Project, at the top, click **Extensions** <span aria-label="and then">></span> **Apps Script**.
 1. Update the `Code.gs` script file with your API keys:
     * const googleAPIKey = `YOUR_GOOGLE_API_KEY`;
     * const newsApiKey = `YOUR_NEWS_API_KEY`;
