@@ -179,8 +179,11 @@ function sendEmails(subjectLine, sheet=SpreadsheetApp.getActiveSheet()) {
     let template_string = JSON.stringify(template);
 
     // token replacement
-    template_string = template_string.replace(/{{[^{}]+}}/g, key => {
-      return escapeData_(data[key.replace(/[{}]+/g, "")] || "");
+    template_string = template_string.replace(/{{([^{}]+)}}/g, (_, key) => {
+      // Strip out potential HTML tags, e.g. due to formatting:
+      const cleanKey = key.replace(/<[^>]+>/g, ""); 
+      
+      return escapeData_(data[cleanKey] || "");
     });
     return  JSON.parse(template_string);
   }
