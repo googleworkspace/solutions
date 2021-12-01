@@ -59,7 +59,7 @@ be derived from the URL: `https://docs.google.com/presentation/d/`_**`slideId`**
 
 1. Make of copy of the template spreadsheet [here][spreadsheet].
 1. From the spreadsheet, open the script editor by selecting 
-**Tools > Script editor**.
+**Extensions** <span aria-label="and then">></span> **Apps Script**.
 1. Copy and paste your Slides document ID into line 1 of 
 `Constants.gs` replacing `YOUR_SLIDES_ID` and maintaining 
 the quotes.
