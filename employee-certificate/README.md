@@ -33,7 +33,7 @@ This setup makes use of the 'Employee Certificate' template from Google Slides a
 ### Set up the employee spreadsheet
 
 1. Make a copy of the sample [Employee data](https://docs.google.com/spreadsheets/d/1cgK1UETpMF5HWaXfRE6c0iphWHhl7v-dQ81ikFtkIVk/copy) spreadsheet and fill it with all the required details.
-2. From the spreadsheet, open the script editor by selecting **Tools > Script editor**.
+2. From the spreadsheet, open the script editor by selecting **Extensions** <span aria-label="and then">></span> **Apps Script**.
 3. Copy and paste your Slides document ID into line 1 of `Code.gs` replacing `SLIDE-ID-GOES-HERE` while maintaining the quotes and the Drive folder ID into line 2 by replacing `TEMPORARY-FOLDER-ID-GOES-HERE.`
 5. Save the changes by navigating to **File > Save**.
 6. Run the `onOpen` function to authorize the setup by navigating to **Run > Run function > onOpen**.
