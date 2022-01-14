@@ -156,19 +156,6 @@ function findOOOEvents(user, start, end, optSince) {
 function shoudImportEvent(user, event) {
   var isOOO = event.eventType == "outOfOffice"
   //console.log("Event %s is OOO: %s", event.id, isOOO)
-  /* // Old and Busted
-  if (!event.organizer) {
-    console.log("No organizer for event %s - %s", event.id, event.summary)
-    return false
-  }
-  var organizerIsUser = event.organizer.email == user
-  if (organizerIsUser && isOOO) {
-    console.log("Event %s - %s should be imported", event.id, event.summary)
-    return true;
-  }
-  console.log("Event %s - %s should not be imported", event.id, event.summary)
-  */
-  // New Hotness
   return isOOO
 }
 
