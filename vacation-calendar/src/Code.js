@@ -4,6 +4,10 @@
 // Set the ID of the team calendar to add events to. You can find the calendar's
 // ID on the settings page.
 var TEAM_CALENDAR_ID = 'ENTER_TEAM_CALENDAR_ID_HERE';
+// Include other Holiday calendars
+var HOLIDAY_CALENDARS = new Map([
+  // ['HCALENDAR_TITLE', 'HCALENDAR_URL'],
+])
 // Set the email address of the Google Group that contains everyone in the team.
 // Ensure the group has less than 500 members to avoid timeouts.
 var GROUP_EMAIL = 'ENTER_GOOGLE_GROUP_EMAIL_HERE';
@@ -16,7 +20,6 @@ var MONTHS_IN_ADVANCE = 6;
 
 /**
  * Setup the script to run automatically every hour.
- * Use `syncForce` to force collecting all events.
  */
 function setup() {
   var triggers = ScriptApp.getProjectTriggers();
@@ -54,20 +57,28 @@ function sync(lastRun) {
   //console.log('Date Range: ', minDate, ' => ', maxDate);
 
   // Get the list of users in the Google Group.
-  var users = People.People.listDirectoryPeople({ "readMask": "emailAddresses", "sources": ["DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE"] }).people;
+  var users = People.People.listDirectoryPeople({ "readMask": "names,emailAddresses", "sources": ["DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE"] }).people;
 
   // For each user, find outOfOffice events in the specified date range. Import each of those to the team
   // calendar.
   var count = 0;
 
+  // User OOO
   users.forEach(function (user) {
     user.emailAddresses.forEach(function (email) {
       var user_email = email.value;
-      var username = user_email.split('@')[0];
+      var username = user_email.split('@')[0];  // Fallback "username"
+      var user_names = user.getNames()
+      if (user_names !== undefined && user_names.length > 0) {
+        if (user_names.length > 1) {
+          console.warn("User [", username, "] has multiple names, taking the first one.");
+        }
+        username = user_names[0].displayName;
+      }
       // Only Company Emails
       if (user_email.split('@')[1] == GROUP_EMAIL.split('@')[1] && EMAILS_SKIP.indexOf(user_email) == -1) {
-        console.log('Checking: ', user_email);
-        var events = findOOOEvents(user_email, minDate, maxDate, lastRun);
+        //console.log('Checking: ', user_email);
+        var events = findCalendarEvents(user_email, minDate, maxDate, lastRun, sie=sieOOO);
         events.forEach(function (event) {
           importEvent(username, event);
           count++;
@@ -79,45 +90,59 @@ function sync(lastRun) {
     })
   });
 
+  // Holiday Calendars
+  HOLIDAY_CALENDARS.forEach(function (hcid, hlabel) {
+    //console.log("Checking Holidays @", hlabel);
+    var events = findCalendarEvents(hcid, minDate, maxDate, lastRun, sie=sieAll);
+    events.forEach(function (event) {
+      var prefix = "Holiday @ " + hlabel;
+      event.id = null;  // Generate a new event ID
+      // TODO: Check Regional holidays (name ends with " ($LOCATION)")
+      importEvent(prefix, event);
+      count++;
+    }); // End foreach event.
+  });
+
   PropertiesService.getScriptProperties().setProperty('lastRun', today);
   console.log('Imported ' + count + ' events');
 }
 
+function cleanTeam() {
+  var events = findCalendarEvents(TEAM_CALENDAR_ID, null, null, null, sie=sieAll);
+  events.forEach(function (event) {
+    console.log('Delete[%s]', event.id);
+    Calendar.Events.remove(TEAM_CALENDAR_ID, event.id);
+  });
+}
+
 /**
- * Imports the given event from the user's calendar into the shared team
- * calendar.
- * @param {string} username The team member that is attending the event.
+ * Imports the given event into the shared team calendar.
+ * @param {string} eprefix: Event Prefix
  * @param {Calendar.Event} event The event to import.
  */
-function importEvent(username, event) {
-  event.summary = '[' + username + '] ' + event.summary;
+function importEvent(eprefix, event) {
+  if (eprefix) {
+    event.summary = '[' + eprefix + '] ' + event.summary;
+  }
   event.organizer = {
     id: TEAM_CALENDAR_ID,
   };
   event.attendees = [];
-  console.log('Importing: %s (%s)', event.summary, event.id);
+  console.log('Importing[%s]: %s', event.id, event.summary);
   try {
     Calendar.Events.import(event, TEAM_CALENDAR_ID);
   } catch (e) {
-    console.error('Error attempting to import event: %s. Skipping.',
-      e.toString());
+    console.error('SKIP: Error attempting to import event: %s', e.toString());
   }
 }
 
-/**
- * In a given user's calendar, look for outOfOffice events within the specified date range and return any such events
- * found.
- * @param {Session.User} user The user to retrieve events for.
- * @param {Date} start The starting date of the range to examine.
- * @param {Date} end The ending date of the range to examine.
- * @param {Date} optSince A date indicating the last time this script was run.
- * @return {Calendar.Event[]} An array of calendar events.
- */
-function findOOOEvents(user, start, end, optSince) {
+function findCalendarEvents(user, start, end, optSince, sie) {
   var params = {
-    timeMin: formatDateAsRFC3339(start),
-    timeMax: formatDateAsRFC3339(end),
-    showDeleted: true,
+  };
+  if (start && end) {
+    params['timeMin'] = formatDateAsRFC3339(start);
+    params['timeMax'] = formatDateAsRFC3339(end);
+    params['showDeleted'] = true;
   };
   if (optSince) {
     // This prevents the script from examining events that have not been
@@ -138,25 +163,19 @@ function findOOOEvents(user, start, end, optSince) {
         user, e.toString());
       continue;
     }
-    events = events.concat(response.items.filter(function (item) {
-      return shoudImportEvent(user, item);
-    }));
+    events = events.concat(response.items.filter(sie));
     pageToken = response.nextPageToken;
   } while (pageToken);
   return events;
 }
 
-/**
- * Determines if the given event should be imported into the shared team
- * calendar.
- * @param {Session.User} user The user that is attending the event.
- * @param {Calendar.Event} event The event being considered.
- * @return {boolean} True if the event should be imported.
- */
-function shoudImportEvent(user, event) {
-  var isOOO = event.eventType == "outOfOffice"
-  //console.log("Event %s is OOO: %s", event.id, isOOO)
-  return isOOO
+// SIE: All
+function sieAll(event) {
+  return true;
+}
+// SIE: Out of Office Events
+function sieOOO(event) {
+  return event.eventType == "outOfOffice"
 }
 
 /**
