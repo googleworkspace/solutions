@@ -24,7 +24,7 @@ a matter of seconds!
 
 ![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/generate-sales-report/demo.gif)
 
-Note: This solution requires a Google Workspace Enterprise account and a Google Cloud Platform account and 
+Note: This solution requires a Google Workspace Enterprise account and a Google Cloud account and 
 project.
 
 ## Technology highlights
@@ -40,14 +40,14 @@ project.
 
 ## Try it
 
-### Set up a Google Cloud Platform project
-This solution requires a [Google Cloud Platform account and project][gcp-account]. The service used in this solution, BigQuery, 
+### Set up a Google Cloud project
+This solution requires a [Google Cloud account and project][gcp-account]. The service used in this solution, BigQuery, 
 has a [sandbox environment][sandbox] 
 that you can use to test this solution.
 
 1. [Sign in][sign-in] with your Google Workspace Business, Enterprise, 
 or Education Account credentials. 
-1. In the [GCP Console][console], select or create a new GCP project.
+1. In the [Google Cloud Console][console], select or create a new Google Cloud project.
 
 ### Create a templatized slide deck
 
@@ -69,8 +69,13 @@ the quotes.
 
 1. Navigate to the Generator tab of your spreadsheet.
 1. Choose an _Account Name_ and _Region_ in drop-down cells.
-1. Navigate to the Data Results tab and click **Refresh** 
-in the bottom left-hand corner of the spreadsheet grid.   
+1. Navigate to the Data Results tab. At the bottom, next to 
+**Refresh**, click the three dots to expand the **More options** 
+menu. Select **Edit query**. 
+1. In the pop-up menu, expand **Query Settings** and make sure 
+your Google Cloud project is selected in the drop-down menu.
+1. Click the **Connect** button. This will run the query. 
+In the future, you can run the query simply by clicking **Refresh**.
 1. Return to the Generator tab and click on the large 
 Generate button at the bottom of the spreadsheet grid to 
 initiate the creation of the report.
