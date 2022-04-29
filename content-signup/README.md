@@ -38,7 +38,7 @@ instant message, or wherever you share the form's link.
    in your browser. It automatically includes a Google Form and the code
    you need.
 
-1. From your spreadsheet click on **Tools > Script Editor**. This brings
+1. From your spreadsheet click on **Extensions** <span aria-label="and then">></span> **Apps Script**. This brings
    you to the _Apps Script editor._
 
 1. Now _run the script_ by clicking the **Select function** drop down >
