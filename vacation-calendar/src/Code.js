@@ -47,8 +47,9 @@ function sync() {
     KEYWORDS.forEach(function(keyword) {
       var events = findEvents(user, keyword, today, maxDate, lastRun);
       events.forEach(function(event) {
-        importEvent(username, event);
-        count++;
+        if (importEvent(username, event)) {
+          count++;
+        }
       }); // End foreach event.
     }); // End foreach keyword.
   }); // End foreach user.
@@ -62,6 +63,7 @@ function sync() {
  * calendar.
  * @param {string} username The team member that is attending the event.
  * @param {Calendar.Event} event The event to import.
+ * @return {boolean} True if the event was imported.
  */
 function importEvent(username, event) {
   event.summary = '[' + username + '] ' + event.summary;
@@ -72,9 +74,11 @@ function importEvent(username, event) {
   console.log('Importing: %s', event.summary);
   try {
     Calendar.Events.import(event, TEAM_CALENDAR_ID);
+    return true;
   } catch (e) {
     console.error('Error attempting to import event: %s. Skipping.',
         e.toString());
+    return false;
   }
 }
 
