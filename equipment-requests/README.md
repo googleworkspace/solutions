@@ -33,7 +33,7 @@ notification is sent to HR once the status is marked as complete.
 [![Learn more about this solution](https://img.youtube.com/vi/-R_MK1HFlZE/0.jpg)](https://www.youtube.com/watch?v=-R_MK1HFlZE&list=PLU8ezI8GYqs4YntFNP9jf_rrZ0vJLSW2X&index=7)
 
 1. Create a copy of the sample [Equipment request spreadsheet][sheet].
-1. Click the menu item **Tools** > **Script editor** to edit the script.
+1. Click **Extensions** <span aria-label="and then">></span> **Apps Script** to edit the script.
 1. In the script, change the value of `REQUEST_NOTIFICATION_EMAIL` to your email address.
 1. Save the script.
 1. Close the script editor.
