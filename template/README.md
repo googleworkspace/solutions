@@ -21,7 +21,7 @@ One to two paragraph motivation and description of the business problems solved.
 
 1. Please provide thorough instructions on how to demo the solution.
 1. We prefer users to copy a document, spreadsheet or slide deck with the code already in file.
-1. However this is not mandatory if note possible, see the [Call in Sick](https://github.com/googleworkspace/solutions/tree/master/call-in-sick) 
+1. However this is not mandatory if note possible, see the [Call in Sick](https://github.com/googleworkspace/solutions/tree/main/call-in-sick) 
 solution for an example.
 
 ## Next steps
@@ -39,4 +39,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/YOUR-SOLUTION-HERE
+[github]: https://github.com/googleworkspace/solutions/blob/main/YOUR-SOLUTION-HERE

@@ -22,7 +22,7 @@ _Region_. With the click of a button, a customized report
 with the latest sales data is automatically created in just 
 a matter of seconds! 
 
-![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/generate-sales-report/demo.gif)
+![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/generate-sales-report/demo.gif)
 
 Note: This solution requires a Google Workspace Enterprise account and a Google Cloud account and 
 project.
@@ -99,7 +99,7 @@ You can read more about BigQuery in the
 load your own data [directly][load-data] or 
 [through solution providers][bq-providers].
 
-[github]: https://github.com/googleworkspace/solutions/blob/master/generate-sales-report
+[github]: https://github.com/googleworkspace/solutions/blob/main/generate-sales-report
 [connector-support]: https://support.google.com/docs/answer/9077536
 [google-slides]: https://slides.google.com
 [apps-script]: https://developers.google.com/apps-script/

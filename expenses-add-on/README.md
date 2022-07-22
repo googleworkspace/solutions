@@ -12,7 +12,7 @@ user receives an email receipt, they can open the add-on which automatically con
 information about the expense. Users can edit that information and then submit the form to log
 their expense into a spreadsheet.
 
-![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/expenses-add-on/expenseit.gif)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/expenses-add-on/expenseit.gif)
 
 ## Technology highlights
 
@@ -41,7 +41,7 @@ Next, deploy the add-on:
 Test it out and create a new expense report:
 
 1. Open any message in Gmail, either on web or mobile.
-1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/expenses-add-on/receipt-icon.png)
+1. A new button that resembles a receipt ![icon](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/expenses-add-on/receipt-icon.png)
 should appear on the right or bottom of your screen, depending on your platform.
 1. Click the button to authorize the add-on and follow the prompts.
 1. Open an email and fill out the receipt information and click **New Sheet**.

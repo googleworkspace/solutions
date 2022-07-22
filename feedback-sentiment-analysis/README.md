@@ -22,7 +22,7 @@ This solution uses <a href="https://developers.google.com/apps-script/" target="
 a Google Sheet to perform entity and sentiment analysis on vacation rental reviews
 using the Cloud Natural Language API.
 
-![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/feedback-sentiment-analysis/summaryimage.png)
+![summary](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/feedback-sentiment-analysis/summaryimage.png)
 
 ## Technology highlights
 

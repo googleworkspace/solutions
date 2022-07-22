@@ -19,7 +19,7 @@ resources referenced via a URL.
 The Google Form can be accessed on your website, email signature,
 instant message, or wherever you share the form's link.
 
-![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/content-signup/demo.gif)
+![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/content-signup/demo.gif)
 
 ## Technology highlights
 
@@ -125,4 +125,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/content-signup
+[github]: https://github.com/googleworkspace/solutions/blob/main/content-signup

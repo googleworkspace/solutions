@@ -51,9 +51,9 @@ code sample. If your solution involves a spreadsheet, document or presentation, 
 sample data in the data directory (see [example][data_example]). You must fill in the 
 [README.md][template_readme] with an image or gif for us to surface on the gallery page. 
 
-[template_directory]: https://github.com/googleworkspace/solutions/tree/master/template
-[template_readme]: https://github.com/googleworkspace/solutions/tree/master/template
-[data_example]: https://github.com/googleworkspace/solutions/tree/master/equipment-requests
+[template_directory]: https://github.com/googleworkspace/solutions/tree/main/template
+[template_readme]: https://github.com/googleworkspace/solutions/tree/main/template
+[data_example]: https://github.com/googleworkspace/solutions/tree/main/equipment-requests
 
 ## Step 3
 

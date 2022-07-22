@@ -13,7 +13,7 @@ create a sign-up form. For each attendee, a personalized schedule in a Google
 Doc is emailed out and a conference calendar is created then populated with the
 specific sessions.
 
-![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/event-session-signup/event-signup.jpg)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/event-session-signup/event-signup.jpg)
 
 ## Technology highlights
 
@@ -41,4 +41,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/event-session-signup
+[github]: https://github.com/googleworkspace/solutions/blob/main/event-session-signup

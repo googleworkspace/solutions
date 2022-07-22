@@ -23,7 +23,7 @@ You can categorize this information by customer, project and task based on the d
 data is structured for further processing. Use the dashboard or write a simple query to report or copy
 in other time sheets.
 
-![screenshot](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/calendar-timesheet/calendar-to-sheet-screenshot.png)
+![screenshot](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/calendar-timesheet/calendar-to-sheet-screenshot.png)
 
 ## Technology highlights
 
@@ -54,7 +54,7 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/calendar-timesheet
+[github]: https://github.com/googleworkspace/solutions/blob/main/calendar-timesheet
 [create-calendar]:[https://support.google.com/calendar/answer/37095]
 [spreadsheetapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app
 [calendarapp-docs]: https://developers.google.com/apps-script/reference/spreadsheet/calendar-app
