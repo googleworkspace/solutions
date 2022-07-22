@@ -23,7 +23,7 @@ the group, and be granted access to the resources the group is permitted.
 For larger teams, you can optionally enable notficiations in the spreadsheet
 to receive an email everytime a new form submission occurs.
 
-![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/group-membership-form/demo.gif)
+![Topics are selected in a form, and upon submit an email is sent](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/group-membership-form/demo.gif)
 
 ## Technology highlights
 
@@ -102,4 +102,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/group-membership-form
+[github]: https://github.com/googleworkspace/solutions/blob/main/group-membership-form

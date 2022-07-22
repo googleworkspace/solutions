@@ -22,7 +22,7 @@ members in a Google Group and syncing appropriate events to the shared calendar.
 Note: This solution only accesses Calendar events that your colleagues have made
 visible to you via their [privacy settings][privacy_settings].
 
-![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/vacation-calendar/demo.gif)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/vacation-calendar/demo.gif)
 
 [apps-script]: https://developers.google.com/apps-script
 [privacy_settings]: https://support.google.com/calendar/answer/34580
@@ -86,4 +86,4 @@ You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro
-[github]: https://github.com/googleworkspace/solutions/blob/master/vacation-calendar
+[github]: https://github.com/googleworkspace/solutions/blob/main/vacation-calendar

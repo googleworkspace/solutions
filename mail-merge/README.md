@@ -11,7 +11,7 @@ Contributed by Martin Hawksey, follow me on Twitter [@mhawksey](https://twitter.
 
 Simplify the process of producing visually rich mail merges using Gmail and combining it with data from Google Sheets. With this solution you can automatically populate an email template created as a Gmail draft with data from Google Sheets. Merged emails are sent from your Gmail account allowing you to respond to recipient replies.
 
-![Mail merge with Gmail and Google Sheets](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/mail-merge/mailmerge.gif)
+![Mail merge with Gmail and Google Sheets](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/mail-merge/mailmerge.gif)
 
 ## Technology highlights
 
@@ -47,4 +47,4 @@ For more information on the number of email recipients that can be contacted per
 
 To learn more about Google Apps Script, try out [the codelab](https://codelabs.developers.google.com/codelabs/apps-script-intro) which guides you through the creation of your first script.
 
-You can also view the [full source code](https://github.com/googleworkspace/solutions/blob/master/mail-merge) of this solution on GitHub to learn more about how it was built.
+You can also view the [full source code](https://github.com/googleworkspace/solutions/blob/main/mail-merge) of this solution on GitHub to learn more about how it was built.

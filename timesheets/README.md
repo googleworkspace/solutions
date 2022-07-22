@@ -14,7 +14,7 @@ manage their data. After everybody submits their responses, calculate their pay,
 approve or disapprove their pay, and auto-send emails notifying them of their
 pay status.
 
-![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/timesheets/TimesheetsRecording.gif)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/timesheets/TimesheetsRecording.gif)
 
 [apps-script]: https://developers.google.com/apps-script/
 

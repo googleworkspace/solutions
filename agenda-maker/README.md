@@ -17,7 +17,7 @@ By simply adding "#agenda" to the description of your Google Calendar invite, an
 
 Design Details
 
-![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/agenda-maker/AgendaMakerScreenshot.png)
+![demo](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/agenda-maker/AgendaMakerScreenshot.png)
 
 ## Technology highlights
 
@@ -67,5 +67,5 @@ which guides you through the creation of your first script.
 You can also view the [full source code][github] of this solution on GitHub to
 learn more about how it was built.
 
-[github]: https://github.com/googleworkspace/solutions/blob/master/agenda-maker
+[github]: https://github.com/googleworkspace/solutions/blob/main/agenda-maker
 [codelab]: https://codelabs.developers.google.com/codelabs/apps-script-intro

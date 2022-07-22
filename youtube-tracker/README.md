@@ -18,7 +18,7 @@ Sheet. Additionally, email notifications can be enabled that send daily
 summaries of videos that have new comment activity so that you can engage with
 questions and comments shared for the video.
 
-![screenshot](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@master/youtube-tracker/screenshot.png)
+![screenshot](https://cdn.jsdelivr.net/gh/googleworkspace/solutions@main/youtube-tracker/screenshot.png)
 
 ## Technology highlights
 
