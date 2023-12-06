@@ -79,7 +79,6 @@ function sync() {
  * calendar.
  * @param {string} username The team member that is attending the event.
  * @param {Calendar.Event} event The event to import.
- * @return {boolean} True if the event was imported.
  */
 function importEvent(username, event) {
   event.summary = '[' + username + '] ' + event.summary;
@@ -87,16 +86,24 @@ function importEvent(username, event) {
     id: TEAM_CALENDAR_ID,
   };
   event.attendees = [];
+
+  // If the event is not of type 'default', it can't be imported, so it needs
+  // to be changed.
+  if (event.eventType != 'default') {
+    event.eventType = 'default';
+    delete event.outOfOfficeProperties;
+    delete event.focusTimeProperties;
+  }
+  
   console.log('Importing: %s', event.summary);
   try {
     Calendar.Events.import(event, TEAM_CALENDAR_ID);
-    return true;
   } catch (e) {
     console.error('Error attempting to import event: %s. Skipping.',
         e.toString());
-    return false;
   }
 }
+
 
 /**
  * In a given user's calendar, look for occurrences of the given keyword
