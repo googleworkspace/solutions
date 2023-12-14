@@ -12,7 +12,7 @@
   ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "@google/clasp": "^2.3.0",
+    "@google/clasp": "^2.4.2",
     "eslint": "^6.4.0",
     "eslint-config-google": "^0.14.0"
   }
