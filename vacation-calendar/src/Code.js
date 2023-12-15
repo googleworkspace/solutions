@@ -52,7 +52,8 @@ function sync() {
   lastRun = lastRun ? new Date(lastRun) : null;
 
   // Get the list of users in the Google Group.
-  var users = GroupsApp.getGroupByEmail(GROUP_EMAIL).getUsers();
+  var group = GroupsApp.getGroupByEmail(GROUP_EMAIL);
+  var users = getAllUsers(group);
 
   // For each user, find events having one or more of the keywords in the event
   // summary in the specified date range. Import each of those to the team
@@ -72,6 +73,31 @@ function sync() {
 
   PropertiesService.getScriptProperties().setProperty('lastRun', today);
   console.log('Imported ' + count + ' events');
+}
+
+/**
+ * Gets all the users that are members of a Google Group, including indirect
+ * members (for groups that contain other groups).
+ * @param {GoogleAppsScript.GroupsApp.Group} group The target group.
+ * @return {GoogleAppsScript.User[]} All users within the group.
+ */
+function getAllUsers(group) {
+  var users = {};
+  var queue = [group];
+  var visited = {};
+  var current;
+  while (current = queue.pop()) {
+    var key = current.getEmail();
+    if (visited[key]) continue;
+    current.getUsers().forEach(function(user) {
+      users[user.getEmail()] = user;
+    });
+    queue = queue.concat(current.getGroups());
+    visited[key] = true;
+  }
+  return Object.keys(users).map(function(email) {
+    return users[email];
+  });
 }
 
 /**
