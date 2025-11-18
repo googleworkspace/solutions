@@ -12,8 +12,8 @@
   ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "@google/clasp": "^2.3.0",
-    "eslint": "^6.4.0",
+    "@google/clasp": "^2.5.0",
+    "eslint": "^9.39.1",
     "eslint-config-google": "^0.14.0"
   }
 }
